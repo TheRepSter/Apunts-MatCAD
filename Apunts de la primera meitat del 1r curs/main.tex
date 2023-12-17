@@ -1,0 +1,42 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{letltxmacro}
+\usepackage{yfonts}
+
+\makeatletter
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{%
+\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2} }
+\makeatother
+
+
+\titleformat{\section}[display]{\bfseries\huge\itshape}{ }{0.1ex}{
+    \scshape
+    \centering
+    \raisebox{-\baselineskip}{\rule{\textwidth}{1px}}
+    \rule{\textwidth}{1px}
+}[
+    \rule{\textwidth}{2px}
+]
+
+\begin{document}
+    \input{title}
+    \tableofcontents
+    \newpage
+    \input{Àlgebra}
+    \input{Càlcul-1}
+    \input{Prog}
+    \input{Sistema}
+    \input{fonaments}
+\end{document}
