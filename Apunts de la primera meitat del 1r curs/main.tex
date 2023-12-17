@@ -10,10 +10,23 @@
 \usepackage{hyperref}
 \usepackage{letltxmacro}
 \usepackage{yfonts}
+\usepackage{subfiles}
+\usepackage{amsthm}
+\graphicspath{{images/}}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{corolari}{Corol·lari}
+\newtheorem*{lema}{Lema}
+\newtheorem*{proposicio}{Proposició}
+\theoremstyle{remark}
+\newtheorem*{obs}{Observació}
+\newtheorem*{fet}{Fet}
+\theoremstyle{definition}
+\newtheorem*{definicio}{Definició}
 
 \makeatletter
 \let\oldr@@t\r@@t
-\def\r@@t#1#2{%
+\def\r@@t#1#2{
 \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
 \advance\dimen0-0.2\ht0
 \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}
@@ -24,21 +37,33 @@
 
 
 \titleformat{\section}[display]{\bfseries\huge\itshape}{ }{0.1ex}{
+    \newpage
     \scshape
     \centering
     \raisebox{-\baselineskip}{\rule{\textwidth}{1px}}
     \rule{\textwidth}{1px}
 }[
     \rule{\textwidth}{2px}
+    \newpage
 ]
 
 \begin{document}
     \input{title}
     \tableofcontents
-    \newpage
-    \input{Àlgebra}
-    \input{Càlcul-1}
-    \input{Prog}
-    \input{Sistema}
-    \input{fonaments}
+    \pagenumbering{gobble}
+    \section{Àlgebra Lineal}
+    \pagenumbering{arabic}
+    \subfile{subfiles/Àlgebra}
+    \section{Càlcul en una variable}
+    \pagenumbering{arabic}
+    \subfile{subfiles/Càlcul-1}
+    \section{Introducció a la programació}
+    \pagenumbering{arabic}
+    \subfile{subfiles/Prog}
+    \section{Programari de sistema}
+    \pagenumbering{arabic}
+    \subfile{subfiles/Sistema}
+    \section{Fonaments dels computadors}
+    \pagenumbering{arabic}
+    \subfile{subfiles/fonaments}
 \end{document}

@@ -10,13 +10,26 @@
 \usepackage{hyperref}
 \usepackage{letltxmacro}
 \usepackage{yfonts}
+\usepackage{subfiles}
+\usepackage{amsthm}
+\graphicspath{{images/}}
+
+\newtheorem*{teorema}{Teorema}
+\newtheorem*{corolari}{Corol·lari}
+\newtheorem*{lema}{Lema}
+\newtheorem*{proposicio}{Proposició}
+\theoremstyle{remark}
+\newtheorem*{obs}{Observació}
+\newtheorem*{fet}{Fet}
+\theoremstyle{definition}
+\newtheorem*{definicio}{Definició}
 
 \makeatletter
 \let\oldr@@t\r@@t
-\def\r@@t#1#2{%
+\def\r@@t#1#2{
 \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
 \advance\dimen0-0.2\ht0
-\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}
 {\box0\lower0.4pt\box2}}
 \LetLtxMacro{\oldsqrt}{\sqrt}
 \renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2} }
@@ -24,21 +37,33 @@
 
 
 \titleformat{\section}[display]{\bfseries\huge\itshape}{ }{0.1ex}{
+    \newpage
     \scshape
     \centering
     \raisebox{-\baselineskip}{\rule{\textwidth}{1px}}
     \rule{\textwidth}{1px}
 }[
     \rule{\textwidth}{2px}
+    \newpage
 ]
 
 \begin{document}
     \input{title}
     \tableofcontents
-    \newpage
-    \input{Àlgebra}
-    \input{Càlcul-1}
-    \input{I.Probabilat}
-    \input{Eina}
-    \input{An.Dades}
+    \pagenumbering{gobble}
+    \section{1}
+    \pagenumbering{arabic}
+    \subfile{subfiles/1}
+    \section{2}
+    \pagenumbering{arabic}
+    \subfile{subfiles/2}
+    \section{3}
+    \pagenumbering{arabic}
+    \subfile{subfiles/3}
+    \section{4}
+    \pagenumbering{arabic}
+    \subfile{subfiles/4}
+    \section{5}
+    \pagenumbering{arabic}
+    \subfile{subfiles/5}
 \end{document}
