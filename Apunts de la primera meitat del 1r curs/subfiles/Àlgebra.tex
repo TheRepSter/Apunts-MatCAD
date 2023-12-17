@@ -1,0 +1,125 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+
+\begin{document}
+    Definició: un espai vectorial es finit generat si existeixen vectors que generar aquest espai. \\
+    Definició: Donat un espai vectorial finit generat diem que un vector es una base de $\mathbb{E}$ si compleix les següents condicions:
+    \begin{enumerate}
+        \item Els vectors es un sistema generatiu per a $\mathbb{E}$.
+        \item Els vectors son linealment independents
+    \end{enumerate}
+    Fet: tot espai vectorial $\mathbb{E}$ té una base\\
+    Aplicacions lineals: Funcions entre espais vectorials respectant operacions del espai vectorial. \\
+    \begin{definicio}
+        Una aplicació lineal entre dos espais vectorials $\mathbb{E}_1, \mathbb{E}_2$ és una funció (aplicació) $f: \mathbb{E}_1 \rightarrow \mathbb{E}_2$ que compleix:
+        \begin{enumerate}
+            \item $f(v_1 + v_2) = f(v_1) + f(v_2)$ $\forall v_1, v_2 \in \mathbb{E}_1$
+            \item $f(k v_1) = k f(v_1)$ $\forall v_1 \in \mathbb{E}_1, k \in \mathbb{K}$
+        \end{enumerate}
+    \end{definicio}
+    Tota $f: \mathbb{K}^n \rightarrow \mathbb{K}^m$ lineal correspon a multiplicar per certa matriu $A$ i escrivim a vegades $f = T_A$\\
+    \underline{Definició}: Una forma lineal $w: \mathbb{K}^n \rightarrow \mathbb{K}$ és una funció amb certs números $a_n$ de $\mathbb{K}$ (son formes lineals)\\
+    \underline{Definició}: Donada $f: \mathbb{E}_1 \rightarrow \mathbb{E}_2$ lineal definim el nucli de $f$ com: $Ker(f) := {e \in \mathbb{E}_1 | f(e) = 0_{\mathbb{E}_2}} \subseteq \mathbb{E}_1$ i la imatge de $f$ com: $Im(f) = {f(e) | e \in \mathbb{E}_1} \subseteq \mathbb{E}_2$.\\
+    \underline{Fet}: $Ker(f)$ és un s.e.v. de $\mathbb{E}_1$. $Im(f)$ és un s.e.v de $\mathbb{E}_2$. Té $dim(Im(f)) + dim(Ker(f)) = dim \mathbb{E}_1$\\
+    \underline{Definició}: $f: \mathbb{E}_1 \rightarrow \mathbb{E}_2$\\
+    \begin{itemize}
+        \item Diem que $f$ és \underline{injectiva} si $f(x) = f(y) \Rightarrow x = y$.
+        \item Diem que $f$ és \underline{exhaustiva} si $\forall e \in \mathbb{E}_2$ $\exists v_1 \in \mathbb{E}_1| f(v_1) = e_2$
+        \item Diem que $f$ es \underline{bijectiva} si és injectiva i exhaustiva. Llavors es pot definir $f^{-1}: \mathbb{E}_2 \rightarrow \mathbb{E}_1$
+    \end{itemize}
+    \underline{Fet}: $f: \mathbb{E}_1 \rightarrow \mathbb{E}_2$ llavors
+    \begin{enumerate}
+        \item $f$ és injectiva $\Longleftrightarrow$ $Ker(f) = \{0_{\mathbb{E}_1}\}$
+        \item $f$ és exhaustiva $\Longleftrightarrow$ $Im(f) = \mathbb{E}_2$ $\Longleftrightarrow$ $dim(Im(f)) = dim(\mathbb{E}_2)$
+        \item $f$ és bijectiva $\Longleftrightarrow$ es compleix el de dalt i $f^{-1}: \mathbb{E}_2 \rightarrow \mathbb{E}_1$.
+    \end{enumerate}
+    \underline{Fet}: $T_A: \mathbb{K}^n \rightarrow \mathbb{K}^m$
+    \begin{enumerate}
+        \item $T_A$ injectiva $\Longleftrightarrow dim(Ker(T_A)) = 0 \Longleftrightarrow N-rang(A) = 0$.
+        \item $T_A$ exhaustiva $\Longleftrightarrow dim(Im(T_A)) = M \Longleftrightarrow rang(A) = M$.
+        \item $T_A$ bijectiva $\Longleftrightarrow N = rang(A) = M$, ès a dir $A$ invertible i quadrada. En aquest cas, $(T_A)^{-1} = T_{A^{-1}}$.
+    \end{enumerate}
+    \underline{Teorema}: Donada $f: \mathbb{E}_1 \rightarrow E_2$ lineal. $B = (V_1, \dots, V_l)$ una base de $E_1$ i $C = (w_1, \dots, w_t)$ una base de $\mathbb{E}_2$. Llavors $f$ consisteix en coordenades $B$ i $C$ a multiplicar per certa matriu $[f]_{B, C} = M(C\xleftarrow{f} B$ anomenada la matriu associada a $f$ de coordenades en $B$ a coordenades en $C$ complint per $v = (\lambda_1, \dots, \lambda_l)_B \in \mathbb{E}_1$.\\
+    \begin{displaymath}
+    f(v) = f(\begin{psmallmatrix}
+    \lambda_1 \\
+    \vdots \\
+    \lambda_l
+    \end{psmallmatrix}) = \underbrace{M(c \xleftarrow{f} B)\begin{psmallmatrix}\lambda_1\\ \vdots \\ \lambda_l \end{psmallmatrix}}_{\text{és en coordenades de }  c}
+    \end{displaymath}
+    \underline{Composició d'aplicacions lineals}:\\
+    Fet: $f: V \rightarrow W$ lineal i $g: W \longrightarrow E$ lineal llavors $g \circ f: V \longrightarrow E$ és lineal. Més concret $T_A: \mathbb{K}^N \longrightarrow \mathbb{K}^M; \vec{x} \longmapsto A\vec{x}$ on $A \in M_{M\times N}(\mathbb{K})$ i $T_B: \mathbb{K}^M \longrightarrow \mathbb{K}^L; \vec{x} \longmapsto B\vec{x}$ on $B \in M_{L\times M}(\mathbb{K})$. Llavors $T_B \circ T_A$ té sentit i equival (en forma de notació) a $T_{BA}$. Fent servir les propietats de les aplicacions lineals, sabem que $T_{BA}: \vec{x} \longmapsto BA\vec{x}$. No tindria sentit fer $T_A \circ T_B$ sempre que $L \neq N$ (si les dimensions de entrada i de sortida no concideixen no es pot fer, tampoc es podrà fer la multiplicació $AB$).\\
+    Amb bases satisfarà el seguent: $M(E \xleftarrow{g \circ f} B) = M(E \xleftarrow{g} C)M(C \xleftarrow{f} B)$.\\
+    Podem fer $M(e_1 \xleftarrow{f} b_1) = M(e_1 \xleftarrow{id} e_2)M(e_2 \xleftarrow{f} b_2)M(b_2 \xleftarrow{id} b_1)$. Aixó significa que cambiem de bases per fer-nos la vida mes facil.\\
+    \underline{Definició}: Diem que dos matrius $A, B \in M_{M\times N}(\mathbb{K})$ son similars si existeixen $P$ i $Q$ invertibles on $PAQ = B$.\\
+    \underline{Aplicacions lineals i geometria}:\\
+    Same as estadistica.
+    \subsection{Diagonalització}
+    \underline{Definició}: Donada $f: E \rightarrow E; e \neq 0_E$ lineal diem que $e \in E$ és un vector propi (ó autovector) si $f(e) = \lambda e$ per cert $\lambda \in \mathbb{K}$ i aquest $\lambda$ s'anomena valor propi (ó autovalor) de $f$ associat a $e$. \\
+    \underline{Definició}: Denotem per $E_\lambda = \{e\in E | (f-\lambda)(e) = 0_E\} = Ker(f-\lambda)$ és un s.e.v. de $E$.\\
+    \underline{Definició}: Donada $f: E \rightarrow E$ lineal ó $A \in M_N(\mathbb{K})$ ($f=T_A$) i fixem $e$ una base de $E$, en cas de $f$ escrivim $A=M$. El polinomi característic de $f$ i $A$ es $P(x) = det(A-x)$\\
+    \underline{Obs}: Canviant la base, el polinomi característic de $f$ és el mateix.\\
+    \underline{Fet}:$f: E \rightarrow E$ lineal o $f = T_A: \mathbb{K}^n \rightarrow \mathbb{K}^n$ tenim que els valors propis de $f$ (o de $T_A$ (o de $A$)) corresponen als zeros en $\mathbb{K}$ del polinomi característic de $f$ ó $A$ els vectors propis de $f$ o $T_A$ o $A$ associats a un valor propi $\lambda$ son: $E_\lambda \setminus 0_E$.\\
+    \underline{Algoritme}: 
+    \begin{enumerate}
+        \item pas: Calcul $A$ on $f = T_A$ i polinomi característic $P_A(x)$ i buscar $\underbrace{\text{zeros a }\mathbb{K}}_{\text{VAPS de }f}$
+        \item pas: Per cada $\lambda$ on $P_A(\lambda) = 0$ calcular base i dimensió del Ker($A - \lambda I_n$) = $E_\lambda$. \underline{No pot sortir vector 0}
+        \item pas: $A$ diagonalitza a $\mathbb{K}$ si la suma de les dimensions de $E_\lambda = N$
+        \item pas: En cas que diagonalitza a $\mathbb{K}$ ajuntem bases $E_\lambda: (v_1, \dots, v_N)$ on $f(v_i) = \mu_i v_i$ on $\mu_i$ es el valor propi associat a $v_i$, tenim $A=PDP^{-1}$ on $P = \begin{psmallmatrix} | & \dots & |\\ v_1 & \dots & v_n\\ | & \dots & | \end{psmallmatrix}$ i $D = diag(\mu_1, \dots, \mu_N)$
+        \item pas: Ser feliz. En cas de que et demani elevar o algo pos lo haces. 
+    \end{enumerate}
+    \underline{Lema}: Considerem $f$ (o $T_A$ o $A$) ($f: E \rightarrow E, T_A: \mathbb{K}^N \rightarrow \mathbb{K^N}$) i siguin $v_1, v_2$ dos vectors propis de $f$ (o $T_A$ o $A$) de valor propi diferent. Llavors $v_1$ i $v_2$ son L.I.\\
+    \underline{Definició}: $f: E \rightarrow E$ diagonalitza si existeix una base de $E$ formada per vectors propis de $f$.\\
+    \underline{Definició}: Donada $A \in M_N(\mathbb{K})$ diem que diagonalitza si existeix $D$ diagonal i $P$ invertible tal que $A = PDP^{-1}$\\
+    \underline{Fet}: $f: E \rightarrow E$ o $T_A: \mathbb{K}^N \rightarrow \mathbb{K}^N$ o $A\in M_N{\mathbb{K}}$ calculem els valors propis de $f$, $T_A$ o $A$, diem-los-hi: $\lambda_1, \lambda_2, \dots, \lambda_l$. Llavors $f$ diagonalitza (i $A$ també) $\Longleftrightarrow \sum\limits_{i=1}^l dim(E_{\lambda_i}) = dim(E) (\text{ó } N)$.\\
+    En cas afirmatiu una base de $E$ (o $\mathbb{K}^N)$ formada per vectors propis consisteix en ajuntar les bases de $E_{\lambda_i}$.\\
+    \subsection{Espais vectorials amb una distància}
+    Sempre pensem en $E = \mathbb{R}^n$ (ó $\mathbb{K}^n$)\\
+    \underline{Definició}: Donats 
+    \begin{displaymath}
+        u=\begin{psmallmatrix} u_1 \\ \vdots \\ u_n \end{psmallmatrix} \in \mathbb{K}^n \text{ i }v=\begin{psmallmatrix} v_1 \\ \vdots \\ v_n \end{psmallmatrix} \in \mathbb{K}^n
+    \end{displaymath}
+    es defineix el producte escalar euclideà tal que $<u, v> = u * v := u^tv \in \mathbb{K}$\\
+    es defineix la norma euclidiana de $u \in \mathbb{K}^n$ per $||u|| := \sqrt{u*u}$\\
+    \underline{Definició}: Dos vectors $u, v$ de $\mathbb{K}^n$ s'anomenen ortogonals si i només si $u*v=0$.\\
+    \underline{Definició}: Un vector $u$ de $\mathbb{K}^n \setminus 0_{\mathbb{K}^n}$ es diu unitari si $||u|| = 1$\\
+    \underline{Definició}: Una família ortogonal de $\mathbb{K}^n$ és una família de vectors de $K^n$ ortogonals dos a dos.\\
+    \underline{Definició}: Una família ortonormal de $\mathbb{K}^n$ és una família de vectors unitaris de $K^n$ i ortogonals dos a dos.\\
+    \underline{Fet}: Tot subespai vectorial de $\mathbb{R}^n$ té una base ortonormal.\\
+    \underline{Observació}: A $\mathbb{R}^n$ amb $*$ definim distància com $d(\vec{u}, \vec{v}) = ||\vec{u}-\vec{v}||$\\
+    \underline{Lema}: $u_1, u_2, \dots, u_n$ vectors de $\mathbb{R}^n$ 2 a 2 ortogonals, llavors son L.I.\\
+    \underline{Proposició}: Si $u_1, u_2, \dots, u_r$ és base d'un subespai vectorial $V$ de $\mathbb{R}^n$ prenem vectors $v_1, v_2, v_r$ definits recursivament via $v_1 = u_1$ i $v_i = u_i - \frac{v_{i-1}*u_i}{v_{i-1}*v_{i-1}}v_{i-1} - \dots - \frac{v_1*v_i}{v_1*v_1}v_1$ llavors $(v_1, \dots, v_r)$ és base ortogonal de $V$ i llavors $(\frac{v_1}{||v_1||}, \dots, \frac{v_r}{||v_r||})$ és base ortogonal de $V$. Si es vol ortonormal, es fa $v_1 = \frac{u_1}{||u_1||}$ i $v_i := u_1 - \sum\limits_{j=1}^{i-1}(v_j*u_i)v_j$
+    \underline{Fet}: $w_1, w_2, \dots, w_n$ base de $\mathbb{R}^N$ ortonormal i $Q = (w_1|w_2|\dots|w_n)$ en coordenades de la canònica es té $QQ^t = \mathbb{I}_N$\\
+    \underline{Fet}: Donada $A \in M_{M\times N}(\mathbb{R}$ on $rang(A) = N$, existeixen $Q \in M_{M\times N}(\mathbb{R})$ i $R \in M_N(\mathbb{R}$ triangular superior. Complint:
+    \begin{enumerate}
+        \item $A = QR$
+        \item $QQ^t = \mathbb{I}_N$
+        \item $R$ és matriu triangular superior amb els coeficients de la diagonal positius.
+    \end{enumerate}
+    \underline{Definició}: $V$ es un subespai vectorial de $\mathbb{R}^n$ definim l'ortogonal de $V$ i s'anota per $V^\perp$ al subespai vectorial de $\mathbb{R}^n$ seguint $V^\perp := \{v \in \mathbb{R}^N | v*w = 0 \text{ } \forall w \in V \}$.\\
+    \underline{Fet:} $V$ un subespai vectorial de $\mathbb{R}^n$ es té:
+    \begin{itemize}
+        \item $V^{\perp^\perp} = V$
+        \item $V \cap V^\perp = 0_{\mathbb{R}^n}$
+        \item $V + V^\perp = \mathbb{R}^n$
+    \end{itemize}
+    \underline{Fet}: (projecció ortogonal)\\
+    $V$ un subespai vectorial de $\mathbb{R}^n$ donat $\vec{x} \in \mathbb{R}^n$ s'escriu $\Vec{x} = \Vec{x}^\perp + \Vec{x}^\parallel$ on $\vec{x}^\parallel \in V$ i $\Vec{x}^\perp \in V^\perp$ i aquesta descomposició és única. $\vec{x}^\parallel$ s'anomena la projecció ortogonal de $\Vec{x}$ en $V$ i s'anota $pr_v(\Vec{x})$.\\
+    $proj_{<\vec{l}>}(\vec{x})=\frac{\Vec{x}*\vec{l}}{\Vec{l}*\vec{l}}\Vec{l}$\\
+    Per calcular la projecció ortogonal de $\vec{x}$: Tenim $V$ un subespai vectorial de $\mathbb{R}^n$ i $u_1, u_2, \dots, v_l$ base de $V$ ortonormal de $\mathbb{R}^n$ observem $\underbrace{u_1, u_2, \dots, u_l}_{\text{base de } V},\underbrace{u_{l+1}, \dots, u_n}_\text{Son ortonormals}$ es te donat $\vec{x} \in \mathbb{R}^n$
+    \begin{displaymath}
+        pr_v(\vec{x}) = (\vec{x}*u_1)u_1+\dots+(\vec{x}*u_l)u_l
+    \end{displaymath}
+    \underline{Fet}: Donat $x \in \mathbb{R}^n$ un subespai vectorial de $\mathbb{R}^n$ tenim $||x-proj_v(x)|| = ||x^\perp||\leq ||x-v|| \forall v \in V$ dels vectors de $V$ són més a prop de $\Vec{x}$ és justament el vector $pr_v(\Vec{x})$\\
+    \underline{Definició}: Una solució $u^*$ de mínims quadrats per a un sistema lineal $(A|b)$ és un vector complent $||Au^*-b|| \leq ||Au-b|| \forall u \in \mathbb{R}^m$ on $T_A: \mathbb{R}^m \rightarrow \mathbb{R}^n$\\
+    \underline{Fet}: Donat $(A|b)$ qualsevol, sempre existeix una solució de mínims quadrats on $u^* = proj_{Im(T_A)}(b)$ aquesta $u^*$ correspon solucions de $(A^tA|A^tb)$, que és un Sistema Compatible.\\
+    \underline{Definició}: $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ lineal s'anomena ortogonal si conserva la longitud dels vectors, és dir: $||f(v)||=||v|| \forall v \in \mathbb{R}^n$ si posem $f=T_A$ amb $A \in M_{m\times n}(\mathbb{R})$ diem $A$ és una matriu ortogonal.\\
+    \underline{Fet}: $f: \mathbb{R}^n \rightarrow \mathbb{R}^m \Leftrightarrow f(\vec{u})*f(\vec{v}) = \vec{u}*\vec{v} \forall u, v \in \mathbb{R}^n$ \\
+    \underline{Fet}: $A \text{ortogonal} \Leftrightarrow A^t=A^{-1} \Leftrightarrow$ la columna de $A$ formen una base ortonormal de $\mathbb{R}^n$\\
+    \underline{Definició}: Una matriu quadrada $A \in M_n(\mathbb{R})$ o $T_A: \mathbb{R}^n \leftarrow \mathbb{R}^m$ diem que diagonalitza per matrius ortogonals si satisfà alguna de les 2 condicions seguents:
+    \begin{enumerate}
+        \item Existeix una base ortonormal de $\mathbb{R}^n$ formada pels VEPS de $A$
+        \item Existeix una matriu $P$ ortogonal complint $A=PDP^t$ on $D$ és una matriu diagonal
+    \end{enumerate}
+    \underline{Teorema espectral} $A$ o $T_A$ és diagonalitzable per matrius ortogonals $\Leftrightarrow A$ és simètrica.
+\end{document}

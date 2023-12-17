@@ -1,0 +1,71 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+
+\begin{document}
+    Prob 1, tema 3:
+    MOV ESI, 0\\
+    BUCLE:\= CMP ESI, \underline{128}\\
+    \underline{JGE} FI\\
+    MOV EAX, \underline{A[ESI]}\\
+    ADD EAX, \underline{B[ESI]}\\
+    MOV C[ESI], \underline{EAX}\\
+    ADD ESI, \underline{4}\\
+    \underline{JMP} BUCLE\\
+    FI:
+    
+    Prob 2, tema 3:\\
+    INI: MOV ESI, 0\\
+    MOV \underline{AL}, 1\\
+    BUCLE: CMP ESI, \underline{80}\\
+    \underline{JGE} FI2\\
+    \underline{MOV} EBX, Vector[ESI]\\
+    ADD ESI, \underline{4}\\
+    CMP EBX, \underline{Vector[ESI]}\\
+    \underline{JGE} FI\\
+    \underline{JMP} BUCLE\\
+    FI: MOV AL, 0\\
+    FI2: HALT
+    
+    Prob 3, tema 3:\\
+    INI: MOV ESI, 0\\
+    MOV EDI, 19\\
+    MOV [Palin], 1\\ 
+    BUCLE: MOV AL, \underline{NOM[ESI]}\\
+    CMP AL, \underline{NOM[EDI]}\\
+    \underline{JE} SEG\\
+    MOV \underline{[Palin]}, 0\\
+    \underline{JMP} FI\\
+    SEG: ADD ESI, \underline{1}\\
+    SUB EDI, \underline{1}\\
+    CMP ESI, EDI\\
+    JL BUCLE\\
+    FI:
+    
+    Prob 4, tema 3:\\
+    INI: MOV [Sum], 0\\
+    MOV ESI, 0\\
+    BUCLE: MOV EAX, V[ESI]\\
+    ADD Sum, EAX\\
+    ADD ESI, 4\\
+    CMP ESI, 16\\
+    JL BUCLE\\
+    FI: \\
+    
+    MOV EAX, [Row]\\
+    MUL EAX, 5\\
+    ADD EAX, [Column]\\
+    SHL EAX, 2\\
+    MOV [IndexMat], EAX\\
+    
+    Registres CPU. Son MOLT ràpids, pero hi ha pocs.\\
+    Memoria cache: Memòria que té copiats trocets de la memoria principal, fent que sigui més ràpid.\\
+    Memoria Principal: RAM. Es ràpida.\\
+    Memoria secundaria: Fa servir altres mitjans de suport (la resta son amb semiconductors, aquesta no). Aquestos son no volàtils (la resta ho son, no es perden al apagar l'ordinador). Bastant lent.\\
+    Imaginem que tenim temps de la memoria cache ($T_{mc} = 1$ns) i temps de la memoria principal ($T_{mp} = 15$ns), (sempre $T_{mc} < T_{mp}$). La memoria cache funciona en principis de localitat espacial i localitat temporal, fent que hi hagui major \textit{hit ratio} ($H$). Llavors, el temps mitjà ($T_m$) serà
+    \begin{displaymath}
+        T_m = T_{mc}H + T_{mp}(1-H)
+    \end{displaymath}
+    També podem parlar de \textit{miss ratio} (que es $1-H$).\\
+    Correspondència directa (no tengo): Presentación to guapa.\\
+    Correspondència assciocativa (no tengo tampoco): Presentación to guapa.
+\end{document}
