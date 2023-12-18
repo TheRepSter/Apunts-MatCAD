@@ -183,6 +183,74 @@
         \text{Quan } |x_0 - a| = R \text{ cal estudiar en cada cas si les sèries}\\
         \text{correspondents són convergents o divergents.}
     \end{cases}\end{displaymath}
+    Apliquem el criteri del quocient a $\sum\limits_{n=0}^\infty |a_n (x-a)^n|$:
+    \begin{displaymath}
+        \lim_{n \rightarrow \infty} \frac{|a_{n+1} (x-a)^{n+1}|}{|a_n (x-a)^n|} = |x-a| \lim_{n \rightarrow \infty} |\frac{a_{n+1}}{a_n}| < 1 \Leftrightarrow |x-a| < \frac{1}{\lim\limits_{n\rightarrow \infty} |\frac{a_{n+1}}{a_n}|}
+    \end{displaymath}
+    Apliquem el criteri de l'arrel n-essima a $\sum\limits_{n=0}^\infty |a_n (x-a)^n|$:
+    \begin{displaymath}
+        \lim_{n \rightarrow \infty} \sqrt[n]{|a_n| |(x-a)^n|}  = |x-a| \lim_{n \rightarrow \infty} \sqrt[n]{|a_n|} < 1 \Leftrightarrow |x-a| < \frac{1}{\lim\limits_{n\rightarrow \infty} \sqrt[n]{|a_n|}}
+    \end{displaymath}
+    Si aquest límits existeixen sabem que $R = \frac{1}{\lim\limits_{n\rightarrow \infty} |\frac{a_{n+1}}{a_n}|} = \frac{1}{\lim\limits_{n\rightarrow \infty} \sqrt[n]{|a_n|}}$
     
-    Si aquest límits existeixen sabem que $R = \frac{1}{\lim\limits_{n\rightarrow \infty} |\frac{a_{n+1}}{a_n}|} = \frac{1}{\lim\limits_{n\rightarrow \infty} \sqrt{|a_n|}}$
+    \subsection{Derivació i integració de sèries de potències}
+    La sèrie de poténcies $\sum\limits_{n=0}^\infty a_n x^n$ defineix una funció $f(x)$ a l'interval de convergència $(-R, R)$ on $R$ és el radi de convergència.\\
+    La funció $f(x)$ és contínua i infinitament derivable i integrable a l'interval de convergència.\\
+    Si $f(x) = \sum\limits_{n=0}^\infty a_n x^n$ (amb radi de convergència $R$)\\Llavors:
+    \begin{displaymath}
+        f'(x) = \sum\limits_{n=0}^\infty a_n n x^{n-1} \text{ amb radi } R
+    \end{displaymath}
+    i també
+    \begin{displaymath}
+        \int_0^x f(t) dt = \sum\limits_{n=0}^\infty \frac{a_n}{n+1} x^{n+1}
+    \end{displaymath}
+    \begin{obs}
+        Les primitives de $f$ són
+        \begin{displaymath}
+            \sum\limits_{n=0}^\infty \frac{a_n}{n+1} x^{n+1} + C
+        \end{displaymath}
+    \end{obs}
+    Objectiu "calcular" la suma d'una sèrie de potències
+    \begin{displaymath}
+        |x| < 1, \sum\limits_{n=0}^\infty x^n = \frac{1}{1-x}
+    \end{displaymath}
+    \begin{displaymath}
+        x \in \mathbb{R}, \sum\limits_{n=0}^\infty \frac{x^n}{n!} = e^x
+    \end{displaymath}
+    També tenim l'expressió en sèrie de potències centrada en $0$ de les funcions sinus i cosinus.
+    \begin{exemple}
+        Calculem la funció suma de $\sum\limits_{n=1}^\infty n x^{n-1}$ dir on convergeix.
+        \begin{displaymath}
+            \lim_{n \rightarrow \infty} \sqrt[n]{n} = 1 = \lim\limits_{n \rightarrow \infty} \frac{n+1}{n} \text{. } R = 1
+        \end{displaymath}
+        \begin{displaymath}
+            \sum\limits_{n=1}^\infty n x^{n-1} = (\sum\limits_{n=1}^\infty x^n)' = (\frac{x}{1-x})' = \frac{1}{(1-x)^2}
+        \end{displaymath}
+        Per tant
+        \begin{displaymath}
+            \sum\limits_{n=1}^\infty n x^{n-1} = \frac{1}{(1-x)^2}
+        \end{displaymath}
+    \end{exemple}
+    \begin{fet}
+        Les sèries de potències compleixen el seguent
+        \begin{itemize}
+            \item Les sèries de potències és poden derivar terme a terme sense cambiar el radi de convergència
+            \item Les sèries de potències és poden integrar sense coneixer el radi de convergència
+            \item Tota sèrie de potències és una serie de Taylor
+            \begin{displaymath}
+                f(x) = \sum\limits_{n=0}^\infty \frac{f^{(n)}(c)}{n!}(x-c)^n
+            \end{displaymath}
+        \end{itemize}
+    \end{fet}
+    \begin{exemple}
+        Trobar el radi de convergència de la sèrie de potències 
+        \begin{displaymath}
+            \sum\limits_{n=0}^\infty \frac{1}{2^n} x^{3n} = \sum\limits_{n=0}^\infty \frac{1}{2^{\frac{1}{3} 3n}} x^{3n}
+        \end{displaymath}
+        Llavors
+        \begin{displaymath}
+            \lim\limits_{n \rightarrow \infty} \sqrt[n]{|\frac{x^{3n}}{2^n}|} = \lim\limits_{n \rightarrow \infty} \frac{|x|^3}{2} = \frac{|x|^3}{2} < 1 \Longleftrightarrow |x|^3 < 2 \Longleftrightarrow R = \sqrt[3]{2} 
+        \end{displaymath}
+    \end{exemple}
+    
 \end{document}

@@ -21,6 +21,7 @@
 \theoremstyle{remark}
 \newtheorem*{obs}{Observació}
 \newtheorem*{fet}{Fet}
+\newtheorem*{exemple}{Exemple}
 \theoremstyle{definition}
 \newtheorem*{definicio}{Definició}
 
@@ -38,6 +39,7 @@
 
 \titleformat{\section}[display]{\bfseries\huge\itshape}{ }{0.1ex}{
     \newpage
+    \pagenumbering{gobble}
     \scshape
     \centering
     \raisebox{-\baselineskip}{\rule{\textwidth}{1px}}
@@ -45,25 +47,20 @@
 }[
     \rule{\textwidth}{2px}
     \newpage
+    \pagenumbering{arabic}
 ]
 
 \begin{document}
     \input{title}
     \tableofcontents
-    \pagenumbering{gobble}
     \section{Àlgebra Lineal}
-    \pagenumbering{arabic}
     \subfile{subfiles/Àlgebra}
     \section{Càlcul en una variable}
-    \pagenumbering{arabic}
     \subfile{subfiles/Càlcul-1}
     \section{Introducció a la programació}
-    \pagenumbering{arabic}
     \subfile{subfiles/Prog}
     \section{Programari de sistema}
-    \pagenumbering{arabic}
     \subfile{subfiles/Sistema}
     \section{Fonaments dels computadors}
-    \pagenumbering{arabic}
     \subfile{subfiles/fonaments}
 \end{document}

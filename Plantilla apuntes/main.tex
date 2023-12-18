@@ -21,6 +21,7 @@
 \theoremstyle{remark}
 \newtheorem*{obs}{Observació}
 \newtheorem*{fet}{Fet}
+\newtheorem*{exemple}{Exemple}
 \theoremstyle{definition}
 \newtheorem*{definicio}{Definició}
 
@@ -38,6 +39,7 @@
 
 \titleformat{\section}[display]{\bfseries\huge\itshape}{ }{0.1ex}{
     \newpage
+    \pagenumbering{gobble}
     \scshape
     \centering
     \raisebox{-\baselineskip}{\rule{\textwidth}{1px}}
@@ -45,25 +47,20 @@
 }[
     \rule{\textwidth}{2px}
     \newpage
+    \pagenumbering{arabic}
 ]
 
 \begin{document}
     \input{title}
     \tableofcontents
-    \pagenumbering{gobble}
     \section{1}
-    \pagenumbering{arabic}
     \subfile{subfiles/1}
     \section{2}
-    \pagenumbering{arabic}
     \subfile{subfiles/2}
     \section{3}
-    \pagenumbering{arabic}
     \subfile{subfiles/3}
     \section{4}
-    \pagenumbering{arabic}
     \subfile{subfiles/4}
     \section{5}
-    \pagenumbering{arabic}
     \subfile{subfiles/5}
 \end{document}
