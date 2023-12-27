@@ -2,6 +2,10 @@
 \usepackage{tabularx}
 \usepackage{titling}
 \usepackage{listings}
+\usepackage{hyperref}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
 \usepackage{lstlangarm}
 
 \lstset{
@@ -40,49 +44,60 @@
 		 {7}{{{\color{Number}7}}}1
 		 {8}{{{\color{Number}8}}}1
 		 {9}{{{\color{Number}9}}}1
+		 {w4}{{{\color{Identifier}w4}}}1
+		 {2P}{{{\color{Identifier}2P}}}1
+		 {r2}{{{\color{Identifier}r2}}}1
 }
+\AddToHook{cmd/section/before}{\clearpage}
+\renewcommand{\contentsname}{Índex}
 
 \begin{document}
 \include{title}
+\tableofcontents
 \section{Descripció}
-Hola amigos
+Aquest projecte tracta de crear un 4 en ratlla en ensamblador. Per aixó hem fet servir un archiu \verb|.c| ja creat per l'apartat gràfic, del qual no parlarem, i unes subrutines dintre del \verb|.asm|. Aquest projecte ha sigut subdividit en nivells de dificultat i per allò a l'apartat subrutines està separat per nivells.
 \section{Objectius}
-Que tal, aquí yo
+El joc del 4 en ratlla té com a objectiu principal col·locar quatre fitxes iguals en línia, ja sigui horitzontal, vertical o diagonal, abans que l'adversari ho faci. Això implica prevenir l'altra persona de formar aquesta línia i, al mateix temps, crear estratègies per aconseguir la teva.
 \section{Variables utilitzades}
 \begin{itemize}
-    \item Hola
-    \item Que tal
+    \item \lstinline|DWORD[colScreen]| (4 \textit{bytes}): Columna on volem posicionar el cursor a la pantalla.
+    \item \lstinline|DWORD[rowScreen]| (4 \textit{bytes}): Fila on volem posicionar el cursor a la pantalla.
+    \item \lstinline|DWORD[rowScreenIni]| (4 \textit{bytes}): Fila de la primera posició de la matriu a la pantalla.
+    \item \lstinline|DWORD[colScreenIni]| (4 \textit{bytes}): Columna de la primera posició de la matriu a la pantalla.
+    \item \lstinline|DWORD[player]| (4 \textit{bytes}): Variable que indica el jugador al que correspon tirar.
+    \item \lstinline|BYTE[mBoard]| (1 \textit{byte}): Matriu 6x7 on tenim les dades del taulell.
+    \item \lstinline|BYTE[tecla]| (1 \textit{byte}): Variable on s’emmagatzema la tecla pitjada en codi ascii.
+    \item \lstinline|BYTE[colCursor]| (1 \textit{byte}): Variable que indica la columna en la que es troba el cursor.
+    \item \lstinline|DWORD[row]| (4 \textit{bytes}): Fila per a accedir a la matriu mBoard.
+    \item \lstinline|BYTE[col]| (1 \textit{byte}): Columna per a accedir a la matriu mBoard.
+    \item \lstinline|DWORD[pos]| (4 \textit{bytes}): Índex per a accedir a la matriu mBoard.
+    \item \lstinline|DWORD[inaRow]| (4 \textit{bytes}): Comptador per a saber el nombre de fitxes en ratlla.
+    \item \lstinline|DWORD[row4Complete]| (4 \textit{bytes}): Indicador de si hem arribat a 4 fitxes en ratlla o no.
 \end{itemize}
-\section{Subrutines}
-\subsection{Nivell basic}
-Uououo nivel basico
+\section{Subrutines} \label{subrut}
+\subsection{Nivell bàsic}
+Aquest nivell tracta de posar a punt totes les subrutines base per aixi tindre un mínim de funcionalitat.
 \subsubsection{showCursor}
 \begin{lstlisting}[firstnumber=246]
 showCursor:
 	push rbp
 	mov  rbp, rsp
-
-	;Salvar registres a la pila
+	
 	push rax
 	push rbx
-	;Inicialització dels registres
 	mov eax, 0
 	mov ebx, 0
 
-	;Codi de la Pràctica
-	;rowScreen=rowScreenIni
 	mov eax, DWORD [RowScreenIni]
 	mov DWORD [rowScreen], eax
-	;colScreen=colScreenIni+(colCursor*4)
 	mov al, BYTE [colCursor]
-	sub eax, 'A'  ;Passem de codi ASCII a nombre restant-li 'A' (=65)
+	sub eax, 'A'  
 	shl eax, 2
 	add eax, DWORD [ColScreenIni]
 	mov DWORD [colScreen], eax
 
-	call gotoxy  ;Sent x=[rowScreen] i y=[colScreen]
+	call gotoxy
 
-	;Recuperar registres de la pila
 	pop rbx
 	pop rax
 
@@ -90,62 +105,52 @@ showCursor:
 	pop rbp
 	ret
 \end{lstlisting}
+Aquesta subrutina mostra la localització del cursor en pantalla. Per allò, fa servir \lstinline|rowScreen|, \lstinline|colScreen| i els seus corresponents \lstinline|rowScreenIni|, \lstinline|colScreenIni|. En aquesta subrutina no va haver cap dificultat.
+\clearpage
 \subsubsection{showPlayer}
 \begin{lstlisting}[firstnumber=294]
 showPlayer:
 	push rbp
 	mov  rbp, rsp
-
-	;Salvar registres a la pila
+	
 	push rax
 
-	;Passar DWORD [player] a ASCII i mostrar-lo segons
-	;[rowScreen] i [colScreen]
 	mov eax, DWORD [player]
-	add eax, 48  ;Passem el nombre a codi ASCII (1=49 i 2=50)
+	add eax, 48  
 	mov DWORD [rowScreen], 23
 	mov DWORD [colScreen], 20
 
-	;Cridar gotoxy per posicionar cursor
 	call gotoxy
-
-	;Emmagatzemar valor de caràcter a dil
-	mov dil, al  ;al conté el valor de player+65 (player és un enter)
-
-	;Cridar printch per mostrar caràcter
+	mov dil, al  	
 	call printch
 
-	;Recuperar registres de la pila
 	pop rax
 
 	mov rsp, rbp
 	pop rbp
 	ret
 \end{lstlisting}
+Aquesta subrutina mostra el jugador que té que jugar a la posició de la pantalla on està. Aquesta subrutina no va comportar cap problema.
+\clearpage
 \subsubsection{showBoard}
 \begin{lstlisting}[firstnumber=337]
 showBoard:
 	push rbp
 	mov  rbp, rsp
 
-	;Salvar registres a la pila
 	push rsi
 	push rdi
 	push rax
 	 
-	;Inicialitzar registres
 	mov eax, 0
 	mov rdi, 0
 	mov rsi, 0
-	 
-	;Fila i columna per començar des del principi
-	
+		
 	mov DWORD [rowScreen], 8
 	buclefilas:
 		cmp DWORD [rowScreen], 20
 		jge fi_showBoard
 		add DWORD [rowScreen], 2
-
 		mov DWORD [colScreen], 4
 	buclecolumnas:
 		cmp DWORD [colScreen], 32
@@ -153,22 +158,14 @@ showBoard:
 		add DWORD [colScreen], 4
 		mov dil, BYTE [mBoard + eax]
 		inc eax
-
-		;Cridar gotoxy per posicionar cursor
 		call gotoxy
-
-		;Cridar printch per mostrar caràcter (segons el contingut de dil)
 		call printch
-
-		;Reiniciem el bucle
 		jmp buclecolumnas
-	
+
 	fi_showBoard:
 
-	;Cridar showPlayer per mostrar el jugador
 	call showPlayer
 
-	;Recuperar registres de la pila
 	pop rax
 	pop rdi
 	pop rsi
@@ -177,12 +174,13 @@ showBoard:
 	pop rbp
 	ret
 \end{lstlisting}
+Aquesta subrutina ens mostra el tauler amb les fitxes que hagim col·locat. Aquesta va ser la tasca que més dificultats ens va comportar el nivell bàsic i hi vam trobar dos problemes principals. El primer va ser un error de numeració de files i columnes que al calcular malament el marge feia que col·loquèssim punts fora i el segon va ser que no accediem per iteracció a la matriu \lstinline|mBoard| i s'omplia de \lstinline|'.'| malgrat tindre fitxes col·locades. El primer el vam arreglar dibuixant la matriu en paper per imaginar-ho millor i el segon comprovant-ho tot fins que ens vam adonar de que no havíem fet us de \lstinline|mBoard|.
 \subsubsection{moveCursor}
 \begin{lstlisting}[firstnumber=406]
 moveCursor:  
 	push rbp
 	mov  rbp, rsp
-	call showCursor  ;Mostrem el cursor on toca
+	call showCursor  
 	bucle_moveCursor:
 		call getch
 		cmp BYTE [tecla], 'j'
@@ -191,7 +189,7 @@ moveCursor:
 		je moveRight
 		cmp BYTE [tecla], ' '
 		je fi_moveCursor
-		cmp BYTE[tecla], 27  ;En ASCII 27 és [ESC]
+		cmp BYTE[tecla], 27  
 		je fi_moveCursor
 		jmp bucle_moveCursor
 
@@ -213,6 +211,8 @@ moveCursor:
 	pop rbp
 	ret
 \end{lstlisting}
+Aquesta subrutina permet moure el cursor una sola posició a esquerra o a dreta utilitzant les tecles \lstinline|'j'| i \lstinline|'k'| respectivament. No ens va representar molta dificultat donat que aquesta tasca només és com una prèvia a \lstinline|moveCursorContinous|.
+\clearpage
 \subsubsection{moveCursorContinuous}
 \begin{lstlisting}[firstnumber=454]
 moveCursorContinuous:
@@ -223,7 +223,7 @@ moveCursorContinuous:
 		call moveCursor
 		cmp BYTE [tecla], ' '
 		je fi_moveCursorContinuous
-		cmp BYTE [tecla], 27  ;En ASCII 27 és [ESC]
+		cmp BYTE [tecla], 27  
 		je fi_moveCursorContinuous
 		jmp bucle_moveCursorContinuous
 
@@ -233,13 +233,14 @@ moveCursorContinuous:
 	pop rbp
 	ret
 \end{lstlisting}
+Aquesta subrutina utilitza \lstinline|moveCursor| però elimina la limitació de que el moviment sigui només d'una posició. Vam trobar problemes amb evitar que ens ensortíssim de la matriu i el cursor arroseguès el marge de la matriu. Vam solucionar-ho afegint restriccions de comprobació que no permetessin al cursor arribar al marge dret.
+\clearpage
 \subsubsection{calcIndex}
 \begin{lstlisting}[firstnumber=485]
 calcIndex:
 	push rbp
 	mov  rbp, rsp
 
-	;Salvar registres a la pila
 	push rax
 	push rbx
 	
@@ -250,7 +251,6 @@ calcIndex:
 	add eax, ebx
 	mov DWORD [pos], eax
 
-	;Recuperar registres de la pila
 	pop rbx
 	pop rax
 	 
@@ -258,17 +258,17 @@ calcIndex:
 	pop rbp
 	ret
 \end{lstlisting}
+Aquesta subrutina ens permet accedir a cada component de la matriu mBoard via la fórmula canònica del tipus $i \times m + j$, on $i$ és la fila a què es vol accedir, \lstinline|DWORD[row]|; $m$ és la mida de les files ($7$, ja que \lstinline|mBoard| és una matriu $6\times 7$); i $j$ és la columna a què es vol accedir, \lstinline|BYTE[col]| (es passa de forma alfabètica a forma numèrica restant-li el valor ascii de \lstinline|'A'|). No van sorgir problemes majors en la realització d'aquesta subrutina. 
+\clearpage
 \subsubsection{putPiece}
 \begin{lstlisting}[firstnumber=533]
-	putPiece:  
+putPiece:  
 	push rbp
 	mov  rbp, rsp
 
-	;Salvar registres a la pila
 	push rax
 	push rbx
 	
-	;Inicialitzar registres
 	mov eax, 0
 	mov ebx, 0
 	
@@ -285,21 +285,20 @@ calcIndex:
 	bucle_putPiece:
 		call calcIndex
 		mov eax, DWORD [pos]
-		mov bl, BYTE [mBoard + eax]  ;Accedim a l'índex de la matriu
-		cmp bl, '.'  ;Si no hi ha res, podem col·locar la peça
+		mov bl, BYTE [mBoard + eax]  
+		cmp bl, '.'  
 		je colocacion
-		cmp DWORD [row], 0  ;Si ja hi ha una fitxa, hem de mirar que no ens haguem passat dels límits de mBoard
+		cmp DWORD [row], 0  
 		jl fi_putPiece
 		dec DWORD [row]
 		jmp bucle_putPiece
 	
 	colocacion:
-		mov BYTE [mBoard + eax], 'X'  ;Col·loquem la peça
-		call showBoard  ;Mostrem l'estat actual de la taula
+		mov BYTE [mBoard + eax], 'X'  
+		call showBoard  
 		
 	fi_putPiece:
 		
-	;Recuperar registres de la pila
 	pop rbx
 	pop rax
 
@@ -307,12 +306,13 @@ calcIndex:
 	pop rbp
 	ret
 \end{lstlisting}
+Aquesta subrutina permet col·locar una fitxa a \lstinline|mBoard|. Quan es prem l'espai, es col·loca la fitxa tot controlant que no hi hagi una fitxa existent. Un problema que vam tenir va ser que aquesta subrutina, en un principi, no comprovava que la columna es trobés plena i això resultava en "desbordaments". Ho vam solucionar programant millor el desbordaments.
+\clearpage
 \subsection{Nivell mig}
-Nivel medio que guay
+Aquest nivell implementa mes funcionalitats, la posibilitat de dos jugadors i una versió del joc força simplificat pero funcional.
 \subsubsection{checkRow}
 \begin{lstlisting}[firstnumber=524]
 checkRow:
-
 	push rbp
 	mov  rbp, rsp
 
@@ -323,28 +323,20 @@ checkRow:
 	mov rbx, 0
 	mov DWORD [inaRow], 0
 	
-	mov eax, DWORD [pos]  ;eax conté l'índex de l'última fitxa col·locada
-
-	mov bl, BYTE [mBoard + eax]  ;eax conté l'offset de mBooard
-								 ;bl conté el char ('X' ó 'O'). bl mai serà '.'
-	
+	mov eax, DWORD [pos]  
+	mov bl, BYTE [mBoard + eax]	 
 	bucle_vertical:
-		cmp eax, 42  ;42 = últim índex de mBoard
+		cmp eax, 42  
 		jge fi_vertical
-		;Si no ens hem sortit de la matriu...
 		cmp bl, BYTE [mBoard + eax]
 		jne fi_vertical
-		;Si no ens hem sortit de la matriu
-		;i els chars correlatius coincideixen...
-		add eax, 7  ;Anem a la següent fila
-		inc DWORD [inaRow]  ;Incrementem el comptador
+		add eax, 7  
+		inc DWORD [inaRow]  
 		cmp DWORD [inaRow], 4
 		jne bucle_vertical
-		;tas feli, has ganao
-		mov DWORD [row4Complete], 1  ;S'activa l'indicador
+		mov DWORD [row4Complete], 1  
 		
 	fi_vertical:
-
 	pop rbx
 	pop rax
 
@@ -352,23 +344,20 @@ checkRow:
 	pop rbp
 	ret
 \end{lstlisting}
+Aquesta subrutina comprova si algun dels dos jugadors ha guanyat o no. Només ho comprova en vertical així que no té una dificultat excesiva donat que aquesta tasca és també una prèvia de la que porta el mateix nom al nivell avançat. Per allò, no van sortir problemes.
+\clearpage
 \subsubsection{putPiece}
 \begin{lstlisting}[firstnumber=770]
 putPiece:  
 	push rbp
 	mov  rbp, rsp
 
-	;Salvar registres a la pila
 	push rax
 	push rbx
-	
-	;Inicialitzar registres
 	mov eax, 0
 	mov ebx, 0
-	
 	call showBoard
 	call moveCursorContinuous
-	
 	cmp BYTE [tecla], ' '
 	jne fi_putPiece
 	
@@ -379,11 +368,10 @@ putPiece:
 	bucle_putPiece:
 		call calcIndex
 		mov eax, DWORD [pos]
-		mov bl, BYTE [mBoard + eax]  ;Accedim a l'índex de la matriu
-		cmp bl, '.'  ;Si no hi ha res, podem col·locar la peça
+		mov bl, BYTE [mBoard + eax]  
+		cmp bl, '.'  
 		je colocacion
-		cmp DWORD [row], 0  ;Si ja hi ha una fitxa, hem de mirar
-							;que no ens haguem passat dels límits de mBoard
+		cmp DWORD [row], 0  				
 		jl fi_putPiece
 		dec DWORD [row]
 		jmp bucle_putPiece
@@ -391,16 +379,15 @@ putPiece:
 	colocacion:
 		cmp DWORD [player], 1
 		jne jugador2
-		mov BYTE [mBoard + eax], '0'  ;Col·loquem la peça del jugador 1
+		mov BYTE [mBoard + eax], '0'  
 		jmp fi_putPiece
 		jugador2:
-			mov BYTE [mBoard + eax], 'X'  ;Col·loquem la peça del jugador 2
+			mov BYTE [mBoard + eax], 'X'  
 		
 	fi_putPiece:
-		call showBoard  ;Mostrem l'estat actual de la taula
-		call checkRow  ;Comprovem si s'han encadenat 4 fitxes iguals
-		
-	;Recuperar registres de la pila
+		call showBoard  
+		call checkRow  
+
 	pop rbx
 	pop rax
 
@@ -408,27 +395,24 @@ putPiece:
 	pop rbp
 	ret
 \end{lstlisting}
+Aquesta subrutina és una millora de la del nivell bàsic. Aquesta versió controla el jugador actual per tal de mostrar per pantalla la fitxa \lstinline|'O'| o \lstinline|'X'|, segons si és el jugador $1$ o el $2$, respectivament. No van sorgir problemes majors en la realització d'aquesta subrutina.
 \subsubsection{put2Players}
 \begin{lstlisting}[firstnumber=841]
 put2Players:
 	push rbp
 	mov  rbp, rsp
 
-	mov DWORD [player], 1  ;Forcem que primer jugui el jugador 1
+	mov DWORD [player], 1  
 	
 	bucle_put2Players:
-		call showPlayer  ;Mostrem el jugador
-		call putPiece  ;Permetem la jugada
+		call showPlayer  
+		call putPiece  
 		cmp BYTE [tecla], ' '
-		jne fi_put2Players  ;Si no és l'espai, per força serà [ESC]
-		
-		;Només hem de deixar jugar a player2 si player1 no ha guanyat
+		jne fi_put2Players  
 		cmp DWORD [row4Complete], 1
 		je fi_put2Players
-		;Evitem que player2 jugui infinitament
 		cmp DWORD [player], 2
 		je fi_put2Players
-		;Si player1 no ha guanyat, passem el torn a player2
 		mov DWORD [player], 2
 		jmp bucle_put2Players
 		
@@ -438,6 +422,8 @@ put2Players:
 	pop rbp
 	ret
 \end{lstlisting}
+Aquesta subrutina permet una jugada, formada per un torn per cada jugador. Es força que el primer torn el jugui el jugador $1$ i es controla que la subrutina finalitzi en el cas que el jugador guanyi en el seu torn (no podem permetre que el jugador $2$ jugui si ja s'ha acabat el joc), així com que el jugador $2$ jugui només un cop (sortim del bucle si aquest ja ha jugat un cop i/o si ha aconseguit guanyar, òbviament). No van sorgir problemes majors en la realització d'aquesta subrutina.
+\clearpage
 \subsubsection{Play}
 \begin{lstlisting}[firstnumber=880]
 Play:
@@ -457,222 +443,183 @@ Play:
 	mov rsp, rbp
 	pop rbp
 	ret
-
 \end{lstlisting}
+Aquesta subrutina implementa la jugabilitat. Primer crida a put2Players, després comprova l'ultima tecla pitjada, si aquesta no es un espai surt (ja que per força haura sigut un ESC) i comprova el valor de \lstinline|DWORD[row4Complete]|, en cas de ser 1 ha guanyat i per allò surt. Si no es torna el bucle. No hi van haver problemes a aquesta subrutina.
+\clearpage
 \subsection{Nivell avançat}
-Nivel avanzado que avanzado
+Aquest nivell implementa les més opcions del \lstinline|checkRow|.
 \subsubsection{checkRow}
 \begin{lstlisting}[firstnumber=524]
 checkRow:
-
 	push rbp
 	mov rbp, rsp
-	
-	;Salvar registres a la pila
+
 	push rax
     push rbx
     push rcx
     push rdx
 
-    ;Inicialitzar registres
     mov rax, 0
     mov rcx, 0
     mov rbx, 0
     mov rdx, 0
     mov DWORD [inaRow], 0
-    mov ecx, DWORD [pos]  ;eax conté l'índex de l'última fitxa col·locada
-    mov bl, BYTE [mBoard + ecx]  ;eax conté l'offset de mBooard
-                                  ;bl conté el char ('X' ó 'O'). bl mai
-                                  ;serà '.' menys en un cas especific
+    mov ecx, DWORD [pos]  
+    mov bl, BYTE [mBoard + ecx]    
     cmp bl, '.'
     je fi_vertical
     
 	bucle_horizontal_adelante:
-		;Si no ens hem sortit de la matriu...
 		cmp bl, BYTE [mBoard + ecx]
         jne fi_bucle_horizontal_adelante
-        ;i els chars correlatius coincideixen...
-        inc ecx  ;Anem a la següent columna
-        inc DWORD [inaRow]  ;Incrementem el comptador
-        ;Això és per saber si ens passem de columna
+        inc ecx  
+        inc DWORD [inaRow]  
         cmp DWORD [inaRow], 4
-        je fi_row4  ;En cas que sigui 4, saltem a fi_row4
+        je fi_row4  
         mov eax, ecx
         push rcx
         mov rdx, 0
         mov ecx, 7
-        div ecx  ;Aquesta operació divideix el que hi ha a eax
-				 ;(en aquest cas, la posició) per el nombre i
-				 ;emmagatzema a edx el reminder
+        div ecx  
         pop rcx
         cmp edx, 0
         je fi_bucle_horizontal_adelante
-        ;En cas contrari, podem continuar
         jmp bucle_horizontal_adelante
 
     fi_bucle_horizontal_adelante:
-        mov ecx, DWORD [pos]  ;eax conté l'índex de l'última fitxa
-							  ;col·locada
-        dec ecx  ;Si comprovem de primeres el mateix, seríen 3 i no 4
+        mov ecx, DWORD [pos]  
+        dec ecx  
 
     bucle_horizontal_atras:
-        cmp ecx, 0 ;0 = primer índex de mBoard
+        cmp ecx, 0 
         jl fi_bucle_horizontal_atras
-        ;Si no ens hem sortit de la matriu...
         cmp bl, BYTE [mBoard + ecx]
         jne fi_bucle_horizontal_atras
-        ;i els chars correlatius coincideixen...
-        dec ecx  ;Anem a la següent columna
-        inc DWORD [inaRow]  ;Incrementem el comptador
-        ;Això és per saber si ens passem de columna
+        dec ecx  
+        inc DWORD [inaRow]
         cmp DWORD [inaRow], 4
-        je fi_row4  ;En cas que sigui 4, saltem a fi_row4
+        je fi_row4  
         mov eax, ecx
         push rcx
         mov rdx, 0
         mov ecx, 7
-        div ecx  ;Aquesta operació divideix el que hi ha a eax
-				 ;(en aquest cas, la posició) per el nombre i
-				 ;emmagatzema a edx el reminder
+        div ecx  
         pop rcx
         cmp edx, 6
         je fi_bucle_horizontal_atras
-        ;En cas contrari, podem continuar
         jmp bucle_horizontal_atras
 
     fi_bucle_horizontal_atras:
-        mov ecx, DWORD [pos]  ;eax conté l'índex de l'última fitxa
-							  ;col·locada
+        mov ecx, DWORD [pos]  
         mov DWORD [inaRow], 0
          
     bucle_diagonal_adelante:
-		;Si no ens hem sortit de la matriu...
-		cmp ecx, 42  ;42 = últim índex de mBoard
+		cmp ecx, 42  
         jge fi_bucle_diagonal_adelante
 		cmp bl, BYTE [mBoard + ecx]
         jne fi_bucle_diagonal_adelante
-        ;i els chars correlatius coincideixen...
-        add ecx, 8  ;Anem a la següent columna
-        inc DWORD [inaRow]  ;Incrementem el comptador
-        ;Això és per saber si ens passem de columna
+        add ecx, 8  
+        inc DWORD [inaRow]
         cmp DWORD [inaRow], 4
-        je fi_row4  ;En cas que sigui 4, saltem a fi_row4
+        je fi_row4  
         mov eax, ecx
         push rcx
         mov rdx, 0
         mov ecx, 7
-        div ecx  ;Aquesta operació divideix el que hi ha a eax
-				 ;(en aquest cas, la posició) per el nombre i
-				 ;emmagatzema a edx el reminder
+        div ecx  
         pop rcx
         cmp edx, 0
         je fi_bucle_diagonal_adelante
-        ;En cas contrari, podem continuar
         jmp bucle_diagonal_adelante
 
     fi_bucle_diagonal_adelante:
-        mov ecx, DWORD [pos]  ;eax conté l'índex de l'última fitxa
-							  ;col·locada
-        sub ecx, 8 ;Si comprovem de primeres el mateix, seríen 3 i no 4
+        mov ecx, DWORD [pos]
+        sub ecx, 8 
 
     bucle_diagonal_atras:
-        cmp ecx, 0 ;0 = primer índex de mBoard
+        cmp ecx, 0 
         jl fi_bucle_diagonal_atras
-        ;Si no ens hem sortit de la matriu...
         cmp bl, BYTE [mBoard + ecx]
         jne fi_bucle_diagonal_atras
-        ;i els chars correlatius coincideixen...
-        sub ecx, 8  ;Anem a la següent columna
-        inc DWORD [inaRow]  ;Incrementem el comptador
-        ; aixo es per saber si ens passem de columna
+        sub ecx, 8  
+        inc DWORD [inaRow]  
         cmp DWORD [inaRow], 4
-        je fi_row4 ; en cas de que sigui 4, saltem a fi_row4
+        je fi_row4 
         mov eax, ecx
         push rcx
         mov rdx, 0
         mov ecx, 7
-        div ecx ;aquesta operació divideix el que hi ha a eax (en aquest cas, la posició) per el nombre i emmagatzema a edx el reminder
+        div ecx 
         pop rcx
         cmp edx, 6
         je fi_bucle_diagonal_atras
-        ; en cas contrari, podem continuar
         jmp bucle_diagonal_atras
 
     fi_bucle_diagonal_atras:
-        mov ecx, DWORD [pos]  ;eax conté l'índex de l'última fitxa col·locada
+        mov ecx, DWORD [pos]  
         mov DWORD [inaRow], 0
         
     bucle_antidiagonal_adelante:
-		cmp ecx, 42  ;42 = últim índex de mBoard
+		cmp ecx, 42  
         jge fi_bucle_antidiagonal_adelante
-		;Si no ens hem sortit de la matriu...
 		cmp bl, BYTE [mBoard + ecx]
         jne fi_bucle_antidiagonal_adelante
-        ;i els chars correlatius coincideixen...
-        add ecx, 6  ;Anem a la següent columna
-        inc DWORD [inaRow]  ;Incrementem el comptador
-        ; aixo es per saber si ens passem de columna
+        add ecx, 6  
+        inc DWORD [inaRow]  
         cmp DWORD [inaRow], 4
-        je fi_row4 ; en cas de que sigui 4, saltem a fi_row4
+        je fi_row4 
         mov eax, ecx
         push rcx
         mov rdx, 0
         mov ecx, 7
-        div ecx ;aquesta operació divideix el que hi ha a eax (en aquest cas, la posició) per el nombre i emmagatzema a edx el reminder
+        div ecx 
         pop rcx
         cmp edx, 6
         je fi_bucle_antidiagonal_adelante
-        ; en cas contrari, podem continuar
         jmp bucle_antidiagonal_adelante
 
     fi_bucle_antidiagonal_adelante:
-        mov ecx, DWORD [pos]  ;eax conté l'índex de l'última fitxa col·locada
-        sub ecx, 6 ; Si comprovem de primeres el mateix, serien 3 i no 4
+        mov ecx, DWORD [pos]  
+        sub ecx, 6 
 
     bucle_antidiagonal_atras:
-        cmp ecx, 0 ;0 = primer índex de mBoard
+        cmp ecx, 0 
         jl fi_bucle_antidiagonal_atras
-        ;Si no ens hem sortit de la matriu...
         cmp bl, BYTE [mBoard + ecx]
         jne fi_bucle_antidiagonal_atras
-        ;i els chars correlatius coincideixen...
-        sub ecx, 6  ;Anem a la següent columna
-        inc DWORD [inaRow]  ;Incrementem el comptador
-        ; aixo es per saber si ens passem de columna
+        sub ecx, 6  
+        inc DWORD [inaRow]  
         cmp DWORD [inaRow], 4
-        je fi_row4 ; en cas de que sigui 4, saltem a fi_row4
+        je fi_row4 
         mov eax, ecx
         push rcx
         mov rdx, 0
         mov ecx, 7
-        div ecx ;aquesta operació divideix el que hi ha a eax (en aquest cas, la posició) per el nombre i emmagatzema a edx el reminder
+        div ecx 
         pop rcx
         cmp edx, 0
         je fi_bucle_antidiagonal_atras
-        ; en cas contrari, podem continuar
         jmp bucle_antidiagonal_atras
 
     fi_bucle_antidiagonal_atras:
-        mov ecx, DWORD [pos]  ;eax conté l'índex de l'última fitxa col·locada
+        mov ecx, DWORD [pos]  
         mov DWORD [inaRow], 0
 
     bucle_vertical:
-        cmp ecx, 42  ;42 = últim índex de mBoard
+        cmp ecx, 42  
         jge fi_vertical
-        ;Si no ens hem sortit de la matriu...
         cmp bl, BYTE [mBoard + ecx]
         jne fi_vertical
-        ;i els chars correlatius coincideixen...
-        add ecx, 7  ;Anem a la següent fila
-        inc DWORD [inaRow]  ;Incrementem el comptador
+        add ecx, 7  
+        inc DWORD [inaRow]  
         cmp DWORD [inaRow], 4
         jne bucle_vertical
 
     fi_row4:
-    mov DWORD [row4Complete], 1  ;S'activa l'indicador
+    mov DWORD [row4Complete], 1  
     
     fi_vertical:
-    ;Recuperar registres de la pila
+
     pop rdx
     pop rcx
     pop rbx
@@ -681,7 +628,8 @@ checkRow:
 	mov rsp, rbp
 	pop rbp
 	ret
-
 \end{lstlisting}
+Aquesta subrutina és una millora de la del nivell mig. Aquesta versió no només controla la vertical, horitzontal, diagonal i antidiagonal, sinó que ho fa independentment d'on s'hagi col·locat la última fitxa (al principi de la fila, al final o al mig). Van sorgir problemes diversos i tots eren relacionats amb la manera en què es comprovava si s'havia fet 4 en ratlla. Es va solucionar realitzant una documentació sobre la instrucció \lstinline|div| (per tal d'aturar el bucle en cas de passar-se de la fila de la matriu \lstinline|mBoard|) i reordenant el codi (així com afegint comprovacions a \lstinline|checkRow|).
 \section{Altres}
+Aquest grup ha tingut la sort de comptar amb un integrant del grup que ja tenia coneixements previs sobre programació, però en altre cas ens hauria sigut pràcticament impossible arribar al nivell avançat en els termes de temps establerts. Tot i que el seguiment proporcionat pels professors durant les pràctiques ens ha sigut de gran ajuda, la introducció a les pràctiques es va fer de forma massa abrupta per a aquells que no haguèssim fet res més d'ensamblador que els codis de classe. Finalment ens agradaria mencionar que tot i que ha sigut un repte, hem gaudit prou de les pràctiques i que amb una introducció més detallada o uns enunciats més esclaridors seria ideal.
 \end{document}
