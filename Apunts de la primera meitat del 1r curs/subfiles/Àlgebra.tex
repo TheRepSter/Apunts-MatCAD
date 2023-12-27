@@ -156,4 +156,38 @@
     \begin{definicio}
         Els valors singulars per $A \in M_{N \times N}(\mathbb{R})$ són les arrels quadrades dels valors propis de $A^t A$. És usual denotar els valors singulars per $\sigma_1, \dots, \sigma_N$ amb ordre decreixent.
     \end{definicio}
+    \subsection{Descomposició de vectors singulars}
+    Also known as \textit{Singular Value Decomposition (SVD)}
+    \\Tenint $l=rang(A)$
+    \begin{displaymath}
+        \begin{cases}
+            v_1\text{ associat a } \sigma_1\\
+            v_2\text{ associat a } \sigma_2\\
+            \vdots\\
+            v_n\text{ associat a } \sigma_n
+        \end{cases}
+    \end{displaymath}
+    Escrivim $u_1 = \frac{1}{\sigma_1}T_A(v_1), u_2 = \frac{1}{\sigma_2}T_A(v_2), \dots, u_l = \frac{1}{\sigma_l}T_A(v_l)$\\
+    Aquestos vectors son ortogonals 2 a 2 i unitaris.\\
+    \underline{Si $l < M$} hem de ampliar $u_i$'s a una base ortonormal de $\mathbb{R}^4$ diem-la $(u_1, \dots, u_m)$ base de $\mathbb{R}^M$ ortonormal.\\
+    $A = M(\text{Can}_{\mathbb{R}^M} \xleftarrow{f = T_A} \text{Can}_{\mathbb{R}^N})$\\
+    $A = M(\text{Can}_{\mathbb{R}^M} \xleftarrow{id} h) M(h \xleftarrow{f = T_A} T) M(T \xleftarrow{id} \text{Can}_{\mathbb{R}^N})$\\
+    \begin{displaymath}
+        A = \overbrace{\underbrace{\begin{pmatrix}| & | &  & |\\u_1 & u_2 & \dots & u_M\\| & | & & |\end{pmatrix}}_{U}}^{M\times M} \overbrace{\underbrace{\begin{pmatrix}\sigma_1 & 0 & 0 & \dots & 0\\0 & \sigma_2 & 0 & \dots & 0\\\vdots & \vdots & \vdots & \ddots & 0\\0 & 0 & 0 & 0 & 0\end{pmatrix}}_{\Sigma}}^{M\times N} \overbrace{\underbrace{\begin{pmatrix}| & | &  & |\\v_1 & v_2 & \dots & v_N\\| & | & & |\end{pmatrix}^t}_{V}}^{N\times N}
+    \end{displaymath}
+    \begin{exemple}
+        Troba factorització SVD per a $A = \begin{psmallmatrix}6 & 2\\-7 & 6\end{psmallmatrix}$
+        \begin{itemize}
+            \item pas: Buscar base ortonormal formada per vectors propis de $A^tA$. Aquí trobem $V$ i $\Sigma$.
+            \item pas: Trobar U. Calculant $u_i = \frac{1}{\sigma_i} T_A (v_i)$ per a $V$ (base ortogonal del primer pas). 
+        \end{itemize}
+        \begin{itemize}
+            \item $A^tA = \begin{psmallmatrix}85 & -30\\-30 & 90\end{psmallmatrix} \leftarrow \text{simètrica}$\\
+            $P_{A^tA}(x) = x^2-125x+2500 \leftarrow P_{A^tA}(x) = 0 \Leftrightarrow x \in \{ 25, 100\}$\\
+            Valors singulars de A seran $\sigma_1 = 10$ i $\sigma_2 = 5$.\\
+            Busquem una base ortonormal de $\mathbb{R}^2$ formada per VEPS de $A^tA$. Aquestes serán $(\frac{2}{\sqrt{5}}, \frac{-1}{\sqrt{5}})$ i $(\frac{1}{\sqrt{5}}, \frac{2}{\sqrt{5}})$.\\
+            Llavors $V := \begin{psmallmatrix}\frac{2}{\sqrt{5}} & \frac{1}{\sqrt{5}}\\\frac{-1}{\sqrt{5}} & \frac{2}{\sqrt{5}}\end{psmallmatrix}$ i $\Sigma = \begin{psmallmatrix}10 & \\ 0 & 5\end{psmallmatrix}$.
+            \item 
+        \end{itemize}
+    \end{exemple}
 \end{document}
