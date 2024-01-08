@@ -1,8 +1,8 @@
 # Apunts MatCAD
-Aquestos apunts estàn separats en 3 apartats. Als dos primers tambè hi ha una plantilla per qualsevol necesitat. Recomano llegir la licencia abans de compartir online cap contingut al repositori. 
+Aquests apunts estan separats en 3 apartats. Als dos primers també hi ha una plantilla per qualsevol necessitat. Recomano llegir la llicència abans de compartir en línia cap contingut al repositori. 
 ## Apunts
-Hi han apunts en general. Es pot compartir (sempre amb la meva menciò) i editar, però no es pot possar amb fi lucratiu (es a dir, vendre els apunts o possar-ho a cap pàgina web que pugui generar diners pels apunts).
+Hi ha apunts en general. Es pot compartir i editar (sempre amb la meva menció), però no es pot posar amb fi lucratiu (és a dir, vendre els apunts o posar-ho a cap pàgina web que pugui generar diners pels apunts).
 ## Deures
-Hi han deures resolts per mi. Es pot compartir (sempre amb la meva menciò) i editar, però no es pot possar amb fi lucratiu (es a dir, vendre els deures o possar-ho a cap pàgina web que pugui generar diners pels deures).
+Hi ha deures resolts per mi. Es pot compartir i editar (sempre amb la meva menció), però no es pot posar amb fi lucratiu (és a dir, vendre els deures o posar-ho a cap pàgina web que pugui generar diners pels deures).
 ## Dummys
-Hi han treballs o coses tontes. Es pot compartir (sempre amb la menciò oportuna) i editar, però no es pot possar amb fi lucratiu (es a dir, vendre els treballs o possar-ho a cap pàgina web que pugui generar diners pels treballs). En aquest apartat, els treballs no tenen plantilla.
+Hi ha treballs o coses ximples. Es pot compartir i editar (sempre amb la meva menció), però no es pot posar amb fi lucratiu (és a dir, vendre els treballs o posar-ho a cap pàgina web que pugui generar diners pels treballs). En aquest apartat, els treballs no tenen plantilla.
