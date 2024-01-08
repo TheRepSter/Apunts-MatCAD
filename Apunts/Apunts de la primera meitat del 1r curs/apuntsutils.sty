@@ -1,4 +1,3 @@
-\documentclass[a4paper,12pt]{article}
 \usepackage{silence}
 \WarningsOff
 \usepackage{graphicx}
@@ -16,9 +15,12 @@
 
 \newtheorem*{teorema}{Teorema}
 \newtheorem*{corolari}{Corol·lari}
+\newtheorem*{demostracio}{Demostració}
 \newtheorem*{lema}{Lema}
 \newtheorem*{proposicio}{Proposició}
 \theoremstyle{remark}
+\newtheorem*{pregunta}{Pregunta}
+\newtheorem*{idea}{Idea}
 \newtheorem*{obs}{Observació}
 \newtheorem*{fet}{Fet}
 \newtheorem*{exemple}{Exemple}
@@ -26,6 +28,8 @@
 \newtheorem*{definicio}{Definició}
 
 \makeatletter
+\def\timeframe#1{\def\@timeframe{#1}}
+\def\period#1{\def\@period{#1}}
 \let\oldr@@t\r@@t
 \def\r@@t#1#2{
 \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
@@ -36,31 +40,17 @@
 \renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2} }
 \makeatother
 
-
 \titleformat{\section}[display]{\bfseries\huge\itshape}{ }{0.1ex}{
     \newpage
-    \pagenumbering{gobble}
     \scshape
     \centering
     \raisebox{-\baselineskip}{\rule{\textwidth}{1px}}
     \rule{\textwidth}{1px}
 }[
     \rule{\textwidth}{2px}
-    \newpage
-    \pagenumbering{arabic}
 ]
 
-\begin{document}
-    \input{title}
-    \tableofcontents
-    \section{1}
-    \subfile{subfiles/1}
-    \section{2}
-    \subfile{subfiles/2}
-    \section{3}
-    \subfile{subfiles/3}
-    \section{4}
-    \subfile{subfiles/4}
-    \section{5}
-    \subfile{subfiles/5}
-\end{document}
+\renewcommand{\contentsname}{Índex}
+
+\ProvidesFile{apuntsutils.sty}
+    [04/01/23 1.0 Lo necesario para hacer mis apuntes]

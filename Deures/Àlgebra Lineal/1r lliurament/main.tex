@@ -1,0 +1,155 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{deuresutils}
+\usepackage{silence}
+\WarningsOff
+
+\title{Lliurament 1}
+\asignatura{Àlgebra lineal}
+\author{Eduardo Pérez Motato}
+\niu{NIU: 1709992}
+\date{12/01/2024}
+
+\begin{document}
+    \makeheader
+
+    \begin{exercici}
+        Sigui $M$ una matriu $N \times N$ amb coeficients reals tal que la suma dels coeficients de
+        cada columna dona sempre el mateix número $c$, o sigui $\sum_{i=1}^{N} a_{ij}=c$ per a tota
+        $1 \leq j \leq N$. Sigui $\vec{v} \in \mathbb{R}^N$ un vector en format columna tal que la
+        suma dels seus coeficients és $k$. Demostreu que la suma dels coeficients de $A\vec{v}$ (on
+        $\vec{v}$ és el vector escrit en columna) és $c * k$.
+    \end{exercici}
+    \begin{solucio}
+        Definim $\vec{u} = A\vec{v}$. Volem demostrar que la suma de coeficients de $\sum_{i=1}^{N} u_i = c*k$.
+        Sabem que cada coeficient de $\vec{u}$ a posició $i$ es calcula $u_i = \sum_{j=1}^{N} a_{ij}*v_j$.
+        Com volem calcular la suma de tots els coeficients de $\vec{u}$, hem de calcular el sumatori
+        següent:
+        \begin{displaymath} 
+            \sum_{i=1}^{N} u_i = \sum_{i=1}^{N} \sum_{j=1}^{N} a_{ij}*v_j  
+        \end{displaymath}
+        Per les propietats dels sumatoris es pot canviar l'ordre dels sumatoris, quedant la següent operació:
+        \begin{displaymath}
+            \sum_{j=1}^{N} \sum_{i=1}^{N} a_{ij}*v_j
+        \end{displaymath}
+        Com la $v_j$ no canvia al segon sumatori, es pot treure multiplicant, quedant així:
+        \begin{displaymath}
+            \sum_{j=1}^{N} v_j \sum_{i=1}^{N} a_{ij}
+        \end{displaymath}
+        Com ja sabem per l'enunciat, $\sum_{i=1}^{N} a_{ij}=c$ per tota $1 \leq j \leq N$, llavors ens queda això:
+        \begin{displaymath}
+            \sum_{j=1}^{N} v_j * c
+        \end{displaymath}
+        Ara, la $c$ no depèn de $j$, podem treure-la del sumatori com a constant:
+        \begin{displaymath}
+            c\sum_{j=1}^{N} v_j
+        \end{displaymath}
+        Finalment, com ja sabíem a l'enunciat, la suma dels coeficients de $\vec{v} = k$, i el sumatori
+        que ens queda fa exactament això, una suma dels seus coeficients, per tant:
+         \begin{displaymath}
+            \sum_{i=1}^{N} u_i = c \sum_{j=1}^{N} v_j = c*k
+        \end{displaymath}
+    \end{solucio}
+
+    \noindent A partir d'aquí fixem:
+    \begin{itemize}
+        \item $N$ és un enter positiu i $M$ és una matriu $N \times N$ amb coeficients reals positius
+        (o zero) tal que la suma dels coeficients de cada columna dona sempre $1$.
+        \item També considerarem els vectors escrits en columna per a fer les multiplicacions amb
+        matrius.
+        \item $p$ és un nombre real tal que $0 < p < 1$ (algunes de les afirmacions que es fan a sota
+        no són certes pels casos $p = 0$ i $p = 1$).
+    \end{itemize}
+    
+    \begin{exercici}
+        Sigui $\vec{v}_1 \in \mathbb{R}^N$ un vector amb tots els coeficients positius (o zero) tal que
+        la suma dels seus coeficients és $N$. A partir de $p \in (0, 1)$, definim el vector $\vec{p} = (p, p, \dots, p) \in \mathbb{R}^N$.
+        Sigui $\vec{v}_2 = (1 - p)M\vec{v}_1 + \vec{p}$. Demostreu que tots els coeficients de $\vec{v}_2$
+        són positius i la suma dels seus coeficients és $N$. 
+    \end{exercici}
+    \begin{solucio}
+        A l'anterior exercici, sabíem que la suma dels coeficients de $M\vec{v} = c*k$. En aquest cas,
+        sabem que $c = 1$ (ja que la suma de coeficients de cada columna de $M$ dona sempre 1) i per
+        l'enunciat de l'exercici, $k = N$ (ja que la suma dels coeficients de $\vec{v}_1$ dona $N$).
+        Això fa que ens quedi el següent:
+        \begin{displaymath}
+            \sum_{i=1}^{N} v_{2_i} = (1-p)N+\sum_{i=1}^{N}p_i
+        \end{displaymath}
+        De forma trivial $\sum_{i=1}^{N}p_i = N*p$, en reemplaçar-ho tenim:
+        \begin{displaymath}
+            \sum_{i=1}^{N} v_{2_i} = (1-p)N+p*N = (1-p+p)*N = N
+        \end{displaymath}
+        Amb això ja hem demostrat que la suma de coeficients de $\vec{v}_2$ és igual a $N$.
+        Per demostrar que tots els coeficients de $\vec{v}_2$ són positius hem de pensar que $(1 - p) v_{1_j} \sum_{i=1}^{N}M_{ij} \geq 0$
+        per les fixacions anteriors, això ja que $(1 - p) \in (0, 1)$, $v_{1_j} \geq 0$ i $\sum_{i=1}^{N}M_{ij} \geq 0$
+        (ja que a qualsevol fila dona 1).\\
+        Sabent que $(1 - p) v_{1_j} \sum_{i=1}^{N}M_{ij} \geq 0$ per tota $1 \leq j \leq N$, llavors $(1 - p) v_{1_j} \sum_{i=1}^{N}M_{ij} + p \geq p > 0$
+        per tota $1 \leq j \leq N$. Per allò, sent $(1 - p) v_{1_j} \sum_{i=1}^{N}M_{ij} + p$ el
+        coeficient a la posició $j$ de $\vec{v}_2$, això implica que tots els coeficients de $\vec{v}_2$
+        són positius.
+    \end{solucio}
+    
+    \noindent Això permet definir, a partir de $M$ (matriu com fins ara), $p \in (0,1)$ i un vector inicial $\vec{v}_1$
+    complint les condicions de l'exercici anterior, una successió de vectors amb la fórmula:
+    \begin{equation}\label{eq:test}
+        \vec{v}_{k+1} = (1 - p)M\vec{v}_k + \vec{p}
+    \end{equation}
+    on $\vec{v}_k$ té tots els coeficients positius i amb la suma de coeficients constant igual a $N$
+    per a tot $k \geq 1$.
+    
+    \begin{exercici}
+        Demostreu que l'Equació \eqref{eq:test} és equivalent a la igualtat:
+        \begin{displaymath}
+            \left(
+                \begin{array}{c}
+                    \vec{v}_{k+1} \\
+                    \hline 1
+                \end{array}
+            \right)
+            =
+            \left(
+                \begin{array}{c|c}
+                    (1 - p)M & \vec{p} \\
+                    \hline 0 & 1
+                \end{array}
+            \right)
+            \left(
+                \begin{array}{c}
+                    \vec{p} \\
+                    \hline 1
+                \end{array}
+            \right)
+        \end{displaymath}
+    \end{exercici}
+    \begin{solucio}
+        El suïcidi és una gran solució.
+    \end{solucio}
+    
+    \begin{exercici}
+        Demostreu que la matriu
+        $A
+        =
+        \left(
+            \begin{array}{c|c}
+                (1 - p)M & \vec{p} \\
+                \hline 0 & 1
+            \end{array}
+        \right)$
+        té $1$ com a valor propi. A més, si hi ha algun enllaç entre pàgines web (si i només si la
+        matriu $M$ no és tot zeros), demostreu que aquest vector propi té alguns coeficients no nul a
+        les primeres $N$ coordenades.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    
+    \noindent Altres propietats de la matriu $A$ són:
+    \begin{itemize}
+        \item La dimensió de $\ker(A-\mathbb{I}_{N+1})$ és $1$.
+        \item Si $\lambda \neq 1$ és un altre valor propi (real o complex) d'$A$, llavors $|\lambda| \leq (1 - p) < 1$,
+        per tant, $1$ és el valor propi de mòdul més gran (valor propi dominant).
+    \end{itemize}
+    També, utilitzant el Teorema del Punt Fix de Browder\footnote{\textbf{Teorema (Browder)}: si $f : [0, 1]^N \rightarrow [0, 1]^N$
+    és una aplicació contínua, llavors existeix $x \in [0, 1]^N$ tal que $f(x) = x$.} (se surt una
+    mica de l'esperit del curs) es pot veure que, es pot considerar un vector propi de valor propi $1$
+    amb totes les coordenades positives (els altres seran múltiples d'aquest).
+\end{document}

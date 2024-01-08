@@ -1,0 +1,158 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{deuresutils}
+\usepackage{lipsum}
+
+\title{Lliurament 3}
+\asignatura{Àlgebra Lineal}
+\author{Eduardo Pérez Motato}
+\niu{NIU: 1709992}
+\date{12/01/2024}
+
+\begin{document}
+    \makeheader
+    \begin{center}
+        En el meu cas, $B := 5$, ja que la unitat del meu NIU és 2.
+    \end{center}
+    \section{Buscar bases de subespais vectorials reals finits generats.}
+    \subsection{Considera l'espai vectorial $\mathbb{R}^4$. Sigui $F=<(B, B, B-1, 0), (3, 2, 1, 0), (1, 2, 3, 0), (4, 3, 2, 0)>$
+    i $G = \{(x, y, z, t) \in \mathbb{R}^4$ | $x + 2y - 3z + 4t = 0\}$.}
+    \begin{exercici}
+        Trobeu una base de $F$ i la dimensió de $F$. Comproveu que el vector $v = (2022, 2022, 0, 0)$
+        és de $F$ i doneu les coordenades del vector $v$ en la base triada de $F$.
+    \end{exercici}
+    \begin{solucio}
+        \lipsum[1-10]
+    \end{solucio}
+    \begin{exercici}
+        És el vector de $F: (B, B, B-1, 0)$, combinació lineal dels vectors $(3, 2, 1, 0), (1, 2, 3, 0), (4, 3, 2, 0)$?
+        En cas afirmatiu trobeu-ne una combinació lineal (és única aquesta combinació lineal?).
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Amplieu la base de $F$ a una base de $\mathbb{R}^4$.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Comproveu que el vector $w = (3, 3, 3, 0)$ és de $G$. Trobeu una base de $G$. Doneu les
+        coordenades del vector $w$ respecte a la base de $G$ triada.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Trobeu una base de $F+G$ i la dimensió de $F+G$. És $F \subseteq G$? Per què? És $F+G = \mathbb{R}^4$?
+        Per què?
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Trobeu una base de $F \cap G$ i la dimensió de $F \cap G$.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \subsection{Considera un subespai vectorial $H := <1, \sin(x), \cos(x), e^{2x}>$ de les funcions contínues de domini $\mathbb{R}$ de funcions reals en una variable.}
+    \begin{exercici}
+        Proveu que $(1, \sin(x), \cos(x), e^{2x})$ és una base de $H$.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Considerem els subespais de les funcions reals en una variable
+        \begin{displaymath}
+            F' := <B+B\sin(x)+(B-1)\cos(x), 3+2\sin(x)+\cos(x), 1+2\sin(x)+3\cos(x), 4+3\sin(x)+2\cos(x)>
+        \end{displaymath}
+        \begin{displaymath}
+            G' := \{a1 + b\sin(x) + c\cos(x)+de^{2x}\text{ | } a,b,c,d \in \mathbb{R}, a+b-c+d = 0\}
+        \end{displaymath}
+        \begin{itemize}
+            \item Proveu que $F'$, $G'$ són subespais vectorials de $H$.
+            \item Trobeu una base i dimensió de $F'$, $G'$, $F'+G'$ i $F' \cap G'$
+        \end{itemize}
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    
+    \section{Matriu d'aplicacions lineals en espais vectorials reals finits generats.}
+    \subsection{Considera l'aplicació lineal $f: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ definida per}
+    \begin{displaymath}
+        f(x,y,z) = (Bx+y+z, x-y+z, x+y+z)
+    \end{displaymath}
+    \begin{exercici}
+        Calcula la matriu $A$ associada a $f = T_A$ en les bases canòniques. I calculeu $f(1,2,3)$ i l'antiimatge de $(1,0,0)$, és a dir $f^{-1}(1,0,0)$.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Calculeu una base i dimensió del nucli de $f$ i la imatge de $f$.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Decidiu si $f$ és injectiva, exhaustiva o bijectiva.
+    \end{exercici}
+    \begin{solucio}
+        Dummy1
+    \end{solucio}
+    \begin{exercici}
+        Calculeu l'aplicació lineal $f \circ f$.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Considera la base de $\mathbb{R}^3: Bgotica = ((1,1,1), (0,1,1), (0,0,1))$. Calcula la
+        matriu associada a $f$ amb bases d'inici i sortida $Bgotica$, és a dir calculeu $M(Bgotica \xleftarrow{f} Bgotica)$.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Trobeu una matriu invertible $P$, on $A = PM(Bgotica \xleftarrow{f} Bgotica)P^{-1}$. La
+        matriu $P$ és una matriu de canvi de base, de coordenades de quina base a quina alta base és?
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    
+    \subsection{Sigui $\mathbb{R}[x]_2$ l'espai vectorial dels polinomis de grau $\geq 2$.
+    Considera l'aplicació $g: \mathbb{R}[x]_2 \rightarrow \mathbb{R}[x]_2$ definida per}
+    \begin{displaymath}
+        g(a+bx+cx^2) = (Ba+b+c)1 + (a-b+c)x + (a+b+c)x^2
+    \end{displaymath}
+    \begin{exercici}
+        Justifiqueu perquè $g$ és una aplicació lineal.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Fixeu la base $Can := (1, x, x^2)$ de $\mathbb{R}[x]_2$. Calculeu la matriu $A = M(Can \xleftarrow{g} Can)$.
+        Calculeu $g(3+2x+x^2)$ i $g^{-1}(x)$, directament i usant la matriu $A$. 
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Decidiu si $g$ és injectiva, exhaustiva i bijectiva.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+    \begin{exercici}
+        Proveu que $Bgoticab = (1 + x + x^2, x + x^2, x)$ és una base de $\mathbb{R}[x]_2$. I
+        calculeu la matriu $M(Bgoticab \xleftarrow{g} Bgoticab)$.
+    \end{exercici}
+    \begin{solucio}
+        Dummy0
+    \end{solucio}
+\end{document}

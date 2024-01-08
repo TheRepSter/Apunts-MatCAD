@@ -1,17 +1,10 @@
-*/main.aux
-*/main.fdb_latex
-*/main.fdb_latexmk
-*/main.fls
-*/main.log
-Plantilla apuntes/main.pdf
-*/main.synctex.gz
-*/main.toc
-*/main.out
-*/title.aux
-*/subfiles/*.aux
-*/subfiles/*.log
-*/subfiles/*.out
-*/subfiles/*.pdf
-*/subfiles/*.synctex.gz
-*/subfiles/*.toc
-*/subfiles/*.out
+*.aux
+*.fdb_latex
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.toc
+*.out
+*.aux
+.vscode
