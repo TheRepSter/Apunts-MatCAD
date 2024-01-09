@@ -15,40 +15,256 @@
     \end{center}
     \section{Buscar bases de subespais vectorials reals finits generats.}
     \subsection{Considera l'espai vectorial $\mathbb{R}^4$. Sigui $F=<(B, B, B-1, 0), (3, 2, 1, 0), (1, 2, 3, 0), (4, 3, 2, 0)>$
-    i $G = \{(x, y, z, t) \in \mathbb{R}^4$ | $x + 2y - 3z + 4t = 0\}$.}
+    i $G = \{(x, y, z, t) \in \mathbb{R}^4\text{ }|\text{ }x + 2y - 3z + 4t = 0\}$.}
     \begin{exercici}
         Trobeu una base de $F$ i la dimensió de $F$. Comproveu que el vector $v = (2022, 2022, 0, 0)$
         és de $F$ i doneu les coordenades del vector $v$ en la base triada de $F$.
     \end{exercici}
     \begin{solucio}
-        \lipsum[1-10]
+        Per trobar una base de $F$, posem el seu sistema generador en forma matricial i reduim aquesta
+        matriu: 
+        \begin{displaymath}
+            \left(
+                \begin{array}{cccc}
+                    5 & 5 & 4 & 0\\
+                    3 & 2 & 1 & 0\\
+                    1 & 2 & 3 & 0\\
+                    4 & 3 & 2 & 0
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc}
+                    1 & 2 & 3 & 0\\
+                    5 & 5 & 4 & 0\\
+                    3 & 2 & 1 & 0\\
+                    4 & 3 & 2 & 0
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc}
+                    1 & 2 & 3 & 0\\
+                    0 & -5 & -11 & 0\\
+                    0 & -4 & -8 & 0\\
+                    0 & -5 & -10 & 0
+                \end{array}
+            \right)
+            \sim
+        \end{displaymath}
+        \begin{displaymath}
+            \sim
+            \left(
+                \begin{array}{cccc}
+                    1 & 2 & 3 & 0\\
+                    0 & -4 & -8 & 0\\
+                    0 & -5 & -11 & 0\\
+                    0 & -5 & -10 & 0
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc}
+                    1 & 2 & 3 & 0\\
+                    0 & 1 & 2 & 0\\
+                    0 & -5 & -11 & 0\\
+                    0 & -5 & -10 & 0
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc}
+                    1 & 2 & 3 & 0\\
+                    0 & 1 & 2 & 0\\
+                    0 & 0 & -1 & 0\\
+                    0 & 0 & 0 & 0
+                \end{array}
+            \right)
+        \end{displaymath}
+        Llavors, $((1, 2, 3, 0), (0, 1, 2, 0), (0, 0, 1, 0))$ és una base de $F$, sent $\dim{F} = 3$.
+        Comprovem que $v$ és de $F$:
+        \begin{displaymath}
+            \left(
+                \begin{array}{cccc|cccc}
+                    1 & 2 & 3 & 0 & 1 & 0 & 0 & 0\\
+                    0 & 1 & 2 & 0 & 0 & 1 & 0 & 0\\
+                    0 & 0 & -1 & 0 & 0 & 0 & 1 & 0\\
+                    2022 & 2022 & 0 & 0 & 0 & 0 & 0 & 1
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc|cccc}
+                    1 & 2 & 3 & 0 & 1 & 0 & 0 & 0\\
+                    0 & 1 & 2 & 0 & 0 & 1 & 0 & 0\\
+                    0 & 0 & -1 & 0 & 0 & 0 & 1 & 0\\
+                    0 & -2022 & -6066 & 0 & -2022 & 0 & 0 & 1
+                \end{array}
+            \right)
+        \end{displaymath}
+        \begin{displaymath}    
+            \sim
+            \left(
+                \begin{array}{cccc|cccc}
+                    1 & 2 & 3 & 0 & 1 & 0 & 0 & 0\\
+                    0 & 1 & 2 & 0 & 0 & 1 & 0 & 0\\
+                    0 & 0 & -1 & 0 & 0 & 0 & 1 & 0\\
+                    0 & 0 & -2022 & 0 & -2022 & 2022 & 0 & 1
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc|cccc}
+                    1 & 2 & 3 & 0 & 1 & 0 & 0 & 0\\
+                    0 & 1 & 2 & 0 & 0 & 1 & 0 & 0\\
+                    0 & 0 & -1 & 0 & 0 & 0 & 1 & 0\\
+                    0 & 0 & 0 & 0 & -2022 & 2022 & -2022 & 1
+                \end{array}
+            \right)
+        \end{displaymath}
+        Com podem observar, en fer la matriu reduïda el vector $v$ és linealment dependent, per això
+        pertany a $F$. A la part ampliada, tenim les coordenades (negatives) de $v$ respecte a la
+        base abans calculada. És a dir, $v = 2022(1, 2, 3, 0) -2022(0, 1, 2, 0) + 2022(0, 0, -1, 0)$.
+        $v$ en coordenades de la base és $(2022, -2022, 2022, 0)$.
     \end{solucio}
     \begin{exercici}
         És el vector de $F: (B, B, B-1, 0)$, combinació lineal dels vectors $(3, 2, 1, 0), (1, 2, 3, 0), (4, 3, 2, 0)$?
         En cas afirmatiu trobeu-ne una combinació lineal (és única aquesta combinació lineal?).
     \end{exercici}
     \begin{solucio}
-        Dummy0
+        Com ja hem calculat a l'anterior exercici, $(5, 5, 4, 0)$ no és combinació lineal dels
+        anteriors. Això ja que la tercera filera (on termina el vector $(5, 5, 4, 0)$) no termina reduïda.
     \end{solucio}
     \begin{exercici}
         Amplieu la base de $F$ a una base de $\mathbb{R}^4$.
     \end{exercici}
     \begin{solucio}
-        Dummy0
+        Per ampliar la base de $F$ a una base de $\mathbb{R}^4$ és trivial, ja que només cal posar el
+        vector $(0, 0, 0, 1)$ per fer-la base de $\mathbb{R}^4$.
     \end{solucio}
     \begin{exercici}
         Comproveu que el vector $w = (3, 3, 3, 0)$ és de $G$. Trobeu una base de $G$. Doneu les
         coordenades del vector $w$ respecte a la base de $G$ triada.
     \end{exercici}
     \begin{solucio}
-        Dummy0
+        Primer, calculem una base de $G$:
+        \begin{displaymath}
+            \underbrace{\left(
+                \begin{array}{cccc}
+                    1 & 2 & -3 & 4
+                \end{array}
+            \right)}_{\text{"Matriu" }A}
+            \left(
+                \begin{array}{c}
+                    x\\y\\z\\t
+                \end{array}
+            \right) = 
+            \left(
+                \begin{array}{c}
+                    0\\0\\0\\0
+                \end{array}
+            \right)
+        \end{displaymath}
+        Això és equivalent a trobar el nucli de $A$.
+        \begin{displaymath}
+            \left(
+                \begin{array}{cccc}
+                    1 & 2 & -3 & 4\\
+                    \hline
+                    1 & 0 & 0 & 0\\
+                    0 & 1 & 0 & 0\\
+                    0 & 0 & 1 & 0\\
+                    0 & 0 & 0 & 1\\
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc}
+                    1 & 0 & 0 & 0\\
+                    \hline
+                    1 & -2 & 3 & -4\\
+                    0 & 1 & 0 & 0\\
+                    0 & 0 & 1 & 0\\
+                    0 & 0 & 0 & 1\\
+                    & \multicolumn{3}{c}{\raisebox{4ex}{$ \underbrace{\hspace{5em}}_{\text{Nucli de } A} $}}
+                \end{array}
+            \right)
+        \end{displaymath}
+        Llavors, una base de $G$ és $((-2, 1, 0, 0), (3, 0, 1, 0), (-4, 0, 0, 1))$. Ara, comprovem que $w$ és de $G$:
+        \begin{displaymath}
+            \left(
+                \begin{array}{cccc|cccc}
+                    -2 & 1 & 0 & 0 & 1 & 0 & 0 & 0\\
+                    3 & 0 & 1 & 0 & 0 & 1 & 0 & 0\\
+                    -4 & 0 & 0 & 1 & 0 & 0 & 1 & 0\\
+                    3 & 3 & 3 & 0 & 0 & 0 & 0 & 1
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc|cccc}
+                    1 & -\frac{1}{2} & 0 & 0 & -\frac{1}{2} & 0 & 0 & 0\\
+                    0 & \frac{3}{2} & 1 & 0 & \frac{3}{2} & 1 & 0 & 0\\
+                    0 & -2 & 0 & 1 & -2 & 0 & 1 & 0\\
+                    0 & \frac{9}{2} & 3 & 0 & \frac{3}{2} & 0 & 0 & 1
+                \end{array}
+            \right)
+        \end{displaymath}
+        \begin{displaymath}
+            \sim
+            \left(
+                \begin{array}{cccc|cccc}
+                    1 & -\frac{1}{2} & 0 & 0 & -\frac{1}{2} & 0 & 0 & 0\\
+                    0 & 1 & \frac{2}{3} & 0 & 1 & \frac{2}{3} & 0 & 0\\
+                    0 & 0 & \frac{4}{3} & 1 & 0 & \frac{4}{3} & 1 & 0\\
+                    0 & 0 & 0 & 0 & -3 & -3 & 0 & 1
+                \end{array}
+            \right)
+        \end{displaymath}
+        Llavors, com $w$ és combinació lineal de les bases de $G$, $w \in G$. Per la base de $G$
+        triada abans $w = 3(-2, 1, 0, 0) + 3(3, 0, 1, 0)$. Les coordenades de $w$ a la base triada de $G$
+        és $(3, 3, 0)$.
     \end{solucio}
     \begin{exercici}
         Trobeu una base de $F+G$ i la dimensió de $F+G$. És $F \subseteq G$? Per què? És $F+G = \mathbb{R}^4$?
         Per què?
     \end{exercici}
     \begin{solucio}
-        Dummy0
+        Posem les dues bases en una mateixa matriu, sent les 3 primeres de $G$ i la resta de $F$.
+        \begin{displaymath}
+            \left(
+                \begin{array}{cccc}
+                    -2 & 1 & 0 & 0\\
+                    3 & 0 & 1 & 0\\
+                    -4 & 0 & 0 & 1\\
+                    1 & 2 & 3 & 0\\
+                    0 & 1 & 2 & 0\\
+                    0 & 0 & 1 & 0
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc}
+                    1 & -\frac{1}{2} & 0 & 0\\
+                    0 & 1 & \frac{2}{3} & 0\\
+                    0 & 0 & \frac{4}{3} & 1\\
+                    1 & 2 & 3 & 0\\
+                    0 & 1 & 2 & 0\\
+                    0 & 0 & 1 & 0
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc}
+                    1 & -\frac{1}{2} & 0 & 0\\
+                    0 & 1 & \frac{2}{3} & 0\\
+                    0 & 0 & \frac{4}{3} & 1\\
+                    1 & 2 & 3 & 0\\
+                    0 & 1 & 2 & 0\\
+                    0 & 0 & 1 & 0
+                \end{array}
+            \right)
+        \end{displaymath}
     \end{solucio}
     \begin{exercici}
         Trobeu una base de $F \cap G$ i la dimensió de $F \cap G$.
@@ -69,7 +285,7 @@
             F' := <B+B\sin(x)+(B-1)\cos(x), 3+2\sin(x)+\cos(x), 1+2\sin(x)+3\cos(x), 4+3\sin(x)+2\cos(x)>
         \end{displaymath}
         \begin{displaymath}
-            G' := \{a1 + b\sin(x) + c\cos(x)+de^{2x}\text{ | } a,b,c,d \in \mathbb{R}, a+b-c+d = 0\}
+            G' := \{a1 + b\sin(x) + c\cos(x)+de^{2x}\text{ }|\text{ }a,b,c,d \in \mathbb{R}, a+b-c+d = 0\}
         \end{displaymath}
         \begin{itemize}
             \item Proveu que $F'$, $G'$ són subespais vectorials de $H$.
