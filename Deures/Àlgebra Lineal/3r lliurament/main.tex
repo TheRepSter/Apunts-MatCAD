@@ -233,51 +233,76 @@
         Posem les dues bases en una mateixa matriu, sent les 3 primeres de $G$ i la resta de $F$.
         \begin{displaymath}
             \left(
-                \begin{array}{cccc}
-                    -2 & 1 & 0 & 0\\
-                    3 & 0 & 1 & 0\\
-                    -4 & 0 & 0 & 1\\
-                    1 & 2 & 3 & 0\\
-                    0 & 1 & 2 & 0\\
-                    0 & 0 & 1 & 0
+                \begin{array}{cccc|cccccc}
+                    -2 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+                    3 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+                    -4 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0\\
+                    \hline
+                    1 & 2 & 3 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+                    0 & 1 & 2 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
+                    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1
                 \end{array}
             \right)
             \sim
             \left(
-                \begin{array}{cccc}
-                    1 & -\frac{1}{2} & 0 & 0\\
-                    0 & 1 & \frac{2}{3} & 0\\
-                    0 & 0 & \frac{4}{3} & 1\\
-                    1 & 2 & 3 & 0\\
-                    0 & 1 & 2 & 0\\
-                    0 & 0 & 1 & 0
-                \end{array}
-            \right)
-            \sim
-            \left(
-                \begin{array}{cccc}
-                    1 & -\frac{1}{2} & 0 & 0\\
-                    0 & 1 & \frac{2}{3} & 0\\
-                    0 & 0 & \frac{4}{3} & 1\\
-                    1 & 2 & 3 & 0\\
-                    0 & 1 & 2 & 0\\
-                    0 & 0 & 1 & 0
+                \begin{array}{cccc|cccccc}
+                    1 & -\frac{1}{2} & 0 & 0 & -\frac{1}{2} & 0 & 0 & 0 & 0 & 0\\
+                    0 & \frac{3}{2} & 1 & 0 & \frac{3}{2} & 1 & 0 & 0 & 0 & 0\\
+                    0 & -2 & 0 & 1 & -2 & 0 & 1 & 0 & 0 & 0\\
+                    \hline
+                    0 & \frac{5}{2} & 3 & 0 & \frac{1}{2} & 0 & 0 & 1 & 0 & 0\\
+                    0 & 1 & 2 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
+                    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1
                 \end{array}
             \right)
         \end{displaymath}
+        \begin{displaymath}
+            \sim
+            \left(
+                \begin{array}{cccc|cccccc}
+                    1 & -\frac{1}{2} & 0 & 0 & -\frac{1}{2} & 0 & 0 & 0 & 0 & 0\\
+                    0 & 1 & \frac{2}{3} & 0 & 1 & \frac{2}{3} & 0 & 0 & 0 & 0\\
+                    0 & 0 & \frac{4}{3} & 1 & 0 & \frac{4}{3} & 1 & 0 & 0 & 0\\
+                    \hline
+                    0 & 0 & -\frac{4}{3} & 0 & -2 & -\frac{5}{3} & 0 & 1 & 0 & 0\\
+                    0 & 0 & \frac{4}{3} & 0 & -1 & 0 & 0 & 0 & 1 & 0\\
+                    0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc|cccccc}
+                    1 & -\frac{1}{2} & 0 & 0 & -\frac{1}{2} & 0 & 0 & 0 & 0 & 0\\
+                    0 & 1 & \frac{2}{3} & 0 & 1 & \frac{2}{3} & 0 & 0 & 0 & 0\\
+                    0 & 0 & \frac{4}{3} & 1 & 0 & \frac{4}{3} & 1 & 0 & 0 & 0\\
+                    \hline
+                    0 & 0 & -\frac{4}{3} & 0 & -2 & -\frac{5}{3} & 0 & 1 & 0 & 0\\
+                    0 & 0 & 0 & 0 & -3 & -\frac{5}{3} & 0 & 1 & 1 & 0\\
+                    0 & 0 & 0 & 0 & -\frac{3}{2} & -\frac{5}{4} & 0 & \frac{3}{4} & 0 & 1
+                \end{array}
+            \right)
+        \end{displaymath}
+        Arribat aquest punt, ens podem adonar que l'única manera de fer la forma esglaonada reduïda de
+        la matriu de les bases implica fer un intercanvi de files, de la 3 i la 4, això ens demostra que
+        $F\not\subseteq G$. Una base de $F+G$ és $((1, -\frac{1}{2}, 0, 0), (0, 1, \frac{2}{3}, 0), (0, 0, \frac{4}{3}, 1), (0, 0, -\frac{4}{3}))$,
+        i per allò, $\dim(F+G) = 4$. Com la dimensió és $4$, si o si ha de generar un subespai de
+        dimensió $4$ de $\mathbb{R}^4$. L'únic subespai possible és el mateix $\mathbb{R}^4$.
     \end{solucio}
     \begin{exercici}
         Trobeu una base de $F \cap G$ i la dimensió de $F \cap G$.
     \end{exercici}
     \begin{solucio}
-        Dummy0
+        Aprofitant els càlculs que he fet a l'anterior exercici amb la matriu ampliada, una base de
+        $F\cap G$ és $((-3, -\frac{5}{3}, 0, 1), (-\frac{3}{2}, -\frac{5}{4}, 0, \frac{3}{4}))$.
+        Això implica que $\dim(F\cap G) = 2$. Va en concordança amb el resultat trobat amb $\dim(F\cap G) = \dim(F+G) - (\dim(F) + \dim(G))$
     \end{solucio}
     \subsection{Considera un subespai vectorial $H := <1, \sin(x), \cos(x), e^{2x}>$ de les funcions contínues de domini $\mathbb{R}$ de funcions reals en una variable.}
     \begin{exercici}
         Proveu que $(1, \sin(x), \cos(x), e^{2x})$ és una base de $H$.
     \end{exercici}
     \begin{solucio}
-        Dummy0
+        El subespai $H$ està generat per $(1, \sin(x), \cos(x), e^{2x})$. Com no són linealment
+        dependents, per definició, $(1, \sin(x), \cos(x), e^{2x})$ és una base de $H$.
     \end{solucio}
     \begin{exercici}
         Considerem els subespais de les funcions reals en una variable
@@ -293,7 +318,76 @@
         \end{itemize}
     \end{exercici}
     \begin{solucio}
-        Dummy0
+        Primer de tot, provem que $F'$ i $G'$ són subespais vectorials de $H$:
+        \begin{itemize}
+            \item Posem la base de $H$ i els vectors generadors de $F'$ en una matriu:
+            \begin{displaymath}
+                \left(
+                    \begin{array}{c|cccccccc}
+                        1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+                        \sin(x) & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+                        \cos(x) & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+                        e^{2x} & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+                        \hline
+                        5+5\sin(x)+4\cos(x) & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+                        3+2\sin(x)+\cos(x) & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+                        1+2\sin(x)+3\cos(x) & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
+                        4+3\sin(x)+2\cos(x) & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
+                    \end{array}
+                \right)
+            \end{displaymath}
+            \begin{displaymath}
+                \sim
+                \left(
+                    \begin{array}{c|cccccccc}
+                        1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+                        \sin(x) & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+                        \cos(x) & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+                        e^{2x} & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+                        \hline
+                        0 & -5 & -5 & -4 & 0 & 1 & 0 & 0 & 0\\
+                        0 & -3 & -2 & -1 & 0 & 0 & 1 & 0 & 0\\
+                        0 & -1 & -2 & -3 & 0 & 0 & 0 & 1 & 0\\
+                        0 & -4 & -3 & -2 & 0 & 0 & 0 & 0 & 1
+                    \end{array}
+                \right)
+            \end{displaymath}
+            Com podem veure, els vectors generadors de $F'$ desapareixen en reduir la matriu,
+            per això $F'$ és un subespai de $H$.
+            \item Per $G'$, si tenim en compte que $a1 + b\sin(x) + c\cos(x) + de^{2x} = (a, b, c, d)(1,\sin,\cos,e^{2x})^t$.
+            Sabem que, independentment del valor de $(a, b, c, d)$, els vectors de $G'$ seran
+            combinació lineal de la base de $H$. Per allò, $G'$ és un subespai de $H$. 
+        \end{itemize}
+        Fixem la base $(1, \sin(x), \cos(x), e^{2x})$. $F'$ està llavors generat per $<(5, 5, 4, 0), (3, 2, 1, 0), (1, 2, 3, 0), (4, 3, 2, 0)>$
+        en coordenades de la base abans esmentada (això està calculat indirectament a l'ampliada en
+        fer la reducció. Com a petita observació, aquests vectors són els mateixos que generen $F$
+        a l'apartat a, per això no tornaré a fer certs càlculs). $G'$ en les coordenades ja dites serà el càlcul del nucli següent:
+        \begin{displaymath}
+            \left(
+                \begin{array}{cccc}
+                    1 & 1 & -1 & 1\\
+                    \hline
+                    1 & 0 & 0 & 0\\
+                    0 & 1 & 0 & 0\\
+                    0 & 0 & 1 & 0\\
+                    0 & 0 & 0 & 1\\
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{cccc}
+                    1 & 0 & 0 & 0\\
+                    \hline
+                    1 & -1 & 1 & -1\\
+                    0 & 1 & 0 & 0\\
+                    0 & 0 & 1 & 0\\
+                    0 & 0 & 0 & 1\\
+                \end{array}
+            \right)
+        \end{displaymath}
+        Sent el nucli $((-1, 1, 0, 0), (1, 0, 1, 0), (-1, 0, 0, 1))$, aquest nucli és la base de $G'$
+        en coordenades abans dites.
+        Llavors, $\dim(F') = 3$ i $\dim(G') = 3$.
     \end{solucio}
     
     \section{Matriu d'aplicacions lineals en espais vectorials reals finits generats.}
