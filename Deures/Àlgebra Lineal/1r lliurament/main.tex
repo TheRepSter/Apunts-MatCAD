@@ -78,7 +78,7 @@
         \begin{displaymath}
             \sum_{i=1}^{N} v_{2_i} = (1-p)N+p*N = (1-p+p)*N = N
         \end{displaymath}
-        Amb això ja hem demostrat que la suma de coeficients de $\vec{v}_2$ és igual a $N$.
+        \hfill$\blacksquare$\\
         Per demostrar que tots els coeficients de $\vec{v}_2$ són positius hem de pensar que $(1 - p) v_{1_j} \sum_{i=1}^{N}M_{ij} \geq 0$
         per les fixacions anteriors, això ja que $(1 - p) \in (0, 1)$, $v_{1_j} \geq 0$ i $\sum_{i=1}^{N}M_{ij} \geq 0$
         (ja que a qualsevol fila dona 1).\\
@@ -90,14 +90,14 @@
     
     \noindent Això permet definir, a partir de $M$ (matriu com fins ara), $p \in (0,1)$ i un vector inicial $\vec{v}_1$
     complint les condicions de l'exercici anterior, una successió de vectors amb la fórmula:
-    \begin{equation}\label{eq:test}
+    \begin{equation}\label{eq:primera}
         \vec{v}_{k+1} = (1 - p)M\vec{v}_k + \vec{p}
     \end{equation}
     on $\vec{v}_k$ té tots els coeficients positius i amb la suma de coeficients constant igual a $N$
     per a tot $k \geq 1$.
     
     \begin{exercici}
-        Demostreu que l'Equació \eqref{eq:test} és equivalent a la igualtat:
+        Demostreu que l'Equació \eqref{eq:primera} és equivalent a la igualtat:
         \begin{displaymath}
             \left(
                 \begin{array}{c}
@@ -114,14 +114,42 @@
             \right)
             \left(
                 \begin{array}{c}
-                    \vec{p} \\
+                    \vec{v}_k \\
                     \hline 1
                 \end{array}
             \right)
         \end{displaymath}
     \end{exercici}
     \begin{solucio}
-        El suïcidi és una gran solució.
+        Sabem el següent:
+        \begin{displaymath}
+            \left(
+                \begin{array}{c}
+                    \vec{v}_{k+1} \\
+                    \hline 1
+                \end{array}
+            \right)
+            =
+            \left(
+                \begin{array}{c|c}
+                    (1 - p)M & \vec{p} \\
+                    \hline 0 & 1
+                \end{array}
+            \right)
+            \left(
+                \begin{array}{c}
+                    \vec{v}_k \\
+                    \hline 1
+                \end{array}
+            \right)
+            = \left(
+                \begin{array}{c|c}
+                    (1 - p)M\vec{v}_k & \vec{p} \\
+                    \hline 0 & 1
+                \end{array}
+            \right)
+        \end{displaymath}
+        I això és equivalent a ampliar ambdós vectors resultants amb un 1. 
     \end{solucio}
     
     \begin{exercici}
@@ -139,7 +167,28 @@
         les primeres $N$ coordenades.
     \end{exercici}
     \begin{solucio}
-        Dummy0
+        Primer, demostrar que té 1 com valor propi és pràcticament trivial, ja que sempre a l'última
+        filera són tot zero menys l'últim valor, que és 1. Això dit equivaldria al següent:
+        \begin{displaymath}
+            A-\mathbb{I}_{N+1} = 
+            \left(
+                \begin{array}{c|c}
+                    (1 - p)M-\mathbb{I}_{N} & \vec{p} \\
+                    \hline 0 & 0
+                \end{array}
+            \right)
+        \end{displaymath}
+        Amb això en compte, per les propietats dels determinants (per ser específics: si els
+        components d'una filera o una columna són zeros, el valor del determinant també serà zero)
+        sabem que $\det(A-\mathbb{I}_{N+1}) = 0$. Com els valors propis es poden trobar mitjançant
+        el polinomi característic en resoldre $\det(A-\lambda\mathbb{I}_{N+1}) = 0$, sabem que $1$
+        ha de ser un valor propi.\hfill$\blacksquare$\\
+        Si hi ha un enllaç entre pàgines web, sabem que per fer el $\ker(A-\mathbb{I}_{N+1})$ haurem
+        de reduir per columnes (amb una ampliada per així trobar el nucli directament). L'última
+        columna (la de $\vec{p}$) és la idònia per fer la reducció. Ara, la suma de cada component a
+        cada columna serà $-p$ (ja que $(1-p)-1$) i per allò, en reduir la matriu, totes les
+        transformacions elementals seran positives o $0$. Llavors, sempre hi tindrà com mínim un
+        valor no nul.
     \end{solucio}
     
     \noindent Altres propietats de la matriu $A$ són:
