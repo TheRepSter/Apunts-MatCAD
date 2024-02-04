@@ -22,7 +22,7 @@
     \end{exercici}
     \begin{solucio}
         Per trobar una base de $F$, posem el seu sistema generador en forma matricial i reduïm aquesta
-        matriu:
+        matriu: 
         \begin{displaymath}
             \left(
                 \begin{array}{cccc}
@@ -102,7 +102,7 @@
                 \end{array}
             \right)
         \end{displaymath}
-        \begin{displaymath}
+        \begin{displaymath}    
             \sim
             \left(
                 \begin{array}{cccc|cccc}
@@ -158,7 +158,7 @@
                 \begin{array}{c}
                     x\\y\\z\\t
                 \end{array}
-            \right) =
+            \right) = 
             \left(
                 \begin{array}{c}
                     0\\0\\0\\0
@@ -356,7 +356,7 @@
             per això $F'$ és un subespai de $H$.
             \item Per $G'$, si tenim en compte que $a1 + b\sin(x) + c\cos(x) + de^{2x} = (a, b, c, d)(1,\sin,\cos,e^{2x})^t$.
             Sabem que, independentment del valor de $(a, b, c, d)$, els vectors de $G'$ seran
-            combinació lineal de la base de $H$. Per allò, $G'$ és un subespai de $H$.
+            combinació lineal de la base de $H$. Per allò, $G'$ és un subespai de $H$. 
         \end{itemize}
         Fixem la base $(1, \sin(x), \cos(x), e^{2x})$. $F'$ està llavors generat per $<(5, 5, 4, 0), (3, 2, 1, 0), (1, 2, 3, 0), (4, 3, 2, 0)>$
         en coordenades de la base abans esmentada (això està calculat indirectament a l'ampliada en
@@ -387,72 +387,9 @@
         \end{displaymath}
         Sent el nucli $((-1, 1, 0, 0), (1, 0, 1, 0), (-1, 0, 0, 1))$, aquest nucli és la base de $G'$
         en coordenades abans dites.
-        Llavors, $\dim(G') = 3$. Per a $F'$, la base serà (calculada a l'apartat 'a' exercici 1) $((1, 2, 3, 0), (0, 1, 2, 0), (0, 0, -1, 0))$
-        i $\dim(F') = 3$. Per trobar $F'+G'$ i $F' \cap G'$ es posa en una matriu amb la base de $F'$
-        primer i després la base de $G'$:
-        \begin{displaymath}
-            \left(
-                \begin{array}{cccc|cccccc}
-                    1 & 2 & 3 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
-                    0 & 1 & 2 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
-                    0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
-                    \hline
-                    -1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
-                    1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
-                    -1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1\\
-                \end{array}
-            \right)
-            \sim
-            \left(
-                \begin{array}{cccc|cccccc}
-                    1 & 2 & 3 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
-                    0 & 1 & 2 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
-                    0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
-                    \hline
-                    0 & 3 & 3 & 0 & 1 & 0 & 0 & 1 & 0 & 0\\
-                    0 & -2 & -2 & 0 & -1 & 0 & 0 & 0 & 1 & 0\\
-                    0 & 2 & 3 & 1 & 1 & 0 & 0 & 0 & 0 & 1\\
-                \end{array}
-            \right)
-        \end{displaymath}
-        \begin{displaymath}
-            \sim
-            \left(
-                \begin{array}{cccc|cccccc}
-                    1 & 2 & 3 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
-                    0 & 1 & 2 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
-                    0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
-                    \hline
-                    0 & 0 & -3 & 0 & 1 & -3 & 0 & 1 & 0 & 0\\
-                    0 & 0 & 2 & 0 & -1 & 2 & 0 & 0 & 1 & 0\\
-                    0 & 0 & -1 & 1 & 1 & -2 & 0 & 0 & 0 & 1\\
-                \end{array}
-            \right)
-            \sim
-            \left(
-                \begin{array}{cccc|cccccc}
-                    1 & 2 & 3 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
-                    0 & 1 & 2 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
-                    0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
-                    \hline
-                    0 & 0 & 0 & 0 & 1 & -3 & 3 & 1 & 0 & 0\\
-                    0 & 0 & 0 & 0 & -1 & 2 & -2 & 0 & 1 & 0\\
-                    0 & 0 & -1 & 1 & 1 & -2 & 0 & 0 & 0 & 1\\
-                \end{array}
-            \right)
-        \end{displaymath}
-        com podem observar, una base de $F'+G'$ és $((1,2,3,0), (0,1,2,0), (0, 0, 0, 1), (0, 0, -1, 1))$,
-        el que fa que $\dim(F'+G') = 4$. En canvi, una base de $F' \cap G'$ és $((1, -3, 3, 1), (-1, 2, -2, 0))$,
-        fent que $\dim(F' \cap G') = 2$.\\
-        Recapitulant:
-        \begin{itemize}
-            \item Base de $F'$ és $(1+2\sin(x)+3\cos(x), 1\sin(x)+2\cos(x), \cos(x))$, $\dim(F') = 3$.
-            \item Base de $G'$ és $(-2+\sin(x), 3+\cos(x), -4+e^{2x})$, $\dim(G') = 3$.
-            \item Base de $F'+G'$ és $(1+2\sin(x)+3\cos(x), 1\sin(x)+2\cos(x), -\cos(x), e^{2x})$, $\dim(F'+G') = 4$.
-            \item Base de $F'\cap G'$ és $(1-3\sin(x)+3\cos(x)+e^{2x}, -1+2\sin(x)-2\cos(x))$, $\dim(F'\cap G') = 2$.
-        \end{itemize}
+        Llavors, $\dim(F') = 3$ i $\dim(G') = 3$.
     \end{solucio}
-
+    
     \section{Matriu d'aplicacions lineals en espais vectorials reals finits generats.}
     \subsection{Considera l'aplicació lineal $f: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ definida per}
     \begin{displaymath}
@@ -462,252 +399,41 @@
         Calcula la matriu $A$ associada a $f = T_A$ en les bases canòniques. I calculeu $f(1,2,3)$ i l'antiimatge de $(1,0,0)$, és a dir $f^{-1}(1,0,0)$.
     \end{exercici}
     \begin{solucio}
-        Per trobar $A$ associada en les bases canòniques, calculem $f(1, 0, 0), f(0, 1, 0)\text{ i }f(0, 0, 1)$.
-        \begin{displaymath}
-            f(1, 0, 0) = (5, 1, 1)\qquad f(0, 1, 0) = (1, -1, 1)\qquad f(0, 0, 1) = (1, 1, 1)
-        \end{displaymath}
-        Ara fet això, ho posem en coordenades de la canònica:
-        \begin{displaymath}
-            A = \left(
-                \begin{array}{ccc}
-                    5 & 1 & 1\\
-                    1 & -1 & 1\\
-                    1 & 1 & 1
-                \end{array}
-            \right)
-        \end{displaymath}
-        Ara, calculem $f(1, 2, 3)$ mitjançant la matriu:
-        \begin{displaymath}
-            f(1, 2, 3) = \left(
-                \begin{array}{ccc}
-                    5 & 1 & 1\\
-                    1 & -1 & 1\\
-                    1 & 1 & 1
-                \end{array}
-            \right)
-            \left(
-                \begin{array}{ccc}
-                    1\\
-                    2\\
-                    3
-                \end{array}
-            \right)
-            =
-            \left(
-                \begin{array}{ccc}
-                    10\\
-                    2\\
-                    6
-                \end{array}
-            \right)
-        \end{displaymath}
-        I ara, calculem $f^{-1}(1, 0, 0)$. Això és trivial si tenim en compte el següent:
-        \begin{displaymath}
-            Ax = (1, 0, 0) \Rightarrow x = A^{-1}(1, 0, 0)
-        \end{displaymath}
-        Llavors, calculem $A^{-1}$:
-        \begin{displaymath}
-            \left(
-                \begin{array}{ccc|ccc}
-                    5 & 1 & 1 & 1 & 0 & 0\\
-                    1 & -1 & 1 & 0 & 1 & 0\\
-                    1 & 1 & 1 & 0 & 0 & 1
-                \end{array}
-            \right)
-            \sim
-            \left(
-                \begin{array}{ccc|ccc}
-                    1 & 0 & 0 & \frac{1}{4} & 0 & -\frac{1}{4}\\
-                    0 & 1 & 0 & 0 & -\frac{1}{2} & \frac{1}{2}\\
-                    0 & 0 & 1 & -\frac{1}{4} & \frac{1}{2} & \frac{3}{4}
-                \end{array}
-            \right)
-        \end{displaymath}
-        Com $A^{-1}$ existeix, podem fer el que hem dit abans:
-        \begin{displaymath}
-            x = A^{-1}(1, 0, 0) =
-            \left(
-                \begin{array}{ccc}
-                    \frac{1}{4} & 0 & -\frac{1}{4}\\
-                    0 & -\frac{1}{2} & \frac{1}{2}\\
-                    -\frac{1}{4} & \frac{1}{2} & \frac{3}{4}
-                \end{array}
-            \right)
-            \left(
-                \begin{array}{c}
-                   1\\
-                   0\\
-                   0
-                \end{array}
-            \right)
-            =
-            \left(
-                \begin{array}{c}
-                   \frac{1}{4}\\
-                   0\\
-                   -\frac{1}{4}
-                \end{array}
-            \right)
-        \end{displaymath}
+        Dummy0
     \end{solucio}
     \begin{exercici}
         Calculeu una base i dimensió del nucli de $f$ i la imatge de $f$.
     \end{exercici}
     \begin{solucio}
-        Com, sense voler, hem provat a l'anterior exercici, la matriu $A$ és invertible. Al ser
-        invertible, el rang de $A$ és màxim, i per allò, $\dim(\ker(f)) = 0$ i $\dim(\text{im}(f)) = \text{rang}(f) = 3$.
-        Trivialment $\ker(f) = 0$ i $\text{im}(f)$ seran les files de la matriu $A$, és a dir $\text{im}(f) = ((5, 1, 1), (1, -1, 1), (1, 1, 1))$.
+        Dummy0
     \end{solucio}
     \begin{exercici}
         Decidiu si $f$ és injectiva, exhaustiva o bijectiva.
     \end{exercici}
     \begin{solucio}
-        Com la matriu $A$ és invertible, $f$ és bijectiva, és a dir, tant injectiva com exhaustiva.
+        Dummy1
     \end{solucio}
     \begin{exercici}
-        Calculeu l'aplicació lineal $(f \circ f)$.
+        Calculeu l'aplicació lineal $f \circ f$.
     \end{exercici}
     \begin{solucio}
-        Calculem $f \circ f$:
-        \begin{displaymath}
-            (f \circ f)(x, y, z) = A^2(x, y, z)
-        \end{displaymath}
-        Llavors, és tan simple com calcular $A^2$.
-        \begin{displaymath}
-            A^2 =
-            \left(
-                \begin{array}{ccc}
-                    5 & 1 & 1\\
-                    1 & -1 & 1\\
-                    1 & 1 & 1
-                \end{array}
-            \right)
-            \left(
-                \begin{array}{ccc}
-                    5 & 1 & 1\\
-                    1 & -1 & 1\\
-                    1 & 1 & 1
-                \end{array}
-            \right)
-            =
-            \left(
-                \begin{array}{ccc}
-                    27 & 5 & 7\\
-                    5 & 3 & 1\\
-                    7 & 1 & 3
-                \end{array}
-            \right)
-        \end{displaymath}
+        Dummy0
     \end{solucio}
     \begin{exercici}
-        Considera la base de $\mathbb{R}^3: \mathfrak{B} = ((1,1,1), (0,1,1), (0,0,1))$. Calcula la
-        matriu associada a $f$ amb bases d'inici i sortida $\mathfrak{B}$, és a dir calculeu $M(\mathfrak{B} \xleftarrow{f} \mathfrak{B})$.
+        Considera la base de $\mathbb{R}^3: Bgotica = ((1,1,1), (0,1,1), (0,0,1))$. Calcula la
+        matriu associada a $f$ amb bases d'inici i sortida $Bgotica$, és a dir calculeu $M(Bgotica \xleftarrow{f} Bgotica)$.
     \end{exercici}
     \begin{solucio}
-        Per calcular $M(\mathfrak{B} \xleftarrow{f} \mathfrak{B})$ faré servir la següent idea:
-        \begin{displaymath}
-            M(\mathfrak{B} \xleftarrow{f} \mathfrak{B}) = M(\mathfrak{B} \xleftarrow{id} Can_{\mathbb{R}^3}) M(Can_{\mathbb{R}^3} \xleftarrow{f} Can_{\mathbb{R}^3})  M(Can_{\mathbb{R}^3} \xleftarrow{id} \mathfrak{B})
-        \end{displaymath}
-        Tenint en compte que $M(Can_{\mathbb{R}^3} \xleftarrow{f} Can_{\mathbb{R}^3}) =
-        \left(
-            \begin{smallmatrix}
-                5 & 1 & 1\\
-                1 & -1 & 1\\
-                1 & 1 & 1
-            \end{smallmatrix}
-        \right)$ i que $M(\mathfrak{B} \xleftarrow{id} Can_{\mathbb{R}^3})$ és la matriu de canvi de
-        base, fent que $M(\mathfrak{B} \xleftarrow{id} Can_{\mathbb{R}^3}) = M(Can_{\mathbb{R}^3} \xleftarrow{id} \mathfrak{B})^{-1}$,
-        trobem $M(\mathfrak{B} \xleftarrow{id} Can_{\mathbb{R}^3})$:
-        \begin{displaymath}
-            M(\mathfrak{B} \xleftarrow{id} Can_{\mathbb{R}^3}) =
-            \left(
-                \begin{array}{c|c|c}
-                    1 & 0 & 0\\
-                    1 & 1 & 0\\
-                    1 & 1 & 1
-                \end{array}
-            \right)
-        \end{displaymath}
-        Ara, per trobar $M(Can_{\mathbb{R}^3} \xleftarrow{id} \mathfrak{B})$ fem servir la inversa
-        de l'anterior matriu:
-        \begin{displaymath}
-            \left(
-                \begin{array}{ccc|ccc}
-                    1 & 0 & 0 & 1 & 0 & 0\\
-                    1 & 1 & 0 & 0 & 1 & 0\\
-                    1 & 1 & 1 & 0 & 0 & 1
-                \end{array}
-            \right)
-            \sim
-            \left(
-                \begin{array}{ccc|ccc}
-                    1 & 0 & 0 & 1 & 0 & 0\\
-                    0 & 1 & 0 & -1 & 1 & 0\\
-                    0 & 1 & 1 & -1 & 0 & 1
-                \end{array}
-            \right)
-            \sim
-            \left(
-                \begin{array}{ccc|ccc}
-                    1 & 0 & 0 & 1 & 0 & 0\\
-                    0 & 1 & 0 & -1 & 1 & 0\\
-                    0 & 0 & 1 & 0 & -1 & 1
-                \end{array}
-            \right)
-        \end{displaymath}
-        Llavors, ara que tenim les tres matrius, multipliquem:
-        \begin{align*}
-            M(\mathfrak{B} \xleftarrow{f} \mathfrak{B}) &=
-            \left(
-                \begin{array}{ccc}
-                  1 & 0 & 0\\
-                  -1 & 1 & 0\\
-                  0 & -1 & 1
-                \end{array}
-            \right)
-            \left(
-                \begin{array}{ccc}
-                    5 & 1 & 1\\
-                    1 & -1 & 1\\
-                    1 & 1 & 1
-                \end{array}
-            \right)
-            \left(
-                \begin{array}{ccc}
-                    1 & 0 & 0\\
-                    1 & 1 & 0\\
-                    1 & 1 & 1
-                \end{array}
-            \right)\\
-            &=
-            \left(
-                \begin{array}{ccc}
-                    7 & 2 & 1\\
-                    -6 & -2 & 0\\
-                    2 & 2 & 0
-                \end{array}
-            \right)
-        \end{align*}
+        Dummy0
     \end{solucio}
     \begin{exercici}
-        Trobeu una matriu invertible $P$, on $A = PM(\mathfrak{B} \xleftarrow{f} \mathfrak{B})P^{-1}$. La
+        Trobeu una matriu invertible $P$, on $A = PM(Bgotica \xleftarrow{f} Bgotica)P^{-1}$. La
         matriu $P$ és una matriu de canvi de base, de coordenades de quina base a quina alta base és?
     \end{exercici}
     \begin{solucio}
-        Com ja he calculat a l'anterior exercici, $P = M(\mathfrak{B} \xleftarrow{id} Can_{\mathbb{R}^3})$,
-        és a dir:
-        \begin{displaymath}
-            P =
-            \left(
-                \begin{array}{ccc}
-                    1 & 0 & 0\\
-                    1 & 1 & 0\\
-                    1 & 1 & 1
-                \end{array}
-            \right)
-        \end{displaymath}
+        Dummy0
     \end{solucio}
-
+    
     \subsection{Sigui $\mathbb{R}[x]_2$ l'espai vectorial dels polinomis de grau $\geq 2$.
     Considera l'aplicació $g: \mathbb{R}[x]_2 \rightarrow \mathbb{R}[x]_2$ definida per}
     \begin{displaymath}
@@ -717,240 +443,26 @@
         Justifiqueu perquè $g$ és una aplicació lineal.
     \end{exercici}
     \begin{solucio}
-        $G$ és una aplicació lineal perquè és una aplicació que transforma un espai vectorial a un
-        altre, mantenint la suma de vectors i la multiplicació per un escalar.
+        Dummy0
     \end{solucio}
     \begin{exercici}
         Fixeu la base $Can := (1, x, x^2)$ de $\mathbb{R}[x]_2$. Calculeu la matriu $A = M(Can \xleftarrow{g} Can)$.
-        Calculeu $g(3+2x+x^2)$ i $g^{-1}(x)$, directament i usant la matriu $A$.
+        Calculeu $g(3+2x+x^2)$ i $g^{-1}(x)$, directament i usant la matriu $A$. 
     \end{exercici}
     \begin{solucio}
-        Tenint la base ja esmentada, per calcular la matriu $A$ associada calculem $g(1), g(x)\text{ i }g(x^2)$.
-        \begin{displaymath}
-            g(1) = (5+x+x^2)\qquad g(x) = (1-x+x^2)\qquad g(x^2) = (1+x+x^2)
-        \end{displaymath}
-        Llavors, ara calculem $M(Can \xleftarrow{g} Can_{\mathbb{R}^3})$:
-        \begin{displaymath}
-            M(Can \xleftarrow{g} Can_{\mathbb{R}^3}) = \left(
-                \begin{array}{ccc}
-                    5+x+x^2&1-x+x^2&1+x+x^2
-                \end{array}
-            \right)
-        \end{displaymath}
-        No obstant això, ens demanen $M(Can \xleftarrow{g} Can)$, i per allò hem de trobar un canvi
-        de base $M(Can_{\mathbb{R}^3} \xleftarrow{id} Can)$. Això és tan simple com fer $M(Can \xleftarrow{id} Can_{\mathbb{R}^3})^{-1}$,
-        una matriu trivial.
-        \begin{displaymath}
-            M(Can \xleftarrow{id} Can_{\mathbb{R}^3}) = \left(
-                \begin{array}{c|c|c}
-                    1 & 0 & 0\\
-                    0 & x & 0\\
-                    0 & 0 & x^2
-                \end{array}
-            \right)
-        \end{displaymath}
-        \begin{displaymath}
-            \left(
-                \begin{array}{ccc|ccc}
-                    1 & 0 & 0 & 1 & 0 & 0\\
-                    0 & x & 0 & 0 & 1 & 0\\
-                    0 & 0 & x^2 & 0 & 0 & 1
-                \end{array}
-            \right)
-            \sim
-            \left(
-                \begin{array}{ccc|ccc}
-                    1 & 0 & 0 & 1 & 0 & 0\\
-                    0 & 1 & 0 & 0 & \frac{1}{x} & 0\\
-                    0 & 0 & 1 & 0 & 0 & \frac{1}{x^2}
-                \end{array}
-            \right)
-        \end{displaymath}
-        \begin{displaymath}
-            M(Can_{\mathbb{R}^3} \xleftarrow{id} Can) = \left(
-                \begin{array}{ccc}
-                    1 & 0 & 0\\
-                    0 & \frac{1}{x} & 0\\
-                    0 & 0 & \frac{1}{x^2}
-                \end{array}
-            \right)
-        \end{displaymath}
-        Una vegada tenim això, calculem $A$:
-        \begin{align*}
-            A &= M(Can \xleftarrow{g} Can)\\
-            &= M(Can \xleftarrow{g} Can_{\mathbb{R}^3}) M(Can_{\mathbb{R}^3} \xleftarrow{id} Can)\\
-            &=
-            \left(
-                \begin{array}{ccc}
-                    5+x+x^2&1-x+x^2&1+x+x^2
-                \end{array}
-            \right)
-            \left(
-                \begin{array}{ccc}
-                    1 & 0 & 0\\
-                    0 & \frac{1}{x} & 0\\
-                    0 & 0 & \frac{1}{x^2}
-                \end{array}
-            \right)\\
-            &=
-            \left(
-                \begin{array}{ccc}
-                    5+x+x^2 & \frac{1-x+x^2}{x} & \frac{1+x+x^2}{x^2}
-                \end{array}
-            \right)
-        \end{align*}
-        Ara, calculem $g(3+2x+x^2)$:
-        \begin{itemize}
-            \item Directament:
-            \begin{displaymath}
-                g(3+2x+x^2) = (5\times 3+2+1)1+(3-2+1)x+(3+2+1)x^2
-            \end{displaymath}
-            \item Amb la matriu $A$:
-            \begin{displaymath}
-                \left(
-                    \begin{array}{ccc}
-                        5+x+x^2 & \frac{1-x+x^2}{x} & \frac{1+x+x^2}{x^2}
-                    \end{array}
-                \right)
-                \left(
-                    \begin{array}{c}
-                        3\\
-                        2x\\
-                        x^2
-                    \end{array}
-                \right)
-                =
-                \left(
-                    \begin{array}{ccc}
-                        5+x+x^2 & \frac{1-x+x^2}{x} & \frac{1+x+x^2}{x^2}
-                    \end{array}
-                \right)
-            \end{displaymath}
-        \end{itemize}
-        Ara, calculem $g^{-1}(x)$:
-        \begin{itemize}
-            \item Directament:
-                \begin{displaymath}
-                    g^{-1}(a1+bx+cx^2) = (\frac{1}{4}a-\frac{1}{4}c)1+(-\frac{1}{2}b + \frac{1}{2}c)x+(-\frac{1}{4}a+\frac{1}{2}b+\frac{3}{4}c)x^2
-                \end{displaymath}
-            \item Amb la matriu $A$:
-                \begin{displaymath}
-                    A^{-1} = \left(
-                        \begin{array}{ccc}
-                            \frac{1}{4}-\frac{1}{4}x^2 & -\frac{1}{2}+\frac{1}{2}x & \frac{-\frac{1}{4} + \frac{1}{2}x + \frac{3}{4}x^2}{x^2}
-                        \end{array}
-                    \right)
-                \end{displaymath}
-        \end{itemize}
+        Dummy0
     \end{solucio}
     \begin{exercici}
         Decidiu si $g$ és injectiva, exhaustiva i bijectiva.
     \end{exercici}
     \begin{solucio}
-        Com $g^{-1}$ existeix, $g$ ha de ser bijectiva.
+        Dummy0
     \end{solucio}
     \begin{exercici}
-        Proveu que $\mathfrak{B}b = (1 + x + x^2, x + x^2, x)$ és una base de $\mathbb{R}[x]_2$. I
-        calculeu la matriu $M(\mathfrak{B}b \xleftarrow{g} \mathfrak{B}b)$.
+        Proveu que $Bgoticab = (1 + x + x^2, x + x^2, x)$ és una base de $\mathbb{R}[x]_2$. I
+        calculeu la matriu $M(Bgoticab \xleftarrow{g} Bgoticab)$.
     \end{exercici}
     \begin{solucio}
-        Posem a una matriu els vectors de la base $Can$ i la base $\mathfrak{B}b$:
-        \begin{displaymath}
-            \left(
-                \begin{array}{c|cccccc}
-                    1 & 1 & 0 & 0 & 0 & 0 & 0\\
-                    x & 0 & 1 & 0 & 0 & 0 & 0\\
-                    x^2 & 0 & 0 & 1 & 0 & 0 & 0\\
-                    \hline
-                    1 + x + x^2 & 0 & 0 & 0 & 1 & 0 & 0\\
-                    x + x^2 & 0 & 0 & 0 & 0 & 1 & 0\\
-                    x & 0 & 0 & 0 & 0 & 0 & 1
-                \end{array}
-            \right)
-            \sim
-            \left(
-                \begin{array}{c|cccccc}
-                    1 & 1 & 0 & 0 & 0 & 0 & 0\\
-                    x & 0 & 1 & 0 & 0 & 0 & 0\\
-                    x^2 & 0 & 0 & 1 & 0 & 0 & 0\\
-                    \hline
-                    0 & -1 & -1 & -1 & 1 & 0 & 0\\
-                    0 & 0 & -1 & -1 & 0 & 1 & 0\\
-                    0 & 0 & -1 & 0 & 0 & 0 & 1
-                \end{array}
-            \right)
-        \end{displaymath}
-        Com en reduir la matriu els vectors de $\mathfrak{B}b$ desapareixen, $\mathfrak{B}b$ és una
-        base d'un subespai de l'espai generat per $Can$. Com la dimensió de l'espai generat per $\mathfrak{B}b$
-        és igual a la dimensió de l'espai generat per $Can$, $\mathfrak{B}b$ és una base de $\mathbb{R}[x]_2$.\\
-        Ara, calculem $M(\mathfrak{B}b \xleftarrow{g} \mathfrak{B}b)$:\\
-        Fem $g(1+x+x^2), g(x+x^2)\text{ i }g(x)$
-        \begin{displaymath}
-            g(1+x+x^2) = (7+x+3x^2)\qquad g(x+x^2) = (2+2x^2)\qquad g(x) = (1-x+x^2)
-        \end{displaymath}
-        Posant-ho en una matriu tenim el següent:
-        \begin{displaymath}
-            M(\mathfrak{B}b \xleftarrow{g} Can_{\mathbb{R}^3}) =
-            \left(
-                \begin{array}{ccc}
-                    7+x+3x^2 & 2+2x^2 & 1-x+x^2
-                \end{array}
-            \right)
-        \end{displaymath}
-        Ara, fem un pas similar al de l'exercici 2:
-        \begin{displaymath}
-            M(\mathfrak{B}b \xleftarrow{id} Can_{\mathbb{R}^3}) = \left(
-                \begin{array}{c|c|c}
-                    1 & 0 & 0\\
-                    0 & x & 0\\
-                    0 & 0 & x^2
-                \end{array}
-            \right)
-        \end{displaymath}
-        \begin{displaymath}
-            \left(
-                \begin{array}{ccc|ccc}
-                    1 & 0 & 0 & 1 & 0 & 0\\
-                    x & x & x & 0 & 1 & 0\\
-                    x^2 x^2 0 & 0 & 0 & 1
-                \end{array}
-            \right)
-            \sim
-            \left(
-                \begin{array}{ccc|ccc}
-                    1 & 0 & 0 & 1 & 0 & 0\\
-                    0 & 1 & 0 & -1 & 0 & -\frac{1}{x^2}\\
-                    0 & 0 & 1 & 0 & \frac{1}{x} & \frac{1}{x^2}
-                \end{array}
-            \right)
-        \end{displaymath}
-        \begin{displaymath}
-            M(Can_{\mathbb{R}^3} \xleftarrow{id} \mathfrak{B}b) = 
-            \left(
-                \begin{array}{ccc}
-                    1 & 0 & 0\\
-                    -1 & 0 & -\frac{1}{x^2}\\
-                    0 & \frac{1}{x} & \frac{1}{x^2}
-                \end{array}
-            \right)
-        \end{displaymath}
-        \begin{align*}
-            M(\mathfrak{B}b \xleftarrow{g} \mathfrak{B}b) &= M(\mathfrak{B}b \xleftarrow{g} Can_{\mathbb{R}^3}) M(Can_{\mathbb{R}^3} \xleftarrow{id} \mathfrak{B}b)\\
-            &= 
-            \left(
-                \begin{array}{ccc}
-                    7+x+3x^2 & 2+2x^2 & 1-x+x^2
-                \end{array}
-            \right)
-            \left(
-                \begin{array}{ccc}
-                    1 & 0 & 0\\
-                    -1 & 0 & -\frac{1}{x^2}\\
-                    0 & \frac{1}{x} & \frac{1}{x^2}
-                \end{array}
-            \right)\\
-            &= 
-            (5+x+x^2, \frac{1 - x + x^2}{x} \frac{1 + x + x^2}{x^2})
-        \end{align*}
+        Dummy0
     \end{solucio}
 \end{document}
