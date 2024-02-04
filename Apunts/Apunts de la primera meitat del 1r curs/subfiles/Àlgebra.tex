@@ -127,13 +127,13 @@
         A = u \sum V^t \text{ factorització}
     \end{displaymath}
     Considerem que $T_A : \mathbb{R}^N \rightarrow \mathbb{R}^M$\\
-    \begin{pregunta}
+    \begin{obs}
         Podem triar una base de $R^N$ ortogonal on en fer $T_A$ (d'aquesta base) surten vectors ortogonals 2 a 2?\\
         La resposta es \underline{sí}.
-    \end{pregunta}
-    \begin{fet}
+    \end{obs}
+    \begin{corolari}
         $A \in M_{M\times N}(\mathbb{R})$ llavors la matriu (simètrica) $A^tA$ té tots els valors propis reals positius.
-    \end{fet}
+    \end{corolari}
     \begin{teorema}
         Si $T_A: \mathbb{R}^N \rightarrow \mathbb{R}^M$ existeix una base ortonormal $(v_1, \dots, v_n)$ de $\mathbb{R}^N$ complint:
         \begin{enumerate}
@@ -141,18 +141,18 @@
             \item $||T_A(v_i)|| = \sigma \geq 0$ per $i \in \{1, \dots, N\}$
         \end{enumerate}
     \end{teorema}
-    \begin{idea}
+    \begin{obs}
         $Av_1, Av_2$ son ortogonals?\\
         $Av_1*Av_2 = v_1^t \underbrace{(A^tA)}_\text{simètrica!} v_2$\\
         $v_1$ es un VEP de $A^tA$ de VAP $\lambda_1$\\
         $v_2$ es un VEP de $A^tA$ de VAP $\lambda_2$\\
         Si diem $v_1, v_2$ voctors que son VEP's de $A^tA$ i ortogonals es té $v_1^t(\lambda v_2)$
-    \end{idea}
-    \begin{demostracio}
+    \end{obs}
+    \begin{obs}
         $v_1 \perp v_2$\\
         $A^tA \in M_{N}(\mathbb{R})$ i diagonalitza. Del Teorema expectral $\exists (v_1, \dots, v_N)$ base ortonormal de $\mathbb{R}^N$ formada per VEP's de $A^tA$ i compleix la primera propietat. ($T_A v_i * T_A v_j = v_i^t(A^tA) v_j = \lambda v_i^t v_j = 0$)\\
         Si $v_i$ es un VEP de $A^tA$ de valor propi $\lambda$. $||T_A(v_i)||^2 = T_A(v_1) * T_A(v_1) = \lambda \geq 0$. Per allo, $||T_A(v_i)|| = \sqrt{\lambda} = \sigma$.
-    \end{demostracio}
+    \end{obs}
     \begin{definicio}
         Els valors singulars per $A \in M_{N \times N}(\mathbb{R})$ són les arrels quadrades dels valors propis de $A^t A$. És usual denotar els valors singulars per $\sigma_1, \dots, \sigma_N$ amb ordre decreixent.
     \end{definicio}
