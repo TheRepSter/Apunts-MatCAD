@@ -17,7 +17,7 @@
 \newcommand{\intoo}[2]{\mathopen{]}#1\,;#2\mathclose{[}}
 \newcommand{\ud}{\mathop{\mathrm{{}d}}\mathopen{}}
 \newcommand{\intff}[2]{\mathopen{[}#1\,;#2\mathclose{]}}
-\newtheorem*{notation}{Notació}
+\newtheorem*{notacio}{Notació}
 
 % Boxed/framed environments
 \newtheoremstyle{blunumbox}% % Theorem style name
@@ -51,7 +51,7 @@
 {\small\bf\sffamily}% Theorem head font
 {\;}% Punctuation after theorem head
 {0.25em}% Space after theorem head
-{\small\sffamily\thmname{#1}% Theorem text (e.g. Theorem 2.1)
+{\small\sffamily\thmname{#1}:% Theorem text (e.g. Theorem 2.1)
 \thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries(#3)}}% Optional theorem note
 
 % Non-boxed/non-framed environments
@@ -80,6 +80,7 @@
 \newtheorem*{corollaryT}{Corolari}
 \theoremstyle{blunum}
 \newtheorem*{proposition}{Proposició}
+\newtheorem*{demostraT}{Demostracio}
 
 %----------------------------------------------------------------------------------------
 %	DEFINITION OF COLORED BOXES
@@ -155,6 +156,7 @@ innerbottommargin=5pt]{cBox}
 \newenvironment{definicio}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}	
 \newenvironment{exemple}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}		
 \newenvironment{corolari}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}	
+\newenvironment{demostracio}{\begin{demostraT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{demostraT}}
 
 \newenvironment{obs}{\par\vspace{10pt}\small % Vertical white space above the remark and smaller font size
 \begin{list}{}{

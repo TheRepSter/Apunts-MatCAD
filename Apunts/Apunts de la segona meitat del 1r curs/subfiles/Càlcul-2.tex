@@ -2,4 +2,53 @@
 \graphicspath{{\subfix{../images/}}}
 
 \begin{document}
+    \begin{definicio}
+        $\mathbb{R}^n = \{(x_1, x_2, \dots, x_n): x_1, \dots, x_n \in \mathbb{R}\}$
+    \end{definicio}
+    \begin{definicio}
+        Siguin $(x_1, x_2, \dots, x_n) \in \mathbb{R}^n$ i $(y_1, y_2, \dots, y_n) \in \mathbb{R}^n$,
+        definim $\underbrace{<(x_1, x_2, \dots, x_n), (y_1, y_2, \dots, y_n)>}_\text{(producte escalar)} = x_1y_1 + x_2y_2 + \dots + x_ny_n$
+        com a producte escalar.
+    \end{definicio}
+    \begin{definicio}
+        $||(x_1, x_2, \dots, x_n)|| = +\sqrt{<x, x>}$ on $x = (x_1, x_2, \dots, x_n)$. Això és
+        la distància del punt $x$ a $(0, 0, \dots, 0)$.  
+    \end{definicio}
+    Propietats de la norma:
+    \begin{enumerate}
+        \item $||x|| \geq 0$ per tot $x \in \mathbb{R}^n$
+        \item $||\lambda x|| = |\lambda| ||x||$ per tot $x \in \mathbb{R}^n$ i $\lambda \in \mathbb{R}$
+        \item Desigualtat triangular: $||x+y|| \leq ||x|| + ||y||$ per tot $x, y \in \mathbb{R}^n$
+    \end{enumerate}
+    Desigualtat de Cauchy-Schwartz: $<x,y> \leq ||x||||y||$ per tot $x, y \in \mathbb{R}^n$. Això ho
+    acceptem.
+    \begin{obs}
+        Observem que $-1 \leq \frac{<x,y>}{||x||||y||} \leq 1$ i definim l'angle entre els vectors $x$ i $y$
+        com l'angle $\alpha$ tal que $\cos{\alpha} = \frac{<x,y>}{||x||||y||}$, és a dir, $<x, y> = ||x||||y||\cos{\alpha}$.
+    \end{obs}
+    \begin{exemple}
+        Trobem els valors de $\mathbb{R}^3 \perp (-1, -2, 1)$. Busquem $(x_1, x_2, x_3) \in \mathbb{R}^n$
+        tal que $<(x_1, x_2, x_3), (-1, -2, 1)> = 0 \Leftrightarrow -x_1-2x_2+x_3=0$.
+    \end{exemple}
+    \subsection{Boles a \texorpdfstring{$\mathbb{R}^n$}{Diverses dimensions}}
+    \underline{Si $n=2$} la bola de centre $(x_0, y_0)$ i radi $R$ és $\{(x,y) \in \mathbb{R}^2: ||(x,y)-(x_0, y_0)|| < R\} =$
+    (disc) $= \{(x,y)\in \mathbb{R}^2: (x-x_0)^2+(y-y_0)<R^2\}$. Això és una bola oberta, denotada per
+    \begin{notacio}
+        Fem servir $\mathfrak{B}_R(x_0, y_0, \dots)$ la bola oberta ($< R$) i $\overline{\mathfrak{B}_R}(x_0, y_0, \dots)$
+        la tancada ($\leq R$). Es farà servir més la bola oberta.
+    \end{notacio}
+    \begin{definicio}
+        Sigui $A \subset \mathbb{R}^n$, definim $\mathring{A} = \{\vec{x} \in \mathbb{R}^n : R > 0 | \mathfrak{B}_R(\vec{x}) \subset A\}$
+    \end{definicio}
+    \begin{exemple}
+        \begin{enumerate}
+            \item $A = \{(x,y):x \geq 0\}$, llavors $\mathring{A} = \{(x,y):x > 0\}$
+            \item $A = \{(x,y,z):-a \leq x \leq a, -b \leq y \leq b, -c \leq z \leq c\}$, llavors
+            $\mathring{A} = \{(x,y,z):-a < x < a, -b < y < b, -c < z < c\}$
+        \end{enumerate}
+    \end{exemple}
+    \begin{definicio}
+        Un conjunt $A \subset \mathbb{R}^n$ es diu obert si $A = \mathring{A}$, és a dir, si tot
+        punt del conjunt $A$ és també un punt d'$\mathring{A}$.
+    \end{definicio}
 \end{document}
