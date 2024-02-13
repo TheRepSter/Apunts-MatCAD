@@ -2,4 +2,79 @@
 \graphicspath{{\subfix{../images/}}}
 
 \begin{document}
+    \begin{definicio}
+        Un fenomen o experiment aleatori presenten les següents característiques:
+        \begin{itemize}
+            \item Abans de realitzar l'experiment no sabem el resultat però sí el conjunt de resultats
+            possibles.
+            \item En teoria es pot realitzar sota les mateixes condicions infinites vegades.
+            \item Es pot assignar probabilitats als resultats.
+        \end{itemize}
+    \end{definicio}
+    \begin{definicio}
+        L'espai mostral és el conjunt de possibles resultats de l'experiment aleatori. Es denota per
+        la lletra $\Omega$ i els seus elements per $\omega$.
+    \end{definicio}
+    \begin{definicio}
+        Un esdeveniment és una col·lecció de subconjunts de l'espai mostral. Es pot calcular la
+        probabilitat d'un esdeveniment. Ha de tenir estructura de $\sigma$-àlgebra.
+    \end{definicio}
+    \begin{notacio}
+        Si $\omega \in \Omega$ és un resultat de l'experimental tal que $\omega \in A$, diem que $A$ s'ha realitzat.
+    \end{notacio}
+    \begin{definicio}
+        Sigui $\mathcal{A}$ una col·lecció de subconjunts d'$\Omega$. $\mathcal{A}$ és una
+        $\sigma$-àlgebra si es compleix el següent:
+        \begin{enumerate}
+            \item $\Omega \in \mathcal{A}$
+            \item Si $A \in \mathcal{A}$, aleshores $A^c \in \mathcal{A}$.
+            \item Si $A_1, A_2, \dots$ són elements d'$\mathcal{A}$, aleshores $\bigcup\limits_{n=1}^\infty A_n \in \mathcal{A}$
+        \end{enumerate}
+    \end{definicio}
+    \begin{corolari}[propietats d'una $\sigma$-àlgebra]
+        Sent $\mathcal{A}$ una $\sigma$-àlgebra
+        \begin{itemize}
+            \item $\emptyset \in \mathcal{A}$
+            \item $A, B \in \mathcal{A} \Rightarrow A \cap B \in \mathcal{A}$
+            \item $A, B \in \mathcal{A} \Rightarrow B \setminus A = B\cap A^c \in \mathcal{A}$
+        \end{itemize}
+    \end{corolari}
+    \begin{definicio}[Fórmula de Laplace]
+        La probabilitat d'un esdeveniment $\mathcal{A}$ sempre que el conjunt de resultats possibles
+        sigui finit i equiprobable, la fórmula de Laplace es pot aplicar.
+        \begin{displaymath}
+            \mathbb{P}(\mathcal{A}) = \frac{\text{Casos probables a } \mathcal{A} }{\text{Casos possibles}}
+        \end{displaymath}
+    \end{definicio}
+    Una altra manera de calcular la probabilitat és fent servir una visió freqüentista:
+    \begin{displaymath}
+        \mathbb{P}(\mathcal{A}) = \lim_{n\rightarrow\infty}f_n(\mathcal{A}) \hbox{ on } f_n(\mathcal{A}):= \frac{\text{nombre de cops que hem obtingut } \mathcal{A}}{n}
+    \end{displaymath}
+    \begin{definicio}[axiomes de Kolmogorov]
+        Siguin $\Omega$ un conjunt i $\mathcal{A}$ una $\sigma$-àlgebra sobre $\Omega$. Una
+        probabilitat és qualsevol aplicació $\mathbb{P} : \mathcal{A} \longrightarrow [0,1]$ que
+        compleix el següent:
+        \begin{itemize}
+            \item $\mathbb{P}(\Omega) = 1$
+            \item Si $\{A_n, n\geq 1\} \subset \mathcal{A}$ són disjunts dos a dos llavors
+            \begin{displaymath}
+                \mathbb{P} (\bigcup\limits_{n=1}^\infty) = \sum\limits_{n=1}^{\infty}\mathbb{P}(A_n)
+            \end{displaymath}
+        \end{itemize}
+    \end{definicio}
+    \begin{definicio}
+        Un espai de probabilitat és la terna $(\Omega, \mathcal{A}, \mathbb{P})$.
+    \end{definicio}
+    \begin{notacio}
+        Per a unions disjuntes fem servir $\uplus$.
+    \end{notacio}
+    \begin{corolari} Propietats dels axiomes de Kolmogorov.
+        \begin{enumerate}
+            \item $\mathbb{P}(\emptyset) = 0$
+            \item $A, B \in \mathcal{A} \Rightarrow \mathbb{P}(A\cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)$
+            \item $A \subset B \Rightarrow \mathbb{P}(A) \leq \mathbb{P}(B)$
+            \item $A \subset B \Rightarrow \mathbb{P}(B\setminus A) = \mathbb{P}(B) - \mathbb{P}(A)$
+            \item $\mathbb{P}(A\cup B) \leq \mathbb{P}(A) + \mathbb{P}(B)$
+        \end{enumerate}
+    \end{corolari}
 \end{document}
