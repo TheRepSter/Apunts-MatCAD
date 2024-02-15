@@ -2,4 +2,30 @@
 \graphicspath{{\subfix{../images/}}}
 
 \begin{document}
+    Hi ha 3 tipus d'errors (4 si em comptes a mi):
+    \begin{enumerate}
+        \item Errors en les dades d'entrada
+        \item Errors a les operacions
+        \item Errors de truncament
+    \end{enumerate}
+    Aquí es tractaran principalment els dos primers.
+    \begin{teorema}[Representació en punt flotant en base $b$]
+        Per $b \in \mathbb{N}$, $b \geq 2$. Tot $x \in \mathbb{R}, x\neq 0$ pot ser representat de
+        la següent forma:
+        \begin{displaymath}
+            x = s(\sum\limits_{i=1}^{\infty}\alpha_ib^{-i}) b^q
+        \end{displaymath}
+        amb $s \in \{-1, 1\}, q \in \mathbb{Z}$ i $\alpha_i \in \{0, 1, \dots, b-1\}$. A més, la
+        representació anterior és única si $\alpha_1 \neq 0$ i els $\alpha_i$ no són tots $b-1$ 
+        d'una posició en endavant.
+    \end{teorema}
+    \begin{definicio}[Representació en punt flotant]
+        És la versió finita de la representació. En aquesta representació, tot nombre $x$ consta de 
+        \begin{itemize}
+            \item el signe, $s$
+            \item la mantissa, que només consta d'un nombre finit de dígits, $\delta_1, \delta_2, \dots, \delta_t$
+            expressats en base $b$, i
+            \item l'exponent, $q$, que està limitat a un rang prefixat, $q_\text{min} \leq q \leq q_\text{max}$
+        \end{itemize}
+    \end{definicio}
 \end{document}
