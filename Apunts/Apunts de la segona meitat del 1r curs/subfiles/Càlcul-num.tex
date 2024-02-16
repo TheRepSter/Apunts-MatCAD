@@ -28,4 +28,46 @@
             \item l'exponent, $q$, que està limitat a un rang prefixat, $q_\text{min} \leq q \leq q_\text{max}$
         \end{itemize}
     \end{definicio}
+    \begin{notacio}
+        Si $x$ és el valor exacte, $\tilde{x}$ és el valor aproximat.
+    \end{notacio}
+    \begin{definicio}
+        L'error absolut és $\Delta x = x - \tilde{x}$. L'error relatiu és $\frac{\Delta x}{x} = \frac{x-\tilde{x}}{x} = 1 - \frac{\tilde{x}}{x}$
+    \end{definicio}
+    \begin{definicio}
+        Definim la fórmula de propagació d'error com $|\Delta f(x_o)| \lesssim h|f'(x_o)|$.
+    \end{definicio}
+    \begin{definicio}
+        Amb dues variables, $|f(x+h, y+k)| \lesssim |\frac{\partial f(x,y)}{\partial x}||h| + |\frac{\partial f(x,y)}{\partial y}||k|$ (dicho en clase: ¿por qué no se cancelan los $\partial$?)
+    \end{definicio}
+    \begin{exercici}
+        Calcular de forma exacta i l'error absolut de $(2\pm 0.01)(3\pm 0.2)^2$.\\
+        De manera exacta, tenim $F(x,y) = xy^2$
+        \begin{displaymath}
+            F(2, 3) = 2\times3^2 = 18
+        \end{displaymath}
+        L'error absolut és el següent
+        \begin{displaymath}
+            |\Delta F(x,y)| \lesssim |\frac{\partial F}{\partial x}||h| +  |\frac{\partial F}{\partial y}||k| = |y^2||h| + |2xy||k|
+        \end{displaymath}
+        Si substituïm $x = 2, y = 3, h = 0.01$ i $k = 0.2$
+        \begin{displaymath}
+            |\Delta F(x,y)| \lesssim |9||0.01| + |12||0.2| = 0.09+2.4 = 2.49
+        \end{displaymath}
+    \end{exercici}
+    \begin{exercici}
+        Calcular de forma exacta i l'error absolut de $(2\pm 0.01)e^{-1\pm 0.2}$.\\
+        De manera exacta, tenim $F(x,y) = xe^y$
+        \begin{displaymath}
+            F(2, -1) = 2e^{-1}
+        \end{displaymath}
+        L'error absolut és el següent
+        \begin{displaymath}
+            |\Delta F(x,y)| \lesssim |\frac{\partial F}{\partial x}||h| +  |\frac{\partial F}{\partial y}||k| = |e^y||h| + |xe^y||k|
+        \end{displaymath}
+        Si substituïm $x = 2, y = -1, h = 0.01$ i $k = 0.2$
+        \begin{displaymath}
+            |\Delta F(x,y)| \lesssim |e^{-1}||0.01| + |2e^{-1}||0.2|
+        \end{displaymath}
+    \end{exercici}
 \end{document}

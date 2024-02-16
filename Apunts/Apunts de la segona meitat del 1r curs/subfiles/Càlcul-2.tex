@@ -38,7 +38,7 @@
         la tancada ($\leq R$). Es farà servir més la bola oberta.
     \end{notacio}
     \begin{definicio}
-        Sigui $A \subset \mathbb{R}^n$, definim $\mathring{A} = \{\vec{x} \in \mathbb{R}^n : R > 0 | \mathfrak{B}_R(\vec{x}) \subset A\}$
+        Sigui $A \subset \mathbb{R}^n$, definim $\mathring{A} = \{\vec{x} \in \mathbb{R}^n : \exists R > 0 | \mathfrak{B}_R(\vec{x}) \subset A\}$
     \end{definicio}
     \begin{exemple}
         \begin{enumerate}
@@ -50,5 +50,34 @@
     \begin{definicio}
         Un conjunt $A \subset \mathbb{R}^n$ es diu obert si $A = \mathring{A}$, és a dir, si tot
         punt del conjunt $A$ és també un punt d'$\mathring{A}$.
+    \end{definicio}
+    \begin{definicio}
+        Sigui $A \subset \mathbb{R}^n$, definim $\overline{A} = \{ x \in \mathbb{R}^n : \forall R>0, B_R(x) \cap A \neq \emptyset\}$.
+        Diem que $\overline{A}$ és l'adherència d'$A$.
+    \end{definicio}
+    \begin{exemple}
+        $A = \{(x,y) \in \mathbb{R}^2: yx < 1, x > 0\}$. $\overline{A} = \{(0, y): y\in \mathbb{R}\} \cup \{(x, y): yx \leq 1, x > 0\}$
+    \end{exemple}
+    \begin{definicio}
+        Un conjunt ($A \subset \mathbb{R}^n$) és tancat si $A = \overline{A}$.
+    \end{definicio}
+    \begin{proposicio}
+        $A$ és obert $\Longleftrightarrow A^c$ és tancat. 
+    \end{proposicio}
+    \begin{definicio}
+        La frontera d'un conjunt, $B_R(A) = \overline{A} \setminus \mathring{A}$.
+    \end{definicio}
+    \begin{definicio}
+        $A \subset \mathbb{R}^n$ es diu acotat si $A$ està contingut dins d'una bola.
+    \end{definicio}
+    \begin{definicio}
+        $A \subset \mathbb{R}^n$ es diu compacte si $A$ és tancat i acotat.
+    \end{definicio}
+    \subsection{Límits de funcions i continuïtat}
+    \begin{definicio}
+        Sigui $A \subset \mathbb{R}^n$ i $f: A\rightarrow \mathbb{R}$, definim graf$(f) = \{(x, f(x)) \in \mathbb{R}^{n+1}: x\in A\}$.
+    \end{definicio}
+    \begin{definicio}
+        El conjunt de nivell de la funció $f$ és $\{x \in A: f(x) = c\}$.
     \end{definicio}
 \end{document}
