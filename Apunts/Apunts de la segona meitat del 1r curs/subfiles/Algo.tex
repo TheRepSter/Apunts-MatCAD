@@ -21,4 +21,50 @@
     \begin{teorema}
         Tot graf no planar té un subgraf $K_{3,3}$ o $P_5$.
     \end{teorema}
+    \begin{definicio}[Propietats dels grafs]
+        $\hbox{ }$
+        \begin{enumerate}
+            \item L'\textbf{ordre} d'un graf és el nombre de vèrtex
+            \item La \textbf{grandària} d'un graf és el nombre d'arestes
+            \item La \textbf{valència} d'un vèrtex és el nombre d'arestes entrant o sortint del vèrtex.
+            Si surt i es connecta en si mateix compta com dos.
+            \item La \textbf{valència d'entrada} és el nombre d'arestes entrant.
+            \item La \textbf{valència de sortida} és el nombre d'arestes sortint.
+            \item Els vèrtexs amb valència 1 s'anomenen \textbf{fulles}.
+            \item Els vèrtexs amb valència més gran que dos es diuen \textbf{branching} (o \textbf{encreuament}).
+            \item Un \textbf{camí} és la seqüència de vèrtexs connectats linealment. La llargària d'un camí
+            és el nombre de vèrtexs.
+            \item Un \textbf{circuit} és un camí tancat, és a dir, un camí que comença i termina al mateix lloc.
+        \end{enumerate}
+    \end{definicio}
+    \begin{definicio}
+        Un graf no dirigit és \textbf{connex} si hi ha un camí des de tot vèrtex qualsevol fins a tot 
+        altre.
+    \end{definicio}
+    \begin{definicio}
+        Un component connex és un subgraf connex i maximal.
+    \end{definicio}
+    \begin{definicio}
+        Un graf dirigit és \textbf{connex} si hi ha un camí des de tot vèrtex qualsevol fins a tot 
+        altre.
+    \end{definicio}
+    \begin{proposicio}
+        Per a un graf $(V, E)$ no orientat les afirmacions següents són equivalents:
+        \begin{enumerate}
+            \item $(V, E)$ és un graf connex.
+            \item $\forall v_o\in V$, existeix un camí d'arestes de $v_o$ a $v$, $\forall v \in V$.
+            \item $\exists v_o \in V$ tal que existeix un camí d'arestes de $v_o$ a $v$.
+        \end{enumerate}
+    \end{proposicio}
+    \begin{notacio}
+        Fem servir $\circ$ per multiplicar camins. 
+    \end{notacio}
+    \begin{definicio}
+        Un graf dirigit és \textbf{feblement connex} si hi ha un camí des de tot vèrtex qualsevol fins a tot 
+        altre sense fer servir l'orientació, és a dir, seria connex en cas que fos no orientat.
+    \end{definicio}
+    \begin{definicio}
+        Un graf dirigit és \textbf{semi connex} si al escullir qualssevol dos vèrtexs del graf hi
+        existeix un camí connectant-los, sigui d'un sentit o d'altre.
+    \end{definicio}
 \end{document}

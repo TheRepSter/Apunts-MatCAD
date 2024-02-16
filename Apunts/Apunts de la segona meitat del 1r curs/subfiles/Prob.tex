@@ -43,12 +43,12 @@
         La probabilitat d'un esdeveniment $\mathcal{A}$ sempre que el conjunt de resultats possibles
         sigui finit i equiprobable, la fórmula de Laplace es pot aplicar.
         \begin{displaymath}
-            \mathbb{P}(\mathcal{A}) = \frac{\text{Casos probables a } \mathcal{A} }{\text{Casos possibles}}
+            \mathbb{P}(A) = \frac{\text{Casos probables a } A }{\text{Casos possibles}}
         \end{displaymath}
     \end{definicio}
     Una altra manera de calcular la probabilitat és fent servir una visió freqüentista:
     \begin{displaymath}
-        \mathbb{P}(\mathcal{A}) = \lim_{n\rightarrow\infty}f_n(\mathcal{A}) \hbox{ on } f_n(\mathcal{A}):= \frac{\text{nombre de cops que hem obtingut } \mathcal{A}}{n}
+        \mathbb{P}(A) = \lim_{n\rightarrow\infty}f_n(A) \hbox{ on } f_n(A):= \frac{\text{nombre de cops que hem obtingut } A}{n}
     \end{displaymath}
     \begin{definicio}[axiomes de Kolmogorov]
         Siguin $\Omega$ un conjunt i $\mathcal{A}$ una $\sigma$-àlgebra sobre $\Omega$. Una
@@ -77,4 +77,16 @@
             \item $\mathbb{P}(A\cup B) \leq \mathbb{P}(A) + \mathbb{P}(B)$
         \end{enumerate}
     \end{corolari}
+    \begin{definicio}
+        Quan parlem de \textit{odds} de $A$, definim:
+        \begin{itemize}
+            \item Odds a favor de $A$: $\text{Odds}(A) = \frac{\mathbb{P}(A)}{\mathbb{P}(A^c)}$
+            \item Odds en contra de $A$: $\text{Odds}(A^c) = \frac{\mathbb{P}(A^c)}{\mathbb{P}(A)}$
+        \end{itemize}
+    \end{definicio}
+    \begin{exemple}
+        $\text{Odds}(A) = \frac{3}{2} \Longleftrightarrow \mathbb{P}(A) = \frac{3}{2}\mathbb{P}(A^c)$ i
+        sabem que $\mathbb{P}(A^c) = 1 - \mathbb{P}(A)$, llavors en resoldre tenim $\mathbb{P}(A) = 0.6$
+        i $\mathbb{P}(A^c) = 0.4$.
+    \end{exemple}
 \end{document}
