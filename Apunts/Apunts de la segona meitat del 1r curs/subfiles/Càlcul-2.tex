@@ -41,6 +41,7 @@
         Sigui $A \subset \mathbb{R}^n$, definim $\mathring{A} = \{\vec{x} \in \mathbb{R}^n : \exists R > 0 | \mathfrak{B}_R(\vec{x}) \subset A\}$
     \end{definicio}
     \begin{exemple}
+        $\hbox{ }$
         \begin{enumerate}
             \item $A = \{(x,y):x \geq 0\}$, llavors $\mathring{A} = \{(x,y):x > 0\}$
             \item $A = \{(x,y,z):-a \leq x \leq a, -b \leq y \leq b, -c \leq z \leq c\}$, llavors
@@ -80,4 +81,87 @@
     \begin{definicio}
         El conjunt de nivell de la funció $f$ és $\{x \in A: f(x) = c\}$.
     \end{definicio}
+    \subsubsection{Límit d'una funció a un punt}
+    Siguin $A \subset \mathbb{R}^n$, $f: A \rightarrow \mathbb{R}$ i $x_0 \in \mathbb{R}^n$.
+    \begin{definicio}
+        Diem que $\lim\limits_{x\rightarrow x_0} f(x) = L$ si per tot $\varepsilon > 0$, existeix $\delta > 0$
+        tal que $|f(x)-L| < \varepsilon$ si $0 < ||x-x_0|| < \delta$.
+    \end{definicio}
+    \begin{corolari}(Propietats dels límits)
+        Suposem $\lim\limits_{x\rightarrow x_0} f(x) = L_1$, $\lim\limits_{x\rightarrow x_0} g(x) = L_2$
+        \begin{enumerate}
+            \item $\lim\limits_{x\rightarrow x_0} (f(x) + g(x)) = L_1 + L_2$
+            \item $\lim\limits_{x\rightarrow x_0} (f(x) \times g(x)) = L_1 \times L_2$
+            \item Si $L_2 \neq 0$, llavors $\lim\limits_{x\rightarrow x_0} (\frac{f(x)}{g(x)}) = \frac{L_1}{L_2}$ 
+        \end{enumerate}
+    \end{corolari}
+    \begin{exemple}
+        $\lim\limits_{(x,y) \rightarrow (0, 0)}(x^2+y^2)^\alpha \sin{\frac{1}{x^2+y^2}}$ on $\alpha \in \mathbb{R}$.
+        \\Observem que $\lim\limits_{(x,y) \rightarrow (0, 0)}(x^2+y^2)^\alpha$ = $\begin{cases}
+            0 \text{ si } \alpha > 0\\
+            +\infty \text{ si } \alpha < 0\\
+            1 \text{ si } \alpha = 0
+        \end{cases}$
+        \begin{itemize}
+            \item Si $\alpha > 0$, observem $|(x^2+y^2)^\alpha \sin{\frac{1}{x^2+y^2}}| \leq (x^2+y^2) \longrightarrow 0$
+            \item Si $\alpha < 0$  veiem que el límit no existeix.\\
+            Trobem $\substack{(x_n, y_n) \rightarrow (0, 0)\\(z_n, w_n) \rightarrow (0, 0)}$ quan $n \rightarrow \infty$ per fer \begin{displaymath}
+                \lim\limits_{(x_n,y_n) \rightarrow (0, 0)}(x_n^2+y_n^2)^\alpha \sin{\frac{1}{x_n^2+y_n^2}} = \lim\limits_{(z_n,w_n) \rightarrow (0, 0)}(z_n^2+w_n^2)^\alpha \sin{\frac{1}{z_n^2+w_n^2}}
+            \end{displaymath}       
+            Triem $(x_n, y_n)$ tal que $x_n^2 + y_n^2 = \frac{1}{n\pi}$ i triem $(z_n, w_n)$ tal que $z_n^2+w_n^2 = \frac{1}{\pi/2 + 2\pi n}$.\\
+            Per exemple $x_n = \frac{1}{\sqrt{n\pi}}$, $y_n = 0$, $z_n = 0$ i $w_n = \frac{1}{\sqrt{\pi/2+2\pi n}}$.\\
+            Això provocarà que el primer límit doni $0$ i el segon $\infty$, que, òbviament, no són
+            iguals.
+            \item Si $\alpha = 0$, exercici pel lector. No existeix.
+        \end{itemize}
+    \end{exemple}
+    \subsubsection{Límit seguint rectes i límit a un punt}
+    \begin{proposicio}
+        Suposem $\lim\limits_{(x,y) \rightarrow (0,0)} f(x,y) = L$, llavors $\lim\limits_{x \rightarrow 0} f(x, mx) = L \hbox{ }\forall m \in \mathbb{R}$.
+    \end{proposicio}
+    Utilitzarem aquest fet de la següent forma:
+    \begin{corolari}
+        Si $\lim\limits_{x\rightarrow0} f(x, mx)$ depèn de $m$, aleshores $\lim\limits_{x\rightarrow0}f(x,y)$ no existeix.
+    \end{corolari}
+    \begin{exemple}
+        $\lim\limits_{(x,y) \rightarrow(0,0)} \frac{x^2-y^2}{x^2+y^2} = \frac{0}{0} \not\exists$\\
+        Si fem $y = mx$, tenim $\lim\limits_{x \rightarrow 0} \frac{x^2-(mx)^2}{x^2+(mx)^2} = \lim\limits_{x \rightarrow 0} \frac{1-m^2}{1+m^2}$.
+        Com depèn de $m$, no existeix el límit.
+    \end{exemple}
+    \begin{obs}
+        Que el límit no depengui de $m$ no implica que el límit existeixi.
+    \end{obs}
+    \begin{exemple}
+        $\lim\limits_{(x,y) \rightarrow(0,0)} \frac{x^2y}{x^4+y^2}$$\not\exists$, però si $y = mx$,
+        tenim el seguent: $\lim\limits_{x\rightarrow0} \frac{mx^3}{x^4+m^2x^2} = \lim\limits_{x\rightarrow0} \frac{mx}{x^2+m^2} = 0$.\\
+        Ara, imaginem que $y = x^2$, llavors resulta $\lim\limits_{x\rightarrow0} \frac{x^4}{2x^4} = \frac{1}{2}$
+    \end{exemple}
+    \begin{exemple}
+        $\lim\limits_{(x,y) \rightarrow(0,0)} \frac{xy^2}{x^2+y^2} = \frac{0}{0}$, fem $y = mx$:\\
+        $\lim\limits_{x \rightarrow0} \frac{x(mx)^2}{x^2+(mx)^2} = \lim\limits_{x \rightarrow0} \frac{m^2x}{1+m^2} = 0 \leftarrow$
+        això ha sigut una perdua de temps, no podem deduir res.\\
+        Veiem que, en efecte, $\lim\limits_{(x,y) \rightarrow(0,0)} \frac{xy^2}{x^2+y^2} = 0$:\\
+        si fem $\frac{|x|y^2}{x^2+y^2}$, podem veure que $\frac{y^2}{x^2+y^2} \leq 1$, llavors $\frac{|x|y^2}{x^2+y^2} \leq |x|1 \longrightarrow 0$.
+        Per tant, el límit equival a $0$.
+    \end{exemple}
+    \begin{definicio}
+        Una funció $f: \mathbb{R}^n \rightarrow \mathbb{R}$ és continua a $x_0 \in \mathbb{R}^n$ si $\lim\limits_{x \rightarrow x_0} f(x) = f(x_0)$
+    \end{definicio}
+    \begin{corolari}[Propietats de la continuitat]
+        Tenim $f$ continua a $x_0$ i $g$ continua a $x_0$.
+        \begin{enumerate}
+            \item $f+g$ és continua a $x_0$
+            \item $f\times g$ és continua a $x_0$
+            \item $\frac{f}{g}$ és continua a $x_0$ si $g(x_0) \neq 0$
+        \end{enumerate}
+    \end{corolari}
+    \begin{teorema}[Weistrass (Te la meto por detrás)]
+        Sigui $K \subset \mathbb{R}^n$ compacte i sigui $f: K \rightarrow \mathbb{R}$ continua a $K$.
+        Aleshores $f$ te un màxim i un minim a $K$, és a dir, existeix $x_\text{min}$ i $x_\text{max} \in K$
+        tals que $f(x_\text{min}) \leq f(x) \leq f(x_\text{max}) \hbox{ } \forall x \in K$.
+    \end{teorema}
+    \begin{obs}
+        Es fundamental que $K$ sigui compacte. $f(x,y) = x$ no té máxim a $B_R(0,1). \leftarrow$ no
+        es compacte.
+    \end{obs}
 \end{document}
