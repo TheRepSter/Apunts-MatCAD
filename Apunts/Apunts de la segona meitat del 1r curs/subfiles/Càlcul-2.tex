@@ -3,38 +3,39 @@
 
 \begin{document}
     \begin{definicio}
-        $\mathbb{R}^n = \{(x_1, x_2, \dots, x_n): x_1, \dots, x_n \in \mathbb{R}\}$
+        $\mathbb{R}^n = \{\left( x_1, x_2, \dots, x_n \right): x_1, \dots, x_n \in \mathbb{R}\}$
     \end{definicio}
     \begin{definicio}
-        Siguin $(x_1, x_2, \dots, x_n) \in \mathbb{R}^n$ i $(y_1, y_2, \dots, y_n) \in \mathbb{R}^n$,
-        definim $\underbrace{<(x_1, x_2, \dots, x_n), (y_1, y_2, \dots, y_n)>}_\text{(producte escalar)} = x_1y_1 + x_2y_2 + \dots + x_ny_n$
+        Siguin $\left( x_1, x_2, \dots, x_n \right) \in \mathbb{R}^n$ i $\left( y_1, y_2, \dots, y_n \right) \in \mathbb{R}^n$,
+        definim $\underbrace{\left\langle \left( x_1, x_2, \dots, x_n \right), \left( y_1, y_2, \dots, y_n \right) \right\rangle }_\text{ (producte escalar) } = x_1y_1 + x_2y_2 + \dots + x_ny_n$
         com a producte escalar.
     \end{definicio}
     \begin{definicio}
-        $||(x_1, x_2, \dots, x_n)|| = +\sqrt{<x, x>}$ on $x = (x_1, x_2, \dots, x_n)$. Això és
-        la distància del punt $x$ a $(0, 0, \dots, 0)$.  
+        $\left\lVert \left( x_1, x_2, \dots, x_n \right) \right\rVert = +\sqrt{\left\langle x, x \right\rangle }$ on $x = \left( x_1, x_2, \dots, x_n \right)$. Això és
+        la distància del punt $x$ a $\left( 0, 0, \dots, 0 \right)$.  
     \end{definicio}
     Propietats de la norma:
     \begin{enumerate}
-        \item $||x|| \geq 0$ per tot $x \in \mathbb{R}^n$
-        \item $||\lambda x|| = |\lambda| ||x||$ per tot $x \in \mathbb{R}^n$ i $\lambda \in \mathbb{R}$
-        \item Desigualtat triangular: $||x+y|| \leq ||x|| + ||y||$ per tot $x, y \in \mathbb{R}^n$
+        \item $\left\lVert x\right\rVert \geq 0$ per tot $x \in \mathbb{R}^n$
+        \item $\left\lVert \lambda x \right\rVert = \left\lvert \lambda \right\rvert \left\lVert x \right\rVert$ per tot $x \in \mathbb{R}^n$ i $\lambda \in \mathbb{R}$
+        \item Desigualtat triangular: $\left\lVert x+y \right\rVert \leq \left\lVert x \right\rVert + \left\lVert y \right\rVert$ per tot $x, y \in \mathbb{R}^n$
     \end{enumerate}
-    Desigualtat de Cauchy-Schwartz: $<x,y> \leq ||x||||y||$ per tot $x, y \in \mathbb{R}^n$. Això ho
+    Desigualtat de Cauchy-Schwartz: $\left\langle x,y \right\rangle  \leq \left\lVert x\right\rVert\left\lVert y\right\rVert$ per tot $x, y \in \mathbb{R}^n$. Això ho
     acceptem.
     \begin{obs}
-        Observem que $-1 \leq \frac{<x,y>}{||x||||y||} \leq 1$ i definim l'angle entre els vectors $x$ i $y$
-        com l'angle $\alpha$ tal que $\cos{\alpha} = \frac{<x,y>}{||x||||y||}$, és a dir, $<x, y> = ||x||||y||\cos{\alpha}$.
+        Observem que $-1 \leq \frac{\left\langle x,y \right\rangle }{\left\lVert x \right\rVert\left\lVert y \right\rVert} \leq 1$ i definim l'angle entre els vectors $x$ i $y$
+        com l'angle $\alpha$ tal que $\cos{\alpha} = \frac{\left\langle x,y \right\rangle }{\left\lVert x \right\rVert\left\lVert y\right\rVert}$,
+        és a dir, $\left\langle x,y \right\rangle  = \left\lVert x \right\rVert\left\lVert y \right\rVert\cos{\alpha}$.
     \end{obs}
     \begin{exemple}
-        Trobem els valors de $\mathbb{R}^3 \perp (-1, -2, 1)$. Busquem $(x_1, x_2, x_3) \in \mathbb{R}^n$
-        tal que $<(x_1, x_2, x_3), (-1, -2, 1)> = 0 \Leftrightarrow -x_1-2x_2+x_3=0$.
+        Trobem els valors de $\mathbb{R}^3 \perp (-1, -2, 1)$. Busquem $\left( x_1, x_2, x_3 \right) \in \mathbb{R}^n$
+        tal que $\left\langle \left( x_1, x_2, x_3 \right), (-1, -2, 1) \right\rangle  = 0 \Leftrightarrow -x_1-2x_2+x_3=0$.
     \end{exemple}
     \subsection{Boles a \texorpdfstring{$\mathbb{R}^n$}{Diverses dimensions}}
-    \underline{Si $n=2$} la bola de centre $(x_0, y_0)$ i radi $R$ és $\{(x,y) \in \mathbb{R}^2: ||(x,y)-(x_0, y_0)|| < R\} =$
-    (disc) $= \{(x,y)\in \mathbb{R}^2: (x-x_0)^2+(y-y_0)^2<R^2\}$. Això és una bola oberta, denotada per
+    \underline{Si $n=2$} la bola de centre $\left( x_0, y_0 \right)$ i radi $R$ és $\{\left( x,y \right) \in \mathbb{R}^2: \left\lVert\left( x,y \right)-\left( x_0, y_0 \right)\right\rVert < R\} =$
+    (disc) $= \{\left( x,y \right)\in \mathbb{R}^2: (x-x_0)^2+(y-y_0)^2<R^2\}$. Això és una bola oberta, denotada per
     \begin{notacio}
-        Fem servir $\mathfrak{B}_R(x_0, y_0, \dots)$ la bola oberta ($< R$) i $\overline{\mathfrak{B}_R}(x_0, y_0, \dots)$
+        Fem servir $\mathfrak{B}_R\left( x_0, y_0, \dots \right)$ la bola oberta ($< R$) i $\overline{\mathfrak{B}_R}\left( x_0, y_0, \dots \right)$
         la tancada ($\leq R$). Es farà servir més la bola oberta.
     \end{notacio}
     \begin{definicio}
@@ -43,9 +44,9 @@
     \begin{exemple}
         $\hbox{ }$
         \begin{enumerate}
-            \item $A = \{(x,y):x \geq 0\}$, llavors $\mathring{A} = \{(x,y):x > 0\}$
-            \item $A = \{(x,y,z):-a \leq x \leq a, -b \leq y \leq b, -c \leq z \leq c\}$, llavors
-            $\mathring{A} = \{(x,y,z):-a < x < a, -b < y < b, -c < z < c\}$
+            \item $A = \{\left( x,y \right):x \geq 0\}$, llavors $\mathring{A} = \{\left( x,y \right):x > 0\}$
+            \item $A = \{\left( x,y,z \right):-a \leq x \leq a, -b \leq y \leq b, -c \leq z \leq c\}$, llavors
+            $\mathring{A} = \{\left( x,y,z \right):-a < x < a, -b < y < b, -c < z < c\}$
         \end{enumerate}
     \end{exemple}
     \begin{definicio}
@@ -53,11 +54,11 @@
         punt del conjunt $A$ és també un punt d'$\mathring{A}$.
     \end{definicio}
     \begin{definicio}
-        Sigui $A \subset \mathbb{R}^n$, definim $\overline{A} = \{ x \in \mathbb{R}^n : \forall R>0, B_R(x) \cap A \neq \emptyset\}$.
+        Sigui $A \subset \mathbb{R}^n$, definim $\overline{A} = \{ x \in \mathbb{R}^n : \forall R>0, B_R\left( x \right) \cap A \neq \emptyset\}$.
         Diem que $\overline{A}$ és l'adherència d'$A$.
     \end{definicio}
     \begin{exemple}
-        $A = \{(x,y) \in \mathbb{R}^2: yx < 1, x > 0\}$. $\overline{A} = \{(0, y): y\in \mathbb{R}\} \cup \{(x, y): yx \leq 1, x > 0\}$
+        $A = \{\left( x,y \right) \in \mathbb{R}^2: yx \left\langle 1,x \right\rangle  0\}$. $\overline{A} = \{\left( 0, y \right): y\in \mathbb{R}\} \cup \{\left( x, y \right): yx \leq 1, x > 0\}$
     \end{exemple}
     \begin{definicio}
         Un conjunt ($A \subset \mathbb{R}^n$) és tancat si $A = \overline{A}$.
@@ -66,7 +67,7 @@
         $A$ és obert $\Longleftrightarrow A^c$ és tancat. 
     \end{proposicio}
     \begin{definicio}
-        La frontera d'un conjunt, $B_R(A) = \overline{A} \setminus \mathring{A}$.
+        La frontera d'un conjunt, $B_R\left( A \right) = \overline{A} \setminus \mathring{A}$.
     \end{definicio}
     \begin{definicio}
         $A \subset \mathbb{R}^n$ es diu acotat si $A$ està contingut dins d'una bola.
@@ -76,28 +77,28 @@
     \end{definicio}
     \subsection{Límits de funcions i continuïtat}
     \begin{definicio}
-        Sigui $A \subset \mathbb{R}^n$ i $f: A\rightarrow \mathbb{R}$, definim graf$(f) = \{(x, f(x)) \in \mathbb{R}^{n+1}: x\in A\}$.
+        Sigui $A \subset \mathbb{R}^n$ i $f: A\rightarrow \mathbb{R}$, definim graf$\left( f \right) = \{(x, f\left( x \right)) \in \mathbb{R}^{n+1}: x\in A\}$.
     \end{definicio}
     \begin{definicio}
-        El conjunt de nivell de la funció $f$ és $\{x \in A: f(x) = c\}$.
+        El conjunt de nivell de la funció $f$ és $\{x \in A: f\left( x \right) = c\}$.
     \end{definicio}
     \subsubsection{Límit d'una funció a un punt}
     Siguin $A \subset \mathbb{R}^n$, $f: A \rightarrow \mathbb{R}$ i $x_0 \in \mathbb{R}^n$.
     \begin{definicio}
-        Diem que $\lim\limits_{x\rightarrow x_0} f(x) = L$ si per tot $\varepsilon > 0$, existeix $\delta > 0$
-        tal que $|f(x)-L| < \varepsilon$ si $0 < ||x-x_0|| < \delta$.
+        Diem que $\lim\limits_{x\rightarrow x_0} f\left( x \right) = L$ si per tot $\varepsilon > 0$, existeix $\delta > 0$
+        tal que $|f\left( x \right)-L| < \varepsilon$ si $0 < \left\lVert x-x_0\right\rVert < \delta$.
     \end{definicio}
     \begin{corolari}(Propietats dels límits)
-        Suposem $\lim\limits_{x\rightarrow x_0} f(x) = L_1$, $\lim\limits_{x\rightarrow x_0} g(x) = L_2$
+        Suposem $\lim\limits_{x\rightarrow x_0} f\left( x \right) = L_1$, $\lim\limits_{x\rightarrow x_0} g\left( x \right) = L_2$
         \begin{enumerate}
-            \item $\lim\limits_{x\rightarrow x_0} (f(x) + g(x)) = L_1 + L_2$
-            \item $\lim\limits_{x\rightarrow x_0} (f(x) \times g(x)) = L_1 \times L_2$
-            \item Si $L_2 \neq 0$, llavors $\lim\limits_{x\rightarrow x_0} (\frac{f(x)}{g(x)}) = \frac{L_1}{L_2}$ 
+            \item $\lim\limits_{x\rightarrow x_0} (f\left( x \right) + g\left( x \right)) = L_1 + L_2$
+            \item $\lim\limits_{x\rightarrow x_0} (f\left( x \right) \times g\left( x \right)) = L_1 \times L_2$
+            \item Si $L_2 \neq 0$, llavors $\lim\limits_{x\rightarrow x_0} (\frac{f\left( x \right)}{g\left( x \right)}) = \frac{L_1}{L_2}$ 
         \end{enumerate}
     \end{corolari}
     \begin{exemple}
-        $\lim\limits_{(x,y) \rightarrow (0, 0)}(x^2+y^2)^\alpha \sin{\frac{1}{x^2+y^2}}$ on $\alpha \in \mathbb{R}$.
-        \\Observem que $\lim\limits_{(x,y) \rightarrow (0, 0)}(x^2+y^2)^\alpha$ = $\begin{cases}
+        $\lim\limits_{\left( x,y \right) \rightarrow \left( 0, 0 \right)}(x^2+y^2)^\alpha \sin{\frac{1}{x^2+y^2}}$ on $\alpha \in \mathbb{R}$.
+        \\Observem que $\lim\limits_{\left( x,y \right) \rightarrow \left( 0, 0 \right)}(x^2+y^2)^\alpha$ = $\begin{cases}
             0 \text{ si } \alpha > 0\\
             +\infty \text{ si } \alpha < 0\\
             1 \text{ si } \alpha = 0
@@ -105,10 +106,10 @@
         \begin{itemize}
             \item Si $\alpha > 0$, observem $|(x^2+y^2)^\alpha \sin{\frac{1}{x^2+y^2}}| \leq (x^2+y^2) \longrightarrow 0$
             \item Si $\alpha < 0$  veiem que el límit no existeix.\\
-            Trobem $\substack{(x_n, y_n) \rightarrow (0, 0)\\(z_n, w_n) \rightarrow (0, 0)}$ quan $n \rightarrow \infty$ per fer \begin{displaymath}
-                \lim\limits_{(x_n,y_n) \rightarrow (0, 0)}(x_n^2+y_n^2)^\alpha \sin{\frac{1}{x_n^2+y_n^2}} = \lim\limits_{(z_n,w_n) \rightarrow (0, 0)}(z_n^2+w_n^2)^\alpha \sin{\frac{1}{z_n^2+w_n^2}}
+            Trobem $\substack{\left( x_n, y_n \right) \rightarrow \left( 0, 0 \right)\\\left( z_n, w_n \right) \rightarrow \left( 0, 0 \right)}$ quan $n \rightarrow \infty$ per fer \begin{displaymath}
+                \lim\limits_{\left( x_n,y_n \right) \rightarrow \left( 0, 0 \right)}(x_n^2+y_n^2)^\alpha \sin{\frac{1}{x_n^2+y_n^2}} = \lim\limits_{\left( z_n,w_n \right) \rightarrow \left( 0, 0 \right)}(z_n^2+w_n^2)^\alpha \sin{\frac{1}{z_n^2+w_n^2}}
             \end{displaymath}       
-            Triem $(x_n, y_n)$ tal que $x_n^2 + y_n^2 = \frac{1}{n\pi}$ i triem $(z_n, w_n)$ tal que $z_n^2+w_n^2 = \frac{1}{\pi/2 + 2\pi n}$.\\
+            Triem $\left( x_n, y_n \right)$ tal que $x_n^2 + y_n^2 = \frac{1}{n\pi}$ i triem $\left( z_n, w_n \right)$ tal que $z_n^2+w_n^2 = \frac{1}{\pi/2 + 2\pi n}$.\\
             Per exemple $x_n = \frac{1}{\sqrt{n\pi}}$, $y_n = 0$, $z_n = 0$ i $w_n = \frac{1}{\sqrt{\pi/2+2\pi n}}$.\\
             Això provocarà que el primer límit doni $0$ i el segon $\infty$, que, òbviament, no són
             iguals.
@@ -117,51 +118,51 @@
     \end{exemple}
     \subsubsection{Límit seguint rectes i límit a un punt}
     \begin{proposicio}
-        Suposem $\lim\limits_{(x,y) \rightarrow (0,0)} f(x,y) = L$, llavors $\lim\limits_{x \rightarrow 0} f(x, mx) = L \hbox{ }\forall m \in \mathbb{R}$.
+        Suposem $\lim\limits_{\left( x,y \right) \rightarrow \left( 0,0 \right)} f\left( x,y \right) = L$, llavors $\lim\limits_{x \rightarrow 0} f\left( x, mx \right) = L \hbox{ }\forall m \in \mathbb{R}$.
     \end{proposicio}
     Utilitzarem aquest fet de la següent forma:
     \begin{corolari}
-        Si $\lim\limits_{x\rightarrow0} f(x, mx)$ depèn de $m$, aleshores $\lim\limits_{x\rightarrow0}f(x,y)$ no existeix.
+        Si $\lim\limits_{x\rightarrow0} f\left( x, mx \right)$ depèn de $m$, aleshores $\lim\limits_{x\rightarrow0}f\left( x,y \right)$ no existeix.
     \end{corolari}
     \begin{exemple}
-        $\lim\limits_{(x,y) \rightarrow(0,0)} \frac{x^2-y^2}{x^2+y^2} = \frac{0}{0} \not\exists$\\
-        Si fem $y = mx$, tenim $\lim\limits_{x \rightarrow 0} \frac{x^2-(mx)^2}{x^2+(mx)^2} = \lim\limits_{x \rightarrow 0} \frac{1-m^2}{1+m^2}$.
+        $\lim\limits_{\left( x,y \right) \rightarrow\left( 0,0 \right)} \frac{x^2-y^2}{x^2+y^2} = \frac{0}{0} \not\exists$\\
+        Si fem $y = mx$, tenim $\lim\limits_{x \rightarrow 0} \frac{x^2-\left( mx \right)^2}{x^2+\left( mx \right)^2} = \lim\limits_{x \rightarrow 0} \frac{1-m^2}{1+m^2}$.
         Com depèn de $m$, no existeix el límit.
     \end{exemple}
     \begin{obs}
         Que el límit no depengui de $m$ no implica que el límit existeixi.
     \end{obs}
     \begin{exemple}
-        $\lim\limits_{(x,y) \rightarrow(0,0)} \frac{x^2y}{x^4+y^2}$$\not\exists$, però si $y = mx$,
+        $\lim\limits_{\left( x,y \right) \rightarrow\left( 0,0 \right)} \frac{x^2y}{x^4+y^2}$$\not\exists$, però si $y = mx$,
         tenim el seguent: $\lim\limits_{x\rightarrow0} \frac{mx^3}{x^4+m^2x^2} = \lim\limits_{x\rightarrow0} \frac{mx}{x^2+m^2} = 0$.\\
         Ara, imaginem que $y = x^2$, llavors resulta $\lim\limits_{x\rightarrow0} \frac{x^4}{2x^4} = \frac{1}{2}$
     \end{exemple}
     \begin{exemple}
-        $\lim\limits_{(x,y) \rightarrow(0,0)} \frac{xy^2}{x^2+y^2} = \frac{0}{0}$, fem $y = mx$:\\
-        $\lim\limits_{x \rightarrow0} \frac{x(mx)^2}{x^2+(mx)^2} = \lim\limits_{x \rightarrow0} \frac{m^2x}{1+m^2} = 0 \leftarrow$
+        $\lim\limits_{\left( x,y \right) \rightarrow\left( 0,0 \right)} \frac{xy^2}{x^2+y^2} = \frac{0}{0}$, fem $y = mx$:\\
+        $\lim\limits_{x \rightarrow0} \frac{x\left( mx \right)^2}{x^2+\left( mx \right)^2} = \lim\limits_{x \rightarrow0} \frac{m^2x}{1+m^2} = 0 \leftarrow$
         això ha sigut una perdua de temps, no podem deduir res.\\
-        Veiem que, en efecte, $\lim\limits_{(x,y) \rightarrow(0,0)} \frac{xy^2}{x^2+y^2} = 0$:\\
+        Veiem que, en efecte, $\lim\limits_{\left( x,y \right) \rightarrow\left( 0,0 \right)} \frac{xy^2}{x^2+y^2} = 0$:\\
         si fem $\frac{|x|y^2}{x^2+y^2}$, podem veure que $\frac{y^2}{x^2+y^2} \leq 1$, llavors $\frac{|x|y^2}{x^2+y^2} \leq |x|1 \longrightarrow 0$.
         Per tant, el límit equival a $0$.
     \end{exemple}
     \begin{definicio}
-        Una funció $f: \mathbb{R}^n \rightarrow \mathbb{R}$ és continua a $x_0 \in \mathbb{R}^n$ si $\lim\limits_{x \rightarrow x_0} f(x) = f(x_0)$
+        Una funció $f: \mathbb{R}^n \rightarrow \mathbb{R}$ és continua a $x_0 \in \mathbb{R}^n$ si $\lim\limits_{x \rightarrow x_0} f\left( x \right) = f\left( x_0 \right)$
     \end{definicio}
     \begin{corolari}[Propietats de la continuitat]
         Tenim $f$ continua a $x_0$ i $g$ continua a $x_0$.
         \begin{enumerate}
             \item $f+g$ és continua a $x_0$
             \item $f\times g$ és continua a $x_0$
-            \item $\frac{f}{g}$ és continua a $x_0$ si $g(x_0) \neq 0$
+            \item $\frac{f}{g}$ és continua a $x_0$ si $g\left( x_0 \right) \neq 0$
         \end{enumerate}
     \end{corolari}
     \begin{teorema}[Weistrass (Te la meto por detrás)]
         Sigui $K \subset \mathbb{R}^n$ compacte i sigui $f: K \rightarrow \mathbb{R}$ continua a $K$.
         Aleshores $f$ te un màxim i un minim a $K$, és a dir, existeix $x_\text{min}$ i $x_\text{max} \in K$
-        tals que $f(x_\text{min}) \leq f(x) \leq f(x_\text{max}) \hbox{ } \forall x \in K$.
+        tals que $f(x_\text{min}) \leq f\left( x \right) \leq f(x_\text{max}) \hbox{ } \forall x \in K$.
     \end{teorema}
     \begin{obs}
-        Es fundamental que $K$ sigui compacte. $f(x,y) = x$ no té máxim a $B_R(0,1). \leftarrow$ no
+        Es fundamental que $K$ sigui compacte. $f\left( x,y \right) = x$ no té máxim a $B_R\left( 0,1 \right). \leftarrow$ no
         es compacte.
     \end{obs}
 \end{document}
