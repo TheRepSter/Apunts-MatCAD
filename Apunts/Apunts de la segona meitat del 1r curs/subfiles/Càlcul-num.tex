@@ -35,39 +35,52 @@
         L'error absolut és $\Delta x = x - \tilde{x}$. L'error relatiu és $\frac{\Delta x}{x} = \frac{x-\tilde{x}}{x} = 1 - \frac{\tilde{x}}{x}$
     \end{definicio}
     \begin{definicio}
-        Definim la fórmula de propagació d'error com $|\Delta f(x_o)| \lesssim h|f'(x_o)|$.
+        Definim la fórmula de propagació d'error com $\left\lvert \Delta f(x_o) \right\rvert \lesssim h|f'(x_o)|$.
     \end{definicio}
     \begin{definicio}
-        Amb dues variables, $|f(x+h, y+k)| \lesssim |\frac{\partial f(x,y)}{\partial x}||h| + |\frac{\partial f(x,y)}{\partial y}||k|$ (dicho en clase: ¿por qué no se cancelan los $\partial$?)
+        Amb dues variables, $\left\lvert f(x+h, y+k) \right\rvert \lesssim \left\lvert \frac{\partial f\left( x,y \right)}{\partial x} \right\rvert\left\lvert h \right\rvert + \left\lvert \frac{\partial f\left( x,y \right)}{\partial y} \right\rvert\left\lvert k \right\rvert$ (dicho en clase: ¿por qué no se cancelan los $\partial$?)
     \end{definicio}
     \begin{exercici}
         Calcular de forma exacta i l'error absolut de $(2\pm 0.01)(3\pm 0.2)^2$.\\
-        De manera exacta, tenim $F(x,y) = xy^2$
+        De manera exacta, tenim $F\left( x,y \right) = xy^2$
         \begin{displaymath}
-            F(2, 3) = 2\times3^2 = 18
+            F\left( 2, 3 \right) = 2\times3^2 = 18
         \end{displaymath}
         L'error absolut és el següent
         \begin{displaymath}
-            |\Delta F(x,y)| \lesssim |\frac{\partial F}{\partial x}||h| +  |\frac{\partial F}{\partial y}||k| = |y^2||h| + |2xy||k|
+            \left\lvert \Delta F\left( x,y \right) \right\rvert \lesssim \left\lvert \frac{\partial F}{\partial x} \right\rvert\left\lvert h \right\rvert +  \left\lvert \frac{\partial F}{\partial y} \right\rvert\left\lvert k \right\rvert = \left\lvert y^2 \right\rvert\left\lvert h \right\rvert + \left\lvert 2xy \right\rvert\left\lvert k \right\rvert
         \end{displaymath}
         Si substituïm $x = 2, y = 3, h = 0.01$ i $k = 0.2$
         \begin{displaymath}
-            |\Delta F(x,y)| \lesssim |9||0.01| + |12||0.2| = 0.09+2.4 = 2.49
+            \left\lvert \Delta F\left( x,y \right) \right\rvert \lesssim \left\lvert 9 \right\rvert\left\lvert 0.01 \right\rvert + \left\lvert 12 \right\rvert\left\lvert 0.2 \right\rvert = 0.09+2.4 = 2.49
         \end{displaymath}
     \end{exercici}
     \begin{exercici}
         Calcular de forma exacta i l'error absolut de $(2\pm 0.01)e^{-1\pm 0.2}$.\\
-        De manera exacta, tenim $F(x,y) = xe^y$
+        De manera exacta, tenim $F\left( x,y \right) = xe^y$
         \begin{displaymath}
             F(2, -1) = 2e^{-1}
         \end{displaymath}
         L'error absolut és el següent
         \begin{displaymath}
-            |\Delta F(x,y)| \lesssim |\frac{\partial F}{\partial x}||h| +  |\frac{\partial F}{\partial y}||k| = |e^y||h| + |xe^y||k|
+            \left\lvert \Delta F\left( x,y \right) \right\rvert \lesssim \left\lvert \frac{\partial F}{\partial x} \right\rvert\left\lvert h \right\rvert +  \left\lvert \frac{\partial F}{\partial y} \right\rvert\left\lvert k \right\rvert = \left\lvert e^y \right\rvert\left\lvert h \right\rvert + \left\lvert xe^y \right\rvert\left\lvert k \right\rvert
         \end{displaymath}
         Si substituïm $x = 2, y = -1, h = 0.01$ i $k = 0.2$
         \begin{displaymath}
-            |\Delta F(x,y)| \lesssim |e^{-1}||0.01| + |2e^{-1}||0.2|
+            \left\lvert \Delta F\left( x,y \right) \right\rvert \lesssim \left\lvert e^{-1} \right\rvert\left\lvert 0.01 \right\rvert + \left\lvert 2e^{-1} \right\rvert\left\lvert 0.2 \right\rvert
         \end{displaymath}
     \end{exercici}
+    \begin{notacio}
+        Denotem un nombre $x$ en punt flotant com $\text{fl} \left(x\right)$
+    \end{notacio}
+    \begin{notacio}
+        Quan fem una operació amb punt flotant, ho posem de la següent forma per denotar que
+        existeix error:
+        \begin{itemize}
+            \item $x \oplus y = \text{fl}\left( \text{fl}\left( x \right) + \text{fl}\left( y \right)\right)$
+            \item $x \ominus y = \text{fl}\left( \text{fl}\left( x \right) - \text{fl}\left( y \right)\right)$
+            \item $x \otimes y = \text{fl}\left( \text{fl}\left( x \right) \cdot \text{fl}\left( y \right)\right)$
+            \item $x \oslash y = \text{fl}\left( \text{fl}\left( x \right) / \text{fl}\left( y \right)\right)$
+        \end{itemize}
+    \end{notacio}
 \end{document}
