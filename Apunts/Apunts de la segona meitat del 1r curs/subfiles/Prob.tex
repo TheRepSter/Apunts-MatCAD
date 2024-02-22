@@ -98,4 +98,28 @@
             \item Combinacions de $n$ elements: $\mathbf{C}_n^m = (\substack{n\\m}) = \frac{n!}{(n-m)!m!} = \frac{\mathbf{V}_n^m}{\mathbf{P}_m}$
         \end{itemize}
     \end{notacio}
+    \subsection{Probabilitat condicionada}
+    \begin{exemple}
+        Llancem dos daus distingibles. Sabem llavors que $\Omega = \left\{ \left(1,1\right),  \left(1,2\right), \dots  \left(6,6\right) \right\}$,
+        $\#\Omega = 36$ simètric. $\mathcal{A} = \mathcal{P}\left(\Omega\right)$, $\mathbb{P}$ és
+        tal que $\mathbb{P}\left(\left\{i,j\right\} \right) = \frac{1}{36}$. Sigui $B \equiv $ "la
+        puntuació dels daus és la mateixa" $\Rightarrow \mathbb{P}\left(B\right) = \frac{6}{36} = \frac{1}{6} \approx 0.17$
+        Abans de mirar el resultat del dau, ens diuen que la suma dels daus és $8$. Com recalculem
+        la probabilitat de $B$?
+    \end{exemple}
+    \begin{notacio}
+        Denotem que un esdeveniment condicionat per $A$ de la manera $..|A$.
+    \end{notacio}
+    \begin{definicio}
+        Si $A, B$ són esdeveniments tals que $\mathbb{P}\left(A\right)>0$ definim
+        \begin{displaymath}
+            \mathbb{P}\left(B|A\right) = \frac{\mathbb{P}\left(A\cap B\right)}{\mathbb{P}\left(A\right)}
+        \end{displaymath}
+    \end{definicio}
+    \begin{exemple}(continuem l'anterior)
+        Per tant, $A \equiv$ "la suma $=8$" llavors
+        \begin{displaymath}
+            \mathbb{P}\left(B|A\right) = \frac{\mathbb{P}\left(A\cap B\right)}{\mathbb{P}\left(A\right)} = \frac{\frac{1}{36}}{\frac{5}{36}} = \frac{1}{5} = 0.2 
+        \end{displaymath}
+    \end{exemple}
 \end{document}
