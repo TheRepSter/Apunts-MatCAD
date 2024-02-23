@@ -54,7 +54,7 @@
         punt del conjunt $A$ és també un punt d'$\mathring{A}$.
     \end{definicio}
     \begin{definicio}
-        Sigui $A \subset \mathbb{R}^n$, definim $\overline{A} = \{ x \in \mathbb{R}^n : \forall R>0, B_R\left( x \right) \cap A \neq \emptyset\}$.
+        Sigui $A \subset \mathbb{R}^n$, definim $\overline{A} = \{ x \in \mathbb{R}^n : \forall R>0, \mathfrak{B}_R\left( x \right) \cap A \neq \emptyset\}$.
         Diem que $\overline{A}$ és l'adherència d'$A$.
     \end{definicio}
     \begin{exemple}
@@ -67,7 +67,7 @@
         $A$ és obert $\Longleftrightarrow A^c$ és tancat. 
     \end{proposicio}
     \begin{definicio}
-        La frontera d'un conjunt, $B_R\left( A \right) = \overline{A} \setminus \mathring{A}$.
+        La frontera d'un conjunt, $Fr\left( A \right) = \overline{A} \setminus \mathring{A}$.
     \end{definicio}
     \begin{definicio}
         $A \subset \mathbb{R}^n$ es diu acotat si $A$ està contingut dins d'una bola.
@@ -75,6 +75,71 @@
     \begin{definicio}
         $A \subset \mathbb{R}^n$ es diu compacte si $A$ és tancat i acotat.
     \end{definicio}
+    \begin{exercici}(4 de la llista 1) 
+        Per als conjunts següents, determineu l'interior, l'adherència i la frontera. Decidiu si
+        són oberts, tancats, acotats o compactes.
+        \begin{enumerate}
+            \item[a)] $A = \left\{\left(x, y\right) \in \mathbb{R}^2 : x, y < 0\right\}$\\
+            $\mathring{A} = A \Rightarrow$ obert.\\
+            $\overline{A} = \left\{\left(x, y\right) \in \mathbb{R}^2 : x, y \leq 0\right\}$\\
+            $Fr\left(A\right)=\left\{\left(x, y\right) \in \mathbb{R}^2 : x, y = 0\right\}$\\
+            No és acotat ni tancat, per això no és compacte.
+            \item[b)] $B$ és la unió de totes les rectes de pendent nul que tallen l'eix $OY$ en un enter.\\
+            $\mathring{B} = \emptyset$.\\
+            $\overline{B} = B \Rightarrow$ tancat.\\
+            $Fr\left(B\right) = B$
+            No és acotat, per això no és compacte.
+            \item[c)] $C = \left\{\left(x, y, z\right) \in \mathbb{R}^3 : x^2 + y^2 + z^2 \leq 1, z \geq 0, y \geq 0\right\}$.\\
+            $\mathring{C} = \left\{\left(x, y, z\right) \in \mathbb{R}^3 : x^2 + y^2 + z^2 < 1, z > 0, y > 0\right\}$.
+            $\overline{C} = C \Rightarrow$ tancat.\\
+            $Fr\left(C\right) = \left\{\left(x, y, z\right) \in \mathbb{R}^3 : x^2 + y^2 + z^2 = 1, z = 0, y = 0\right\}$
+            És compacte, ja que és acotat i tancat.
+            \item[d)] $D$ és la intersecció dels discos $D_1 := \left\{\left(x, y\right) \in \mathbb{R}^2 : x^2+y^2 < 1\right\}$\\
+            i $D_2 := \left\{\left(x, y\right) \in \mathbb{R}^2 : (x-1)^2+y^2 < 1\right\}$ $\left(D = D_1 \cap D_2\right)$.\\ 
+            $\mathring{D} = \mathring{D_1} \cap \mathring{D_2}$.\\
+            $\overline{D} = \overline{D_1} \cap \overline{D_2}$
+            $Fr\left(D\right)  = \left(Fr{D_1} \cap \mathring{D_2}\right)\cup\left(Fr{D_2} \cap \mathring{D_1}\right)$
+        \end{enumerate}
+    \end{exercici}
+    \begin{exercici}[5 de la llista 1]
+        Proveu que la intersecció de dos oberts és un obert. Feu el mateix per a la unió.
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{scope}
+                    \clip (1,1) circle (2em);
+                    \fill[blu!60, thick, dashed] (2.25,1) circle (2em);
+                \end{scope}
+                \draw[black,thick,dashed] (1,1) circle (2em) node {P};
+                \draw[black,thick,dashed] (2.25,1) circle (2em) node {Q};
+            \end{tikzpicture}
+        \end{center}
+        Hem de provar que $P\cap Q$ és obert. $\forall x \in P\cap Q \hbox{ }\exists B_x \subset P\cap Q$,
+        on $B_x$ és una bola centrada en el punt pertanyent a la intersecció.\\
+        Com $P$ és obert, tot punt de $P$ té una bola pertanyent, passa el mateix en $Q$.\\
+        $x \in B_x^P \subset P$, $x \in B_x^Q \subset Q$, $x \in B_x^P \cap B_x^Q \subset P\cap Q$.
+        Llavors, com $P\cap Q$ té les propietats d'ambdues, és obert.
+    \end{exercici}
+    \begin{exercici}[6 de la llista 1]
+        Proveu que la intersecció de dos tancats és un tancat. Feu el mateix per a la unió.
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{scope}
+                    \clip (1,1) circle (2em);
+                    \fill[blu!60, thick] (2.25,1) circle (2em);
+                \end{scope}
+                \draw[black,thick] (1,1) circle (2em) node {P};
+                \draw[black,thick] (2.25,1) circle (2em) node {Q};
+            \end{tikzpicture}
+        \end{center}
+        Sabem llavors que $P^c, Q^c$ són llavors oberts. Per l'exercici anterior, sabem que $P^c\cup Q^c$
+        és obert. I, finalment, $\left(P^c\cup Q^c\right)^c = P\cup Q$ és tancada. 
+    \end{exercici}
+    \begin{exercici}[7 de la llista 1] Poseu un exemple d'una successió d'oberts $V_1, \dots$ de manera que $\bigcap V_j$ no sigui un obert.\\
+        $\bigcap\limits_{n \in \mathbb{N}} \left(-1-\frac{1}{n}, 1+\frac{1}{n}\right) = [-1, 1]$
+        \begin{obs}
+            Una unió de tancats no necessàriament és tancada.
+        \end{obs}
+    \end{exercici}
     \subsection{Límits de funcions i continuïtat}
     \begin{definicio}
         Sigui $A \subset \mathbb{R}^n$ i $f: A\rightarrow \mathbb{R}$, definim graf$\left( f \right) = \{(x, f\left( x \right)) \in \mathbb{R}^{n+1}: x\in A\}$.
@@ -82,6 +147,7 @@
     \begin{definicio}
         El conjunt de nivell de la funció $f$ és $\{x \in A: f\left( x \right) = c\}$.
     \end{definicio}
+
     \subsubsection{Límit d'una funció a un punt}
     Siguin $A \subset \mathbb{R}^n$, $f: A \rightarrow \mathbb{R}$ i $x_0 \in \mathbb{R}^n$.
     \begin{definicio}
@@ -162,7 +228,7 @@
         tals que $f(x_\text{min}) \leq f\left( x \right) \leq f(x_\text{max}) \hbox{ } \forall x \in K$.
     \end{teorema}
     \begin{obs}
-        Es fundamental que $K$ sigui compacte. $f\left( x,y \right) = x$ no té máxim a $B_R\left( 0,1 \right). \leftarrow$ no
+        Es fundamental que $K$ sigui compacte. $f\left( x,y \right) = x$ no té máxim a $\mathfrak{B}_R\left( 0,1 \right). \leftarrow$ no
         es compacte.
     \end{obs}
 \end{document}

@@ -38,7 +38,11 @@
         Definim la fórmula de propagació d'error com $\left\lvert \Delta f(x_o) \right\rvert \lesssim h|f'(x_o)|$.
     \end{definicio}
     \begin{definicio}
-        Amb dues variables, $\left\lvert f(x+h, y+k) \right\rvert \lesssim \left\lvert \frac{\partial f\left( x,y \right)}{\partial x} \right\rvert\left\lvert h \right\rvert + \left\lvert \frac{\partial f\left( x,y \right)}{\partial y} \right\rvert\left\lvert k \right\rvert$ (dicho en clase: ¿por qué no se cancelan los $\partial$?)
+        Amb dues variables, $\left\lvert f(x+h, y+k) \right\rvert \lesssim \left\lvert \frac{\partial f\left( x,y \right)}{\partial x} \right\rvert\left\lvert h \right\rvert + \left\lvert \frac{\partial f\left( x,y \right)}{\partial y} \right\rvert\left\lvert k \right\rvert$
+        (dicho en clase: ¿por qué no se cancelan los $\partial$?)
+    \end{definicio}
+    \begin{definicio}
+        Per derivades succesives, $\left\lvert f(\tilde{x}) \right\rvert \lesssim \sum\limits_{i=1}^n\left\lvert \frac{\partial f\left( x \right)}{\partial x_i} \right\rvert\left\lvert \tilde{x_i}-x_i \right\rvert$
     \end{definicio}
     \begin{exercici}
         Calcular de forma exacta i l'error absolut de $(2\pm 0.01)(3\pm 0.2)^2$.\\
@@ -83,4 +87,18 @@
             \item $x \oslash y = \text{fl}\left( \text{fl}\left( x \right) / \text{fl}\left( y \right)\right)$
         \end{itemize}
     \end{notacio}
+    \begin{obs}
+        Posats a donar aproximacions de l'error relatiu, posem més.
+    \end{obs}
+    \begin{proposicio}[tecnicament és un Lema]
+        $\Delta \log{\left\lvert f\left(x\right) \right\rvert} \approx$ l'error relatiu.
+    \end{proposicio}
+    \begin{proposicio}[Error absolut i relatiu de les operacions elementals]
+        $\hbox{ }$
+        \begin{itemize}
+            \item Error absolut de la suma o resta: Error absolut de $x \pm$ error absolut de $y$.
+            \item Error relatiu de la multiplicació: Error relatiu de $x +$ error relatiu de $y$. 
+            \item Error relatiu de la divisió: Error relatiu de $x -$ error relatiu de $y$.
+        \end{itemize}    
+    \end{proposicio}
 \end{document}
