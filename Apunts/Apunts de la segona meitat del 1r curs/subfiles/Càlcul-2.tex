@@ -134,8 +134,10 @@
         Sabem llavors que $P^c, Q^c$ són llavors oberts. Per l'exercici anterior, sabem que $P^c\cup Q^c$
         és obert. I, finalment, $\left(P^c\cup Q^c\right)^c = P\cup Q$ és tancada. 
     \end{exercici}
-    \begin{exercici}[7 de la llista 1] Poseu un exemple d'una successió d'oberts $V_1, \dots$ de manera que $\bigcap V_j$ no sigui un obert.\\
-        $\bigcap\limits_{n \in \mathbb{N}} \left(-1-\frac{1}{n}, 1+\frac{1}{n}\right) = [-1, 1]$
+    \begin{exercici}[7 de la llista 1] Poseu un exemple d'una successió d'oberts $V_1, \dots$ de manera que $\bigcap V_j$ no sigui un obert.
+        \begin{displaymath}
+            \bigcap\limits_{n \in \mathbb{N}} \left(-1-\frac{1}{n}, 1+\frac{1}{n}\right) = [-1, 1]
+        \end{displaymath}
         \begin{obs}
             Una unió de tancats no necessàriament és tancada.
         \end{obs}
@@ -211,9 +213,44 @@
         si fem $\frac{|x|y^2}{x^2+y^2}$, podem veure que $\frac{y^2}{x^2+y^2} \leq 1$, llavors $\frac{|x|y^2}{x^2+y^2} \leq |x|1 \longrightarrow 0$.
         Per tant, el límit equival a $0$.
     \end{exemple}
+    \begin{exercici}[11 de la llista 2] $\hbox{}$
+        \begin{itemize}
+            \item[e)] $\lim\limits_{\left(x,y\right)\rightarrow\left(0,0\right)} \frac{1-\cos{x}}{x^2+y^2}$
+            Si ho fem "a lo bruto" ens donem compte que el límit seria una indeterminació del tipus $\frac{0}{0}$.\\
+            Triem $y = mx$ i tenim llavors $\lim\limits_{x \rightarrow 0} \frac{1-\cos{x}}{x^2+m^2x^2}$.
+            Després d'aplicar L'Hôpital ens donem compte que $\frac{1}{2\left(1+m^2\right)}$. Com depèn
+            de $m$, el límit no existeix.
+            \item[f)] $\lim\limits_{\left(x,y,z\right)\rightarrow\left(0,0,0\right)} \frac{xyz}{x^2+y^2+z^2}$
+            Si ho fem "a lo bruto" ens donem compte que el límit seria una indeterminació del tipus $\frac{0}{0}$.\\
+            No obstant, com son tres variables no podem fer de manera simple L'Hôpital. Podem fer
+            servir una altra idea: $\left\lvert\frac{xyz}{x^2+y^2+z^2} \right\rvert = \frac{\left\lvert x \right\rvert \left\lvert y \right\rvert \left\lvert z \right\rvert}{x^2+y^2+z^2}$
+            Llavors, savem que podem fer servir $\frac{\left\lvert x \right\rvert \left\lvert y \right\rvert \left\lvert z \right\rvert}{x^2+y^2+z^2} \leq \frac{\frac{1}{2}\left(x^2+y^2\right)\left\lvert z \right\rvert }{x^2+y^2+z^2} \leq \frac{1}{2}\left\lvert z\right\rvert$
+            i com $z$ tendeix a $0$, sabem que el límit tendeix a $0$.
+            \item[g)] $\lim\limits_{\left(x,y\right)\rightarrow\left(1,-1\right)} \frac{xy+x-y-1}{x^2+y^2-2x+2y+2}$
+            Si ho fem "a lo bruto" ens donem compte que el límit seria una indeterminació del tipus $\frac{0}{0}$.\\
+            Llavors, fem $y = m(x-1)-1$, tenim, després de molt simplificar, el seguent $\lim\limits_{x\rightarrow1}\frac{m\left(x-1\right)^2}{\left(x-1\right)^2+m^2\left(x-1\right)^2}$.
+            Si simplifiquem una mica més, ens donem compte que depèn de $m$. Som feliços per que
+            sabem que el límit no exieteix i podem continuar amb la nostra vida.
+        \end{itemize}
+    \end{exercici}
     \begin{definicio}
         Una funció $f: \mathbb{R}^n \rightarrow \mathbb{R}$ és continua a $x_0 \in \mathbb{R}^n$ si $\lim\limits_{x \rightarrow x_0} f\left( x \right) = f\left( x_0 \right)$
     \end{definicio}
+    \begin{exercici}[14 de la llista 2]
+        Sigui
+        \begin{displaymath}
+            f\left(x,y\right) = \begin{cases}
+                \frac{x^2y}{x^4+y^2} & \text{si } \left(x,y\right) \neq \left(0,0\right)\\
+                \alpha & \text{si } \left(x,y\right) = \left(0,0\right)
+            \end{cases} 
+        \end{displaymath}
+        Comproveu que $f$ no es continua a l'origen.\\
+        Sabem que el límit, si existeix, serà igual a $\alpha$. Fem $y = mx$ per veure si existeix.
+        Tenim llavors $\lim\limits_{x\rightarrow 0} \frac{mx}{x^2+m^2} = 0$, com no depén de $m$,
+        potser existeix.\\
+        Y si fem $y=mx^2$? Llavors depén de $m$, ja que $\lim\limits_{x\rightarrow 0} \frac{mx^4}{x^4+m^2x^4} = \frac{m}{1+m^2}$.
+        Per tant, $\alpha$ no existeix i $f$ no és continua a $\left(0,0\right)$. 
+    \end{exercici}
     \begin{corolari}[Propietats de la continuitat]
         Tenim $f$ continua a $x_0$ i $g$ continua a $x_0$.
         \begin{enumerate}
@@ -231,4 +268,16 @@
         Es fundamental que $K$ sigui compacte. $f\left( x,y \right) = x$ no té máxim a $\mathfrak{B}_R\left( 0,1 \right). \leftarrow$ no
         es compacte.
     \end{obs}
+    \subsection{Calcul diferencial}
+    \begin{definicio}
+        Sigui $f$ una funció definida a $\mathbb{R}^n$ i sigui $x_0=\left\{x_{0,1}, x_{0,2}, \dots, x_{0,n}\right\}$
+        $\frac{\partial f}{\partial x_i}\left(x_0\right) = \lim\limits_{h\rightarrow0} \frac{f\left(x_{0,1}, \dots, x_{0,i}+h, \dots, x_{0,n}\right)-f(x_0)}{h}$
+        (és a dir, mantenim les variables fixes menys $x_i$)
+    \end{definicio}
+    \begin{obs}
+        Hi ha funcions amb derivades parcials a tot punt peró no continues.
+    \end{obs}
+    Això, i la perdua de la visió geometrica de la derivada (amb una variable, genera la recta
+    tangent. La derivada parcial no la genera.) ens fa veure que la derivada parcial no es gaire
+    atractiva.
 \end{document}
