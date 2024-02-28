@@ -122,4 +122,24 @@
             \mathbb{P}\left(B|A\right) = \frac{\mathbb{P}\left(A\cap B\right)}{\mathbb{P}\left(A\right)} = \frac{\frac{1}{36}}{\frac{5}{36}} = \frac{1}{5} = 0.2 
         \end{displaymath}
     \end{exemple}
+    \begin{obs}Aquestes dues propietats es compleixen:
+        \begin{itemize}
+            \item $\mathbb{P}\left(B^c|A\right) = 1 - \mathbb{P}\left(B|A\right)$
+            \item $\mathbb{P}\left(C_1 \cup C_2 | A\right) = \mathbb{P}\left(C_1|A\right) + \mathbb{P}\left(C_2|A\right) - \mathbb{P}\left(C_1 \cap C_2|A\right)$
+        \end{itemize}
+        Però, en general, no és cert que $\mathbb{P}\left(B|A^c\right) = 1 - \mathbb{P}\left(B|A\right)$.
+    \end{obs}
+    \begin{teorema}[Fórmula de les probabilitats compostes]
+        Regla del producte
+        \begin{displaymath}
+            \mathbb{P}\left(A \cap B\right) = \mathbb{P}\left(B|A\right)\mathbb{P}\left(A\right)\text{, sempre que } \mathbb{P}\left(A\right)>0
+        \end{displaymath}
+    \end{teorema}
+    \begin{definicio}
+        Donats $A$ i $B$ esdeveniments, direm que són independents si $\mathbb{P}\left(A\cap B\right) = \mathbb{P}\left(A\right)\mathbb{P}\left(B\right)$
+    \end{definicio}
+    \begin{obs}
+        Si $\mathbb{P}\left(A\right) > 0$, $\mathbb{P}\left(A\cap B\right) = \mathbb{P}\left(A\right) \mathbb{P}\left(B\right) \Longleftrightarrow \mathbb{P}\left(B|A\right) = \mathbb{P}\left(B\right)$\\
+        Si $\mathbb{P}\left(B\right) > 0$, $\mathbb{P}\left(A\cap B\right) = \mathbb{P}\left(A\right) \mathbb{P}\left(B\right) \Longleftrightarrow \mathbb{P}\left(A|B\right) = \mathbb{P}\left(A\right)$
+    \end{obs}
 \end{document}

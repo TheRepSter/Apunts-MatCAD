@@ -37,6 +37,16 @@
             \item Un \textbf{circuit} és un camí tancat, és a dir, un camí que comença i termina al mateix lloc.
         \end{enumerate}
     \end{definicio}
+    \begin{notacio}
+        Probablement, per denotar un camí si és un bàsic, ens bastarà amb dir d'on ve fins on va, és 
+        dir $A\rightarrow B$. Això no obstant, possiblement la millor forma és posar etiquetes a les
+        arestes, de tal que $\sigma_1 := A \rightarrow B$. Si volem denotar que comença en $B$ i
+        termina en $A$, s'hi diu $\sigma_1^{-1}$. Així, un $A \rightarrow B \rightarrow C$ seria $\sigma_1 \cdot \sigma_2$.
+        Aquest $\cdot$ no és commutatiu.
+    \end{notacio}
+    \begin{definicio}
+        S'hi diu que un circuit és reduït si no té $\sigma_i \cdot \sigma_i^{-1}$.
+    \end{definicio}
     \begin{definicio}
         Un graf no dirigit és \textbf{connex} si hi ha un camí des de tot vèrtex qualsevol fins a tot 
         altre.
@@ -71,4 +81,75 @@
     incidencia, on cada vèrtex és una fila i una aresta és una columna, problema si hi ha una amb
     el mateix origen i destí.\\
     Nosaltres farem servir llistes de adjaciencia.
+    \begin{definicio}
+        Un \textbf{arbre} és un graf sense circuits reduïts.
+    \end{definicio}
+    \begin{proposicio}[Tecnicament es un lema]
+        Equivalentment, un arbre és un graf on tota parella de vèrtexs estan connectats per un únic
+        camí reduït.
+    \end{proposicio}
+    \begin{exercici}[Demostració de l'anterior] $\hbox{}$
+        \begin{itemize}
+            \item[$\Rightarrow)$] Suposem que $\exists v, w$ vèrtexs de $G$ que es poden unir per dos (o més) camins reduïts
+            $\sigma$ i $\tau$. Com que $\tau\neq\sigma \hbox{ } \exists j : a_j \neq b_j$. $j_0 = \min\limits_j\{a_j\neq b_j\}$
+            i $m$ com el mínim $m\geq j_0$ tal que $\exists n\geq j_0 : V_m = W_n$. Llavors tenim el circuit $a_{j_0} \circ a_{j_0+1} \circ \dots \circ a_{m} \circ b_{n}^{-1} \circ \dots \circ b_{j_0}^{-1}$.
+            I per tant, no és un arbre.
+            \item[$\Leftarrow)$] Suposem que no és un arbre, això implica que té un circuit reduït
+            no trivial. Anomenem $\sigma$ un camí que va de $V$ a $V$. Llavors tenim dos camins,
+            $\sigma$ i $\emptyset$. Això, trivialment, no és equivalent.
+        \end{itemize}
+    \end{exercici}
+    \begin{corolari}[Propietats dels arbres]$\hbox{}$
+        \begin{itemize}
+            \item Si s'afegeix qualsevol aresta, deixa de ser un arbre.
+            \item Eliminar qualsevol aresta fa que l'arbre es desconnecti.
+            \item Un arbre de $n$ vèrtex té exactament $n-1$ arestes.
+        \end{itemize}
+    \end{corolari}
+    \begin{definicio}
+        Si $G$ és un graf, definim la característica d'Euler-Poincaré d'un graf com:
+        \begin{displaymath}
+            \chi\left(G\right) = \underbrace{\left\lvert V \right\rvert}_\text{nombre de vèrtexs} - \underbrace{\left\lvert E \right\rvert}_\text{nombre d'arestes}
+        \end{displaymath}
+    \end{definicio}
+    \begin{teorema}
+        Si $G$ és un graf connex, són equivalents:
+        \begin{itemize}
+            \item[a)] $G$ és un arbre.
+            \item[b)] $\forall v, w$ vèrtexs de $G$, existeix un únic camí reduït que els uneix.
+            \item[c)] $\chi(G) = 1$. 
+        \end{itemize}
+    \end{teorema}
+    \begin{definicio}
+        Si $G$ és un graf, $T \subseteq G$ és un arbre maximal si:
+        \begin{itemize}
+            \item $T$ és un arbre
+            \item $T \subseteq G$ es maximal si considerem $\overline{G}$ un subgraf de $G$ tal que
+            contingui $T$ i sigui diferent de $T$ llavors $\overline{G}$ \underline{no} és un arbre.
+        \end{itemize}
+    \end{definicio}
+    \begin{proposicio}[Tecnicament un lema]
+        Sigui $G$ un graf connex
+        \begin{itemize}
+            \item[a)] Tot arbre $T \subseteq G$ està contingut en un arbre maximal.
+            \item[b)] $T \subseteq G$ és un arbre maximal $\Leftrightarrow$
+            \begin{itemize}
+                \item[$\bullet$] és un arbre
+                \item[$\bullet$] té tots els vèrtexs de $G$
+            \end{itemize}
+        \end{itemize}
+    \end{proposicio}
+    \begin{exercici}[Demostració de l'anterior lema]
+        $\hbox{}$
+        \begin{itemize}
+            \item[a)] Fem tots els possibles subgrafs (un nombre finit) i ens quedem amb els arbres
+            més grans.
+            \item[b)] $G$ és un graf connex i $T \subseteq G$ és un arbre maximal i que no conté
+            tots els vèrtexs, volem una contradicció. Sigui $V$ un vèrtex de l'arbre, i $W$ un
+            vèrtex que no sigui de l'arbre, com $G$ és connex hi ha un camí que uneix $V$ i $W$.
+            Sigui $j_0 = \max\limits_{j}\{V_k \in T \hbox{ }\forall k \leq j\}$ $j_0 < l$ ($W$ no és
+            part de l'arbre). $V_{j_0} \in T$, $V_{j_0+1} \notin T$. Considerem $\overline{T} = T \cup \{a\} \cup \{V_{j_0}+1\}$,
+            com $\overline{T}$ és un arbre més gran que $T$, per tant $T$ no era maximal.
+        \end{itemize}
+    \end{exercici}
 \end{document}
