@@ -152,4 +152,37 @@
             com $\overline{T}$ és un arbre més gran que $T$, per tant $T$ no era maximal.
         \end{itemize}
     \end{exercici}
+    \begin{proposicio}[Tecnicament un lema]
+        Si $T$ és un arbre, llavors $\exists v \in T$ que sigui fulla. 
+    \end{proposicio}
+    \begin{exercici}[Demostració de l'anterior lema]
+        Suposem que tots els vèrtexs de $T$ tenen valència $\geq 2$. Sigui $v_0 \in T$, triem una
+        aresta $a_1$ que surti de $v_0$ i arribi a $v_1$. Continuem el camí, perquè té valència $\geq 2$,
+        sempre fent que $a_2 \neq a_1$, en continuar aquest camí, triem un camí reduït amb tants
+        vèrtexs com es vulguin, per exemple un amb $\left\lvert V\right\rvert +1$ vèrtexs. Llavors
+        n'hi haurà un de repetit $V_i = V_j$ amb $i < j$. És un circuit reduït, i per tant $T$ no és
+        un arbre.
+    \end{exercici}
+    Recordem que també cal demostrar que si $G$ és un graf connex llavors $G$ és un arbre $\iff \chi\left(G\right) = 1$
+    \begin{exercici}[Demostració de a) $\iff$ c) de l'ultim teorema possat]
+        $\hbox{}$
+        \begin{itemize}
+            \item[$\Rightarrow)$] Suposem que $G$ és un arbre, demostrem per inducció que $\left\lvert V\right\rvert$
+            \begin{itemize}
+                \item[$\bullet$] $\left\lvert V \right\rvert = 1$, llavors $\chi\left(G\right) = 1-0 = 0$
+                i $G$ és un arbre.\\
+                Suposem que això es continua complint amb $n$ vèrtexs.
+                \item[$\bullet$] $\left\lvert V \right\rvert = n + 1$. Aplicant el lema, si $v_0$ un
+                vèrtex de $G$ amb València $1$, per tant hi ha una única aresta que arriba a $v_0$ i $a_0$.\\
+                Sigui $H \subset G$ un subgraf que té tots els vèrtexs i arestes de $G$ excepte $a_0$
+                i $v_0$, llavors $\left\lvert V_H\right\rvert = n$ i $\left\lvert E_H\right\rvert = n-1$.
+                Com se segueix complint, sabem que $\chi\left(H\right) = 1$, i per allò $\chi\left(G\right) = 1$
+            \end{itemize}
+            \item[$\Leftarrow)$] Sigui $G$ un graf connex amb $\chi\left(G\right) = 1$, volem veure
+            que $G$ és un arbre.\\
+            Sigui $T\subseteq G$ un arbre maximal. Sigui $n = \left\lvert V_G\right\rvert$ i que $\left\lvert E_G\right\rvert = n-1$
+            Llavors, $T$ té $n$ vèrtexs i com $\chi\left(T\right) = 1 \Rightarrow G = T$ i per allò,
+            $G$ és un arbre.
+        \end{itemize}
+    \end{exercici}
 \end{document}

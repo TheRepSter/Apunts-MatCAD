@@ -2,8 +2,10 @@
 \WarningsOff
 \usepackage[margin=1in]{geometry}
 \usepackage[all]{xy}
+\usepackage{mathtools}
 \usepackage{amsmath,amsthm,amssymb,color,latexsym}
-\usepackage{geometry}        
+\usepackage{geometry}
+\usepackage{letltxmacro}
 \geometry{letterpaper}    
 \usepackage{graphicx}
 \usepackage{enumitem}
@@ -19,7 +21,9 @@
 }
 \makeatother
 
-\newtheorem{exercici}{Exercici}
+\newcounter{numex}
+
+\newenvironment{exercici}[1][\refstepcounter{numex} \bf{Exercici \thenumex}]{\textbf{#1: }}{}			
 
 \newenvironment{solucio}[1][\it{Solució}]{\textbf{#1. } }{\hfill$\square$\\}
 

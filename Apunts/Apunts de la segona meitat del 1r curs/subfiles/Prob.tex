@@ -5,8 +5,8 @@
     \begin{definicio}
         Un fenomen o experiment aleatori presenten les següents característiques:
         \begin{itemize}
-            \item Abans de realitzar l'experiment no sabem el resultat però sí el conjunt de resultats
-            possibles.
+            \item Abans de realitzar l'experiment no sabem el resultat però sí el conjunt de
+            resultats possibles.
             \item En teoria es pot realitzar sota les mateixes condicions infinites vegades.
             \item Es pot assignar probabilitats als resultats.
         \end{itemize}
@@ -20,7 +20,8 @@
         probabilitat d'un esdeveniment. Ha de tenir estructura de $\sigma$-àlgebra.
     \end{definicio}
     \begin{notacio}
-        Si $\omega \in \Omega$ és un resultat de l'experimental tal que $\omega \in A$, diem que $A$ s'ha realitzat.
+        Si $\omega \in \Omega$ és un resultat de l'experimental tal que $\omega \in A$, diem que $A$
+        s'ha realitzat.
     \end{notacio}
     \begin{definicio}
         Sigui $\mathcal{A}$ una col·lecció de subconjunts d'$\Omega$. $\mathcal{A}$ és una
@@ -85,8 +86,8 @@
         \end{itemize}
     \end{definicio}
     \begin{exemple}
-        $\text{Odds}(A) = \frac{3}{2} \Longleftrightarrow \mathbb{P}(A) = \frac{3}{2}\mathbb{P}(A^c)$ i
-        sabem que $\mathbb{P}(A^c) = 1 - \mathbb{P}(A)$, llavors en resoldre tenim $\mathbb{P}(A) = 0.6$
+        $\text{Odds}(A) = \frac{3}{2} \Longleftrightarrow \mathbb{P}(A) = \frac{3}{2}\mathbb{P}(A^c)$
+        i sabem que $\mathbb{P}(A^c) = 1 - \mathbb{P}(A)$, llavors en resoldre tenim $\mathbb{P}(A) = 0.6$
         i $\mathbb{P}(A^c) = 0.4$.
     \end{exemple}
     \begin{notacio}
@@ -142,4 +143,36 @@
         Si $\mathbb{P}\left(A\right) > 0$, $\mathbb{P}\left(A\cap B\right) = \mathbb{P}\left(A\right) \mathbb{P}\left(B\right) \Longleftrightarrow \mathbb{P}\left(B|A\right) = \mathbb{P}\left(B\right)$\\
         Si $\mathbb{P}\left(B\right) > 0$, $\mathbb{P}\left(A\cap B\right) = \mathbb{P}\left(A\right) \mathbb{P}\left(B\right) \Longleftrightarrow \mathbb{P}\left(A|B\right) = \mathbb{P}\left(A\right)$
     \end{obs}
+    \begin{proposicio}[Propietats dels esdeveniments independents]
+        Són equivalents
+        \begin{itemize}
+            \item $A$ i $B$ independents
+            \item $A$ i $B^c$ independents
+            \item $A^c$ i $B$ independents
+            \item $A^c$ i $B^c$ independents
+        \end{itemize}
+    \end{proposicio}
+    \begin{definicio}
+        Diem que $3$ esdeveniments $A$, $B$, $C$ són independents si compleixen
+        \begin{itemize}
+            \item Són independents dos a dos, és dir
+            \begin{displaymath}
+                \begin{cases}
+                    \mathbb{P}\left(A\cap B\right) = \mathbb{P}\left(A\right)\mathbb{P}\left(B\right)\\
+                    \mathbb{P}\left(B\cap C\right) = \mathbb{P}\left(B\right)\mathbb{P}\left(C\right)\\
+                    \mathbb{P}\left(A\cap C\right) = \mathbb{P}\left(A\right)\mathbb{P}\left(C\right)
+                \end{cases}
+            \end{displaymath}
+            \item Compleixen $\mathbb{P}\left(A\cap B\cap C\right) = \mathbb{P}\left(A\right)\mathbb{P}\left(B\right)\mathbb{P}\left(C\right)$
+        \end{itemize}
+    \end{definicio}
+    $\hbox{}$\\
+    \begin{teorema}[Formula de las probabilitats totals]
+        Considerem $B_1, B_2, \dots, B_n$ que siguin una partició de $\Omega$, és a dir, $\Omega = \biguplus\limits_{i=1}^{n} B_i$,
+        tals que $\mathbb{P}\left(B_i\right) > 0$, $\forall i \in \left\{1, 2, \dots, n\right\}$,
+        sigui $A \in \mathcal{A}$, aleshores
+        \begin{displaymath}
+            \mathbb{P}\left(A\right) = \sum\limits_{i=1}^{n} \mathbb{P}\left(A|B_i\right) \mathbb{P}\left(B_i\right)
+        \end{displaymath}
+    \end{teorema}
 \end{document}

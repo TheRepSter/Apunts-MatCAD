@@ -1,13 +1,12 @@
 \usepackage{silence}
 \WarningsOff
 \usepackage[margin=1in]{geometry}
-\usepackage[skins,breakable]{tcolorbox}
 \usepackage[all]{xy}
 \usepackage{amsmath,amsthm,amssymb,color,latexsym}
 \usepackage{geometry}        
 \geometry{letterpaper}    
 \usepackage{graphicx}
-\usepackage{titlesec}
+\usepackage{enumitem}
 
 \makeatletter
 \def\asignatura#1{\def\@asignatura{#1}}
@@ -19,20 +18,10 @@
 \hrulefill
 }
 \makeatother
-\newtheoremstyle{indented}{3pt}{3pt}{\addtolength{\leftskip}{3.3em}}{}{\bfseries}{.}{.5em}{}
 
-\theoremstyle{indented}
-\newtheorem{exercici}{Exercici}[subsection]
+\newtheorem{exercici}{Exercici}
 
-\newenvironment{solucio}[1][\it{Solució}]{\begin{tcolorbox}[blanker,
-    width=0.915\textwidth,enlarge left by=0.085\textwidth,
-    breakable]\addtolength{\parindent}{2em}\textbf{#1.} }{\hfill$\square$\end{tcolorbox}}
-
-\renewcommand{\theexercici}{\roman{exercici}}
-\renewcommand{\thesubsection}{\alph{subsection}}
-\titleformat{\section}{\normalfont}{\thesection.}{12pt}{}
-\titleformat{\subsection}{\normalfont}{\makebox[12pt][l]{}(\thesubsection)}{13pt}{}
-
+\newenvironment{solucio}[1][\it{Solució}]{\textbf{#1. } }{\hfill$\square$\\}
 
 \ProvidesFile{deuresutils.sty}
     [04/01/23 1.0 Lo necesario para hacer mis deberes]
