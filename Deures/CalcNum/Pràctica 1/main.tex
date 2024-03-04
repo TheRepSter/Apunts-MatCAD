@@ -1,0 +1,148 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{deuresutils}
+
+\title{Pràctica 1}
+\asignatura{Càlcul numèric}
+\author{Eduardo Pérez Motato}
+\niu{NIU: 1709992}
+\date{01/03/2024}
+
+\begin{document}
+    \makeheader
+
+    \begin{exercici}
+        Considerar la funció
+        \begin{equation}
+            f\left(x\right) = 
+            \begin{cases}
+                \frac{1-\cos{x}}{x^2} & \text{si } x \neq 0\\
+                \frac{1}{2} & \text{si } x = 0
+            \end{cases}
+            \label{eq:1}
+        \end{equation}
+        Volem avaluar $f(x_0)$ per al valor $x_0 = 1.2 \times 10^{-5}$.
+        \begin{enumerate}[label=\alph*)]
+            \item Escriure dos \textbf{programes en C}, un en \textbf{precisió simple} i un altre en
+            \textbf{precisió doble} que avaluïn la funció $f\left(x\right)$.\\
+            Calcular per cadascun dels programes el valor $f\left(x_0\right)$.\\
+            Comparar i comentar els resultats.\\
+            \begin{solucio}
+                A \verb|Pr1a.c| creem dues funcions, \verb|fsimp| amb precisió float i \verb|fdoble|
+                amb precisió doble. En avaluar $x_0$, en el cas del simple retorna $0$, i en el cas
+                del doble retorna $\approx 0.4999997$, el que s'assembla més al valor real (ja que
+                $\lim\limits_{x \to 0} f\left(x\right) = \frac{1}{2}$).
+            \end{solucio}
+            \item Reescriure la funció $f\left(x\right)$ fent servir fórmules trigonomètriques de
+            forma que es redueixi l'error que es produeix fent servir la expressiò \eqref{eq:1}.\\
+            \begin{solucio}
+                A \verb|Pr1b.c| reemplacem $1-\cos{x}$ per $2\sin^2{\left(\frac{x}{2}\right)}$ en
+                ambdues funcions, llavors, podem veure com les dues funcions abans creades tenen
+                millor precisió.
+            \end{solucio}
+            \item Discutir l'observat en aquest exercici.\\
+            \begin{solucio}
+                Podem veure com, en aquest cas, $1-\cos{x}$ perd precisió quan $x$ tendeix a $0$.
+                Per allò hem de fer servir una substitució trigonomètrica que tindrà millor precisió.
+            \end{solucio}
+        \end{enumerate}
+    \end{exercici}
+
+    \begin{exercici}
+        Equació quadràtica.\\
+        La solució d'una equació quadràtica amb coeficients reals,
+        \begin{displaymath}
+            ax^2+bx+c=0 \hspace{5em} a \neq 0
+        \end{displaymath}
+        s'obté a partir de la expressiò
+        \begin{equation}
+            x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}
+            \label{eq:2}
+        \end{equation}
+        Suposant que $a > 0$ i $b^2 > 4ac$.
+        \begin{enumerate}[label=\alph*)]
+            \item Escriure dos \textbf{programes en C}, un en \textbf{precisió simple} i un altre en
+            \textbf{precisió doble} que calculin la solució d'una equació quadràtica mitjançant \eqref{eq:2}.\\
+            \begin{solucio}
+                A \verb|Pr2a.c| estan escrites dues funcions, \verb|fquad| en precisió float i \verb|quad|
+                en precisió doble. Al \verb|main|, hi ha un exemple amb $a=1, b=2$ i $c=1$, donant
+                el resultat correcte de $-1$ com a solució doble. 
+            \end{solucio}
+            \item Comprovar que si $b^2 >> 4ac$ una de les dues fórmules per al càlcul de les arrels
+            amb \eqref{eq:2} produeix resultats contaminats amb error de cancel·lació.\\
+            \begin{solucio}
+                Com podem veure a \verb|Pr2b.c|, on calculem les arrels de $a=1, b=40000$ i $c=1$.
+                En aquest cas, tenim $b^2 = 40000^2$ que és, òbviament, molt més gran que $4ac = 4$.
+                En calcular, veiem que la funció amb precisió float dona $0$ i $-40000$ com a
+                solució, mentre en doble dona $\approx-2.5\times10^{-5}$ i $ -39999.999975$, un
+                resultat més creïble. 
+            \end{solucio}
+            \item Proposa un procediment alternatiu per al càlcul de les arrels que eviti l'error de
+            cancel·lació.\\
+            \begin{solucio}
+                Sabem que
+                \begin{displaymath}
+                    \eqref{eq:2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a} \underbrace{\frac{-b \mp \sqrt{b^2-4ac}}{-b \mp \sqrt{b^2-4ac}}}_{=1} = \frac{b^2-\left(b^2-4ac\right)}{2a\left(-b\mp\sqrt{b^2-4ac}\right)}
+                \end{displaymath}
+                i si continuem simplificant, tenim
+                \begin{equation}
+                    \frac{2c}{b \mp \sqrt{b^2-4ac}}
+                    \label{eq:3}
+                \end{equation}
+                Ara, amb \eqref{eq:3}, canviem el programa anterior i fem els canvis a \verb|Pr2c.c|.
+                Amb els canvis fets, veiem quins són els resultats. 
+            \end{solucio}
+            \item Construir exemples numèrics on el càlcul de les arrels en simple i doble precisió
+            proporcionin diferències significatives en exactitud fent servir \eqref{eq:2} i el
+            procediment que has proposat.\\
+            \begin{solucio}
+                aidonnou
+            \end{solucio}
+        \end{enumerate}
+    \end{exercici}
+    \begin{exercici}
+        Càlcul de la variància mostral.\\
+        En estadística la variància mostral de $n$ nombres es defineix com
+        \begin{equation}
+            s^2_n = \frac{1}{n-1}\sum\limits_{i=1}^n\left(x_i-\overline{x}\right)^2,\hbox{ on } \overline{x} = \frac{1}{n}\sum\limits_{i=1}^n x_i
+            \label{eq:4}
+        \end{equation}
+        Una fórmula alternativa equivalent que fa servir un nombre d'operacions similars és
+        \begin{equation}
+            s^2_n = \frac{1}{n-1}\left(\sum\limits_{i=1}^{n} x^2_i - \frac{1}{n}\left(\sum\limits_{i=1}^{n}x_i\right)^2\right)
+            \label{eq:5}
+        \end{equation}
+        Aquesta última fórmula pot sofrir error de cancel·lació!
+        \begin{enumerate}[label=\alph*)]
+            \item Escriure \textbf{programes en C en simple i doble precisió} que calculin la
+            variància mostral amb les mateixes fórmules on l'input sigui un vector de nombres reals
+            i l'output sigui la variància mostral.\\
+            \begin{solucio}
+                lala
+            \end{solucio}
+            \item Considerar el vector $x = \left\{10000, 10001, 10002\right\}^T$ i calcular la
+            variància amb els programes generats. Analitzar les discrepàncies.\\
+            \begin{solucio}
+                lala
+            \end{solucio}
+            \item Construir dos exemples de vectors de dimensió gran (almenys 100 components) on
+            aquestes discrepàncies siguin més evidents.\\
+            \begin{solucio}
+                lala
+            \end{solucio}
+            \item Discutir les diferències en els resultats.\\
+            \begin{solucio}
+                lala
+            \end{solucio}
+        \end{enumerate}
+    \end{exercici}
+    \begin{exercici}
+        Suma d'una sèrie.\\
+        És conegut que la sèrie dels recíprocs dels quadrats dels nombres naturals convergeix i la
+        seva suma és $\frac{\pi^2}{6}$
+        \begin{equation}
+            S = \sum\limits_{k=1}^\infty\frac{1}{k^2} = \frac{\pi^2}{6} \approx 1.644934066848226\dots
+            \label{eq:6}
+        \end{equation}
+        Volem calcular aproximadament la suma $S$ sumant termes 
+    \end{exercici}
+\end{document}

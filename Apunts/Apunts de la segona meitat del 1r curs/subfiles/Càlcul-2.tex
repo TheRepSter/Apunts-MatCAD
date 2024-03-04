@@ -270,14 +270,55 @@
     \end{obs}
     \subsection{Calcul diferencial}
     \begin{definicio}
-        Sigui $f$ una funció definida a $\mathbb{R}^n$ i sigui $x_0=\left\{x_{0,1}, x_{0,2}, \dots, x_{0,n}\right\}$
-        $\frac{\partial f}{\partial x_i}\left(x_0\right) = \lim\limits_{h\rightarrow0} \frac{f\left(x_{0,1}, \dots, x_{0,i}+h, \dots, x_{0,n}\right)-f(x_0)}{h}$
-        (és a dir, mantenim les variables fixes menys $x_i$)
+        Sigui $f$ una funció definida a $\mathbb{R}^n$ i sigui $x_0=\left\{x_{0,1}, x_{0,2}, \dots, x_{0,n}\right\}$, 
+        llavors $\frac{\partial f}{\partial x_i}\left(x_0\right) = \lim\limits_{h\rightarrow0} \frac{f\left(x_{0,1}, \dots, x_{0,i}+h, \dots, x_{0,n}\right)-f(x_0)}{h}$
+        (és a dir, mantenim les variables fixes menys $x_i$).
     \end{definicio}
     \begin{obs}
         Hi ha funcions amb derivades parcials a tot punt peró no continues.
     \end{obs}
     Això, i la perdua de la visió geometrica de la derivada (amb una variable, genera la recta
     tangent. La derivada parcial no la genera.) ens fa veure que la derivada parcial no es gaire
-    atractiva.
+    atractiva.\\
+    La soluciò és la diferencial
+    \begin{notacio}
+        Si $f$ és una funció definida a $\mathbb{R}^n$, $\underbrace{\nabla f}_\text{gradient} = \left(\frac{\partial f}{\partial x_1}, \dots, \frac{\partial f}{\partial x_n} \right)$
+    \end{notacio}
+    \begin{definicio}
+        Sigui $f$ una funció definida a $\mathbb{R}^n$ i $x_0 \in \mathbb{R}^n$ diem que $f$ és
+        diferenciable a $x_0$ si $\frac{\partial f}{\partial x_i}(x_0)$ existeixen per tot $i = 1, 2, \dots, n$
+        i a més $\lim\limits_{x \to x_0} \frac{f\left(x\right) - f\left(x_0\right)-\left\langle \nabla f\left(x_0\right), x-x_0\right\rangle }{\left\lVert x-x_0\right\rVert } = 0$
+    \end{definicio}
+    \begin{proposicio}
+        Figura tangent a la gràfica de $f\left(x\right)$ al punt $x_0$ es
+        \begin{displaymath}
+            z = f\left(x_0\right) + \left\langle \nabla f \left(x_0\right), \left(x,y\right)-x_0\right\rangle 
+        \end{displaymath} 
+    \end{proposicio}
+    \begin{obs}
+        \begin{itemize}
+            \item El vector normal a la figura tangent d'una grafica al punt $x_0$ és el $\nabla f\left(x_0\right)$ i $-1$.
+            \item Si $f$ té derivades parcials i totes les derivades parcials son continues al punt $x_0$
+            llavors $f$ és diferenciable al punt $x_0$.
+        \end{itemize}
+    \end{obs}
+    \begin{proposicio}
+        Si $f$ és diferenciable a $x_0 \rightarrow f$ és continua a $x_0$.
+    \end{proposicio}
+    \begin{definicio}
+        Sigui $f$ una funció definida a $\mathbb{R}^n$ i sigui $x_0 \in \mathbb{R}^n$,
+        sigui $\vec{e} \in \mathbb{R}^n$ amb $\left\lVert \vec{e} \right\rVert = 1$. Definim
+        \begin{displaymath}
+            \mathcal{D}_{\vec{e}}f\left(x_0\right) = \lim\limits_{t\to0} \frac{f\left(x_0+\vec{e} t\right)-f\left(x_0\right)}{t}
+        \end{displaymath}
+        Això s'anomena derivada direccional. 
+    \end{definicio}
+    \begin{proposicio}
+        \begin{displaymath}
+            \mathcal{D}_ef\left(x_0\right) = \left\langle \nabla f \left(x_0\right), \vec{e}\right\rangle 
+        \end{displaymath}
+    \end{proposicio}
+    \begin{corolari}
+        Per tot $\vec{e} \in \mathbb{R}^n$ amb $\left\lVert \vec{e} \right\rVert = 1$, tenim $-\left\lVert \nabla f(x_0)\right\rVert \leq \mathcal{D}_{\vec{e}}f\left(x_0\right) \leq \left\lVert \nabla f(x_0)\right\rVert$ 
+    \end{corolari}
 \end{document}
