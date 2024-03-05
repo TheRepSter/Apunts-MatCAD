@@ -168,11 +168,27 @@
     \end{definicio}
     $\hbox{}$\\
     \begin{teorema}[Formula de las probabilitats totals]
-        Considerem $B_1, B_2, \dots, B_n$ que siguin una partició de $\Omega$, és a dir, $\Omega = \biguplus\limits_{i=1}^{n} B_i$,
+        Considerem \\$B_1, B_2, \dots, B_n \in \mathcal{A}$ que siguin una partició de $\Omega$, és a dir, $\Omega = \biguplus\limits_{i=1}^{n} B_i$,
         tals que $\mathbb{P}\left(B_i\right) > 0$, $\forall i \in \left\{1, 2, \dots, n\right\}$,
         sigui $A \in \mathcal{A}$, aleshores
         \begin{displaymath}
             \mathbb{P}\left(A\right) = \sum\limits_{i=1}^{n} \mathbb{P}\left(A|B_i\right) \mathbb{P}\left(B_i\right)
+        \end{displaymath}
+    \end{teorema}
+    \begin{teorema}[Formula de las probabilitats totals condicionada]
+        Considerem \\$B_1, B_2, \dots, B_n \in \mathcal{A}$ que siguin una partició de $\Omega$, és a dir, $\Omega = \biguplus\limits_{i=1}^{n} B_i$,
+        tals que $\mathbb{P}\left(B_i\right) > 0$, $\forall i \in \left\{1, 2, \dots, n\right\}$,
+        sigui $A \in \mathcal{A}$ i $C \in \mathcal{A}$ amb $\mathbb{P}\left(C\right)>0$, aleshores
+        \begin{displaymath}
+            \mathbb{P}\left(A|C\right) = \sum\limits_{i=1}^{n} \mathbb{P}\left(A|B_i\cap C\right) \mathbb{P}\left(B_i|C\right)
+        \end{displaymath}
+    \end{teorema}
+    \begin{teorema}[Fórmula de Bayes]
+        Considerem \\$B_1, B_2, \dots, B_n \in \mathcal{A}$ que siguin una partició de $\Omega$, és a dir, $\Omega = \biguplus\limits_{i=1}^{n} B_i$,
+        tals que $\mathbb{P}\left(B_i\right) > 0$, $\forall i \in \left\{1, 2, \dots, n\right\}$,
+        sigui $A \in \mathcal{A}$ amb $\mathbb{P}\left(A\right)>0$, aleshores
+        \begin{displaymath}
+            \mathbb{P}\left(B_j|A\right) = \frac{\mathbb{P}\left(A|B_j\right)\mathbb{P}\left(B_j\right)}{\mathbb{P}\left(A\right)} = \frac{\mathbb{P}\left(A|B_j\right)\mathbb{P}\left(B_j\right)}{\sum\limits_{i=1}^{n} \mathbb{P}\left(A|B_i\right) \mathbb{P}\left(B_i\right)}
         \end{displaymath}
     \end{teorema}
 \end{document}

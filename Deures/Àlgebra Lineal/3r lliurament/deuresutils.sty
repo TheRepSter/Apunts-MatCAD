@@ -34,6 +34,7 @@
 \@author. (\@date) \hfill \@niu
 
 \hrulefill
+
 }
 \makeatother
 
@@ -58,7 +59,7 @@
 
 \newcounter{numex}
 
-\newenvironment{exercici}[1][\refstepcounter{numex} \bf{Exercici \thenumex}]{\textbf{#1: }}{}			
+\newenvironment{exercici}[1][\refstepcounter{numex} \bf{Exercici \thenumex}]{\textbf{#1: }}{\hfill\\}			
 
 \newenvironment{solucio}[1][\it{Solució}]{\textbf{#1. } }{\hfill$\square$\\}
 
