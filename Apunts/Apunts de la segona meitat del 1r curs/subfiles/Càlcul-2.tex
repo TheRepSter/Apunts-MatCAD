@@ -321,4 +321,44 @@
     \begin{corolari}
         Per tot $\vec{e} \in \mathbb{R}^n$ amb $\left\lVert \vec{e} \right\rVert = 1$, tenim $-\left\lVert \nabla f(x_0)\right\rVert \leq \mathcal{D}_{\vec{e}}f\left(x_0\right) \leq \left\lVert \nabla f(x_0)\right\rVert$ 
     \end{corolari}
+    \begin{definicio}
+        Sigui $f: \mathbb{R}^n \to \mathbb{R}^m$, $\left(x_1, x_2, \dots, x_n\right) \to \left(f_1, f_2, \dots, f_m\right)$.
+        $f$ és diu diferenciable a $x_0 \in \mathbb{R}^n$ si $\left(f_1, f_2, \dots, f_n\right)$  és diferenciable a $x_0$.\\
+        En aquest cas, escrivim
+        \begin{displaymath}
+            \underbrace{\mathcal{D}f\left(x_0\right)}_\text{matriu diferencial} =
+            \begin{pmatrix}
+                \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \dots & \frac{\partial f_1}{\partial x_n}\\
+                \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \dots & \frac{\partial f_2}{\partial x_n}\\
+                \vdots                            & \vdots                            & \ddots& \vdots\\
+                \frac{\partial f_m}{\partial x_1} & \frac{\partial f_m}{\partial x_2} & \dots & \frac{\partial f_m}{\partial x_n}\\
+            \end{pmatrix}
+        \end{displaymath}
+    \end{definicio}
+    \begin{definicio}
+        Sigui $\mathbb{R}^n \xlongrightarrow{f} \mathbb{R}^m \xlongrightarrow{g} \mathbb{R}^k$, la
+        regla de la cadena és
+        \begin{displaymath}
+            \mathcal{D}\left(g \circ f\right)(x_0) = \mathcal{D}g\left(f\left(x_0\right) \right) \mathcal{D}f\left(x_0\right)
+        \end{displaymath}
+    \end{definicio}
+    \begin{definicio}
+        Una corba a $\mathbb{R}^n$ és una aplicació $\gamma = [a,b] \to \mathbb{R}^n$ 
+    \end{definicio}
+    \begin{notacio}
+        Per $\gamma$, al fer la derivada, farem servir $\dot{\gamma}$
+    \end{notacio}
+    \begin{definicio}
+        La longitud d'una corba $\gamma = [a,b] \to \mathbb{R}^n$ és
+        \begin{displaymath}
+            \int_a^b \left\lVert \dot{\gamma}\left(t\right)\right\rVert  dt
+        \end{displaymath}
+    \end{definicio}
+    \begin{definicio}
+        Una superficie a $\mathbb{R}^3$ és un conjunt de forma $\left\{\left(x,y,z\right) \in \mathbb{R}^3 : f\left(x,y,z\right) = c\right\}$
+        on $f: \mathbb{R}^3 \to \mathbb{R}$ i $c \in \mathbb{R}$.
+    \end{definicio}
+    \begin{obs}
+        $\nabla f\left(x,y,z\right)$ és el vector normal a la superficie $f\left(x,y,z\right) = c$. 
+    \end{obs}
 \end{document}
