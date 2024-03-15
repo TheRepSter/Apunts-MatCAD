@@ -191,4 +191,45 @@
             \mathbb{P}\left(B_j|A\right) = \frac{\mathbb{P}\left(A|B_j\right)\mathbb{P}\left(B_j\right)}{\mathbb{P}\left(A\right)} = \frac{\mathbb{P}\left(A|B_j\right)\mathbb{P}\left(B_j\right)}{\sum\limits_{i=1}^{n} \mathbb{P}\left(A|B_i\right) \mathbb{P}\left(B_i\right)}
         \end{displaymath}
     \end{teorema}
+    \begin{displaymath}
+        \underbrace{LR}_\text{Rao de versemblances} = \frac{\text{Odds}\left(A|E\right)}{\text{Odds}\left(A\right)}
+    \end{displaymath}
+    \begin{displaymath}
+        LR \begin{cases}
+        \approx 1 & \text{l’evidència E no dona suport a $A$ ni al seu contrari}\\
+        > 1 & \text{l’evidència E dona suport a $A$}\\
+        < 1 & \text{l’evidència E dona suport al contrari de $A$}
+        \end{cases}
+    \end{displaymath}
+    \subsection{Variables aleatòries}
+    \begin{definicio}
+        Diem que una aplicació $x: \Omega \to \mathbb{R}$ és una variable aleatòria si, per a tot
+        interval $B$ (o semirecta), tenim que
+        \begin{displaymath}
+            \left\{\omega \in \Omega, X\left(\omega\right) \in \mathcal{A}\right\}
+        \end{displaymath}
+    \end{definicio}
+    \begin{obs}
+        La $\mathbb{P}$ \underline{no} intervé en la definició de v.a., però la motivació és poder
+        calcular-la.
+    \end{obs}
+    \begin{notacio}
+        $\mathbb{P}\left(\left\{\omega \in \Omega, X\left(\omega\right) \in B\right\} \right) = \mathbb{P}\left(X \in B\right)$  
+    \end{notacio}
+    \begin{notacio}
+        Si $B = \left\{a\right\}$, ho escriurem $\mathbb{P}\left(X=a\right)$. Es farà també amb $<$,
+        $\leq$ i els seus equivalents $>$, $\geq$.
+    \end{notacio}
+    \begin{obs}
+        IMPORTANT: Si $\mathcal{A} = \mathcal{P}\left(\Omega\right)$, aleshores tota l'aplicació $X: \Omega \to \mathbb{R}$
+        és una v.a. ($\mathcal{P}\left(\Omega\right)$ és el conjunt de totes les particions possibles amb $\Omega$)
+    \end{obs}
+    \begin{proposicio}
+        Siguin $X, Y$ v.a. Sigui $a \in \mathbb{R}$. Aleshores:
+        \begin{displaymath}
+            X+Y, XY, aX, |X|, X^2
+        \end{displaymath}
+        són també v.a.\\
+        Si $X\left(\omega\right) \neq 0 \hbox{ }\forall \omega \in \Omega \Rightarrow \frac{1}{X}$ és una v.a.
+    \end{proposicio}
 \end{document}
