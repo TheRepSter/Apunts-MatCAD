@@ -361,4 +361,53 @@
     \begin{obs}
         $\nabla f\left(x,y,z\right)$ és el vector normal a la superficie $f\left(x,y,z\right) = c$. 
     \end{obs}
+    \subsubsection{Extrems relatius}
+    \begin{teorema}[de Schwartz]
+        Sigui $f: \mathbb{R}^n \to \mathbb{R}$ tal que $\frac{\partial f}{\partial x_i \partial x_j}$ son
+        funcions continues per tot $i, j = 1, \dots, n$. Aleshores $\frac{\partial f}{\partial x_i \partial x_j} = \frac{\partial f}{ \partial x_j \partial x_i}$,
+        per qualsevol $i,j$
+    \end{teorema}
+    \begin{definicio}
+        \begin{displaymath}
+            \underbrace{Hf}_\text{Matriu Hessiana de $f$} = \left(\frac{\partial^2f}{\partial x_i\partial x_j}\right)_{i,y = 1, \dots, n}
+        \end{displaymath}
+    \end{definicio}
+    \begin{definicio}
+        Una matriu simetrica $A$ és diu positiva si tots els valors propis son positius o
+        equivalentment si $\vec{h}A\vec{h} > 0$.\\
+        Analogament, una matriu simetrica $B$ és diu negativa si tots els valors propis son negatius
+        o equivalentment si $\vec{h}A\vec{h} < 0$.
+    \end{definicio}
+    \begin{teorema}[Criteri per saber si $Hf$ és definida positiva o negativa]
+        $Hf \equiv$ una matriu $n \times n$. 
+        \begin{itemize}
+            \item[a)] Si $\det{\Delta_j} > 0$, aleshores $Hf$ és definida positiva, on $\Delta_j$
+            son els succesius menors de $Hf$.
+            \item[b)] Si $\det{\Delta_1} < 0, \det{\Delta_2} > 0, \det{\Delta_3} < 0, \det{\Delta_4} > 0, \dots, $
+            aleshores $Hf$ és definida negativa.
+        \end{itemize}
+    \end{teorema}
+    \begin{definicio}
+        $\hbox{}$
+        \begin{itemize}
+            \item[a)] Diem que $x_0$ és màxim real de $f\left(x\right)$ si existeix $\delta > 0$ tal
+            que $f\left(x\right) \leq f\left(x_0\right) \hbox{ } \forall x \in \mathfrak{B}\left(x_0, \delta\right)$
+            \item[b)] Diem que $x_0$ és minim real de $f\left(x\right)$ si existeix $\delta > 0$ tal
+            que $f\left(x\right) \geq f\left(x_0\right) \hbox{ } \forall x \in \mathfrak{B}\left(x_0, \delta\right)$
+            \item[c)] Diem que $x_0$ és un punt de sella si existeixen $h_1, h_2 \in \mathbb{R}^n$
+            tal que $f\left(x_0\right)<f\left(x_0+th_1\right)$ i $f\left(x_0\right) > f\left(x_0 + th_2\right)\hbox{ }\forall \left\lvert t\right\rvert \leq \delta$
+        \end{itemize}
+    \end{definicio}
+    \begin{teorema}
+        Sigui $f: \mathbb{R}^n \to \mathbb{R}$ tal que $\frac{\partial^2f}{\partial x_i \partial x_j}$
+        son continues $ \forall i,j$. Sigui $x_0 \in \mathbb{R}^n: \nabla f\left(x_0\right) = \left(0, 0, \dots, 0\right)$.
+        Suposem que $Hf\left(x_0\right)$ te determinant diferent de zero, aleshores:
+        \begin{itemize}
+            \item[a)] Si $\det{\Delta_j} > 0$, aleshores $f$ és minim relatiu a $x_0$ on $\Delta_j$
+            son els succesius menors de $Hf$.
+            \item[b)] Si $(-1)^j\det{\Delta_j} > 0$, aleshores $f$ és un màxim relatiu a $x_0$ on $\Delta_j$
+            son els succesius menors de $Hf$.
+            \item[c)] Si a) i b) no es compleixen, llavors $x_0$ és un punt de sella.
+        \end{itemize} 
+    \end{teorema}
 \end{document}
