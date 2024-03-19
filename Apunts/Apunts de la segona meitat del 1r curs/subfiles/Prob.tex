@@ -232,4 +232,75 @@
         són també v.a.\\
         Si $X\left(\omega\right) \neq 0 \hbox{ }\forall \omega \in \Omega \Rightarrow \frac{1}{X}$ és una v.a.
     \end{proposicio}
+    \begin{proposicio}
+        Tenim $\left\{X_n, n\geq 1\right\}$ successió de v.a.\\
+        \begin{displaymath}
+            x_n: \Omega \to \mathbb{R}
+        \end{displaymath} 
+        Suposem que $\forall \omega \in \Omega \hbox{ } \left\{X_n\left(\omega\right) , n\geq 1\right\}$
+        (successió de nombres reals) és convergent, llavors
+        \begin{definicio}
+            \begin{displaymath}
+                X: \Omega \to \mathbb{R}
+            \end{displaymath}
+            \begin{displaymath}
+                \omega \longmapsto X\left(\omega\right) = \lim\limits_{n \to \infty} X_n \left(\omega\right) 
+            \end{displaymath}
+        \end{definicio}
+    \end{proposicio}
+    \subsubsection{Funció de distribució d'una v.a.}
+    \begin{definicio}
+        Sigui $X$ una v.a. la \underline{funció de distribució} de $X$ és 
+        \begin{displaymath}
+            F: \mathbb{R} \to \left[0, 1\right]
+        \end{displaymath}
+        \begin{displaymath}
+            x \longmapsto F\left(x\right)  = \mathbb{P}\left(X \leq x\right) 
+        \end{displaymath}
+    \end{definicio}
+    \begin{obs}
+        $F$ ben definida, perquè
+        \begin{displaymath}
+            \mathbb{P}\left(X\leq x\right) = \mathbb{P}\left(X \in (-\infty, x]\right) \text{, i } B = (-\infty, x] \subset \mathbb{R}
+        \end{displaymath}
+    \end{obs}
+    \begin{proposicio}[Propietats]
+        $\hbox{}$
+        \begin{enumerate}
+            \item $F$ no decreixent: $x < y \Longrightarrow F\left(x\right) \leq F\left(y\right)$
+            \item $F$ és contínua per la dreta i té límits per l'esquerra.  
+            \item $\lim\limits_{x \to -\infty} F\left(x\right) = 0, \lim\limits_{x \to \infty} F\left(x\right) = 1$
+            \item $F$ té, com a màxim, un nombre numerable de discontinuïtats.
+            \item $\mathbb{P}\left(s \leq x \leq t\right) = F\left(t\right) - F\left(s\right)$
+            \item $\mathbb{P}\left(X < s\right) = F\left(x^-\right)$
+            \item $\mathbb{P}\left(X = x\right) = F\left(x\right) - F\left(x^-\right)$ IMPORTANT: $F$
+            es discontinua en $x \Longleftrightarrow \mathbb{P}\left(X=x\right)>0$ 
+        \end{enumerate}
+    \end{proposicio}
+    \begin{definicio}
+        Una v.a. $X$ és discreta si $\exists S \subset \mathbb{R}$ finit o numerable tal que 
+        \begin{displaymath}
+            \mathbb{P}\left(X \in S\right) = 1
+        \end{displaymath}
+        \begin{itemize}
+            \item $S$ suport de $X$
+            \item Suposem que tot valor a $S$ compleix que $\mathbb{P}\left(X = x\right) > 0$
+            \item Suposem també que $S = \left\{x_i, i\in I\right\}, I \subset \mathbb{N}$ 
+        \end{itemize}
+        \begin{definicio}
+            La funció de probabilitat d'una v.a. discreta $X$ amb suport $S$ és
+            \begin{displaymath}
+                p: S \to \left[0, 1\right]
+            \end{displaymath}
+            \begin{displaymath}
+                x_i \longmapsto p\left(x_i\right)  = \mathbb{P} \left(X = x_i\right)  
+            \end{displaymath}
+        \end{definicio}
+    \end{definicio}
+    \begin{notacio}
+        També, es pot escriure $p_i = p\left(x_i\right)$
+    \end{notacio}
+    \begin{obs}
+        IMPORTANT: $\forall B \subset \mathbb{R}$ interval, tindrem que $\mathbb{P}\left(X \in B\right) = \sum\limits_{i \in I\atop x_i \in B} p_i$
+    \end{obs}
 \end{document}
