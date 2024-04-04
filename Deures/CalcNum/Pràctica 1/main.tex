@@ -5,7 +5,7 @@
 \asignatura{Càlcul numèric}
 \author{Eduardo Pérez Motato}
 \niu{NIU: 1709992}
-\date{01/03/2024}
+\date{31/03/2024}
 
 \begin{document}
     \makeheader
@@ -27,7 +27,7 @@
             Calcular per cadascun dels programes el valor $f\left(x_0\right)$.\\
             Comparar i comentar els resultats.\\
             \begin{solucio}
-                A \verb|Pr1a.c| creem dues funcions, \verb|fsimp| amb precisió float i \verb|fdoble|
+                A \verb|Pr1Ex1a.c| creem dues funcions, \verb|fsimp| amb precisió float i \verb|fdoble|
                 amb precisió doble. En avaluar $x_0$, en el cas del simple retorna $0$, i en el cas
                 del doble retorna $\approx 0.4999997$, el que s'assembla més al valor real (ja que
                 $\lim\limits_{x \to 0} f\left(x\right) = \frac{1}{2}$).
@@ -35,7 +35,7 @@
             \item Reescriure la funció $f\left(x\right)$ fent servir fórmules trigonomètriques de
             forma que es redueixi l'error que es produeix fent servir la expressiò \eqref{eq:1}.\\
             \begin{solucio}
-                A \verb|Pr1b.c| reemplacem $1-\cos{x}$ per $2\sin^2{\left(\frac{x}{2}\right)}$ en
+                A \verb|Pr1Ex1b.c| reemplacem $1-\cos{x}$ per $2\sin^2{\left(\frac{x}{2}\right)}$ en
                 ambdues funcions, llavors, podem veure com les dues funcions abans creades tenen
                 millor precisió.
             \end{solucio}
@@ -46,6 +46,7 @@
             \end{solucio}
         \end{enumerate}
     \end{exercici}
+    \newpage
 
     \begin{exercici}
         Equació quadràtica.\\
@@ -63,42 +64,50 @@
             \item Escriure dos \textbf{programes en C}, un en \textbf{precisió simple} i un altre en
             \textbf{precisió doble} que calculin la solució d'una equació quadràtica mitjançant \eqref{eq:2}.\\
             \begin{solucio}
-                A \verb|Pr2a.c| estan escrites dues funcions, \verb|fquad| en precisió float i \verb|quad|
+                A \verb|Pr1Ex2a.c| estan escrites dues funcions, \verb|fquad| en precisió float i \verb|quad|
                 en precisió doble. Al \verb|main|, hi ha un exemple amb $a=1, b=2$ i $c=1$, donant
                 el resultat correcte de $-1$ com a solució doble. 
             \end{solucio}
             \item Comprovar que si $b^2 >> 4ac$ una de les dues fórmules per al càlcul de les arrels
             amb \eqref{eq:2} produeix resultats contaminats amb error de cancel·lació.\\
             \begin{solucio}
-                Com podem veure a \verb|Pr2b.c|, on calculem les arrels de $a=1, b=40000$ i $c=1$.
+                Com podem veure a \verb|Pr1Ex2b.c|, on calculem les arrels de $a=1, b=40000$ i $c=1$.
                 En aquest cas, tenim $b^2 = 40000^2$ que és, òbviament, molt més gran que $4ac = 4$.
                 En calcular, veiem que la funció amb precisió float dona $0$ i $-40000$ com a
                 solució, mentre en doble dona $\approx-2.5\times10^{-5}$ i $ -39999.999975$, un
-                resultat més creïble. 
+                resultat força més creïble. 
             \end{solucio}
             \item Proposa un procediment alternatiu per al càlcul de les arrels que eviti l'error de
             cancel·lació.\\
             \begin{solucio}
-                Sabem que
+                Sabem que \eqref{eq:2} és equivalent a
                 \begin{displaymath}
-                    \eqref{eq:2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a} \underbrace{\frac{-b \mp \sqrt{b^2-4ac}}{-b \mp \sqrt{b^2-4ac}}}_{=1} = \frac{b^2-\left(b^2-4ac\right)}{2a\left(-b\mp\sqrt{b^2-4ac}\right)}
+                    \frac{-b\pm\sqrt{b^2-4ac}}{2a} \underbrace{\frac{-b \mp \sqrt{b^2-4ac}}{-b \mp \sqrt{b^2-4ac}}}_{=1} = \frac{b^2-\left(b^2-4ac\right)}{2a\left(-b\mp\sqrt{b^2-4ac}\right)}
                 \end{displaymath}
                 i si continuem simplificant, tenim
                 \begin{equation}
-                    \frac{2c}{b \mp \sqrt{b^2-4ac}}
+                    \frac{2c}{-b \mp \sqrt{b^2-4ac}}
                     \label{eq:3}
                 \end{equation}
-                Ara, amb \eqref{eq:3}, canviem el programa anterior i fem els canvis a \verb|Pr2c.c|.
-                Amb els canvis fets, veiem quins són els resultats. 
+                Ara, amb \eqref{eq:3}, canviem el programa anterior i fem els canvis a \verb|Pr1Ex2c.c|
+                per al cas on l'arrel és positiva, ja que és allí on hi ha error de cancel·lació. En
+                cas de posar-ho també quan l'arrel es negativa crearia un altre error de 
+                cancel·lació fatal que produirà $-\infty$. Amb els canvis fets, al evaluar-ho dona
+                un resultat més correcte en cadascun. 
             \end{solucio}
             \item Construir exemples numèrics on el càlcul de les arrels en simple i doble precisió
             proporcionin diferències significatives en exactitud fent servir \eqref{eq:2} i el
             procediment que has proposat.\\
             \begin{solucio}
-                aidonnou
+                Un exemple numèric molt bo i il·lustratiu és el que hi ha a \verb|Pr1Ex2b.c|.
+                En el cas $a = 1, b = 40000, c = 1$, podem observar com \eqref{eq:2} (implementat a
+                \verb|Pr1Ex2a.c| i \verb|Pr1Ex2b.c|) dona, en el cas float, $0$ i $-40000$. En el programa
+                fet amb \eqref{eq:3}, en cas float, dona $-2.4999999 \times 10^{-5}$
+                i $-40000$. 
             \end{solucio}
         \end{enumerate}
     \end{exercici}
+    
     \begin{exercici}
         Càlcul de la variància mostral.\\
         En estadística la variància mostral de $n$ nombres es defineix com
@@ -117,24 +126,36 @@
             variància mostral amb les mateixes fórmules on l'input sigui un vector de nombres reals
             i l'output sigui la variància mostral.\\
             \begin{solucio}
-                lala
+                A \verb|Pr1Ex3a.c| es creen 4 funcions, dues amb \eqref{eq:4} on una és simple i
+                l'altre és double; i altres dues amb \eqref{eq:5}, una en simple i altre en double.
+                Aquest programa demana el nombre de components del vector i després demana cadascun 
+                dels components. Finalment, calcula la variància mostral i mostra en cadascun dels
+                casos l'output de la funció en qüestió.
             \end{solucio}
-            \item Considerar el vector $x = \left\{10000, 10001, 10002\right\}^T$ i calcular la
+            \item Considerar el vector $x = \left(10000, 10001, 10002\right)$ i calcular la
             variància amb els programes generats. Analitzar les discrepàncies.\\
             \begin{solucio}
-                lala
+                Amb aquest vector, totes les funcions donen $1$ menys la simple amb \eqref{eq:5},
+                que dona $0$. Això és degut al fet que en aquest cas hi ha un error de cancel·lació.
             \end{solucio}
             \item Construir dos exemples de vectors de dimensió gran (almenys 100 components) on
             aquestes discrepàncies siguin més evidents.\\
             \begin{solucio}
-                lala
+                A \verb|Pr1Ex3c.c| he posat els exemples dels vectors $\left(10000, 10001, \dots, 10099\right)$ i $(\underbrace{10000}_\text{33 vegades}, \underbrace{10001}_\text{34 vegades},\underbrace{10002}_\text{33 vegades})$.
+                En el primer cas podem veure un error de cancel·lació de $\Delta x \approx 16.8384$
+                mentre al segón hi ha $\Delta x \approx 40.7070$, amb un error relatiu $\approx 61.0606$.
             \end{solucio}
             \item Discutir les diferències en els resultats.\\
             \begin{solucio}
-                lala
+                Podem veure que, en el cas de la fórmula amb possible cancel·lació \eqref{eq:5} en
+                simple hi ha una alta probabilitat de tindre un error de cancel·lació, mentre 
+                ambdues fórmules són aproximadament igual d'eficients, llavors no dona benefici
+                fer-la servir.
             \end{solucio}
         \end{enumerate}
     \end{exercici}
+    \newpage
+
     \begin{exercici}
         Suma d'una sèrie.\\
         És conegut que la sèrie dels recíprocs dels quadrats dels nombres naturals convergeix i la
@@ -150,26 +171,55 @@
             creixent fins a un terme màxim $\left(5000, 10000, \dots\right)$ on les dades siguin el
             nombre de termes a sumar.\\
             \begin{solucio}
-                Caca
+                \underline{Suposant que quan es refereix en ordre creixent es refereix a $k$ creixent.}\\
+                A \verb|Pr1Ex4a.c| es creen dues funcions, una en simple i l'altra en doble, que
+                calculen en ordre creixent \eqref{eq:6}, sent més eficient la doble.
             \end{solucio}
             \item Escriure programes en C (doble i simple precisió) que sumin els termes de la sèrie
             en ordre decreixent.\\
             \begin{solucio}
-                Culo
+                A \verb|Pr1Ex4b.c| es creen dues funcions, una en simple i l'altra en doble, que
+                calculen en ordre decreixent \eqref{eq:6}, sent més o menys igual d'eficients però
+                la simple amb menor precisió.
             \end{solucio}
             \item Comparar els resultats anteriors amb el valor exacte i justifica els diferents
             resultats.\\
             \begin{solucio}
-                Culo
+                Podem veure que el cas d'ordre decreixent \underline{de $k$} millora el càlcul.
+                Això a causa de les propietats dels punts flotants en fer la suma els bits més
+                petits del nombre inferior es perden, en aquest cas quan $k$ decreix, $\frac{1}{k^2}$
+                creix i això fa que al primer sumar els nombres més petits hi hagi menys error.  
             \end{solucio}
             \item Proporcionar una fórmula alternativa que es comporti millor que \eqref{eq:6}.\\
             \begin{solucio}
-                Pis
+                Buscant per internet vaig trobar la seguent igualtat
+                \begin{equation}
+                    \frac{\pi}{6} = \sum\limits_{k=1}^{\infty} \frac{-120+329k+568k^2}{k(1+k)(1+2k)(1+4k)(3+4k)(5+4k)}
+                    \label{eq:7}
+                \end{equation}
+                llavors, si fem servir això podem arrivar fàcilment a $\frac{\pi^2}{6}$ mitjançant
+                \eqref{eq:7} de la següent manera
+                \begin{equation}
+                    \frac{\pi^2}{6} = 6\left(\sum\limits_{k=1}^{\infty} \frac{-120+329k+568k^2}{k(1+k)(1+2k)(1+4k)(3+4k)(5+4k)}\right)^2
+                    \label{eq:8}
+                \end{equation}
+                això programat en \verb|Pr1Ex4d.c|, podem veure que en el cas doble (perqué en el
+                simple no es pot demanar més precisió) l'error és de $-2.22\times10^{-16}$, és a dir,
+                un error molt petit. 
             \end{solucio}
         \end{enumerate}
     \end{exercici}
+    \newpage
+
     \begin{exercici}
         Escriure conclusions sobre l'observat i après en aquesta pràctica. Extensió màxima de mitja
         pàgina. 
     \end{exercici}
+    \begin{solucio}
+        A l'hora de fer càlculs hem de tindre molta cura amb la precisió de les funcions que
+        utilitzem, tant en el tipus de dada rebuda i retornada, com els limits de precisió de la
+        propia funció (com que per exemple si fem $1.2 \times 10^{-5}$ el cosinus no dona un valor
+        correcte i en canvi el sinus si). L'ordre de les operacions també afecta i és millor sumar o
+        restar sempre, a ser possible, en el mateix ordre de magnitud. 
+    \end{solucio}
 \end{document}

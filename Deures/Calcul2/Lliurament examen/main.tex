@@ -1,0 +1,189 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{deuresutils}
+
+\title{Examen per les vacances}
+\asignatura{Càlcul en Diverses Variables}
+\author{Eduardo Pérez Motato}
+\niu{NIU: 1709992}
+\date{02/04/2024}
+
+\begin{document}
+    \makeheader
+
+    \begin{exercici}
+        \begin{enumerate}[label=\alph*)]
+            \item Trobeu els punts de la gràfica de la funció $f\left(x,y\right) = x^3 + 3y^2 - y$
+            tals que el pla tangent és paral·lel al pla $x+y-z=1$.\\
+            \begin{solucio}
+                Un pla tangent paral·lel al pla $x+y-z=1$ ha de tenir el vector normal paral·lel, és
+                a dir, $\frac{1}{A}=\frac{1}{B}=\frac{-1}{C}$ on $\left(A, B, C\right)$ és el vector
+                normal de la gràfica en un determinat punt. Per calcular aquest determinat punt fem
+                servir que el gradient d'un punt a la gràfica és el vector normal del pla en aquest
+                punt. Llavors, si tenim en compte que $z = f(x,y)$, podem trobar que $x^3 + 3y^2 - y - z = 0$
+                i si fem les derivades parcials d'aquesta equació tenim 
+                \begin{displaymath}
+                    V_n = \left(3x^2, -6y-1, -1\right)
+                \end{displaymath}
+                I ara, sabem que $\frac{1}{3x^2}=\frac{1}{-6y-1} = 1$. Amb això arribem al seguent:
+                \begin{displaymath}
+                    \begin{cases}
+                        1 = 3x^2\\
+                        1= -6y-1
+                    \end{cases}
+                    \Longrightarrow
+                    \begin{cases}
+                        x = \pm \frac{\sqrt{3}}{3}\\
+                        y = -\frac{1}{3}
+                    \end{cases}
+                \end{displaymath}
+                Per trobar la $z$ d'aquest punt hem de evaluar la funció en els corresponents
+                valors
+                \begin{displaymath}
+                    \begin{split}
+                        f\left(\frac{\sqrt{3}}{3}, -\frac{1}{3}\right) &= \frac{\sqrt{3}}{9}\\
+                        f\left(-\frac{\sqrt{3}}{3}, -\frac{1}{3}\right) &= -\frac{\sqrt{3}}{9}
+                    \end{split}
+                \end{displaymath}
+                I amb això, tenim dos punts que compleixen l'enunciat i són els següents:
+                \begin{center}
+                    $\left(\frac{\sqrt{3}}{3}, -\frac{1}{3}, \frac{\sqrt{3}}{9}\right)$ i $\left(-\frac{\sqrt{3}}{3}, -\frac{1}{3}, -\frac{\sqrt{3}}{9}\right)$                    
+                \end{center}
+            \end{solucio}
+            \item Trobeu el vector normal i el pla tangent a la superfície $x^2 -3y^3 - z = 4$ al punt $\left(1,1,-6\right)$\\
+            \begin{solucio}
+                Definim $f(x,y,z) := x^2 - 3y^3-z$ primer de tot comprovem que $f(1, 1, -6) = 4$
+                \begin{displaymath}
+                    \begin{split}
+                        4 &\stackrel{?}{=} f(1, 1, -6)\\
+                        &\stackrel{?}{=} 1-3+6\\
+                        &= 4
+                    \end{split}
+                \end{displaymath}
+                efectivament, ho compleix. Ara, calculem el vector normal del pla tangent calculant $\nabla f$
+                i avaluant-ho al punt demanat. $\nabla f = \left(2x, -9y^2, -1\right)$ i si ara ho
+                avaluem en $\left(1,1,-6\right)$ resulta en $\nabla f \left(1,1,-6\right) = \left(2, -9, -1\right)$.
+                Aquest és el nostre vector normal.\\
+                Ara, sabem que el pla serà $2x-9y-z = D$, per trobar la $D$ avaluem en el punt $\left(1,1,-6\right)$,
+                aquesta $D = -1$. El pla tangent de $x^2-3y^3-z = 4$ és $2x-9y-z = -1$.
+            \end{solucio}
+        \end{enumerate}
+    \end{exercici}
+
+    \begin{exercici}
+        \begin{enumerate}[label=\alph*)]
+            \item Estudieu la diferenciabilitat de la funció $f(x,y)$ definida per
+            \begin{displaymath}
+                f(x,y) = \begin{cases}
+                    \frac{x^3y}{x^4+y^2} & \text{si } \left(x,y\right) \neq \left(0,0\right)\\
+                    0 & \text{si } \left(x,y\right) = \left(0,0\right)
+                \end{cases}
+            \end{displaymath}
+            \begin{solucio}
+                Primer de tot calculem $\nabla f$ \underline{quan $(x,y) \neq (0,0)$},
+                \begin{displaymath}
+                    \nabla f = \left(\frac{3x^2y\left(x^4+y^2\right)-x^3y\left(4x^3\right)}{\left(x^4+y^2\right)^2}, \frac{x^3\left(x^4+y^2\right)-x^3y\left(2y\right)}{\left(x^4+y^2\right)^2}\right)
+                \end{displaymath}
+                això ho podem simplificar bastant, així que ho fem
+                \begin{displaymath}
+                    \nabla f = \left(\frac{3x^2y^3-x^6y}{\left(x^4+y^2\right)^2}, \frac{x^7-x^3y^2}{\left(x^4+y^2\right)^2}\right)
+                \end{displaymath}
+                Llavors, \begin{displaymath}
+                    \nabla f(x,y) = \begin{cases}
+                        \left(\frac{3x^2y^3-x^6y}{\left(x^4+y^2\right)^2}, \frac{x^7-x^3y^2}{\left(x^4+y^2\right)^2}\right) & \text{si } \left(x,y\right) \neq \left(0,0\right)\\
+                        \left(0,0\right) & \text{si } \left(x,y\right) = \left(0,0\right)
+                    \end{cases}
+                \end{displaymath}
+                Les derivades existeixen per ambdues variables, llavors la primera condició es
+                compleix. Ara, comprovem si $\lim\limits_{x\to x_0}\frac{f(x)-f(x_0)-\left\langle \nabla f(x_0), x\right\rangle}{\left\lVert x-x_0\right\rVert} = 0$,
+                veiem que només hem de comprovar $x_0 = \left(0,0\right)$, ja que per la resta està
+                clar que ho compleix per la definició de diferenciació.\\ Llavors, comprovem aquest
+                cas:
+                \begin{displaymath}
+                    \begin{split}
+                        0 &\stackrel{?}{=} \lim\limits_{\left(x,y\right)\to\left(0,0\right)}\frac{f(x,y)-f(0,0)-\left\langle \nabla f(0,0), \left(x,y\right)\right\rangle}{\left\lVert\left(x,y\right)-\left(0,0\right)\right\rVert}\\
+                        &\stackrel{?}{=} \lim\limits_{\left(x,y\right)\to\left(0,0\right)}\frac{f(x,y)}{\left\lVert\left(x,y\right)\right\rVert}\\
+                        &\stackrel{?}{=} \lim\limits_{\left(x,y\right)\to\left(0,0\right)}\frac{x^3y}{\left(x^4+y^2\right)\sqrt{x^2+y^2}}\\
+                        \text{ si fem $y=mx$: }
+                        &\stackrel{?}{=} \lim\limits_{x\to 0}\frac{x^3\left(mx\right)}{\left(x^4+\left(mx\right)^2\right)\sqrt{x^2+\left(mx\right)^2}}\\
+                        &\stackrel{?}{=} \lim\limits_{x\to 0}\frac{mx^4}{\left(x^4+m^2x^2\right)\sqrt{x^2+m^2x^2}}\\
+                        &\stackrel{?}{=} \lim\limits_{x\to 0}\frac{mx^4}{x^3\left(x^2+m^2\right)\sqrt{1+m^2}}\\
+                        &\stackrel{?}{=} \lim\limits_{x\to 0}\frac{mx}{\left(x^2+m^2\right)\sqrt{1+m^2}}\\
+                        \text{ aquí apliquem l'Hôpital: }
+                        & \stackrel{?}{=} \lim\limits_{x\to 0}\frac{m}{2x\sqrt{1+m^2}} = \infty\\
+                        &\neq \infty
+                    \end{split}
+                \end{displaymath}
+                Clarament, $0\neq \infty$, i per això sabem que $f$ no és diferenciable. Amb això
+                ens basta, pot ser que el límit no existeixi, però sabem que si no existeix tampoc
+                es diferenciable.
+            \end{solucio}
+            \item Estudieu el límit
+            \begin{displaymath}
+                \lim\limits_{\left(x,y\right) \to \left(0,0\right)}\frac{x^ay^a}{3x^2+5y^2}
+            \end{displaymath}
+            segons els valors de $a > 0$.\\
+            \begin{solucio}
+                \begin{displaymath}
+                    \lim\limits_{\left(x,y\right) \to \left(0,0\right)}\frac{x^ay^a}{3x^2+5y^2} \leq \lim\limits_{\left(x,y\right) \to \left(0,0\right)}\frac{\left\lvert x^a\right\rvert \left\lvert y^a\right\rvert }{3x^2+5y^2} \leq \lim\limits_{\left(x,y\right) \to \left(0,0\right)}\frac{x^{2a}+y^{2a}}{6x^2+10y^2}
+                \end{displaymath}
+                Amb això podem separar-ho
+                \begin{displaymath}
+                    \lim\limits_{\left(x,y\right) \to \left(0,0\right)}\frac{x^{2a}}{6x^2+10y^2}+\lim\limits_{\left(x,y\right) \to \left(0,0\right)}\frac{y^{2a}}{6x^2+10y^2}
+                \end{displaymath}
+                Llavors, si busquem cancel·lar una mica
+                \begin{displaymath}
+                    \lim\limits_{\left(x,y\right) \to \left(0,0\right)} \frac{x^2x^{2\left(a-1\right)}}{x^2\left(6+10\frac{y^2}{x^2}\right)} + \lim\limits_{\left(x,y\right) \to \left(0,0\right)} \frac{y^2y^{2\left(a-1\right)}}{y^2\left(6\frac{x^2}{y^2}+10\right)}
+                \end{displaymath}
+                I això simplificat és el següent
+                \begin{displaymath}
+                    \lim\limits_{\left(x,y\right) \to \left(0,0\right)} \frac{x^{2\left(a-1\right)}}{6+10\frac{y^2}{x^2}} + \lim\limits_{\left(x,y\right) \to \left(0,0\right)} \frac{y^{2\left(a-1\right)}}{6\frac{x^2}{y^2}+10}
+                \end{displaymath}
+                Si $a-1 > 0 \Rightarrow a > 1$ llavors aquest límit serà $0$, ja que $x^{2(a-1)}$
+                decreix més de pressa que $\frac{y^2}{x^2}$, també el mateix amb $y^{2(a-1)}$ i $\frac{x^2}{y^2}$.\\
+                En canvi, si $a<1$ $\frac{x^2}{y^2}$ decreix més de pressa que $x^2$, també passa el
+                mateix amb $y^{2(a-1)}$ i $\frac{x^2}{y^2}$. Això provoca que depengui de la
+                direcció i provoqui que el límit no existeixi. Finalment, si $a = 1$ provoca que
+                només depengui de $\frac{x^2}{y^2}$ i $\frac{y^2}{x^2}$, fent així que depengui de
+                la direcció i no existeixi el límit.
+            \end{solucio}
+        \end{enumerate}
+    \end{exercici}
+
+    \begin{exercici}
+        \begin{enumerate}[label=\alph*)]
+            \item Definiu derivada direccional i justifiqueu la seva relació amb el gradient. Perqué
+            la direcció de màxim creixement d'una funció diferenciable és la direcció del gradient?
+            \begin{solucio}
+                Sigui $f$ definida a $\mathbb{R}^n$ i $x_0\in \mathbb{R}^n$. $\vec{e} \in \mathbb{R}^n: \left\lVert\vec{e}\right\rVert = 1$.
+                Definim $D_{\vec{e}}f(x_0) = \lim\limits_{t\to0}\frac{f(x_0-\vec{e}t)-f(x_0)}{t}$.\\
+                La derivada direccional de $f$ en $\vec{e}$ equival a $\left\langle\nabla f, \vec{e}\right\rangle$.
+                Aquesta derivada serà màxima si $\left\langle\nabla f, \vec{e}\right\rangle$ és
+                màxim i això només sera si tenen la mateixa direcció. 
+            \end{solucio}
+            \item Sigui $f: \mathbb{R}^3 \to \mathbb{R}$ una funció diferenciable. Escriviu les
+            derivades parcials de la funcio $g(x, y) = f\left(xy, e^xy^2, x^3\right)$ en termes de
+            les derivades parcials de $f$.\\
+            \begin{solucio}
+                \begin{displaymath}
+                    \begin{split}
+                        \frac{\partial g}{\partial x} &= \frac{\partial f}{\partial xy}\frac{\partial xy}{\partial x} + \frac{\partial f}{\partial e^xy^2}\frac{\partial e^xy^2}{\partial x} + \frac{\partial f}{\partial x^3}\frac{\partial x^3}{\partial x}\\
+                        &= \frac{\partial f}{\partial xy}y + \frac{\partial f}{\partial e^xy^2}e^xy^2 + \frac{\partial f}{\partial x^3}3x^2
+                    \end{split}
+                \end{displaymath}
+                \begin{displaymath}
+                    \begin{split}
+                        \frac{\partial g}{\partial x} &= \frac{\partial f}{\partial xy}\frac{\partial xy}{\partial y} + \frac{\partial f}{\partial e^xy^2}\frac{\partial e^xy^2}{\partial y} + \frac{\partial f}{\partial x^3}\frac{\partial x^3}{\partial y}\\
+                        &= \frac{\partial f}{\partial xy}x + \frac{\partial f}{\partial e^xy^2}2ye^x                        
+                    \end{split}
+                \end{displaymath}
+            \end{solucio}
+            \item Definiu un conjunt tancat. És cert que la frontera de qualsevol conjunt és sempre
+            un conjunt tancat?\\
+            \begin{solucio}
+                Un conjunt $A$ és tancat si $A = \overline{A}$, sent $\overline{A} \equiv$
+                l'adherencia del conjunt $A$. Totes les fronteres són tancades perquè $\text{fr}(A)^c$
+                és obert, això ja que $\text{fr}(A)^c = \mathring{\text{fr}(A)^c}$.
+            \end{solucio}
+        \end{enumerate}
+    \end{exercici}
+\end{document}

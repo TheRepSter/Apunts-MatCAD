@@ -1,0 +1,98 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{deuresutils}
+
+\title{Pràctica 2}
+\asignatura{Càlcul numèric}
+\author{Eduardo Pérez Motato}
+\niu{NIU: 1709992}
+\date{01/03/2024}
+
+\begin{document}
+    \makeheader
+
+    \begin{exercici}
+        Considerar l'equació polinòmica
+        \begin{equation}
+            x^3 = x + 40
+            \label{eq:1}
+        \end{equation}
+        i la fórmula para el càlcul de la seva arrel real (que s'obté a partir de les fórmules de
+        Cardano)
+        \begin{displaymath}
+            \alpha = \sqrt[3]{20 + \frac{1}{9}\sqrt{32397}} + \sqrt[3]{20-\frac{1}{9}\sqrt{32397}}
+        \end{displaymath}
+        \begin{enumerate}[label=\alph*)]
+            \item Comprovar que es produeix error de cancel·lació al evaluar en precisió simple i
+            doble precisió l'expressió de l'arrel real de l'equació anterior.\\
+            \begin{solucio}
+                skibidi
+            \end{solucio}
+            \item Aplicar el mètode de Newton a la funció
+            \begin{displaymath}
+                f\left(x\right) = x^3-x-40 
+            \end{displaymath}
+            començant amb $x_0 = 2$ fent servir precisió simple i doble. Obtenir una aproximació de
+            $8$ i $15$ decimals correctes respectivament.\\
+            \begin{solucio}
+                crotolamo
+            \end{solucio}
+            \item Considerar l'equació polinòmica, $x^3=x+400$\\
+            Obtenir una fórmula de Cardano per al càlcul de l'arrel real, $\beta$. Comprovar que
+            aquesta arrel compleix
+            \begin{displaymath}
+                2 \leq \beta \leq 8
+            \end{displaymath}
+            \begin{solucio}
+                makeheader
+            \end{solucio}
+            Comprovar l'error de cancel·lació calculant la fórmula explicita en precisió doble.\\
+            Aplicar els següents mètodes iteratius per obtenir $15$ decimals correctes de l'arrel.
+            \begin{enumerate}
+                \item Mètode de la bisecció partint de l'interval $\left[2,8\right]$\\
+                \begin{solucio}
+                    La revolución industrial
+                \end{solucio}
+                \item Mètode de Newton partint del pivot $x_0 = 2$.\\
+                \begin{solucio}
+                    Y sus consecuencias
+                \end{solucio}
+            \end{enumerate}
+            Comparar l'ordre de convergència numèrica i determina una estrategia per calcular les
+            arrels d'aquest tipus d'equacions.\\
+            \begin{solucio}
+                Desastre para la humanidad
+            \end{solucio}
+        \end{enumerate}
+    \end{exercici}
+    \newpage
+    \begin{exercici}
+        Sigui l'equació $f\left(x\right) = 0$ amb $f\left(x\right)$ contínuament derivable, $x^*$
+        una arrel simple, $f\left(x^*\right) = 0$, amb $f'\left(x\right) = 0$ en un entorn de $x^*$.
+        Considerar la iteració
+        \begin{displaymath}
+            x_{k+1} = x_k - b_kf\left(x_k\right) 
+        \end{displaymath}
+        on
+        \begin{displaymath}
+            b_{k+1} = b_k\left(2-f'\left(x_{k+1}\right)b_k\right)
+        \end{displaymath}
+        partint d'un pivot $x_0$ suficientment pròxim a $x^*$ amb $b_0 = \frac{1}{f'\left(x_0\right) }$.
+        \begin{enumerate}[label=\alph*)]
+            \item Aplicar la iteració a l'equació \eqref{eq:1}, tomant $b_0 = \frac{1}{3x^2_0-1}$.\\
+            Estudiar l'ordre de convergència numèric: suggeriment, calcular $e_k = \left\lvert x_k-x_{k+1}\right\rvert$
+            i compara els cocients $\frac{e_k}{e_{k-1}}, \frac{e_k}{\left(e_{k-1}\right)^2}, \dots$.\\
+            \begin{solucio}
+                A mi ke me dices jaja salu2
+            \end{solucio}
+        \end{enumerate}
+    \end{exercici}
+    \newpage
+    \begin{exercici}
+        \textbf{(OPCIONAL)}\\
+        Sigui l'equació $f\left(x\right) = 0$ amb $f\left(x\right)$ completament derivable, $x^*$
+        una arrel simple, $f\left(x^*\right) = 0$, i $f'\left(x\right) \neq 0$ 
+    \end{exercici}
+    \begin{solucio}
+        Lenin tenía razón.
+    \end{solucio}
+\end{document}

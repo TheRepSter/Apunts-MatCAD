@@ -7,6 +7,6 @@
 *.toc
 *.out
 *.aux
+*.gnuplot
 .vscode
 .DS_Store
-Deures/CalcNum/*

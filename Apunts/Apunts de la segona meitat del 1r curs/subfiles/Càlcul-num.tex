@@ -110,4 +110,24 @@
     \subsection{Zeros de funcions}
     El millor mètode per trobar un zero d'una funció és el mètode de bisecció, però és molt lent.\\
     Hi ha molts, millor mirar el diaporama.\\
+    \begin{exercici}
+        Aplicar el mètode de newton per calcular $\sqrt[k]{c}$ on $c \in \mathbb{R}^+$ i $k \geq 2$:\\
+        \begin{displaymath}
+            x = \sqrt[k]{c} \Rightarrow 0 = x^k-c \Rightarrow f\left(x\right) = x^k-c
+        \end{displaymath}
+        Apliquem el mètode de Newton:
+        \begin{displaymath}
+            x_{n+1} = x_n - \frac{f\left(x_n\right)}{f'\left(x_n\right)}
+        \end{displaymath}
+        \begin{displaymath}
+            x_{n+1} = x_n - \frac{x_n^3-c}{kx_n^{k-1}}
+        \end{displaymath}
+        Si comencem amb $x_0 = 3$:
+        \begin{itemize}
+            \item[$x_1$]$= 3.\underline{03}703703$
+            \item[$x_2$]$= 3.\underline{0365}8903$
+            \item[$x_3$]$= 3.\underline{03658897}$
+            \item[$x_4$]$= 3.\underline{03658897}$
+        \end{itemize}
+    \end{exercici}
 \end{document}

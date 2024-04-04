@@ -306,4 +306,30 @@
     \begin{obs}
         A partir de la funció de probabilitat es pot calcular tot.
     \end{obs}
+    Esdeveniment $A$ amb $p := \mathbb{P}\left(A\right)$
+    \begin{notacio}
+        \begin{displaymath}
+            \begin{cases}
+                \text{Si $A$ es realitza} \Longrightarrow & \text{"Èxit"}\\
+                \text{Si $A$ no es realitza} \Longrightarrow & \text{"Fracàs"}
+            \end{cases}
+        \end{displaymath}
+    \end{notacio}
+    Hi ha els seguents tipus de variables discretes:
+    \begin{enumerate}
+        \item Degenerat: $X=A$
+        \item Bernulli: $X = \begin{cases}
+            1 & p\\
+            0 & 1-p
+        \end{cases}$, $X \sim \mathcal{B}(p)$
+        \item Uniforme $X \sim \mathcal{U}\left\{1, 2, \dots, n\right\}$
+        \item Binomial $X \sim B(n, p)$
+        \item Geomètrica $X \sim \mathcal{G} \left(p\right)$ (Propietat: $\mathbb{P}\left(X>l+k|x>l\right) = \mathbb{P}\left(X>k\right),\;\forall l,k \in \mathbb{N}$)
+        \item Binomial negativa $X \sim BN\left(n, p\right)$
+        \item Hipergeomètrica \begin{itemize}
+            \item Amb reemplaçament ($\forall n \in \mathbb{N}$): $X \sim B\left(n, \frac{B}{n}\right)$
+            \item Sense reemplaçament ($m \leq N$) $X \sim H(N, B, n)$
+        \end{itemize}
+        \item Poisson $X \sim P_{oiss}(\lambda)$
+    \end{enumerate}
 \end{document}
