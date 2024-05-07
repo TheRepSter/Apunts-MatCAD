@@ -130,4 +130,251 @@
             \item[$x_4$]$= 3.\underline{03658897}$
         \end{itemize}
     \end{exercici}
+    \begin{exercici}
+        Calculeu, usant quatre dígits de precisió i els mètodes d'eliminació gaussiana, la solució
+        dels sistema
+        \begin{displaymath}
+            \left(
+                \begin{array}{c c c | c}
+                    1 & -1 & 3 & 2\\
+                    3 & -3 & 1 & -1\\
+                    1 & 1  & 0 & 3
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{c c c | c}
+                    1 & -1 & 3 & 2\\
+                    0 & 0 & -8 & -7\\
+                    0 & -2  & -3 & 1
+                \end{array}
+            \right)
+            \sim
+            \left(
+                \begin{array}{c c c | c}
+                    1 & -1 & 3 & 2\\
+                    0 & 1  & \frac{3}{2} & -\frac{1}{2}\\
+                    0 & 0 & 1 & \frac{7}{8}
+                \end{array}
+            \right)
+        \end{displaymath}
+        \begin{displaymath}
+            \Rightarrow \begin{cases}
+                x_1 =& \frac{19}{16}\\
+                x_2 =& \frac{29}{16}\\
+                x_3 =& \frac{7}{9}
+            \end{cases}
+        \end{displaymath}
+    \end{exercici}
+    \begin{exercici}
+        Obtenir la factoració LU sense pivotatge de
+        \begin{displaymath}
+            A = 
+            \left(
+                \begin{array}{c c c}
+                    1 & 2 & 3\\
+                    4 & 5 & 6\\
+                    7 & 8 & 1
+                \end{array}
+            \right)
+        \end{displaymath}
+        \begin{displaymath}
+            \begin{split}
+                A &=\left(
+                    \begin{array}{c c c}
+                        1 & 2 & 3\\
+                        4 & 5 & 6\\
+                        7 & 8 & 1
+                    \end{array}
+                \right)
+                =
+                \left(
+                    \begin{array}{c c c}
+                        1 & 0 & 0\\
+                        -4 & 1 & 0\\
+                        0 & 0 & 1
+                    \end{array}
+                \right)
+                \left(
+                    \begin{array}{c c c}
+                        1 & 2 & 3\\
+                        0 & -3 & -6\\
+                        7 & 8 & 1
+                    \end{array}
+                \right)\\
+                &=
+                \left(
+                    \begin{array}{c c c}
+                        1 & 0 & 0\\
+                        -4 & 1 & 0\\
+                        0 & 0 & 1
+                    \end{array}
+                \right)
+                \left(
+                    \begin{array}{c c c}
+                        1 & 0 & 0\\
+                        0 & 1 & 0\\
+                        -7 & 0 & 1
+                    \end{array}
+                \right)
+                \left(
+                    \begin{array}{c c c}
+                        1 & 2 & 3\\
+                        0 & -3 & -6\\
+                        0 & -6 & -20
+                    \end{array}
+                \right)\\
+                &=
+                \left(
+                    \begin{array}{c c c}
+                        1 & 0 & 0\\
+                        -4 & 1 & 0\\
+                        0 & 0 & 1
+                    \end{array}
+                \right)
+                \left(
+                    \begin{array}{c c c}
+                        1 & 0 & 0\\
+                        0 & 1 & 0\\
+                        -7 & 0 & 1
+                    \end{array}
+                \right)
+                \left(
+                    \begin{array}{c c c}
+                        1 & 0 & 0\\
+                        0 & 1 & 0\\
+                        0 & -2 & 1
+                    \end{array}
+                \right)
+                \left(
+                    \begin{array}{c c c}
+                        1 & 2 & 3\\
+                        0 & -3 & -6\\
+                        0 & 0 & -8
+                    \end{array}
+                \right)
+            \end{split}
+        \end{displaymath}
+        Llavors $U = \left(
+            \begin{array}{c c c}
+                1 & 2 & 3\\
+                0 & -3 & -6\\
+                0 & 0 & -8
+            \end{array}
+        \right)$. Ara, calculem el $L$:
+        \begin{displaymath}
+            \begin{split}
+                L &= \left[\left(
+                \begin{array}{c c c}
+                    1 & 0 & 0\\
+                    -4 & 1 & 0\\
+                    0 & 0 & 1
+                \end{array}
+            \right)
+            \left(
+                \begin{array}{c c c}
+                    1 & 0 & 0\\
+                    0 & 1 & 0\\
+                    -7 & 0 & 1
+                \end{array}
+            \right)
+            \left(
+                \begin{array}{c c c}
+                    1 & 0 & 0\\
+                    0 & 1 & 0\\
+                    0 & -2 & 1
+                \end{array}
+            \right)\right]^{-1}\\
+            &=
+            \left(
+                \begin{array}{c c c}
+                    1 & 0 & 0\\
+                    0 & 1 & 0\\
+                    0 & -2 & 1
+                \end{array}
+            \right)^{-1}
+            \left(
+                \begin{array}{c c c}
+                    1 & 0 & 0\\
+                    0 & 1 & 0\\
+                    -7 & 0 & 1
+                \end{array}
+            \right)^{-1}
+            \left(
+                \begin{array}{c c c}
+                    1 & 0 & 0\\
+                    -4 & 1 & 0\\
+                    0 & 0 & 1
+                \end{array}
+            \right)^{-1}\\
+            &=
+            \left(
+                \begin{array}{c c c}
+                    1 & 0 & 0\\
+                    0 & 1 & 0\\
+                    0 & 2 & 1
+                \end{array}
+            \right)
+            \left(
+                \begin{array}{c c c}
+                    1 & 0 & 0\\
+                    0 & 1 & 0\\
+                    7 & 0 & 1
+                \end{array}
+            \right)
+            \left(
+                \begin{array}{c c c}
+                    1 & 0 & 0\\
+                    4 & 1 & 0\\
+                    0 & 0 & 1
+                \end{array}
+            \right)\\
+            &=
+            \left(
+                \begin{array}{c c c}
+                    1 & 0 & 0\\
+                    4 & 1 & 0\\
+                    7 & 2 & 1
+                \end{array}
+            \right)
+            \end{split}
+        \end{displaymath}
+    \end{exercici}
+    \begin{exercici}[30]
+        \begin{displaymath}
+            A\left(a,b\right) = \left(
+                \begin{array}{c c c c}
+                    a & b & 0 & 0\\
+                    b & a & b & 0\\
+                    0 & b & a & b\\
+                    0 & 0 & b & a
+                \end{array}
+            \right)
+        \end{displaymath}
+        amb $a, b \in \mathbb{R},\; a \neq 0$, determineu la regió dels punts del pla $(a,b)$ per
+        als que el mètode de Gauss-Seidel convergeix al resoldre el sistema $A\left(a,b\right)x = c$.
+        En el cas $A\left(3, 1\right)$ determineu el nombre de passos que caldria fer per a resoldre
+        el sistema amb $c = \left(2,2,8,-5\right)^T$ pel mètode de Gauss-Seidel amb $x^{(0)} = \left(1,0,0,0\right)^T$
+        i amb un error $\left\lVert x^{(k)}-x\right\rVert _\infty < 10^{-3}$.\\\\
+        \begin{displaymath}
+            \left\lvert
+                \begin{array}{c c c c}
+                    \lambda a & b & 0 & 0\\
+                    \lambda b & \lambda a & b & 0\\
+                    0 & \lambda b & \lambda a & b\\
+                    0 & 0 & \lambda b & \lambda a
+                \end{array}
+            \right\rvert = 0 = \lambda^2\left(\lambda^2 a^4 - 3\lambda a^2 b^2 + b^4\right)
+        \end{displaymath}
+        \begin{displaymath}
+            \Rightarrow \lambda = \begin{cases}
+                0\\
+                \frac{3a^2 b^2 \pm \sqrt{9a^4 b^4 - 4a^4b^4}}{2a^4} = \frac{(\pm \sqrt{5}-3)b^2}{2a^2}
+            \end{cases}
+        \end{displaymath}
+        \begin{displaymath}
+            R_{GS} = \max{\left\lvert\lambda_i\right\rvert} = \frac{\pm \sqrt{5} - 3}{2a^2} < 1\Rightarrow a > b \sqrt{\frac{\sqrt{5}+1}{2}}
+        \end{displaymath}
+        Esta malament però dona igual. El procediment està be pero hi ha alguna cosa malament.
+    \end{exercici}
 \end{document}

@@ -332,4 +332,34 @@
         \end{itemize}
         \item Poisson $X \sim P_{oiss}(\lambda)$
     \end{enumerate}
+    \subsubsection{Variables aleatories continues}
+    \begin{definicio}
+        $X$ és una variable aleatòria contínua si $\exists f: \mathbb{R} \to \mathbb{R}$ tal que
+        \begin{enumerate}
+            \item $f(x) \geq 0\; \forall x \in \mathbb{R}$
+            \item $f$ és integrable i $\int_{-\infty}^{\infty} f(x) dx = 1$
+            \item $\forall -\infty \leq a \leq b \leq \infty: \mathbb{P}\left(a\leq X\leq b\right) = \int_a^b f(x) dx$.
+        \end{enumerate}
+        Aquesta $f$ es coneix com a \underline{funció de densitat}.
+    \end{definicio}
+    \begin{proposicio}
+        $\mathbb{P}\left(X = a\right) = 0$, ja que aquesta integral resulta aquest valor.
+    \end{proposicio}
+    \begin{proposicio}
+        La funció de distribució és $F\left(x\right) = \int_{-\infty}^{x} f(t)dt$, per tant, $F$ és
+        absolutament contiuna.
+    \end{proposicio}
+    \begin{enumerate}
+        \item Llei Uniforme: $X \sim \mathcal{U}(a,b)$ $f(x) = \begin{cases}
+            \frac{1}{b-a} & x \in (a,b)\\
+            0 & x \not\in (a,b)
+        \end{cases}$
+        \item Llei normal (o gaussiana): $X \sim \mathcal{N}(\mu, \sigma^2)$ $f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{\left(x-\mu\right)^2}{2\sigma^2}}$
+        \begin{itemize}
+            \item La normal estàndard és $Z \sim \mathcal{N}(0,1)$.
+        \end{itemize}
+        \begin{obs}
+            $\mu + \sigma Z\sim \mathcal{N}(\mu, \sigma^2)$
+        \end{obs}
+    \end{enumerate}
 \end{document}

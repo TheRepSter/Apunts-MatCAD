@@ -25,7 +25,9 @@
             \item Comprovar que es produeix error de cancel·lació al evaluar en precisió simple i
             doble precisió l'expressió de l'arrel real de l'equació anterior.\\
             \begin{solucio}
-                skibidi
+                Podem veure com en fer el càlcul de l'arrel mitjançants les fórmules de Cardano, a
+                \verb|Pr2Ex1a.c| en ambdues precisions dona prop de $0$, però no prou per a aquestes
+                precisions. 
             \end{solucio}
             \item Aplicar el mètode de Newton a la funció
             \begin{displaymath}
@@ -34,7 +36,9 @@
             començant amb $x_0 = 2$ fent servir precisió simple i doble. Obtenir una aproximació de
             $8$ i $15$ decimals correctes respectivament.\\
             \begin{solucio}
-                crotolamo
+                En aplicar Newton per ambdues precisions a \verb|Pr2Ex1b.c|, obtenim precisions tal
+                que és prou a prop de $0$ per les precisions, ja que tenen $8$ i $15$ decimals
+                correctes per a precisió simple i doble respectivament.
             \end{solucio}
             \item Considerar l'equació polinòmica, $x^3=x+400$\\
             Obtenir una fórmula de Cardano per al càlcul de l'arrel real, $\beta$. Comprovar que
@@ -42,25 +46,41 @@
             \begin{displaymath}
                 2 \leq \beta \leq 8
             \end{displaymath}
-            \begin{solucio}
-                makeheader
-            \end{solucio}
             Comprovar l'error de cancel·lació calculant la fórmula explicita en precisió doble.\\
+            \begin{solucio}
+                Tenint $x^3 -x -400 = 0$, agafem la fórmula de Cardano\footnote[1]{Agafada de \href{https://www.uv.es/~ivorra/Libros/Ecuaciones.pdf}{aquest PDF}.}
+                i al remplaçar tenim
+                \begin{displaymath}
+                    \sqrt[3]{-\frac{-400}{2}+\sqrt{\left(\frac{-400}{2}\right)^2+\left(\frac{-1}{3}\right)^3}}+\sqrt[3]{-\frac{-400}{2}-\sqrt{\left(\frac{-400}{2}\right)^2+\left(\frac{-1}{3}\right)^3}}
+                \end{displaymath}
+                simplifiquem i tenim
+                \begin{displaymath}
+                    \sqrt[3]{200+\frac{1}{3}\sqrt{3239997}}+\sqrt[3]{200-\frac{1}{3}\sqrt{3239997}}
+                \end{displaymath}
+            \end{solucio}
+            Si això ho possem en \verb|c|, en aquest cas al programa \verb|Pr2Ex1c.c|, ens dona $\approx 7.413$,
+            un valor que, efectivament, està entre $2$ i $8$. Això no obstant, tè un error molt alt.
             Aplicar els següents mètodes iteratius per obtenir $15$ decimals correctes de l'arrel.
             \begin{enumerate}
                 \item Mètode de la bisecció partint de l'interval $\left[2,8\right]$\\
                 \begin{solucio}
-                    La revolución industrial
+                    En aquest cas arriba en $54$ iteracions a la soluciò, i tè un error suficientment
+                    baix.
                 \end{solucio}
                 \item Mètode de Newton partint del pivot $x_0 = 2$.\\
                 \begin{solucio}
-                    Y sus consecuencias
+                    En aquest cas arriba en $11$ iteracions a la soluciò, arribant al mateix valor
+                    que amb el metode de la bisecció.
                 \end{solucio}
             \end{enumerate}
             Comparar l'ordre de convergència numèrica i determina una estrategia per calcular les
             arrels d'aquest tipus d'equacions.\\
             \begin{solucio}
-                Desastre para la humanidad
+                Com ja ben savem, la bisecció tè un ordre de convergència de com minim $1$ i Newton
+                com minim $2$. Això es veu reflectit en què pel metode de bisecció és necesiten $54$
+                iteracions i en el de Newton $11$. Una estrategia simple per calcular les arrels
+                d'aquest itpus d'equacions és obtenir una aproximació mitjançants Cardano i aquest
+                resultat fer-ho servir com a llavor per Newton. 
             \end{solucio}
         \end{enumerate}
     \end{exercici}
@@ -82,7 +102,20 @@
             Estudiar l'ordre de convergència numèric: suggeriment, calcular $e_k = \left\lvert x_k-x_{k+1}\right\rvert$
             i compara els cocients $\frac{e_k}{e_{k-1}}, \frac{e_k}{\left(e_{k-1}\right)^2}, \dots$.\\
             \begin{solucio}
-                A mi ke me dices jaja salu2
+                A \verb|Pr2Ex2a.c| ho tenim aplicat. Podem veure que ho troba en tan sols $5$
+                iteracions en agafar $4$ com a llavor. Si provem de tindre $2$ com a llavor, veiem
+                que no ho trobarà, això perquè $2$ no és suficientment proxim a $4$. Aquest metode
+                dona un valor que al evaluar-ho dona exactament $0$. A falta de proves, podem
+                veure que l'ordre de convergència és proxim a $2$, ja que en fer $\frac{\left\lvert x_k-x_{k+1}\right\rvert }{\left\lvert x_{k-1}-x_k\right\rvert ^p}$
+                tindrem que
+                \begin{displaymath}
+                    \text{Si }p =
+                    \begin{cases}
+                        1 & \Rightarrow\text{tendeix a }0.\\
+                        2 & \Rightarrow\text{no sembla tendir a res, falten iteracions}.\\
+                        3 & \Rightarrow\text{tendeix a } \infty.\\
+                    \end{cases}
+                \end{displaymath}
             \end{solucio}
         \end{enumerate}
     \end{exercici}
@@ -90,9 +123,24 @@
     \begin{exercici}
         \textbf{(OPCIONAL)}\\
         Sigui l'equació $f\left(x\right) = 0$ amb $f\left(x\right)$ completament derivable, $x^*$
-        una arrel simple, $f\left(x^*\right) = 0$, i $f'\left(x\right) \neq 0$ 
+        una arrel simple, $f\left(x^*\right) = 0$, i $f'\left(x\right) \neq 0$ en un entorn de $x^*$.
+        Considerar la iteració (conocida com mètode de Halley),
+        \begin{displaymath}
+            x_{k+1} = x_k - \frac{2f\left(x_k\right)f'\left(x_k\right)}{2\left(f'\left(x_k\right)\right)^2-f\left(x_k\right)f''\left(x_k\right)}
+        \end{displaymath}
+        \begin{enumerate}[label=\alph*)]
+            \item Aplicar la iteració a l'equació polinòmica del Problema 1, $x^3=x+400$.\\
+            \begin{solucio}
+                Fet al \verb|Pr2Ex3a.c|. Veiem que troba la solució en $6$ iteracions, considerablement més rapid quant a
+                nombre d'iteracions. També retorna el mateix nombre que en bisecció i Newton.
+            \end{solucio}
+            \item Comprovar numericament que la convergència és d'ordre 3.\\
+            \begin{solucio}
+                Fet al \verb|Pr2Ex3b.c|, veiem que fent $\frac{\left\lvert x_k-x_{k+1}\right\rvert }{\left\lvert x_{k-1}-x_k\right\rvert ^p}$,
+                com ja vam fer a l'exercici 2a tenim que quan $p = 4$ tendeix a $\infty$, mentre que
+                $p = 3$ sembla tendir a un nombre $0.01$ i $p = 2$ tendeix a $0$, per allò és d'ordre
+                de convergència $3$. 
+            \end{solucio}
+        \end{enumerate}
     \end{exercici}
-    \begin{solucio}
-        Lenin tenía razón.
-    \end{solucio}
 \end{document}

@@ -408,6 +408,75 @@
             \item[b)] Si $(-1)^j\det{\Delta_j} > 0$, aleshores $f$ és un màxim relatiu a $x_0$ on $\Delta_j$
             son els succesius menors de $Hf$.
             \item[c)] Si a) i b) no es compleixen, llavors $x_0$ és un punt de sella.
-        \end{itemize} 
+        \end{itemize}
     \end{teorema}
+    \begin{teorema}[dels multiplicadors de Lagrange]
+        Sigui $g: \mathbb{R}^n \to \mathbb{R}$ i $S = \left\{x\in\mathbb{R}^n: g\left(x\right)=0\right\}$.
+        Sigui $f: S \to \mathbb{R}$. Sigui $x_0 \in S$ un maxim o minim de $f$ a $S$. Aleshores, hi
+        ha un $\lambda \in \mathbb{R}$ tal que $\nabla \left(f - \lambda g\right) \left(x_0\right) = 0$.
+    \end{teorema}
+    \subsection{Integral en diverses variables}
+    \begin{definicio}
+        Una funció $f: [a,b]\times[c,d] \to \mathbb{R}$ es diu integrable si\\$\exists \lim\limits_{\max{\substack{\left\lvert x_i-x_{i-1}\right\rvert\\\left\lvert y_j-y_{j-1}\right\rvert}} \to 0} \sum f\left(c_{ij}\right)(x_i-x_{i-1})(y_j-y_{j-1})$
+    \end{definicio}
+    \begin{definicio}
+        Sigui $f: \mathcal{U} \to \mathbb{R}$ $\tilde{f} = \begin{cases}
+            0 & [a,b] \times [c,d]\setminus \mathcal{U}\\
+            f & \mathcal{U}
+        \end{cases}$.
+        Diem que $f$ és integrable a $\mathcal{U}$ si $\tilde{f}$ és integrable a $[a, b] \times [c, d]$
+    \end{definicio}
+    \begin{teorema}[Fubini]
+        Sigui $\Omega \subset [a, b] \times [c, d]$. Sigui $\Omega \to \mathbb{R}$ integrable.
+        Aleshores $\int_\Omega f\left(x,y\right) dx dy = \int_a^b\left(\int_{\mathcal{U}_1}^{\mathcal{U}_2} dy\right) dx$.
+    \end{teorema}
+    \begin{definicio}
+        Sigui $\Phi: \mathbb{R}^n \to \mathbb{R}^n$ denotem el jacobià de $\Phi$ com el determinant
+        de $\mathcal{D}\Phi$
+    \end{definicio}
+    \begin{teorema}[del Canvi de Variable]
+        Sigui $\Phi: \mathbb{R}^n \to \mathbb{R}^n$ bijectiva i amb derivades parcials continues.
+        Sigui $f: \mathbb{R}^n \to \mathbb{R}^m$ una funció integrable a $\Phi\left(\mathcal{U}\right) = \mathcal{V}$.
+        Aleshores, siguin $x, u \in \mathbb{R}^n$:
+        \begin{displaymath}
+            \int_\mathcal{V} f(x) dx = \int_{\Phi^{-1}\left(\mathcal{U}\right)}\left(u\right)\left\lvert J\Phi\left(u\right)\right\rvert du
+        \end{displaymath}
+    \end{teorema}
+    \begin{definicio}[coordenades polars]
+        $\;$\\
+        $R \equiv$ distancia de $(x,y)$ a $(0,0)$.\\
+        $\theta \equiv$ angle entre $(x,y)$ i l'eix positiu.
+    \end{definicio}
+    \begin{proposicio}
+        El jacobià de aquest canvi de variable es $r$.
+    \end{proposicio}
+    \begin{definicio}[coordenades cilindriques a $\mathbb{R}^3$]
+        $\;$\\
+        $R \equiv$ distancia de $(x,y,0)$ a $(0,0,0)$.\\
+        $\theta \equiv$ angle entre $(x,y,0)$ i l'eix positiu.\\
+        $z \equiv$ la mateixa $z$ d'abans.
+        \begin{obs}
+            Es, basicament, coordenades polars amb $z$ mateixa.
+        \end{obs}
+    \end{definicio}
+    \begin{proposicio}
+        El jacobià també és $r$.
+    \end{proposicio}
+    \begin{definicio}[coordenades esferiques a $\mathbb{R}^3$]
+        $\;$\\
+        $\rho \equiv$ distancia de $(x,y,z)$ a $(0,0,0)$.\\
+        $\phi \equiv$ angle entre $(x,y,z)$ i l'eix vertical positiu. OBS: com a máxim aquest angle serà $\pi$\\
+        $\theta \equiv$ angle entre $(x,y,z)$ i l'eix positiu (com a polars).\\
+        això fa que
+        \begin{displaymath}
+            \begin{cases}
+                z = \rho\cos\phi\\
+                y = \rho\sin\phi\sin\theta\\
+                x = \rho\sin\phi\cos\theta
+            \end{cases}
+        \end{displaymath}
+    \end{definicio}
+    \begin{proposicio}
+        El jacobià és $\rho^2\sin\phi$.
+    \end{proposicio}
 \end{document}
