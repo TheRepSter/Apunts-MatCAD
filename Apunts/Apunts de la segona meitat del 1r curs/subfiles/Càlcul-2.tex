@@ -479,4 +479,38 @@
     \begin{proposicio}
         El jacobià és $\rho^2\sin\phi$.
     \end{proposicio}
+    \subsection{Centre de Mases}
+    \begin{proposicio}
+        Sigui $\Omega \subset \mathbb{R}^2$ amb densitat $\rho \left(x,y\right)$.
+        El centre de masses és $\left(x_{cm}, y_{cm}\right)$ on
+        \begin{displaymath}
+            \begin{cases}
+                x_{cm} = \frac{\iint_{\omega} x\rho\left(x,y\right) dxdy}{\iint_{\omega} \rho\left(x,y\right) dxdy}\\
+                y_{cm} = \frac{\iint_{\omega} y\rho\left(x,y\right) dxdy}{\iint_{\omega} \rho\left(x,y\right) dxdy}
+            \end{cases}
+        \end{displaymath}
+    \end{proposicio}
+    \subsection{Calcul vectorial}
+    \begin{definicio}
+        Sigui $\gamma: [a, b] \to \mathbb{R}^n$ i $f$ una funció. Definim:
+        \begin{displaymath}
+            \int_\gamma f = \int_{a}^{b} f(\gamma(t)) \left\lVert \gamma'(t)\right\rVert dt
+        \end{displaymath}
+    \end{definicio}
+    \begin{definicio}
+        Un camp $\mathbf{X}$ a $\mathbb{R}^n$ és una aplicació $\mathbf{X}: \mathbb{R}^n \to \mathbb{R}^n$.
+    \end{definicio}
+    \begin{definicio}
+        Sigui $\gamma: [a, b] \to \mathbb{R}^n$ corba i $\mathbf{X}$ camp a $\mathbb{R}^n$. Definim:
+        \begin{displaymath}
+            \int_\gamma \mathbf{X} = \int_{a}^{b} \mathbf{X}(\gamma(t)) \gamma'(t) dt
+        \end{displaymath}
+    \end{definicio}
+    \begin{definicio}
+        Un camp es diu conservatiu si (vota al PP) existeix $f: \mathbb{R}^n \to \mathbb{R}$ tal que
+        $\mathbf{X} = \nabla f$
+    \end{definicio}
+    \begin{teorema}
+        Un camp $\mathbf{X}: (x,y) \to (P(x,y), Q(x,y))$ és conservatiu $\Leftrightarrow \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$.
+    \end{teorema}
 \end{document}
