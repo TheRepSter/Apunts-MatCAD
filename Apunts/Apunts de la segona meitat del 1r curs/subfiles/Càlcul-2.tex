@@ -513,4 +513,37 @@
     \begin{teorema}
         Un camp $\mathbf{X}: (x,y) \to (P(x,y), Q(x,y))$ és conservatiu $\Leftrightarrow \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$.
     \end{teorema}
+    \begin{teorema}
+        Sigui $\mathbf{X}$ un camp conservatiu a $\mathbb{R}^2$. Llavors $\int_\gamma \mathbf{X} = 0\; \forall \gamma$
+        corba tancada. 
+    \end{teorema}
+    \begin{corolari}
+        Sigui $\mathbf{X}$ un camp conservaiu a $\mathbb{R}^2$. Siguin $\gamma_1, \gamma_2 : [a, b] \to \mathbb{R}^2$
+        corbes amb $\gamma_1\left(a\right) = \gamma_1\left(b\right)\text{ i }\gamma_1\left(b\right) = \gamma_2\left(b\right)$.
+        Aleshores $\int_{\gamma_1} \mathbf{X} = \int_{\gamma_2} \mathbf{X}$
+    \end{corolari}
+    \begin{definicio}
+        Una corba $\gamma: \left[a,b\right] \to \mathbb{R}^2$ es diu simple si no té
+        autointerseccions, és dir, $\gamma\left(t\right)\neq \gamma\left(s\right)$ si $t\neq s$.
+    \end{definicio}
+    \begin{definicio}
+        Sigui $\gamma: \left[a,b\right] \to \mathbb{R}^2$ una corba tancada simple a $\left[a, b\right)$, es diu que és
+        recorreguda positivament si $\gamma\left(t\right)$ va en sentit antihorari.
+    \end{definicio}
+    \begin{teorema}
+        Sigui $\gamma: \left[a,b\right] \to \mathbb{R}^2$ una corva tancada simple orientada
+        positivament. Sigui $\mathbf{X} = \left(P, Q\right)$ un camp a $\mathbb{R}^2$. Aleshores
+        $$
+        \int_{\gamma} \mathbf{X} = \iint_\Omega \left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right) dxdy 
+        $$
+        on $\Omega$ és l'interior de $\gamma$.
+    \end{teorema}
+    \begin{corolari}
+        Sigui $\mathbf{X}$ un camp conservatiu. $\int_\gamma \mathbf{X} = 0$ per qualsevol corba
+        tancada.
+    \end{corolari}
+    \begin{corolari}
+        Sigui $\gamma$ una corba tancada simple orientada positivament, llavors
+        $Area\;interior\;de\;\gamma = \frac{1}{2} \int_{\gamma}\left(-y,x\right)$
+    \end{corolari}
 \end{document}

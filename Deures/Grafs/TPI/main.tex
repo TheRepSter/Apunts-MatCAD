@@ -1,0 +1,87 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{deuresutils}
+\usepackage{listings}
+
+\title{Treball Pràctic Individual}
+\asignatura{Algorítmia i combinatòria en grafs. Mètodes heurístics}
+\author{Eduardo Pérez Motato}
+\niu{NIU: 1709992}
+\date{24/05/2024}
+
+\begin{document}
+    \makeheader
+
+    \section{Introducció}
+    La finalitat d'aquest programa és calcular el cami més curt d'un punt d'un mapa entre dos punts.
+    Aquest mapa es guarda en dos fitxers: \verb|Nodes.csv| que té la id del node i la seva
+    geolocalització (latitud, longitud), i \verb|Carrers.csv| que tè la id del carrer i les ides
+    dels nodes que el componen.\\
+    Aquest problema hauria de poder trobar ràpidament la solució amb un mapa gran, i per això s'han
+    fet diverses optimitzacions, com A$^*$. 
+    \section{Sintaxi d'execució}
+    Abans d'executar, s'ha de compilar mitjançants la seguent comanda:
+    \begin{lstlisting}{bash}
+cc AEstrella.c -o AEstrella -Wall -lm
+    \end{lstlisting}
+    i ara que està compilat, es pot executar.
+    Per executar aquest programa s'ha de posar la seguent comanda a la consola estant a la carpeta
+    on es té \verb|Carrers.csv| i \verb|Nodes.csv|:
+    \begin{lstlisting}{bash}
+./AEstrella id_node_inici id_node_final
+    \end{lstlisting}
+    \section{Explicació de l'estructura del codi}
+    Primer s'importen les libreries i es defineixen constants (linies 3-9)\\
+    Després es defineixen les estructures adients (linies 11-33), podem veure com es busca que
+    estructures com \verb|INFO_ESTRELLA| tinguin un apuntador a l'estructura \verb|NODE| i que també
+    \verb|NODE| pugui apuntar a \verb|INFO_ESTRELLA|. Per aixó està el typedef de la linea 11.\\
+    Seguidament es defineixen les funcions necesaries (linea 35-114):
+    \begin{enumerate}
+        \item \verb|esferiquesACartesianes| (linea 35-39): Pasa la latitud i longitud d'un node a
+        coordenades cartesianes.
+        \item \verb|encuaAmbPrioritat| (linea 41-64): Mitjançants un node i l'inici de la cua, la
+        funció encua amb prioritat tenint en compte la distància i la funció heuristica. 
+        \item \verb|extreureDeLaCua| (linea 66-81): També fent servir un node i l'inici de la cua
+        treu aquest node de la cua.
+        \item \verb|distancia| (linea 83-95): Calcula la distància entre dos nodes, retorna aquesta.
+        Fa servir la funció \verb|esferiquesACartesianes| i \verb|sqrt| (aquesta última definida a
+        \verb|<math.h>|)
+        \item \verb|buscaPosicioNode| (linea 97-114): Fa servir cerca binària per trobar la posició
+        d'un node mitjançants la seva id.
+    \end{enumerate}
+    Finalment, tenim el main (linies 116-270):
+    \begin{enumerate}
+        \item Declaració de totes les variables necesaries (linies 117-131).
+        \item Lectura de \verb|Nodes.csv| (linies 134-155).
+        \item Lecutra de \verb|Carrers.csv| (linies 158-184).
+        \item L'algorisme A$^*$ (linies 187-235).
+        \item Mostrar el cami (linies 238-269).
+    \end{enumerate}
+
+    \section{Exemple de funcionament}
+    Per exemple
+    \begin{lstlisting}{bash}
+./AEstrella 0259184345 1793441250
+    \end{lstlisting}
+    en el meu cas, retorna:
+    \begin{lstlisting}{bash}
+# La distancia de 259184345 a 1793441250 es de 507.88680 metres.
+# Cami optim:
+Id=0259184345 | 41.545380 | 2.106830 | Dist=0.00000
+Id=0259437888 | 41.545752 | 2.106744 | Dist=42.04203
+Id=0259437905 | 41.546388 | 2.106495 | Dist=115.72240
+Id=0259438253 | 41.546734 | 2.107858 | Dist=235.47656
+Id=0965459173 | 41.546963 | 2.107746 | Dist=262.61711
+Id=0960085142 | 41.547169 | 2.107648 | Dist=286.90038
+Id=1944921315 | 41.547281 | 2.107553 | Dist=301.62308
+Id=2412854895 | 41.547777 | 2.107092 | Dist=368.87952
+Id=1944921533 | 41.548161 | 2.107668 | Dist=433.05849
+Id=1944921536 | 41.548240 | 2.107798 | Dist=446.89987
+Id=1944921547 | 41.548280 | 2.107864 | Dist=454.04708
+Id=1793441253 | 41.548396 | 2.108055 | Dist=474.49589
+Id=1944921549 | 41.548399 | 2.108073 | Dist=476.04126
+Id=1955175329 | 41.548407 | 2.108110 | Dist=479.20011
+Id=1955175330 | 41.548452 | 2.108329 | Dist=498.15467
+Id=1793441250 | 41.548481 | 2.108440 | Dist=507.88680
+# ---------------------------------
+    \end{lstlisting}
+\end{document}

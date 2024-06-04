@@ -1,0 +1,155 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{deuresutils}
+
+\title{Pràctica 3}
+\asignatura{Càlcul numèric}
+\author{Eduardo Pérez Motato}
+\niu{NIU: 1709992}
+\date{30/05/2024}
+
+\begin{document}
+    \makeheader
+
+    \begin{exercici}
+        \begin{enumerate}[label=\alph*)]
+            \item Desembolupar un codi que proporcioni la descomposició LU d'una matrui arbitraria
+            de dimensió máxima $5\times5$.\\
+            \begin{solucio}
+                Fet a \verb|Pr3Ex1a.c|. La funció \verb|LU| demana la dimensió, una matriu de la
+                dimensió i un vector d'aquesta dimensió i fa la descomposició $LU$ amb pivotatge
+                màximal amb reemplaçament (es dir, la matriu $L_A$ i $U_A$ es guarden a l'espai de
+                memoria de $A$, destruint $A$) guardant els pivots al vector.
+            \end{solucio}
+            \item Obtenir la descomposició LU de les matrius $A$ i $B$, calcular els seus
+            determinants
+            $$
+            A = \begin{pmatrix}
+                1 & 2 & 3 & 4\\
+                1 & 4 & 9 & 16\\
+                1 & 8 & 27 & 64\\
+                1 & 16 & 81 & 256
+            \end{pmatrix}
+            \;
+            B = \begin{pmatrix}
+                1 & 1 & 0 & 0 & 0\\
+                1 & 2 & 1 & 0 & 0\\
+                0 & 1 & 3 & 1 & 0\\
+                0 & 0 & 1 & 4 & 1\\
+                0 & 0 & 0 & 1 & 5
+            \end{pmatrix}
+            $$
+            \begin{solucio}
+                Mitjançants la funció \verb|LU| de l'apartat anterior, es posa la matriu $A$ i la
+                matriu $B$. S'imprimeix per pantalla aquestes matrius i després s'imprimeix la
+                matriu $A_L, U_A$ i el vector de permutacions de $A$ (després el programa fa el
+                mateix amb $B$). Finalment dona els determinants, calculats multiplicant la diagonal
+                de $U_A$ (com és amb reemplaçament, es calcula la diagonal a l'espai $A$). Al ser
+                amb permutacions, es calculen el nombre de permutacions (més bé, es calcula el
+                nombre de posicions no correctes $n$). Si $n\neq0$, s'ha de multiplicar per $-1$ i si $n \mod 2 \equiv 1$,
+                llaors també s'ha de multiplicar per $-1$. Ambdues condicions convinades es té el 
+                veritable determinant.
+                $$
+                L_A = 
+                \begin{pmatrix}
+                    1 & 0 & 0 & 0\\
+                    1 & 1 & 0 & 0\\
+                    1 & 0.428571 & 1 & 0\\
+                    1 & 0.142857 & 0.545455 & 0
+                \end{pmatrix}\;
+                L_B = 
+                \begin{pmatrix}
+                    1 & 0 & 0 & 0 & 0\\
+                    1 & 1 & 0 & 0 & 0\\
+                    0 & 1 & 1 & 0 & 0\\
+                    0 & 0 & 0.5 & 1 & 0\\
+                    0 & 0 & 0 & 0.285714 & 1\\
+                \end{pmatrix}
+                $$
+                $$
+                U_A = 
+                \begin{pmatrix}
+                    1 & 2 & 3 & 4\\
+                    0 & 14 & 78 & 252\\
+                    0 & 0 & -9.428571 & -48\\
+                    0 & 0 & 0 & 2.181818
+                \end{pmatrix}\;
+                U_B = 
+                \begin{pmatrix}
+                    1 & 1 & 0 & 0 & 0\\
+                    0 & 1 & 1 & 0 & 0\\
+                    0 & 0 & 2 & 1 & 0\\
+                    0 & 0 & 0 & 3.5 & 1\\
+                    0 & 0 & 0 & 0 & 4.714286
+                \end{pmatrix}
+                $$
+                $$
+                Perm(A) =
+                \begin{pmatrix}
+                    0\\
+                    3\\
+                    2\\
+                    1
+                \end{pmatrix}\;
+                Perm(B) =
+                \begin{pmatrix}
+                    0\\
+                    1\\
+                    2\\
+                    3\\
+                    4
+                \end{pmatrix}
+                $$
+                $$
+                \det A = 288\; \det B = 33
+                $$
+            \end{solucio}
+        \end{enumerate}
+    \end{exercici}
+
+    \begin{exercici}
+        \begin{enumerate}[label=\alph*)]
+            \item Desembolupar un codi per resoldre un sistema lineal pel metode de Jacobi.\\
+            \begin{solucio}
+                Fet a \verb|Pr3Ex2a.c|, on soluciona $\begin{psmallmatrix}2&0&0\\0&4&0\\0&0&1\end{psmallmatrix}x = \begin{psmallmatrix}6\\20\\4\end{psmallmatrix}$.
+                La funció \verb|Jacobi| demana el nombre de dimensió, una matriu quadrada d'aquestes
+                dimensions, un vector de solucions (on es guardaran, pot no estar inicialitzat) i un
+                vector també de la dimensió abans demanada al qual equival aquesta equació. Demana
+                també una tolerancia i un nombre màxim d'iteracions. Retorna $1$ o $0$, segons si
+                ha assolit el nombre máxim d'iteracions (sent $1$ la resposta afirmativa). També
+                imprimeix per pantalla el nombre d'iteracions. Ha estat altament inspirat en el
+                pseudocodi d'\href{https://e-aules.uab.cat/2023-24/pluginfile.php/705245/mod_resource/content/1/CalcNumMathCAD-LinAlg.pdf}{aquest diaporama} 
+                a la diapositiva 104.
+            \end{solucio}
+            \item Desembolupar un codi per resoldre un sistema lineal pel metode de Gauss-Seidel.\\
+            \begin{solucio}
+                Fet a \verb|Pr3Ex2a.c|, on soluciona $\begin{psmallmatrix}2&0&0\\0&4&0\\0&0&1\end{psmallmatrix}x = \begin{psmallmatrix}6\\20\\4\end{psmallmatrix}$.
+                La funció \verb|GaussSeidel| demana el nombre de dimensió, una matriu quadrada d'aquestes
+                dimensions, un vector de solucions (on es guardaran, pot no estar inicialitzat) i un
+                vector també de la dimensió abans demanada al qual equival aquesta equació. Demana
+                també una tolerancia i un nombre màxim d'iteracions. Retorna $1$ o $0$, segons si
+                ha assolit el nombre máxim d'iteracions (sent $1$ la resposta afirmativa). També
+                imprimeix per pantalla el nombre d'iteracions. Ha estat altament inspirat en el
+                pseudocodi d'\href{https://e-aules.uab.cat/2023-24/pluginfile.php/705245/mod_resource/content/1/CalcNumMathCAD-LinAlg.pdf}{aquest diaporama} 
+                a la diapositiva 114.
+            \end{solucio}
+            \item Calcular amb un error menor que $10^{-5}$ la solució del sistema mitjançants els
+            metodes de Jacobi i Gauss-Seidel. Comparar el nombre d'iteracions.
+            \begin{displaymath}
+                \begin{cases}
+                    \begin{split}
+                        10x_1-x_2+2x_3 &= 6\\
+                        -x_1+11x_2-x_3+3x_4 &= 25\\
+                        2x_1-x_2+10x_3-x_4 &= -11\\
+                        3x_2-x_3+8x_4 &= 15
+                    \end{split}
+                \end{cases}
+            \end{displaymath}
+            \begin{solucio}
+                Ambdues funcions retornen un resoltat admisible per l'error demanat. Jacobi ho
+                retorna després de $5$ iteracions mentre Gauss-Seidel ho retorna després de $7$.
+                Aixó denota que Jacobi és més rápid en aquest cas, malgrat de normal Gauss-Seidel
+                convergeix més ràpid.
+            \end{solucio}
+        \end{enumerate}
+    \end{exercici}
+\end{document}

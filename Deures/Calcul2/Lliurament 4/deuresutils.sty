@@ -1,0 +1,67 @@
+\usepackage{silence}
+\WarningsOff
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}
+\usepackage{letltxmacro}
+\geometry{letterpaper}    
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{xcolor}
+\definecolor{blu}{RGB}{0,0,255}
+
+\makeatletter
+\def\timeframe#1{\def\@timeframe{#1}}
+\def\period#1{\def\@period{#1}}
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{
+\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}
+{\box0\lower0.4pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2} }
+\makeatother
+
+\makeatletter
+\def\asignatura#1{\def\@asignatura{#1}}
+\def\niu#1{\def\@niu{#1}}
+\def\makeheader{
+\noindent \@asignatura \hfill \@title\\
+\@author. (\@date) \hfill \@niu
+
+\hrulefill
+
+}
+\makeatother
+
+\newcommand*\eye{%
+       \scalebox{0.25}{
+\tikzset{every picture/.style={line width=0.75pt}}   
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\draw  [fill=blu  ,fill opacity=1 ] (84.83,179.7) .. controls (84.92,169.21) and (100.66,160.85) .. (119.99,161.01) .. controls (139.32,161.18) and (154.92,169.81) .. (154.83,180.3) .. controls (152.72,170.91) and (137.95,163.54) .. (119.97,163.39) .. controls (101.99,163.23) and (87.1,170.35) .. (84.83,179.7) -- cycle ;
+\draw  [fill=blu  ,fill opacity=1 ] (102.39,180.93) .. controls (102.39,171.24) and (110.25,163.39) .. (119.93,163.39) .. controls (129.62,163.39) and (137.47,171.24) .. (137.47,180.93) .. controls (137.47,190.61) and (129.62,198.47) .. (119.93,198.47) .. controls (110.25,198.47) and (102.39,190.61) .. (102.39,180.93) -- cycle ;
+\draw  [draw opacity=0][fill=blu  ,fill opacity=1 ] (107,174) .. controls (107,171.24) and (109.24,169) .. (112,169) .. controls (114.76,169) and (117,171.24) .. (117,174) .. controls (117,176.76) and (114.76,179) .. (112,179) .. controls (109.24,179) and (107,176.76) .. (107,174) -- cycle ;
+\draw  [fill=blu  ,fill opacity=1 ] (154.65,179.7) .. controls (154.65,190.58) and (139.02,199.41) .. (119.74,199.41) .. controls (100.46,199.41) and (84.83,190.58) .. (84.83,179.7) .. controls (85.71,190.15) and (101,198.47) .. (119.74,198.47) .. controls (138.48,198.47) and (153.77,190.15) .. (154.65,179.7) -- cycle ;
+\end{tikzpicture}}
+\,}
+
+\newenvironment{obs}{\par\vspace{10pt}\small % Vertical white space above the remark and smaller font size
+\begin{list}{}{
+\leftmargin=35pt % Indentation on the left
+\rightmargin=25pt}\item\ignorespaces % Indentation on the right
+\makebox[-2.5pt]{\begin{tikzpicture}[overlay]
+\node[draw=blu!60,line width=1pt,circle,fill=blu!25,font=\sffamily\bfseries,inner sep=2pt,outer sep=0pt] at (-15pt,0pt){$\hbox{ }$\eye};\end{tikzpicture}} % Orange R in a circle
+\advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after remark
+
+\newcounter{numex}
+
+\newenvironment{exercici}[1][\refstepcounter{numex} \bf{Exercici \thenumex}]{\textbf{#1: }}{\hfill\\}			
+
+\newenvironment{solucio}[1][\it{Solució}]{\textbf{#1. } }{\hfill$\square$\\}
+
+\ProvidesFile{deuresutils.sty}
+    [04/01/23 1.0 Lo necesario para hacer mis deberes]
