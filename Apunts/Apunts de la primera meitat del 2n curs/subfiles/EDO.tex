@@ -7,4 +7,89 @@
     \item Dimarts 9-11h.
     \item Divendres 11-13h.
 \end{itemize}
+\setcounter{subsection}{-1}
+\subsection{Introducció}
+Les equacions diferenciàls són una eina molt important de modelització.
+\begin{definicio}
+    Les equacions diferencials son equacions que relacionen una funció (incognita) amb les seves
+    derivades.
+\end{definicio}
+\begin{definicio}
+    Si la funció és d'una variable $u: I \subset \mathbb{R} \rightarrow \mathbb{R}\;||\;t \mapsto u(t)$
+    es diuen Equacions Diferencials Ordinàries.
+\end{definicio}
+\begin{definicio}
+    Si la funció és de diverses variables $u : \Omega \subset \mathbb{R}^n \to \mathbb{R}$ Es diuen
+    Equacions de Derviades Parcials.
+\end{definicio}
+\subsection{Equacions diferencials de 1r ordre}
+\begin{definicio}
+    Una equació diferencial ordinária de primer ordre per una funció $y(x)$ és una equació 
+    \begin{displaymath}
+        F(x,y,y') = 0
+    \end{displaymath}
+\end{definicio}
+\begin{definicio}
+    La forma explícita d'una equació diferencial ordinària de 1r ordre es
+    \begin{displaymath}
+        \frac{dy}{dx} = y' = f\left(x, f\left(x\right)\right)
+    \end{displaymath}
+\end{definicio}
+\begin{definicio}
+    La forma explícita d'una equació diferencial ordinària de 1r ordre es diu autònoma si $f$ no
+    depèn explicitament de $x$ o sigui, és de la forma $y' = f(y)$
+\end{definicio}
+\begin{definicio}
+    Una solució de la forma explícita d'una equació diferencial ordinària de 1r ordre es una funció
+    $y(x)$ diferenciable definida en un interval $I$ tal que per a tot $x \in I$ se satisfà
+    l'equació diferencial ordinària de 1r ordre.
+\end{definicio}
+En general, les solucions d'una EDO de 1r ordre formen una família uniparamètrica de funcions d'un
+paràmetre constant. Aquesta experssío s'anomena solució general de la EDO de 1r ordre.
+\begin{definicio}
+    Una equació diferencial de primer ordre amb una condició inicial s'anomena problema de valor inicial
+    \begin{displaymath}
+        \begin{cases}
+            y' = f(x, y)\\
+            y(x_0) = y_0
+        \end{cases}
+    \end{displaymath}
+    La solució d'un problema de valor inicial s'anomena solució particular de l'equació.
+\end{definicio}
+\begin{definicio}
+    Un cas particular de solucions són els equilibris que són les solucions que no depenen de la
+    variable independent.
+\end{definicio}
+Una solució d'equilibri de $y' = f(x, y)$ és una solució de la forma $y(x) = y^*$ (numero). Es
+compleix que $y(x) = y^*$ és solució d'equilibri de $y' = f(x, y)$ si i només si $f(x, y^*) = 0$ per
+a tot $x$ per al que $f(x, y)$ estigui ben definit.\\
+Si l'equació és autonòma $\left(y' = f(y)\right)$ les solucions d'equilibri $y(x) = y$ estàn donades pels zeros
+de $f$ i estan definides $\forall x \in \mathbb{R}$.
+\begin{teorema}[Picardo-Gindelof]
+    Sigui $\mathcal{R}$ una regió rectangular del pla $xy$\\definida per $R = \left\{(x, y) | a \leq x \leq b, c \leq y \leq d\right\}$
+    que conté el punt $(x_0, y_0)$.\\
+    Suposem que $f$ i que $\frac{\partial f}{\partial y}$ sigui continues a $\mathcal{R}$.\\
+    Aleshores existeix una única solució $y(x)$ definida a un interval $I_0 = (x_0-h, x_0+h), h > 0$ contingut a $\left[a, b\right]$ del PVI
+    \begin{displaymath}
+        \begin{cases}
+            y' = f(x,y)\\
+            y(x_0) = y_0
+        \end{cases}
+    \end{displaymath}
+    A més a més si denotem la solució de l'anterior sistema per $y(x; x_0, y_0)$ es compleix que $y(x; x_0, y_0)$
+    és una funció continua respecte $x_0, y_0$.
+    \begin{obs}
+        Per assegurar unicitat és suficient amb què $f$ sigui de Lipschitz respecte a la variable $y$
+        \begin{obs}
+            Que sigui de Lipschitz significa que $\exists L > 0: \left\lvert f(x,y) - f(x,z)\right\rvert < L \left\lvert y-z\right\rvert(c, d)\;\forall(y, z, c, d)$
+        \end{obs}
+    \end{obs}
+\end{teorema}
+\begin{teorema}[de Peano]
+    Si $f$ és contínua, existeix solució del sistema.
+\end{teorema}
+\begin{teorema}
+    Si $f$ i que $\frac{\partial f}{\partial y}$ són contínues a $\mathcal{R}$ aleshores dues corbes
+    solució de $y' = f(x,y)$ diferents no es poden tallar a $\mathbb{R}$.
+\end{teorema}
 \end{document}
