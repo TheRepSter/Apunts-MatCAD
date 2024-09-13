@@ -92,4 +92,25 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
     Si $f$ i que $\frac{\partial f}{\partial y}$ són contínues a $\mathcal{R}$ aleshores dues corbes
     solució de $y' = f(x,y)$ diferents no es poden tallar a $\mathbb{R}$.
 \end{teorema}
+\subsubsection{Alguns mètodes analítics de resolució d'EDO de 1r ordre}
+\begin{enumerate}
+    \item \textbf{EDO separable o de variable separada.}\\
+    Una edo de variables separades és de la forma
+    \begin{displaymath}
+        y' = g\left(x\right) h\left(y\right)
+    \end{displaymath}
+    Si $h\left(y\right) \not\equiv 0$ llavors podem fer $\frac{1}{h\left(y\right)} y'\left(x\right) = g\left(x\right)$\\
+    Integrant respecte a $x$ tenim
+    \begin{displaymath}
+        \int \frac{1}{h\left(y(x)\right)} y'(x) dx = \int g(x) dx
+    \end{displaymath}
+    Denotem per $H$ una primitiva de $\frac{1}{h\left(y\right)}$ i per $G$ una primitiva de $g(x)$,
+    llavors tenim
+    \begin{displaymath}
+        H(y(x)) = G(x) + C
+    \end{displaymath}
+    Llavors $y(x) = H^{-1}\left(G(x)+C\right)$.\\
+    Si $h\left(y\right) \equiv 0$, llavors $y(x) = y^*$, és a dir, té una solucío d'equilibri.
+    \item more later
+\end{enumerate}
 \end{document}
