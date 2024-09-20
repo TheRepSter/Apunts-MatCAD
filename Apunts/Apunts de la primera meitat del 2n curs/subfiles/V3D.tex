@@ -110,4 +110,140 @@ Si $V = (1,0,0)\text{ i }W = (\cos{\alpha}, \sin{\alpha}, 0)$ obtenim que $\cos{
     És base ortonormal, si és base ortogonal i a més $\left\lVert U\right\rVert = \left\lVert V\right\rVert = \left\lVert W\right\rVert = 1$.
 \end{definicio}
 
+$\mathbb{R}^3$ admet una estructura adicional que permet multiplicar dos vectors:
+\begin{definicio}
+    $\forall V, W \in \mathbb{R}^3$, definim el seu producte vectorial
+    \begin{displaymath}
+        V\wedge W = \begin{psmallmatrix}
+        V_2W_3-V_3W_2\\
+        V_3W_1-V_1W_3\\
+        V_1W_2-V_2W_1
+        \end{psmallmatrix} \in \mathbb{R}^3
+    \end{displaymath}
+    que compleix
+    \begin{itemize}
+        \item Bilinealitat: $(U + \lambda V) \wedge W = U\wedge W + \lambda V\wedge W$ idem a la
+        dreta.
+        \item Antisimetria: $V\wedge W = -W \wedge V$
+    \end{itemize}
+\end{definicio}
+Veiem facilment que $\forall V, W \in \mathbb{R}^3$ $\left\langle V\wedge W, V\right\rangle = 0 = \left\langle V\wedge W, W\right\rangle$
+Més enllà
+\begin{proposition}
+    $\forall U, V, W \in \mathbb{R}^3, \left\langle U, V\wedge W\right\rangle = \det{\left(U, V, W\right)}$
+\end{proposition}
+\subsubsection{Moviments rigids i grup ortogonal}
+Observar un objecte que es desplaça és equivalent que desplaçar-se observant aquest objecte fix.
+La visió 3D utilitza l'observació d'un mateix objecte des de 2 punts de vista $\neq$ (un per cada
+ull). Però això equival estrictament a l'observació d0un mateix objecte desplaçant-se a l'espai.\\
+Per això primer estudiarem aquestes transformacions de l'espai que preservan un objecte (s'anomenen
+moviments rigids). Són transformacions que preserven les distàncies entre qualsevol parell de punts
+de l'objecte.\\
+Començem estudiant un conjunt particular de transformació a l'espai.
+\begin{definicio}
+    El grup ortogonal ès el conjunt d'aplicacions lineals que preserven el producte escalar:
+    \begin{displaymath}
+        O(3) := \left\{M \in \mathcal{M}_3\left(\mathbb{R}\right) | \left\langle MV, MW \right\rangle = \left\langle V, W\right\rangle \forall V, W \in \mathbb{R}^3 \right\} 
+    \end{displaymath}
+\end{definicio}
+\begin{obs}
+    Si $M \in O(3)$ i $V \in \mathbb{R}^3$, $\left\lVert MV\right\rVert = \left\lVert V\right\rVert$\\
+    Si $M\in O(3)$ i $V\perp W \Rightarrow MV \perp MW$
+\end{obs}
+Com $\forall V, W \in \mathbb{R}^3$, $\left\langle MV, MW\right\rangle = V^tM^tMW$ per tant,
+\begin{displaymath}
+    M \in O(3) \Leftrightarrow M^tM = \mathbb{I}_3  
+\end{displaymath}
+Al final obtenim
+\begin{displaymath}
+    O(3) = \left\{M \in \mathcal{M}_3\left(\mathbb{R}\right) | M^tM = \mathbb{I}_3\right\}
+\end{displaymath}
+\begin{proposicio}
+    Si $M \in O(3)$, llavors $\det\left(M\right) = \pm 1$
+\end{proposicio}
+\begin{definicio}
+    Es defineix el grup especial ortogonal
+    \begin{displaymath}
+        SO(3) := \left\{M \in O(3) | \det{M} = 1\right\} 
+    \end{displaymath}
+\end{definicio}
+Per contstrucció els elements de $SO(3)$ són aquestes transformacions lineals que preserven les
+bases ortogonals positives. És a dir, són aquestes que preserven l'orientació i més concretament,
+$\left(Me_1, Me_2, Me_3\right)$ compleix
+\begin{enumerate}
+    \item $\left(Me_1, Me_2, Me_3\right)$ és una base ortogonal
+    \item $\det{\left(Me_1, Me_2, Me_3\right)} = \det{M} = 1$ i doncs $\left\langle Me_1\wedge Me_2, Me_3\right\rangle = 1 \Rightarrow Me_3 = Me_1\wedge Me_2$
+\end{enumerate}
+Un example de $M \in O(3)\setminus SO(3)$ és la matriu $M = \begin{psmallmatrix}
+    1 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1
+\end{psmallmatrix}$\\
+Aquestes transformacions de $O(3)\setminus SO(3)$ canvien l'orientació no corresponen al context de
+la visió 3D com no podem canviar l'orientació d'un objecte desplaçant-ho a l'espai. Per aixó tindrem
+especial ènfasi en el subgrup $SO(3)$!
+\begin{obs}
+    $O(3)$ i $SO(3)$ són grups (noció d'àlgebra) el que diu el següent:
+    \begin{itemize}
+        \item Si $M, N \in O(3)$ (o $SO(3)$), $MN \in O(3)$.
+        \item $\mathbb{I}_3 \in O(3)$.
+        \item Si $M \in O(3)$, aleshores $M$ és invertible i $M^{-1} \in O(3)$.
+    \end{itemize}    
+\end{obs}
+Més generalment,
+\begin{definicio}
+    Un conjunt $G$ és un grup Si
+    \begin{itemize}
+        \item $\exists$ operació interna $\cdot : G\cdot G \to G$
+        \item $\forall g_1, g_2, g_3 \in G, (g_1\cdot g_2) \cdot g_3 = g_1\cdot (g_2 \cdot g_3)$
+        \item $\exists e \in G$ tal que $e\cdot g = g \cdot e = g$ (element neutre)
+        \item $\forall g \in G, \exists g^{-1} \in G$ tq $ g\cdot g^{-1} = g^{-1}g = e$ (inversa)
+    \end{itemize}
+\end{definicio}
+\begin{teorema}
+    Sigui $f: \mathbb{R}^3 \to \mathbb{R}^3$ una aplicació que preserva les distáncies $\forall P, Q \in \mathbb{R}^3, \mathcal{D}\left(f(P), f(Q)\right) = \mathcal{D}(P, Q) \Leftrightarrow \left\lVert f(Q)-f(P)\right\rVert = \left\lVert Q-P\right\rVert$
+    Aleshores $\exists P_o \in \mathbb{R}^3,\; M \in O(3)$ tal que $\forall P \in \mathbb{R}^3, f(P) = P_o + MP$
+\end{teorema}
+\begin{definicio}
+    Si a més $f$ preserva l'orientació, obtenim que $M \in SO(3)$.
+    Un tal $f$ s'anomena moviment rigid i correspon al fet de desplaçar un objecte a $\mathbb{R}^3$
+    (o de forma equivalent, canviar de punt de vista).
+\end{definicio}
+\subsubsection{Grup de rotacions}
+Ara l'objectiu és entendre millor l'estructura dels grups $O(3)$ i $SO(3)$, i observar que el
+subgrup $SO(3)$ està compost de les rotacions.
+Primer observem que si treballem a l'espai euclidia de dimensió $n$ (on $n \in \mathbb{N}$), és a
+dir, treballem a $\mathbb{R}^n$ amb el producte escalar $\left\langle V, W\right\rangle = \sum\limits_{i = 1}^{n} V_i W_i\; \forall V, W \in \mathbb{R}^n$
+podem definir $O(n) = \left\{M \in \mathcal{M}_n(\mathbb{R}) | M^tM = \mathbb{I}_n\right\}$ i $SO(n) = \left\{M \in O(n) | \det{M} = 1\right\}$\\
+Per entendre la dimensió $3$, necessitem entendre primer les dimensions inferiors.
+\begin{itemize}
+    \item $n = 1$:\\
+    $M = (a) \in O(1) \iff M^tM = \mathbb{I}_1 = 1 \iff (a^2) = 1$\\$\iff a = \pm 1 \iff M = \pm \mathbb{I}_1$\\
+    Deduïm que $O(1) = \left\{\pm \mathbb{I}_1\right\}$ i $SO(1) = \left\{\mathbb{I}_1\right\}$
+    \item $n = 2$
+    \begin{proposicio}
+        Sigui $M \in O(2)$. $\exists! \theta \in \left[0, 2\pi\right)$ tal que\\
+        \begin{displaymath}
+            M = \begin{pmatrix}
+                \cos{\theta} & -\sin{\theta}\\
+                \sin{\theta} & \cos{\theta}
+            \end{pmatrix}\;\text{o}\; M = \begin{pmatrix}
+                \cos{\theta} & \sin{\theta}\\
+                \sin{\theta} & -\cos{\theta}
+            \end{pmatrix}
+        \end{displaymath}
+        Això genera una rotació d'angle $\theta$ en el primer cas i en el segon una simètria d'un
+        eix horitzontal compost amb una rotació d'angle $\theta$.
+    \end{proposicio}
+    \begin{obs}
+        En particular, si $M \in SO(2),\; \exists! \theta \in \left[0, 2\pi\right)$ tal que
+        \begin{displaymath}
+            M = R_\theta := \begin{pmatrix}
+                \cos{\theta} & -\sin{\theta}\\
+                \sin{\theta} & \cos{\theta}
+            \end{pmatrix}
+        \end{displaymath}
+    \end{obs}
+    \item $n = 3$
+\end{itemize}
 \end{document}

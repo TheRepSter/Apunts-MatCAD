@@ -111,6 +111,35 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
     \end{displaymath}
     Llavors $y(x) = H^{-1}\left(G(x)+C\right)$.\\
     Si $h\left(y\right) \equiv 0$, llavors $y(x) = y^*$, és a dir, té una solucío d'equilibri.
+    \item \textbf{EDO lineals}
+    Una EDO de 1r ordre lìneal és de la forma
+    \begin{displaymath}
+        y'(x) = a(x) y(x) + b(x)
+    \end{displaymath}
+    on $a(x)$ i $b(x)$ són funcions arbitràries.
+    \begin{obs}
+        Si $b(x) \equiv 0$ llavors és una equació de variable separada. S'anomena l'equació
+        homogenia associada a l'equació lineal. 
+    \end{obs}
+    \begin{proposicio}
+        Sigui $y_1(x)$ i $y_2(x)$ dues solucions de l'equació lineal no homogènia. Aleshores $y_1(x)-y_2(x)$
+        és solució de l'equació homogènia associada.
+    \end{proposicio}
+    \begin{corolari}
+        La solució general de l'equació homogènia és igual que una solució particular de la
+        homogenia més la solució general de l'equació homogènia.
+        \begin{displaymath}
+            y(x) = y_h(x) + y_p(x)
+        \end{displaymath}
+    \end{corolari}
+    Per trobar $y_p(x)$ farem servir el "mètode de variació de les constants".
+    Buscarem una solució particular de la forma \begin{displaymath}
+        y_p(x) = C(x)e^{-\int a(x) dx}
+    \end{displaymath}
+    Volem que es compleixi $y'_p + a(x)y_p = b_x$, això pasa si
+    \begin{displaymath}
+        b(x) = C'(x)e^{-\int a(x) dx} \Rightarrow C(x) = \int b(x)e^{\int a(x)dx}dx
+    \end{displaymath}
     \item more later
 \end{enumerate}
 \end{document}
