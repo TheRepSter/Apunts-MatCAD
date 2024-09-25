@@ -245,5 +245,50 @@ Per entendre la dimensió $3$, necessitem entendre primer les dimensions inferio
         \end{displaymath}
     \end{obs}
     \item $n = 3$
+    \begin{proposicio}
+        Sigui $M \in O(3)$. Aleshores $\exists B \in SO(3), \exists \theta \in \left[0, 2\pi\right)$
+        tal que \begin{displaymath}
+            BMB^{-1} = \begin{pmatrix}
+                \pm 1 & 0 & 0\\
+                0 & \cos{\theta} & -\sin{\theta}\\
+                0 & \sin{\theta} & \cos{\theta}
+            \end{pmatrix}
+        \end{displaymath}
+    \end{proposicio}
+    Geomètricament, això significa que si $M = \mathcal{M}_{\textit{Can}} (L),\; \exists \mathcal{B} = \left(U, V, W\right)\text{ i }\exists \theta \in \left[0, 2\pi\right)$
+    tal que $B = P_{\textit{Can}\to\mathcal{B}}$ i $BMB^{-1} = Mat_\mathcal{B}(L) = \begin{psmallmatrix}
+        \pm 1 & 0 & 0\\
+        0 & \cos{\theta} & -\sin{\theta}\\
+        0 & \sin{\theta} & \cos{\theta}
+    \end{psmallmatrix}$
+    Com $B \in SO(3)$, vol dir que la base $\mathcal{B}$ és base ortonormal positiva (és a dir, té
+    la mateixa orientació que la base canonica $\Leftrightarrow \det{\left(u,v,w\right)} = 1$)
+    \begin{itemize}
+        \item Cas on $\pm 1 = 1$:\\
+        $U = L(U)$\\
+        $L(V) = \cos{\theta}V + \sin{\theta}W$\\
+        $L(W) = -\sin{\theta}V + \cos{\theta}W$\\
+        Llavors $L$ és una rotació d'eix $U$ i d'angle $\theta$.
+        \item Cas on $\pm 1 = -1$:\\
+        $-U = L(U)$\\
+        $L$ és la composició d'una simètria $\perp$ al pla $U^\perp = Vect(V, W)$ i de la rotació
+        d'angle $\theta$ i eix $U$
+    \end{itemize}
+    \begin{teorema}[de les rotacions d'Euler]
+        Sigui $M\in SO(3)$. Llavors $\exists B \in SO(3)$ i $\theta \in \left[0, 2\pi\right)$ tal que
+        \begin{displaymath}
+            \begin{pmatrix}
+                1 & 0 & 0\\
+                0 & \cos{\theta} & -\sin{\theta}\\
+                0 & \sin{\theta} & \cos{\theta}
+            \end{pmatrix}
+        \end{displaymath}
+    \end{teorema}
+    Per això, $SO(3)$ rep el nom de \underline{grup de les rotacions}.\\
+    En particular, i \underline{no és gens evident}, si componem dues rotacions a l'espai, obtenim
+    una tercera.\\
+    \underline{Cas particular}: Si $U = U'$, $R_{\theta_1,U'}\circ R_{\theta_2,U} = R_{\theta,U}$.
+    Aixó és evident, però $R_{\theta_1,U}\circ R_{\theta_2,V} = R_{\theta,W}$ i és molt dificil
+    obtenir $\theta$ i $W$.
 \end{itemize}
 \end{document}
