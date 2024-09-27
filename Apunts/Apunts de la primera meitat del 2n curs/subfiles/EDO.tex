@@ -111,7 +111,7 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
     \end{displaymath}
     Llavors $y(x) = H^{-1}\left(G(x)+C\right)$.\\
     Si $h\left(y\right) \equiv 0$, llavors $y(x) = y^*$, és a dir, té una solucío d'equilibri.
-    \item \textbf{EDO lineals}
+    \item \textbf{EDO lineal.}\\
     Una EDO de 1r ordre lìneal és de la forma
     \begin{displaymath}
         y'(x) = a(x) y(x) + b(x)
@@ -140,6 +140,23 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
     \begin{displaymath}
         b(x) = C'(x)e^{-\int a(x) dx} \Rightarrow C(x) = \int b(x)e^{\int a(x)dx}dx
     \end{displaymath}
-    \item more later
+    \item \textbf{EDO homogenia.}\\
+    Una equació homogenia (de primer grau) és de la forma
+    \begin{displaymath}
+        y' = f\left(\frac{y}{x}\right) \leftarrow \substack{\text{Canvi de variable per}\\\text{transformar-ho en variables separades}}
+    \end{displaymath}
+    El canvi de variable sera $u(x) = \frac{y(x)}{x} \Leftrightarrow y(x) = xu(x)$\\
+    $y'(x) = u(x) + xu'(x) = f(u(x)) \rightarrow u'(x) = \frac{f(u(x))-u(x)}{x}$
+\end{enumerate}
+\subsubsection{Mètodes qualitatius}
+\begin{enumerate}
+    \item \textbf{Camps de direccions}\\
+    Tenim $y' = f(x,y)$. Sigui $y(x)$ la solució d'aquesta equació que passa per $(x_0, y_0)$. Sabem
+    llavors que $y(x_0) = y_0$ i $y'(x_0) = f(x_0, y_0)$.\\
+    A cada punt del pla $(x, y)$ li podem associar un valor $f(x,y)$ que representarem dibuixant el
+    punt $(x,y)$ un petit segment que tingui pendent $f(x,y)$. Obtenim així el camp de direccions.\\
+    També podem fer $f(x,y) = m$, que defineix un conjunt de corbes al pla $(x,y)$ al llarg de les
+    quals tots els vectors pendents han de ser $m$, es diuen isoclines.
+    \item 
 \end{enumerate}
 \end{document}
