@@ -9,9 +9,9 @@
 \end{itemize}
 \setcounter{subsection}{-1}
 \subsection{Introducció}
-Les equacions diferenciàls són una eina molt important de modelització.
+Les equacions diferencials són una eina molt important de modelització.
 \begin{definicio}
-    Les equacions diferencials son equacions que relacionen una funció (incognita) amb les seves
+    Les equacions diferencials són equacions que relacionen una funció (incògnita) amb les seves
     derivades.
 \end{definicio}
 \begin{definicio}
@@ -20,32 +20,32 @@ Les equacions diferenciàls són una eina molt important de modelització.
 \end{definicio}
 \begin{definicio}
     Si la funció és de diverses variables $u : \Omega \subset \mathbb{R}^n \to \mathbb{R}$ Es diuen
-    Equacions de Derviades Parcials.
+    Equacions de Derivades Parcials.
 \end{definicio}
 \subsection{Equacions diferencials de 1r ordre}
 \begin{definicio}
-    Una equació diferencial ordinária de primer ordre per una funció $y(x)$ és una equació 
+    Una equació diferencial ordinària de primer ordre per una funció $y(x)$ és una equació 
     \begin{displaymath}
         F(x,y,y') = 0
     \end{displaymath}
 \end{definicio}
 \begin{definicio}
-    La forma explícita d'una equació diferencial ordinària de 1r ordre es
+    La forma explícita d'una equació diferencial ordinària de 1r ordre és
     \begin{displaymath}
         \frac{dy}{dx} = y' = f\left(x, f\left(x\right)\right)
     \end{displaymath}
 \end{definicio}
 \begin{definicio}
     La forma explícita d'una equació diferencial ordinària de 1r ordre es diu autònoma si $f$ no
-    depèn explicitament de $x$ o sigui, és de la forma $y' = f(y)$
+    depèn explícitament de $x$ o sigui, és de la forma $y' = f(y)$
 \end{definicio}
 \begin{definicio}
-    Una solució de la forma explícita d'una equació diferencial ordinària de 1r ordre es una funció
+    Una solució de la forma explícita d'una equació diferencial ordinària de 1r ordre és una funció
     $y(x)$ diferenciable definida en un interval $I$ tal que per a tot $x \in I$ se satisfà
     l'equació diferencial ordinària de 1r ordre.
 \end{definicio}
 En general, les solucions d'una EDO de 1r ordre formen una família uniparamètrica de funcions d'un
-paràmetre constant. Aquesta experssío s'anomena solució general de la EDO de 1r ordre.
+paràmetre constant. Aquesta expressió s'anomena solució general de l'EDO de 1r ordre.
 \begin{definicio}
     Una equació diferencial de primer ordre amb una condició inicial s'anomena problema de valor inicial
     \begin{displaymath}
@@ -63,12 +63,12 @@ paràmetre constant. Aquesta experssío s'anomena solució general de la EDO de 
 Una solució d'equilibri de $y' = f(x, y)$ és una solució de la forma $y(x) = y^*$ (numero). Es
 compleix que $y(x) = y^*$ és solució d'equilibri de $y' = f(x, y)$ si i només si $f(x, y^*) = 0$ per
 a tot $x$ per al que $f(x, y)$ estigui ben definit.\\
-Si l'equació és autonòma $\left(y' = f(y)\right)$ les solucions d'equilibri $y(x) = y$ estàn donades pels zeros
+Si l'equació és autònoma $\left(y' = f(y)\right)$ les solucions d'equilibri $y(x) = y$ estan donades pels zeros
 de $f$ i estan definides $\forall x \in \mathbb{R}$.
 \begin{teorema}[Picardo-Gindelof]
     Sigui $\mathcal{R}$ una regió rectangular del pla $xy$\\definida per $R = \left\{(x, y) | a \leq x \leq b, c \leq y \leq d\right\}$
     que conté el punt $(x_0, y_0)$.\\
-    Suposem que $f$ i que $\frac{\partial f}{\partial y}$ sigui continues a $\mathcal{R}$.\\
+    Suposem que $f$ i que $\frac{\partial f}{\partial y}$ sigui contínues a $\mathcal{R}$.\\
     Aleshores existeix una única solució $y(x)$ definida a un interval $I_0 = (x_0-h, x_0+h), h > 0$ contingut a $\left[a, b\right]$ del PVI
     \begin{displaymath}
         \begin{cases}
@@ -110,24 +110,24 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
         H(y(x)) = G(x) + C
     \end{displaymath}
     Llavors $y(x) = H^{-1}\left(G(x)+C\right)$.\\
-    Si $h\left(y\right) \equiv 0$, llavors $y(x) = y^*$, és a dir, té una solucío d'equilibri.
+    Si $h\left(y\right) \equiv 0$, llavors $y(x) = y^*$, és a dir, té una solució d'equilibri.
     \item \textbf{EDO lineal.}\\
-    Una EDO de 1r ordre lìneal és de la forma
+    Una EDO de 1r ordre lineal és de la forma
     \begin{displaymath}
         y'(x) = a(x) y(x) + b(x)
     \end{displaymath}
     on $a(x)$ i $b(x)$ són funcions arbitràries.
     \begin{obs}
         Si $b(x) \equiv 0$ llavors és una equació de variable separada. S'anomena l'equació
-        homogenia associada a l'equació lineal. 
+        homogènia associada a l'equació lineal. 
     \end{obs}
     \begin{proposicio}
         Sigui $y_1(x)$ i $y_2(x)$ dues solucions de l'equació lineal no homogènia. Aleshores $y_1(x)-y_2(x)$
         és solució de l'equació homogènia associada.
     \end{proposicio}
     \begin{corolari}
-        La solució general de l'equació homogènia és igual que una solució particular de la
-        homogenia més la solució general de l'equació homogènia.
+        La solució general de l'equació homogènia és igual que una solució particular de l'homogènia
+        més la solució general de l'equació homogènia.
         \begin{displaymath}
             y(x) = y_h(x) + y_p(x)
         \end{displaymath}
@@ -136,16 +136,16 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
     Buscarem una solució particular de la forma \begin{displaymath}
         y_p(x) = C(x)e^{-\int a(x) dx}
     \end{displaymath}
-    Volem que es compleixi $y'_p + a(x)y_p = b_x$, això pasa si
+    Volem que es compleixi $y'_p + a(x)y_p = b_x$, això passa si
     \begin{displaymath}
         b(x) = C'(x)e^{-\int a(x) dx} \Rightarrow C(x) = \int b(x)e^{\int a(x)dx}dx
     \end{displaymath}
-    \item \textbf{EDO homogenia.}\\
-    Una equació homogenia (de primer grau) és de la forma
+    \item \textbf{EDO homogènia.}\\
+    Una equació homogènia (de primer grau) és de la forma
     \begin{displaymath}
-        y' = f\left(\frac{y}{x}\right) \leftarrow \substack{\text{Canvi de variable per}\\\text{transformar-ho en variables separades}}
+        y' = f\left(\frac{y}{x}\right) \leftarrow \substack{\text{Canvi de variable per}\\\text{transformar-la en variables separades}}
     \end{displaymath}
-    El canvi de variable sera $u(x) = \frac{y(x)}{x} \Leftrightarrow y(x) = xu(x)$\\
+    El canvi de variable serà $u(x) = \frac{y(x)}{x} \Leftrightarrow y(x) = xu(x)$\\
     $y'(x) = u(x) + xu'(x) = f(u(x)) \rightarrow u'(x) = \frac{f(u(x))-u(x)}{x}$
 \end{enumerate}
 \subsubsection{Mètodes qualitatius}
