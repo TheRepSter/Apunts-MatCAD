@@ -12,7 +12,7 @@
 Treballem a l'espai 3-dimensional en el qual vivim i que identifiquem amb $\mathbb{R}^3$.
 \begin{notacio}
     En l'espai euclidià tenim l'origen a $\begin{psmallmatrix}0\\0\\0\end{psmallmatrix}$ i un punt
-    arbitrari $P = \begin{psmallmatrix}x\\y\\z\end{psmallmatrix} = \left(0,0,0\right) \in \mathbb{R}^3 = \mathbb{R} \times \mathbb{R} \times \mathbb{R}$. 
+    arbitrari $P = \begin{psmallmatrix}x\\y\\z\end{psmallmatrix} = \left(0,0,0\right) \in \mathbb{R}^3 = \mathbb{R} \times \mathbb{R} \times \mathbb{R}$.
     Ambdues notacions (vertical i horitzontal) són vàlides malgrat representar diferents conceptes
     tècnicament.
 \end{notacio}
@@ -24,8 +24,8 @@ Treballem a l'espai 3-dimensional en el qual vivim i que identifiquem amb $\math
         \item $\left\lVert \lambda V\right\rVert = \left\lvert \lambda\right\rvert\left\lVert V\right\rVert$
         \item $\left\lVert V\right\rVert\iff V = 0$
     \end{itemize}
-    Aquesta norma mesura la distància euclidiana entre dos punts $P_1 = (x_1, y_1, z_1)\text{ i }P_2 = (x_2, y_2, z_2)$ 
-    per la fórmula 
+    Aquesta norma mesura la distància euclidiana entre dos punts $P_1 = (x_1, y_1, z_1)\text{ i }P_2 = (x_2, y_2, z_2)$
+    per la fórmula
     $\mathcal{D}\left(P_1, P_2\right) = \left\lVert P_1 - P_2\right\rVert$ que compleix
     \begin{itemize}
         \item $\mathcal{D}\left(P_1, P_3\right) \leq \mathcal{D}\left(P_1, P_2\right) + \mathcal{D}\left(P_2, P_3\right)$
@@ -143,7 +143,7 @@ Comencem estudiant un conjunt particular de transformació a l'espai.
 \begin{definicio}
     El grup ortogonal és el conjunt d'aplicacions lineals que preserven el producte escalar:
     \begin{displaymath}
-        O(3) := \left\{M \in \mathcal{M}_3\left(\mathbb{R}\right) | \left\langle MV, MW \right\rangle = \left\langle V, W\right\rangle \forall V, W \in \mathbb{R}^3 \right\} 
+        O(3) := \left\{M \in \mathcal{M}_3\left(\mathbb{R}\right) | \left\langle MV, MW \right\rangle = \left\langle V, W\right\rangle \forall V, W \in \mathbb{R}^3 \right\}
     \end{displaymath}
 \end{definicio}
 \begin{obs}
@@ -152,7 +152,7 @@ Comencem estudiant un conjunt particular de transformació a l'espai.
 \end{obs}
 Com $\forall V, W \in \mathbb{R}^3$, $\left\langle MV, MW\right\rangle = V^tM^tMW$ per tant,
 \begin{displaymath}
-    M \in O(3) \Leftrightarrow M^tM = \mathbb{I}_3  
+    M \in O(3) \Leftrightarrow M^tM = \mathbb{I}_3
 \end{displaymath}
 Al final obtenim
 \begin{displaymath}
@@ -164,7 +164,7 @@ Al final obtenim
 \begin{definicio}
     Es defineix el grup especial ortogonal
     \begin{displaymath}
-        SO(3) := \left\{M \in O(3) | \det{M} = 1\right\} 
+        SO(3) := \left\{M \in O(3) | \det{M} = 1\right\}
     \end{displaymath}
 \end{definicio}
 Per construcció els elements de $SO(3)$ són aquestes transformacions lineals que preserven les
@@ -188,7 +188,7 @@ especial èmfasi en el subgrup $SO(3)$!
         \item Si $M, N \in O(3)$ (o $SO(3)$), $MN \in O(3)$.
         \item $\mathbb{I}_3 \in O(3)$.
         \item Si $M \in O(3)$, aleshores $M$ és invertible i $M^{-1} \in O(3)$.
-    \end{itemize}    
+    \end{itemize}
 \end{obs}
 Més generalment,
 \begin{definicio}

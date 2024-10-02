@@ -24,7 +24,7 @@ Les equacions diferencials són una eina molt important de modelització.
 \end{definicio}
 \subsection{Equacions diferencials de 1r ordre}
 \begin{definicio}
-    Una equació diferencial ordinària de primer ordre per una funció $y(x)$ és una equació 
+    Una equació diferencial ordinària de primer ordre per una funció $y(x)$ és una equació
     \begin{displaymath}
         F(x,y,y') = 0
     \end{displaymath}
@@ -69,7 +69,8 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
     Sigui $\mathcal{R}$ una regió rectangular del pla $xy$\\definida per $R = \left\{(x, y) | a \leq x \leq b, c \leq y \leq d\right\}$
     que conté el punt $(x_0, y_0)$.\\
     Suposem que $f$ i que $\frac{\partial f}{\partial y}$ sigui contínues a $\mathcal{R}$.\\
-    Aleshores existeix una única solució $y(x)$ definida a un interval $I_0 = (x_0-h, x_0+h), h > 0$ contingut a $\left[a, b\right]$ del PVI
+    Aleshores existeix una única solució $y(x)$ definida a un interval $I_0 = (x_0-h, x_0+h), h > 0$
+    contingut a $\left[a, b\right]$ del PVI
     \begin{displaymath}
         \begin{cases}
             y' = f(x,y)\\
@@ -119,7 +120,7 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
     on $a(x)$ i $b(x)$ són funcions arbitràries.
     \begin{obs}
         Si $b(x) \equiv 0$ llavors és una equació de variable separada. S'anomena l'equació
-        homogènia associada a l'equació lineal. 
+        homogènia associada a l'equació lineal.
     \end{obs}
     \begin{proposicio}
         Sigui $y_1(x)$ i $y_2(x)$ dues solucions de l'equació lineal no homogènia. Aleshores $y_1(x)-y_2(x)$
@@ -157,6 +158,21 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
     punt $(x,y)$ un petit segment que tingui pendent $f(x,y)$. Obtenim així el camp de direccions.\\
     També podem fer $f(x,y) = m$, que defineix un conjunt de corbes al pla $(x,y)$ al llarg de les
     quals tots els vectors pendents han de ser $m$, es diuen isoclines.
-    \item 
 \end{enumerate}
+\subsubsection{Equacions diferencials autònomes}
+$y' = f(y)$ (no depèn de manera explícita de la variable independent). Aquestes equacions són de
+variables separades. EQUILIBRIS $\rightarrow$ solucions constants, zeros de la funció $f$.
+\begin{teorema}[Comportament asintotic d'equacions autònomes]
+    Donada una equació diferencial autònoma $y' = f(y)$, on $f$ és contínua, aleshores
+    \begin{itemize}
+        \item Si $y(x)$ una solució de l'equació autònoma, aleshores per qualsevol constant $C \in \mathbb{R}$
+        també és solució.
+        \item Si $y(x)$ és una solució de l'equació autònoma que no és un equilibri, és dir no es
+        constant, aleshores no canvia de monotonia.
+        \item Una solució acotada de l'equació autònoma tendeix (quan $x$ tendeix a $\pm \infty$) a
+        una solució d'equilibri.
+        \item Si $f(a) = 0$, $f(b) = 0$ i $f(y) > 0$ per a $y \in (a, b)$ i $y(x_0) \in (a, b)$
+        aleshores $\lim_{x \to -\infty} y(x) = a$ i $\lim_{x \to \infty} y(x) = b$. I viceversa.
+    \end{itemize}
+\end{teorema}
 \end{document}
