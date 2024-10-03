@@ -100,7 +100,7 @@ leftmargin=0cm,
 rightmargin=0cm,
 innerbottommargin=5pt]{tBox}
 
-% Exercise box	  
+% Exercise box
 \newmdenv[skipabove=7pt,
 skipbelow=7pt,
 rightline=false,
@@ -115,7 +115,7 @@ innertopmargin=5pt,
 innerbottommargin=5pt,
 leftmargin=0cm,
 rightmargin=0cm,
-linewidth=4pt]{eBox}	
+linewidth=4pt]{eBox}
 
 % Definition box
 \newmdenv[skipabove=7pt,
@@ -131,7 +131,7 @@ innertopmargin=0pt,
 leftmargin=0cm,
 rightmargin=0cm,
 linewidth=4pt,
-innerbottommargin=0pt]{dBox}	
+innerbottommargin=0pt]{dBox}
 
 % Corollary box
 \newmdenv[skipabove=7pt,
@@ -152,16 +152,16 @@ innerbottommargin=5pt]{cBox}
 
 % Creates an environment for each type of theorem and assigns it a theorem text style from the "Theorem Styles" section above and a colored box from above
 \newenvironment{teorema}{\begin{tBox}\begin{theoremeT}}{\end{theoremeT}\end{tBox}}
-\newenvironment{exercici}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{blu}\tiny\ensuremath{\blacksquare}}\end{exerciseT}\end{eBox}}				  
-\newenvironment{definicio}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}	
-\newenvironment{exemple}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}		
-\newenvironment{corolari}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}	
-\newenvironment{proposicio}{\begin{proposition}}{\end{proposition}}	
+\newenvironment{exercici}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{blu}\tiny\ensuremath{\blacksquare}}\end{exerciseT}\end{eBox}}
+\newenvironment{definicio}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
+\newenvironment{exemple}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}
+\newenvironment{corolari}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}
+\newenvironment{proposicio}{\begin{proposition}}{\end{proposition}}
 \newenvironment{demostracio}{\begin{demostraT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{demostraT}}
 
 \newcommand*\eye{%
        \scalebox{0.25}{
-\tikzset{every picture/.style={line width=0.75pt}}   
+\tikzset{every picture/.style={line width=0.75pt}}
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 \draw  [fill=blu  ,fill opacity=1 ] (84.83,179.7) .. controls (84.92,169.21) and (100.66,160.85) .. (119.99,161.01) .. controls (139.32,161.18) and (154.92,169.81) .. (154.83,180.3) .. controls (152.72,170.91) and (137.95,163.54) .. (119.97,163.39) .. controls (101.99,163.23) and (87.1,170.35) .. (84.83,179.7) -- cycle ;
 \draw  [fill=blu  ,fill opacity=1 ] (102.39,180.93) .. controls (102.39,171.24) and (110.25,163.39) .. (119.93,163.39) .. controls (129.62,163.39) and (137.47,171.24) .. (137.47,180.93) .. controls (137.47,190.61) and (129.62,198.47) .. (119.93,198.47) .. controls (110.25,198.47) and (102.39,190.61) .. (102.39,180.93) -- cycle ;
@@ -195,10 +195,10 @@ innerbottommargin=5pt]{cBox}
     \newpage
     \scshape
     \centering
-    \raisebox{-\baselineskip}{\rule{\textwidth}{1px}}
-    \rule{\textwidth}{1px}
+    \raisebox{-\baselineskip}{\rule{\textwidth}{1pt}}
+    \rule{\textwidth}{1pt}
 }[
-    \rule{\textwidth}{2px}
+    \rule{\textwidth}{2pt}
 ]
 
 \renewcommand{\contentsname}{Índex}
