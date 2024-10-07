@@ -2,11 +2,6 @@
 \graphicspath{{\subfix{../images/}}}
 
 \begin{document}
-\subsection*{Horari}
-\begin{itemize}
-    \item Dimarts 9-11h.
-    \item Divendres 11-13h.
-\end{itemize}
 \setcounter{subsection}{-1}
 \subsection{Introducció}
 Les equacions diferencials són una eina molt important de modelització.
@@ -31,52 +26,49 @@ Les equacions diferencials són una eina molt important de modelització.
 \end{definicio}
 \begin{definicio}
     La forma explícita d'una equació diferencial ordinària de 1r ordre és
+    \begin{equation}
+        \frac{dy}{dx} = y'(x) = f\left(x, f\left(x\right)\right)
+        \label{eq:edo1}
+    \end{equation}
+\end{definicio}
+\begin{definicio}
+    La equació \eqref{eq:edo1} es diu autònoma si $f$ no
+    depèn explícitament de $x$ o sigui, és de la forma
     \begin{displaymath}
-        \frac{dy}{dx} = y' = f\left(x, f\left(x\right)\right)
+    	y'(y) = f(y)
     \end{displaymath}
 \end{definicio}
 \begin{definicio}
-    La forma explícita d'una equació diferencial ordinària de 1r ordre es diu autònoma si $f$ no
-    depèn explícitament de $x$ o sigui, és de la forma $y' = f(y)$
-\end{definicio}
-\begin{definicio}
-    Una solució de la forma explícita d'una equació diferencial ordinària de 1r ordre és una funció
-    $y(x)$ diferenciable definida en un interval $I$ tal que per a tot $x \in I$ se satisfà
-    l'equació diferencial ordinària de 1r ordre.
+    Una solució de \eqref{eq:edo1} és una funció
+    $y(x)$ diferenciable definida en un interval $I : \forall x \in I$ es satisfà \eqref{eq:edo1}.
 \end{definicio}
 En general, les solucions d'una EDO de 1r ordre formen una família uniparamètrica de funcions d'un
 paràmetre constant. Aquesta expressió s'anomena solució general de l'EDO de 1r ordre.
 \begin{definicio}
-    Una equació diferencial de primer ordre amb una condició inicial s'anomena problema de valor inicial
-    \begin{displaymath}
+    Una equació diferencial de primer ordre amb una condició inicial s'anomena problema de valor inicial i es de la forma
+    \begin{equation}
         \begin{cases}
-            y' = f(x, y)\\
-            y(x_0) = y_0
+            y' &= f(x, y)\\
+            y(x_0) &= y_0
         \end{cases}
-    \end{displaymath}
+        \label{eq:edo1pvi}
+    \end{equation}
     La solució d'un problema de valor inicial s'anomena solució particular de l'equació.
 \end{definicio}
 \begin{definicio}
-    Un cas particular de solucions són els equilibris que són les solucions que no depenen de la
-    variable independent.
+	Una solució d'equilibri de $y' = f(x, y)$ és una solució de la forma $y(x) = y^*$ on $y^*$ és una constant.
+	Ha de cumplir que $y' = f(x, y) \iff f(x, y^*) = 0 \;\forall x \in \text{dom}\;f(x, y)$ estigui ben definit.\\
 \end{definicio}
-Una solució d'equilibri de $y' = f(x, y)$ és una solució de la forma $y(x) = y^*$ (numero). Es
-compleix que $y(x) = y^*$ és solució d'equilibri de $y' = f(x, y)$ si i només si $f(x, y^*) = 0$ per
-a tot $x$ per al que $f(x, y)$ estigui ben definit.\\
 Si l'equació és autònoma $\left(y' = f(y)\right)$ les solucions d'equilibri $y(x) = y$ estan donades pels zeros
 de $f$ i estan definides $\forall x \in \mathbb{R}$.
+\subsubsection{Existència i unicitat i continuïtat de les solucions}
 \begin{teorema}[Picardo-Gindelof]
     Sigui $\mathcal{R}$ una regió rectangular del pla $xy$\\definida per $R = \left\{(x, y) | a \leq x \leq b, c \leq y \leq d\right\}$
     que conté el punt $(x_0, y_0)$.\\
-    Suposem que $f$ i que $\frac{\partial f}{\partial y}$ sigui contínues a $\mathcal{R}$.\\
+    Suposem que $f$ i que $\frac{\partial f}{\partial y}$ són contínues a $\mathcal{R}$.\\
     Aleshores existeix una única solució $y(x)$ definida a un interval $I_0 = (x_0-h, x_0+h), h > 0$
-    contingut a $\left[a, b\right]$ del PVI
-    \begin{displaymath}
-        \begin{cases}
-            y' = f(x,y)\\
-            y(x_0) = y_0
-        \end{cases}
-    \end{displaymath}
+    contingut a $\left[a, b\right]$ del problema de valor inicial \eqref{eq:edo1pvi}.
+
     A més a més si denotem la solució de l'anterior sistema per $y(x; x_0, y_0)$ es compleix que $y(x; x_0, y_0)$
     és una funció continua respecte $x_0, y_0$.
     \begin{obs}
@@ -86,12 +78,13 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
         \end{obs}
     \end{obs}
 \end{teorema}
+Com a conseqüència del teorema anterior tenim
+\begin{teorema}
+	Si $f$ i $\frac{\partial f}{\partial y}$ són contínues a $\mathbb{R}$ aleshores dues corbes solució de $y' = f(x,y)$ diferents no es poden tallar a $\mathbb{R}$.
+\end{teorema}
+Un altre teorema útil és el seguent
 \begin{teorema}[de Peano]
     Si $f$ és contínua, existeix solució del sistema.
-\end{teorema}
-\begin{teorema}
-    Si $f$ i que $\frac{\partial f}{\partial y}$ són contínues a $\mathcal{R}$ aleshores dues corbes
-    solució de $y' = f(x,y)$ diferents no es poden tallar a $\mathbb{R}$.
 \end{teorema}
 \subsubsection{Alguns mètodes analítics de resolució d'EDO de 1r ordre}
 \begin{enumerate}
@@ -112,25 +105,31 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
     \end{displaymath}
     Llavors $y(x) = H^{-1}\left(G(x)+C\right)$.\\
     Si $h\left(y\right) \equiv 0$, llavors $y(x) = y^*$, és a dir, té una solució d'equilibri.
+
     \item \textbf{EDO lineal.}\\
+
     Una EDO de 1r ordre lineal és de la forma
-    \begin{displaymath}
+    \begin{equation}
         y'(x) = a(x) y(x) + b(x)
-    \end{displaymath}
+        \label{eq:edo1lineal}
+    \end{equation}
     on $a(x)$ i $b(x)$ són funcions arbitràries.
     \begin{obs}
         Si $b(x) \equiv 0$ llavors és una equació de variable separada. S'anomena l'equació
         homogènia associada a l'equació lineal.
+        \begin{equation}
+        	y'(x) = a(x) y(x)
+			\label{eq:edo1linhomo}
+        \end{equation}
     \end{obs}
     \begin{proposicio}
-        Sigui $y_1(x)$ i $y_2(x)$ dues solucions de l'equació lineal no homogènia. Aleshores $y_1(x)-y_2(x)$
-        és solució de l'equació homogènia associada.
+        Sigui $y_1(x)$ i $y_2(x)$ dues solucions de l'equació lineal \eqref{eq:edo1lineal}. Aleshores $y_1(x)-y_2(x)$
+        és solució de l'equació homogènia associada \eqref{eq:edo1linhomo}.
     \end{proposicio}
     \begin{corolari}
-        La solució general de l'equació homogènia és igual que una solució particular de l'homogènia
-        més la solució general de l'equació homogènia.
+        La solució general de \eqref{eq:edo1lineal} és igual que una solució particular de \eqref{eq:edo1linhomo}
         \begin{displaymath}
-            y(x) = y_h(x) + y_p(x)
+            y(x) = y_\text{homogénia}(x) + y_\text{particular}(x)
         \end{displaymath}
     \end{corolari}
     Per trobar $y_p(x)$ farem servir el "mètode de variació de les constants".
@@ -143,36 +142,70 @@ de $f$ i estan definides $\forall x \in \mathbb{R}$.
     \end{displaymath}
     \item \textbf{EDO homogènia.}\\
     Una equació homogènia (de primer grau) és de la forma
-    \begin{displaymath}
+    \begin{equation}
         y' = f\left(\frac{y}{x}\right) \leftarrow \substack{\text{Canvi de variable per}\\\text{transformar-la en variables separades}}
-    \end{displaymath}
+        \label{eq:edo1homo}
+    \end{equation}
+    Es tracta d'un tipus d'equacions que fent un canvi de variable es transforma en una equació de variables separades.
     El canvi de variable serà $u(x) = \frac{y(x)}{x} \Leftrightarrow y(x) = xu(x)$\\
     $y'(x) = u(x) + xu'(x) = f(u(x)) \rightarrow u'(x) = \frac{f(u(x))-u(x)}{x}$
 \end{enumerate}
-\subsubsection{Mètodes qualitatius}
-\begin{enumerate}
-    \item \textbf{Camps de direccions}\\
-    Tenim $y' = f(x,y)$. Sigui $y(x)$ la solució d'aquesta equació que passa per $(x_0, y_0)$. Sabem
-    llavors que $y(x_0) = y_0$ i $y'(x_0) = f(x_0, y_0)$.\\
-    A cada punt del pla $(x, y)$ li podem associar un valor $f(x,y)$ que representarem dibuixant el
-    punt $(x,y)$ un petit segment que tingui pendent $f(x,y)$. Obtenim així el camp de direccions.\\
-    També podem fer $f(x,y) = m$, que defineix un conjunt de corbes al pla $(x,y)$ al llarg de les
-    quals tots els vectors pendents han de ser $m$, es diuen isoclines.
-\end{enumerate}
+\subsubsection{Mètodes qualitatius: Camps de direccions}
+Tenim $y' = f(x,y)$. Sigui $y(x)$ la solució d'aquesta equació que passa per $(x_0, y_0)$. Sabem
+llavors que $y(x_0) = y_0$ i $y'(x_0) = f(x_0, y_0)$.\\
+A cada punt del pla $(x, y)$ li podem associar un valor $f(x,y)$ que representarem dibuixant el
+punt $(x,y)$ un petit segment que tingui pendent $f(x,y)$. Obtenim així el camp de direccions.\\
+També podem fer $f(x,y) = m$, que defineix un conjunt de corbes al pla $(x,y)$ al llarg de les
+quals tots els vectors pendents han de ser $m$, es diuen isoclines.
+
 \subsubsection{Equacions diferencials autònomes}
-$y' = f(y)$ (no depèn de manera explícita de la variable independent). Aquestes equacions són de
-variables separades. EQUILIBRIS $\rightarrow$ solucions constants, zeros de la funció $f$.
-\begin{teorema}[Comportament asintotic d'equacions autònomes]
+Son de la forma
+\begin{displaymath}
+	y' = f(y)
+\end{displaymath}
+Aquestes no depèn de manera explícita de la variable independent. Aquestes equacions són de
+variables separades i els seus equilibris son zeros de la funció $f$.
+\begin{teorema}[Comportament asintotic d'equacions diferencials autònomes]
     Donada una equació diferencial autònoma $y' = f(y)$, on $f$ és contínua, aleshores
     \begin{itemize}
         \item Si $y(x)$ una solució de l'equació autònoma, aleshores per qualsevol constant $C \in \mathbb{R}$
-        també és solució.
+        també és solució $y_c(x):= y(x+c)$.
         \item Si $y(x)$ és una solució de l'equació autònoma que no és un equilibri, és dir no es
         constant, aleshores no canvia de monotonia.
-        \item Una solució acotada de l'equació autònoma tendeix (quan $x$ tendeix a $\pm \infty$) a
+        \item Una solució acotada de l'equació autònoma tendeix (quan $x \to \pm \infty$) a
         una solució d'equilibri.
         \item Si $f(a) = 0$, $f(b) = 0$ i $f(y) > 0$ per a $y \in (a, b)$ i $y(x_0) \in (a, b)$
-        aleshores $\lim_{x \to -\infty} y(x) = a$ i $\lim_{x \to \infty} y(x) = b$. I viceversa.
+        aleshores $\lim\limits_{x \to -\infty} y(x) = a$ i $\lim\limits_{x \to \infty} y(x) = b$.\\
+        Si $f(a) = 0$, $f(b) = 0$ i $f(y) < 0$ per a $y \in (a, b)$ i $y(x_0) \in (a, b)$
+        aleshores $\lim\limits_{x \to -\infty} y(x) = b$ i $\lim\limits_{x \to \infty} y(x) = a$.
     \end{itemize}
-\end{teorema}
+\end{teorema}\newpage
+\subsection{Sistemes d'equacions diferencials ordinaries lineals i EDOs d'ordre superior}
+Una EDO d'ordre $n$ és una equació de la forma $F(x, y, y', \ldots, y^{(n)}) = 0$.\\
+La forma estandard és
+\begin{equation}
+	y^{(n)} = f(x, y, y', \ldots, y^{(n-1)})
+	\label{eq:edolinstand}
+\end{equation}
+Una solució de l'equació es una funció real $y(x)$ definida a un interval $I$, $n$ vegades diferenciable i que $\forall x \in I$ és compleix \eqref{eq:edolinstand}.\\
+L'equació \eqref{eq:edolinstand} és equivalent a un sistema d'equacions de primer ordre $\vec{z}' = f(x, \vec{z})$\\
+Una equació diferencial lineal d'ordre $n$ és una EDO de la forma
+\begin{displaymath}
+	y^{(n)} + a_{n-1}(x)y^{(n-1)} + \ldots + a_1(x)y' + a_0(x)y = f(x)
+\end{displaymath}
+Quan $f(x)\equiv0$ l'equació s'anomena homogenia.\\
+\subsubsection{Equacions lineals de segon ordre}
+\begin{equation}
+	y'' + a(x)y' + b(x)y = f(x)
+	\label{eq:edolin2n}
+\end{equation}
+La homogènia associada és
+\begin{equation}
+	y'' + a(x)y' + b(x)y = 0\label{eq:edolin2nhomo}
+\end{equation}
+Com en el cas de les líneals de primer ordre, la solució general de \eqref{eq:edolin2n} és la suma de la solució de la homogènia \eqref{eq:edolin2nhomo} i una solució particular de la no homogènia \eqref{eq:edolin2n}.\\
+Anem a veure com solucionar la homogènia
+\begin{proposicio}
+	Siguin $y_1(x)$ i $y_2(x)$ dues solucions de \eqref{eq:edolin2nhomo}, aleshores $y(x) = Ay_1(x) + By_2(x)$ també és solució \eqref{eq:edolin2n} per constants $A$ i $B$ qualssevol.
+\end{proposicio}
 \end{document}

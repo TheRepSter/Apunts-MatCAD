@@ -1,32 +1,28 @@
-\documentclass[../main.tex]{subfiles}
-\graphicspath{{\subfix{../images/}}}
+\documentclass[a4paper,12pt]{article}
+\usepackage{utils}
+
 \usetikzlibrary{patterns}
 \begin{document}
-	\subsection{Rotacions}
-	\subsubsection{L'espai euclidià estàndard 3-dimensional}
+	\section{Rotacions}
+	\subsection{L'espai euclidià estàndard 3-dimensional}
 	Treballem a l'espai 3-dimensional en el qual vivim i que identifiquem amb $\mathbb{R}^3$.
 	\begin{notacio}
 	    En l'espai euclidià tenim l'origen a $\begin{psmallmatrix}0\\0\\0\end{psmallmatrix}$ i un punt
-	    arbitrari $P = \begin{psmallmatrix}x\\y\\z\end{psmallmatrix} = \left(x,y,z\right) \in \mathbb{R}^3 = \mathbb{R} \times \mathbb{R} \times \mathbb{R}$.
+	    arbitrari $P = \begin{psmallmatrix}x\\y\\z\end{psmallmatrix} = \left(0,0,0\right) \in \mathbb{R}^3 = \mathbb{R} \times \mathbb{R} \times \mathbb{R}$.
 	    Ambdues notacions (vertical i horitzontal) són vàlides malgrat representar diferents conceptes
 	    tècnicament.
 	\end{notacio}
 	\begin{definicio}
-	    La norma euclidiana d'un vector $V \in \mathbb{R}$ es defineix com
-		\begin{displaymath}
-			\left\lVert V\right\rVert = \sqrt{x^2+y^2+z^2} \in \mathbb{R}_+
-		\end{displaymath}
+	    La norma euclidiana d'un vector $V \in \mathbb{R}$ es defineix com $\left\lVert V\right\rVert = \sqrt{x^2+y^2+z^2} \in \mathbb{R}_+$
 	    que compleix $\forall V, W \in \mathbb{R}^3, \forall \lambda \in \mathbb{R}$
 	    \begin{itemize}
 	        \item $\left\lVert V+W\right\rVert \leq \left\lVert V\right\rVert + \left\lVert W\right\rVert$
 	        \item $\left\lVert \lambda V\right\rVert = \left\lvert \lambda\right\rvert\left\lVert V\right\rVert$
-	        \item $\left\lVert V\right\rVert = 0\iff V = 0$
+	        \item $\left\lVert V\right\rVert\iff V = 0$
 	    \end{itemize}
-	    Aquesta norma mesura la \underline{distància euclidiana} entre dos punts $P_1$ i $P_2$ per la fórmula
-	    \begin{displaymath}
-			\mathcal{D}\left(P_1, P_2\right) := \left\lVert P_1 - P_2\right\rVert = \sqrt{\left(x_1-x_2\right)^2 + \left(y_1-y_2\right)^2 + \left(z_1-z_2\right)^2}
-		\end{displaymath}
-		que compleix les seguents propietats
+	    Aquesta norma mesura la distància euclidiana entre dos punts $P_1 = (x_1, y_1, z_1)\text{ i }P_2 = (x_2, y_2, z_2)$
+	    per la fórmula
+	    $\mathcal{D}\left(P_1, P_2\right) = \left\lVert P_1 - P_2\right\rVert$ que compleix
 	    \begin{itemize}
 	        \item $\mathcal{D}\left(P_1, P_3\right) \leq \mathcal{D}\left(P_1, P_2\right) + \mathcal{D}\left(P_2, P_3\right)$
 	        \item $\mathcal{D}\left(P_1, P_2\right) = \mathcal{D}\left(P_2, P_1\right)$
@@ -145,23 +141,12 @@
 			L^2 = V_1^2+V_2^2+V_3^2 = \left\lVert V\right\rVert^2
 			$
 		\end{center}
-		Com la norma d'un vector $V \in \mathbb{R}^3$ correspon a la seva longitud, de forma equivalent la
-		distància entre dos punts a $\mathbb{R}^3$ correspon a la longitud del segment que uneix aquests punts:\\
-		\begin{center}
-			\begin{tikzpicture}
-				\draw[color = violet] (0,0) -- (3,0);
-				\draw[color = violet,->] (1.4,-0.5) -- (3,-0.5);
-				\draw[color = violet,->] (1.6,-0.5) -- (0,-0.5);
-				\draw[fill] (0,0) circle (0.025);
-				\draw[fill] (3,0) circle (0.025);
-				\node at (0,0.25) {$P_1$};
-				\node at (3,0.25) {$P_2$};
-				\node[color = violet] at (1.5,-0.75) {$\left\lVert P_2-P_1\right\rVert$};
-			\end{tikzpicture}
-		\end{center}
-		Si tenim $P_1\text{ i }P_2$ punts que defineixen un segment, la longitud $\mathcal{D}\left(P_1, P_2\right) = \left\lVert P_2-P_1\right\rVert$\\
-		Per tant, la distància euclidiana entre dos punts és la que coneixem!
+
 	\end{demostracio}
+	Com la norma d'un vector $V \in \mathbb{R}^3$ correspon a la seva longitud, de forma equivalent la
+	distància entre dos punts a $\mathbb{R}^3$ correspon a la longitud del segment que els uneix.\\
+	Si tenim $P_1\text{ i }P_2$ punts que defineixen un segment, la longitud $\mathcal{D}\left(P_1, P_2\right) = \left\lVert P_2-P_1\right\rVert$\\
+	Per tant, la distància euclidiana entre dos punts és la que coneixem!
 	Aquesta norma (i distància) euclidiana prové d'una estructura que a més de les longituds conté la
 	noció d'ortogonalitat:
 	\begin{definicio}
@@ -245,7 +230,7 @@
 	    $\forall U, V, W \in \mathbb{R}^3, \left\langle U, V\wedge W\right\rangle = \det{\left(U, V, W\right)}$
 	\end{proposition}
 
-	\subsubsection{Moviments rígids i grup ortogonal}
+	\subsection{Moviments rígids i grup ortogonal}
 
 	Observar un objecte que es desplaça és equivalent que desplaçar-se observant aquest objecte fix. La visió 3D utilitza l'observació d'un mateix objecte des de 2 punts de vista $\neq$ (un per cada ull). Però això equival estrictament a l'observació d'un mateix objecte desplaçant-se a l'espai.\\
 	Per això primer estudiarem aquestes transformacions de l'espai que preserven un objecte (s'anomenen moviments rígids). Són transformacions que preserven les distàncies entre qualsevol parell de punts de l'objecte.\\
@@ -332,7 +317,7 @@
 	    (o de forma equivalent, canviar de punt de vista).
 	\end{definicio}
 
-	\subsubsection{Grup de rotacions}
+	\subsection{Grup de rotacions}
 
 	Ara l'objectiu és entendre millor l'estructura dels grups $O(3)$ i $SO(3)$, i observar que el
 	subgrup $SO(3)$ està compost de les rotacions.
@@ -441,7 +426,7 @@
 	    obtenir $\theta$ i $W$.
 	\end{itemize}
 
-	\subsubsection{Representació de $SO(3)$ via l'espai projectiu}
+	\subsection{Representació de $SO(3)$ via l'espai projectiu}
 	Associem a cada punt $p \neq 0$ de la bola $B$ de radi $\pi$ la rotació d'eix $\frac{p}{\left\lVert p\right\rVert}$
 	d'angle $\left\lVert p \right\rVert$ i a $p = 0$ associem la rotació Identitat $\mathbb{I}_3$.\\
 	Com $\forall p \in \mathbb{R}^3$ tal que $\left\lVert p\right\rVert = \pi$ ($\Leftrightarrow p\in \partial B$),
@@ -517,7 +502,6 @@
 			\end{tikzpicture}
 		\end{center}
 	\end{obs}
-
 	Expliquem aquesta última observació:\\
 	\begin{center}
 		\begin{tikzpicture}
@@ -600,12 +584,12 @@
 		\end{tikzpicture}
 	\end{center}
 
-	\subsection{Els quaternions}
+	\section{Els quaternions}
 
 	En aquest nou capítol, denotarem la base ortonormal estandard $(e_1, e_2, e_3)$ a $\mathbb{R}^3$ com $(i,j,k)$.\\
 	Es a dir, que $i = e_1$, $j = e_2$ i $k = e_3$.\\
 
-	\subsubsection{Definició i primeres propietats:}
+	\subsection{Definició i primeres propietats:}
 
 	\begin{definicio}
 		Un \underline{quaternion} $q$ és la suma (formal) d'un escalar $q_0 \in \mathbb{R}$ i d'un vector $Q := (q_1, q_2, q_3) \in \mathbb{R}^3$.
@@ -686,5 +670,6 @@
 	\begin{obs}
 		$1q = q$ i $0q = 0$
 	\end{obs}
+
 
 \end{document}
