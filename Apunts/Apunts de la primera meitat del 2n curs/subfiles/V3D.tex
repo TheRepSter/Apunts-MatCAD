@@ -142,8 +142,7 @@
 			L^2 = d^2 + V_3^2
 			\end{cases}
 			\Rightarrow
-			L^2 = V_1^2+V_2^2+V_3^2 = \left\lVert V\right\rVert^2
-			$
+			L^2 = V_1^2+V_2^2+V_3^2 = \left\lVert V\right\rVert^2$
 		\end{center}
 		Com la norma d'un vector $V \in \mathbb{R}^3$ correspon a la seva longitud, de forma equivalent la
 		distància entre dos punts a $\mathbb{R}^3$ correspon a la longitud del segment que uneix aquests punts:\\
@@ -503,7 +502,7 @@
 	\end{obs}
 
 	\begin{obs}
-		Existeixen doble corbes que si es poden contractar en un punt.
+		Existeixen dobles corbes que si es poden contractar en un punt.
 		\begin{center}
 			\begin{tikzpicture}
 			  	\shade[ball color = gray!40, opacity = 0.4] (0,0) circle (2);
@@ -608,7 +607,7 @@
 	\subsubsection{Definició i primeres propietats:}
 
 	\begin{definicio}
-		Un \underline{quaternion} $q$ és la suma (formal) d'un escalar $q_0 \in \mathbb{R}$ i d'un vector $Q := (q_1, q_2, q_3) \in \mathbb{R}^3$.
+		Un \underline{quaternió} $q$ és la suma (formal) d'un escalar $q_0 \in \mathbb{R}$ i d'un vector $Q := (q_1, q_2, q_3) \in \mathbb{R}^3$.
 		És a dir, que $q = q_0 + Q$.
 		Farem servir $\mathbb{H}$ (de Hamilton) per el conjunt dels quaternions que es pot identificar a $\mathbb{R}^4$ via l'identificació:
 		\begin{displaymath}
@@ -686,5 +685,97 @@
 	\begin{obs}
 		$1q = q$ i $0q = 0$
 	\end{obs}
-
+	\subsubsection{Conjugació, norma i invers}
+	\begin{definicio}
+		Siguin $q = q_0 + \underbrace{q_1i + q_2j + q_3k}_{Q} \in \mathbb{H}$. Definim el \underline{conjugat de $q$} com $\overline{q} = q_0 - q_1i - q_2j - q_3k = q_0 - Q$. Direm que $q$ és:
+		\begin{itemize}
+			\item \underline{(quaternió) real} si $q = \overline{q} \iff Q=0 \iff q = q_0$
+			\item \underline{(quaternió) imaginari pur} si $q = -\overline{q} \iff q_0 = 0 \iff q = Q$
+		\end{itemize}
+	\end{definicio}
+	Denotem $\mathbb{R} = \left\{q \in \mathbb{H} | \overline{q} = q \right\} \subset \mathbb{H}$ el subconjunt de reals.
+	\begin{exercici}
+		Demostrar que $q \in \mathbb{R} \iff pq = qp,\;\forall p \in \mathbb{H}$
+	\end{exercici}
+	Denotarem $\mathbb{H}^\text{pur} = \left\{q \in \mathbb{H}\;|\;\overline{q} = -q \right\} \subset \mathbb{H}$ el subconjunt de quaternions imaginaris purs.
+	\begin{proposicio}
+		$\forall p,q \in \mathbb{H},\; \overline{p+q} = \overline{p} + \overline{q}\text{ i }\overline{pq} = \overline{q}\overline{p}$
+	\end{proposicio}
+	\begin{definicio}
+		Sigui $q \in \mathbb{H}$. Definim la seva norma $N(q) \in \mathbb{R}_+$ per la fòrmula:
+		\begin{displaymath}
+			N(q) = \sqrt{q\overline{q}}
+		\end{displaymath}
+	\end{definicio}
+	La definició està justificada com a
+	\begin{displaymath}
+		\begin{aligned}[t]
+			q\overline{q} &= (q_0 + q_1i + q_2j + q_3k)(q_0 - q_1i - q_2j - q_3k)\\
+						  &= q_0^2 - \left\langle Q, -Q\right\rangle + \underbrace{q_0\left(-Q\right) + q_0\left(Q\right)}_{=0} + \underbrace{Q \wedge (-Q)}_{=0}\\
+						  &= q_0^2 + \left\langle Q, Q\right\rangle\\
+		\end{aligned}
+	\end{displaymath}
+	Al final $q\overline{q} = q_0^2 + \left\langle Q, Q\right\rangle \in \mathbb{R}_+$. i doncs veiem que $N(q) = \sqrt{q_0^2 + q_1^2 + q_2^2 + q_3^2}$.\\
+	En particular, $N(q) \geq 0$ i $ N(q) = 0 \iff q = 0$.
+	\begin{obs}
+		$N(q)$ coincideix amb la norma euclidiana a $\mathbb{R}^4$ modulo la identificació
+		\begin{displaymath}
+			\begin{aligned}[t]
+				\mathbb{H} &\simeq \mathbb{R}^4\\
+				1 &\leftrightarrow e_1\\
+				i &\leftrightarrow e_2\\
+				j &\leftrightarrow e_3\\
+				k &\leftrightarrow e_4
+			\end{aligned}
+		\end{displaymath}
+	\end{obs}
+	\begin{proposicio}
+		La norma $N : \mathbb{H} \to \mathbb{R}_+$ es multiplicativa, és a dir, $N(pq) = N(p)N(q)\;\forall p,q \in \mathbb{H}$.
+	\end{proposicio}
+	\begin{obs}
+		Denotem
+		\begin{displaymath}
+			\begin{aligned}[t]
+				\mathbb{C} &= \left\{q \in \mathbb{H} \text{ tal que } q_2 = q_3 = 0\right\}\\
+						   &= \left\{q_0 + q_1i | q_0, q_1 \in \mathbb{R}\right\}
+			\end{aligned}
+		\end{displaymath}
+		Obeeix que $\mathbb{C}$ és estable per la multiplicació.
+		Tenim llavors que $\mathbb{R} \subset \mathbb{C} \subset (\mathbb{H}, +, \times)$
+	\end{obs}
+	\begin{teorema}
+	    $\mathbb{H}$ és un cos (com $\mathbb{R}\text{ i }\mathbb{C}$).
+	\end{teorema}
+	\begin{obs}
+	    No existeix cap altre cos de $\dim < +\infty$ que contingui $(\mathbb{R}, +, \times)$.
+	\end{obs}
+	\begin{demostracio}
+		Un \underline{cos} és un conjunt amb dues operacions, suma i producte, tal que:
+		\begin{itemize}
+			\item La suma i la multiplicació són associatives.
+			\item La suma és commutativa.
+			\item $\exists$ element neutre per la suma i per la multiplicació ($0$ i $1$, respectivament).
+			\item Distribució de multiplicació relativa a suma.
+			\item Tot element admet un invers per la suma ($q+(-q) = 0$).
+			\item Tot element no nul admet un invers per la multiplicació.
+		\end{itemize}
+	\end{demostracio}
+	\begin{notacio}
+		Si $q \in \mathbb{H},\;\Re{q} := \frac{1}{2}\left(q + \overline{q}\right) \in \mathbb{R}$ i $\Im{q} := \frac{1}{2}\left(q - \overline{q}\right) \in \mathbb{H}^{pur}$.\\
+		\begin{obs}
+			$q = \Re{q} + \Im{q}\;\forall q \in \mathbb{H}$
+		\end{obs}
+	\end{notacio}
+	\begin{definicio}
+		Un quaternió $u \in \mathbb{H}$ és unitari si satisfà $N(u) = 1$. Denotarem $\mathbb{H}^* = \left\{q \in \mathbb{H} | N(q) = 1\right\}$ el conjunt dels quaternions unitaris.
+		Denotarem $\mathbb{U} = \left\{u \in \mathbb{H} | N(u) = 1\right\}$ el subconjunt dels quaternions unitaris.
+	\end{definicio}
+	Aquest subconjunt té les següents propietats:
+	\begin{proposicio}
+		\begin{enumerate}
+			\item $\forall u, v \in \mathbb{U},\;u^{-1} = \overline{u}$ i $uv \in \mathbb{U}$ i en particular,
+			$(\mathbb{u}, \times)$ satisfà les propietats d'un grup.
+			\item $\mathbb{U} \cup \mathbb{R} = \left\{\pm 1\right\}$
+		\end{enumerate}
+	\end{proposicio}
 \end{document}
