@@ -687,13 +687,17 @@
 	\end{obs}
 	\subsubsection{Conjugació, norma i invers}
 	\begin{definicio}
-		Siguin $q = q_0 + \underbrace{q_1i + q_2j + q_3k}_{Q} \in \mathbb{H}$. Definim el \underline{conjugat de $q$} com $\overline{q} = q_0 - q_1i - q_2j - q_3k = q_0 - Q$. Direm que $q$ és:
+		Siguin $q = q_0 + \underbrace{q_1i + q_2j + q_3k}_{Q} \in \mathbb{H}$. Definim el \underline{conjugat de $q$} com
+		\begin{displaymath}
+			\overline{q} = q_0 - q_1i - q_2j - q_3k = q_0 - Q
+		\end{displaymath}
+		Direm que $q$ és:
 		\begin{itemize}
 			\item \underline{(quaternió) real} si $q = \overline{q} \iff Q=0 \iff q = q_0$
 			\item \underline{(quaternió) imaginari pur} si $q = -\overline{q} \iff q_0 = 0 \iff q = Q$
 		\end{itemize}
 	\end{definicio}
-	Denotem $\mathbb{R} = \left\{q \in \mathbb{H} | \overline{q} = q \right\} \subset \mathbb{H}$ el subconjunt de reals.
+	Denotem $\mathbb{R} = \left\{q \in \mathbb{H}\;\|\; \overline{q} = q \right\} \subset \mathbb{H}$ el subconjunt de reals.
 	\begin{exercici}
 		Demostrar que $q \in \mathbb{R} \iff pq = qp,\;\forall p \in \mathbb{H}$
 	\end{exercici}
@@ -701,24 +705,35 @@
 	\begin{proposicio}
 		$\forall p,q \in \mathbb{H},\; \overline{p+q} = \overline{p} + \overline{q}\text{ i }\overline{pq} = \overline{q}\overline{p}$
 	\end{proposicio}
+	\begin{demostracio}
+        El primer punt és evident. Pel segon, ja n'hi ha prou donada la distribuitivitat de verificar-ho per $i, j, k$ i per exemple:
+        \begin{displaymath}
+        	\begin{cases}
+	       		\overline{ij} = \overline{k} = -k\\
+	         	\overline{j}\overline{i} = -j(-i) = ji = -k\\
+			\end{cases}
+		\end{displaymath}
+	\end{demostracio}
 	\begin{definicio}
 		Sigui $q \in \mathbb{H}$. Definim la seva norma $N(q) \in \mathbb{R}_+$ per la fòrmula:
 		\begin{displaymath}
-			N(q) = \sqrt{q\overline{q}}
+			N(q) = \sqrt{q\overline{q}} \in \mathbb{R}
 		\end{displaymath}
 	\end{definicio}
-	La definició està justificada com a
-	\begin{displaymath}
-		\begin{aligned}[t]
-			q\overline{q} &= (q_0 + q_1i + q_2j + q_3k)(q_0 - q_1i - q_2j - q_3k)\\
-						  &= q_0^2 - \left\langle Q, -Q\right\rangle + \underbrace{q_0\left(-Q\right) + q_0\left(Q\right)}_{=0} + \underbrace{Q \wedge (-Q)}_{=0}\\
-						  &= q_0^2 + \left\langle Q, Q\right\rangle\\
-		\end{aligned}
-	\end{displaymath}
-	Al final $q\overline{q} = q_0^2 + \left\langle Q, Q\right\rangle \in \mathbb{R}_+$. i doncs veiem que $N(q) = \sqrt{q_0^2 + q_1^2 + q_2^2 + q_3^2}$.\\
+	\begin{obs}
+	    $\overline{q\overline{q}} = \overline{q\overline{q}} \Rightarrow q\overline{q} \in \mathbb{R}$ i a més
+		\begin{displaymath}
+			\begin{aligned}[t]
+				q\overline{q} &= (q_0 + q_1i + q_2j + q_3k)(q_0 - q_1i - q_2j - q_3k)\\
+							  &= q_0^2 - \left\langle Q, -Q\right\rangle + \underbrace{q_0\left(-Q\right) + q_0\left(Q\right)}_{=0} + \underbrace{Q \wedge (-Q)}_{=0}\\
+							  &= q_0^2 + \left\langle Q, Q\right\rangle\\
+			\end{aligned}
+		\end{displaymath}
+		es a dir $q\overline{q} = q_0^2+q_1^2+q_2^2+q_3^2 \in \mathbb{R}_+$
+	\end{obs}
 	En particular, $N(q) \geq 0$ i $ N(q) = 0 \iff q = 0$.
 	\begin{obs}
-		$N(q)$ coincideix amb la norma euclidiana a $\mathbb{R}^4$ modulo la identificació
+		$N(q)$ coincideix amb la norma euclidiana a $\mathbb{R}^4$ per la identificació
 		\begin{displaymath}
 			\begin{aligned}[t]
 				\mathbb{H} &\simeq \mathbb{R}^4\\
@@ -732,6 +747,11 @@
 	\begin{proposicio}
 		La norma $N : \mathbb{H} \to \mathbb{R}_+$ es multiplicativa, és a dir, $N(pq) = N(p)N(q)\;\forall p,q \in \mathbb{H}$.
 	\end{proposicio}
+	\begin{demostracio}
+		\begin{displaymath}
+			N^2(pq) = pq\overline{pq} = \overline{q}\underbrace{\overline{p}p}_{N^2(p)}q = \underbrace{q}N^2(p)q = N^2(p)N^2(q)
+		\end{displaymath}
+	\end{demostracio}
 	\begin{obs}
 		Denotem
 		\begin{displaymath}
@@ -743,39 +763,334 @@
 		Obeeix que $\mathbb{C}$ és estable per la multiplicació.
 		Tenim llavors que $\mathbb{R} \subset \mathbb{C} \subset (\mathbb{H}, +, \times)$
 	\end{obs}
+	\begin{definicio}
+		Sigui $q \in \mathbb{H}$ i $q \neq 0$, aleshores, la inversa de $q$, $q^{-1} = \frac{\overline{q}}{N(q)^2}$ que compleix $q^{-1}q = 1$ i $qq^{-1} = 1$.
+	\end{definicio}
 	\begin{teorema}
 	    $\mathbb{H}$ és un cos (com $\mathbb{R}\text{ i }\mathbb{C}$).
 	\end{teorema}
-	\begin{obs}
-	    No existeix cap altre cos de $\dim < +\infty$ que contingui $(\mathbb{R}, +, \times)$.
-	\end{obs}
 	\begin{demostracio}
-		Un \underline{cos} és un conjunt amb dues operacions, suma i producte, tal que:
-		\begin{itemize}
+	\begin{itemize}
 			\item La suma i la multiplicació són associatives.
 			\item La suma és commutativa.
-			\item $\exists$ element neutre per la suma i per la multiplicació ($0$ i $1$, respectivament).
+			\item Existeix element neutre per la suma i per la multiplicació ($0$ i $1$, respectivament).
 			\item Distribució de multiplicació relativa a suma.
 			\item Tot element admet un invers per la suma ($q+(-q) = 0$).
-			\item Tot element no nul admet un invers per la multiplicació.
+			\item Tot element no nul admet un invers per la multiplicació ($qq^{-1} = 1$).
 		\end{itemize}
 	\end{demostracio}
 	\begin{notacio}
-		Si $q \in \mathbb{H},\;\Re{q} := \frac{1}{2}\left(q + \overline{q}\right) \in \mathbb{R}$ i $\Im{q} := \frac{1}{2}\left(q - \overline{q}\right) \in \mathbb{H}^{pur}$.\\
-		\begin{obs}
-			$q = \Re{q} + \Im{q}\;\forall q \in \mathbb{H}$
-		\end{obs}
+		Si $q \in \mathbb{H},\;Re\;q := \frac{1}{2}\left(q + \overline{q}\right) \in \mathbb{R}$ i $Im\;q := \frac{1}{2}\left(q - \overline{q}\right) \in \mathbb{H}^{pur}$.\\
 	\end{notacio}
+	\subsubsection{Quaternions unitaris}
 	\begin{definicio}
 		Un quaternió $u \in \mathbb{H}$ és unitari si satisfà $N(u) = 1$. Denotarem $\mathbb{H}^* = \left\{q \in \mathbb{H} | N(q) = 1\right\}$ el conjunt dels quaternions unitaris.
-		Denotarem $\mathbb{U} = \left\{u \in \mathbb{H} | N(u) = 1\right\}$ el subconjunt dels quaternions unitaris.
+		Denotarem $\mathbb{U} = \left\{u \in \mathbb{H}\;\|\;N(u) = 1\right\}$ el subconjunt dels quaternions unitaris.
 	\end{definicio}
 	Aquest subconjunt té les següents propietats:
-	\begin{proposicio}
+	\begin{proposicio} $\;$
 		\begin{enumerate}
 			\item $\forall u, v \in \mathbb{U},\;u^{-1} = \overline{u}$ i $uv \in \mathbb{U}$ i en particular,
-			$(\mathbb{u}, \times)$ satisfà les propietats d'un grup.
-			\item $\mathbb{U} \cup \mathbb{R} = \left\{\pm 1\right\}$
+			$(\mathbb{U}, \times)$ satisfà les propietats d'un grup.
+			\item $\mathbb{U} \cap \mathbb{R} = \left\{\pm 1\right\}$
 		\end{enumerate}
 	\end{proposicio}
+	\begin{demostracio}
+		\begin{enumerate}
+			\item $\forall u \in \mathbb{U}\; u^-1 = \overline{u}$ ja que $N(u) = 1$, aleshores $N(\overline{u}) = N(\overline{u})N(u) = N(u\overline{u}) = 1 \Rightarrow u^{-1}\in \mathbb{U}$
+			\item Si $u \in \mathbb{R}\;u = u_0$ amb $u_0 \in \mathbb{R}$ i $N^2(u) = u_0^2 = 1 \Rightarrow u = u_0 = \pm 1$
+		\end{enumerate}
+	\end{demostracio}
+	\begin{obs}
+		Podem escriure $\mathbb{U} = \left\{q_0+q_1i+q_2j+q_3k | (q_0, q_1, q_3, q_4) \in \mathbb{R}^4\text{ i } q_0^2 + q_1^2 + q_3^2 + q_4^2 \right\}$,
+		i observem que
+		\begin{displaymath}
+			\begin{aligned}[t]
+				\mathbb{H} &\tilde{\longleftrightarrow} R^4\\
+				\breve{\mathbb{U}} &\tilde{\longleftrightarrow} \breve{S^3}
+			\end{aligned}
+		\end{displaymath}
+		$\mathbb{U}$ s'identifica amb l'esfera $\mathbb{S}^3 \subset \mathbb{R}^4$
+	\end{obs}
+	Recordem que $\begin{aligned}[t]
+					\mathbb{H}^{pur} &= \left\{q \in \mathbb{H} | \overline{q} = -q\right\}\\
+									 &= \left\{q \in \mathbb{H} | Re\;q = 0\right\}\\
+									 &= \left\{Q | Q \in \mathbb{R}^3\right\}
+				  \end{aligned}$
+	i per aixó podem identificar $\mathbb{H}^{pur}$ amb $\mathbb{R}^3$ via l'aplicació
+	\begin{displaymath}
+		\begin{aligned}[t]
+			\mathbb{H}^{pur} &\to \mathbb{R}^3\\
+			q = Q = q_1i + q_2j + q_3k &\mapsto Q = (q_1, q_2, q_3)
+		\end{aligned}
+	\end{displaymath}
+	\begin{proposicio}
+		Si $q = Q \in \mathbb{H}^{pur},\; q^2 = -N^2(q) = -\left\lVert Q \right\rVert^2$
+	\end{proposicio}
+	\begin{demostracio}
+		Si $p, q \in \mathbb{H}^{pur},\; pq = -\left\langle P, Q \right\rangle + P\wedge Q$ com $p_0 = q_0 = 1$ i en particular
+		\begin{displaymath}
+			q^2 = -\left\langle Q, Q \right\rangle = -\left\lVert Q \right\rVert^2 = - N^2(q)
+		\end{displaymath}
+	\end{demostracio}
+	\begin{obs}
+		Si $p,q \in \mathbb{H}^{pur},\; pq-qp = 2 P\wedge Q$
+	\end{obs}
+	\begin{teorema}
+		Siguin $p, q, r \in \mathbb{H}^{pur}$ i denotem els vectors corresponents per $P, Q, R \in \mathbb{R}^3$. Aleshores
+		\begin{displaymath}
+			(P, Q, R) \text{ BON } \oplus \text{ a } \mathbb{R}^3 \Leftrightarrow \begin{cases}
+				p^2 = q^2 = r^2 = -1\\
+				pq = r = -qp\\
+				qr = p = -rq\\
+				rp = q = -pr
+				\end{cases}
+		\end{displaymath}
+	\end{teorema}
+	\begin{obs}
+		$(i, j, k)$ compleixen aquestes formules! No es sorpresa ja que $(i, j, k)$ és un BON $\oplus$ a $\mathbb{R}^3$.
+	\end{obs}
+	\begin{demostracio}
+		$\left(\Leftarrow\right)$ Recordem que si $q \in \mathbb{H}^{pur},\; q^2 = -N^2(q) = -\left\lVert Q \right\rVert^2$ i per tant $P,Q,R$ són de norma euclidiana $=1$
+		\begin{lema}
+			Si $p,q \in \mathbb{H}^{pur},\text{i}\; P,Q \in \mathbb{R}^3$ són els vectors associats aleshores
+			\begin{displaymath}
+				\begin{cases}
+					Re\left(pq\right) &= -\left\langle P, Q \right\rangle\\
+					Im\left(pq\right) &= P\wedge Q
+				\end{cases}
+			\end{displaymath}
+		\end{lema}
+		\begin{demostracio}
+			$pq = p_0q_0 - \left\langle P, Q \right\rangle +p_0Q+q_0P + P\wedge Q = -\left\langle P, Q \right\rangle + P\wedge Q$ ja que $p_0 = q_0 = 0$
+		\end{demostracio}
+		Ara bé, $P\wedge Q = pq = r = R$ i $\left\langle P, Q \right\rangle = -Re(pq) = -Re(r) = 0$ doncs $\left(P,Q,R\right)$ BON directe.
+		$\left(\Rightarrow\right)$ Si $\left(P,Q,R\right)$ és BON $\oplus,\; \left\lVert P \right\rVert = 1 = -p^2$ i idem per $Q$ i $R$. Aleshores $pq = - \underbrace{\left\langle P, Q \right\rangle}_{=0} + P\wedge Q = R = r$ i idem per $qr$ i $rp$.
+	\end{demostracio}
+	\subsubsection{Quaternions i Rotacions}
+	Sigui $u \in \mathbb{U}$, considerem l'aplicació $\begin{aligned}[t]\Phi_u: \mathbb{H} &\to \mathbb{H}\\q &\mapsto uq\overline{u}\end{aligned}$
+	\begin{proposicio}
+		$\forall p, q \in \mathbb{H},\;\forall \lambda \in \mathbb{R}$
+		\begin{enumerate}
+			\item $\Phi_u$ és lineal: $\Phi_u(p + \lambda q) = \Phi_u(p) + \lambda\Phi_u(q)$
+			\item $\Phi_u$ és multiplicativa: $\Phi_u(pq) = \Phi_u(p)\Phi_u(q)$
+			\item $\overline{\Phi_u(p)} = \Phi_u(\overline{p})$
+			\item $Re(\Phi_u(p)) = Re(p)$, en general $Im(\Phi_u(p)) \neq Im(p)$
+			\item $\Phi_u$ preserva la norma: $N(\Phi_u(p)) = N(p)$
+		\end{enumerate}
+	\end{proposicio}
+	\begin{demostracio}
+		1 i 2 son clares.
+		\begin{enumerate}\addtocounter{enumi}{2}
+			\item $\overline{uq\overline{u}} = \overline{\overline{u}}\overline{q}\overline{u} = u\overline{q}\overline{u}$
+			\item $Re(q) := \frac{1}{2}(q + \overline{q}) \rightsquigarrow Re(\Phi_u(p)) \begin{aligned}[t]
+				&= \frac{1}{2}(\Phi_u(p) + \overline{\Phi_u(p)}) =  \frac{1}{2}(\Phi_u(p) + \Phi_u{\overline{p}})\\
+				&= \Phi_u(Re p) = Re(p \Phi_u(1))\\
+				&= Re(p)
+			\end{aligned}$
+			\item $N(\Phi_u(p)) = \sqrt{up\overline{u}u\overline{p}\overline{u}} = \sqrt{up\overline{p}\overline{u}} = N(p)$
+		\end{enumerate}
+	\end{demostracio}
+	A més:
+	\begin{proposicio} $\forall u,v \in \mathbb{U}$
+		\begin{itemize}
+			\item $\Phi_u = Id_\mathbb{H} \iff u = \pm 1$
+			\item $\forall u, v \in \mathbb{U}, \Phi_{uv} = \Phi_u \circ \Phi_v$ i $\Phi_u$ és invertible, amb $\Phi_u^{-1} = \Phi_{\overline{u}}$
+			\item $\Phi_u = \Phi_v \iff u = \pm v$
+		\end{itemize}
+	\end{proposicio}
+	\begin{demostracio}
+		\begin{enumerate}
+			\item Si $u = \pm 1$ aleshores $\Phi_u = Id_\mathbb{H}$ Reciprocament, si $\Phi_u = Id_\mathbb{H}$ aleshores $\forall q \in \mathbb{H},\; uq\overline{u} = q \iff u\overline{q} = qu$
+			\begin{lema}
+				Si $p \in \mathbb{H}$, tal que $\forall q \in \mathbb{H}, pq = qp$ aleshores $p \in \mathbb{R}$.
+			\end{lema}
+			\begin{demostracio}
+				Escribim $p = p_0 + p_1i + p_2j + p_3k$. En particular,
+				\begin{displaymath}
+					\begin{aligned}[t]
+						pi = ip &\iff p_0i - p_1 - p_2k - p_3j = p_0i - p_1 + p_2k + p_3j\\
+						&\iff 2p_2k + 2p_3j = 0\\
+						&\iff p_2 = p_3 = 0 \iff p = p_0 + p_1i
+					\end{aligned}
+				\end{displaymath}
+				i la relació $pj = jp \iff p_1 = 0$. Al final $p = p_0 \in \mathbb{R}$.
+			\end{demostracio}
+			Doncs $u \in \mathbb{R}\cap\mathbb{U} \{\pm 1\}$.
+			\item $\Phi_u(\Phi_v(p)) = uvp\overline{v}\overline{u} = uvp\overline{uv} = \Phi_{uv}(p)$
+			Ara bè, $\forall u \in \mathbb{U},\;\Phi_u\circ\Phi_{\overline{u}} = \Phi_{u\overline{u}} = \Phi_1 = Id_\mathbb{H} \Rightarrow \Phi_{u}^{-1} = \Phi_{\overline{u}}$
+			\item $\Phi_u = \Phi_v \Rightarrow \Phi_u \circ \Phi_{v^{-1}} = Id_\mathbb{H}$
+		\end{enumerate}
+	\end{demostracio}
+	Ara denotarem $\begin{aligned}[t]\Psi_u: \mathbb{H}^{pur} &\to \mathbb{H}^{pur}\\q &\mapsto uq\overline{u}\end{aligned}$ la restricció de $\Phi_u$ als quaternions imaginaris purs.\\
+	Si identifiquem $\begin{aligned}[t]\mathbb{H}^{pur} &\simeq \mathbb{R}^3\\p_1i+p_2j+p_3k &\tilde{\mapsto} (p_1, p_2, p_3)\end{aligned}$, obtenim una aplicació induïda $R_u: \mathbb{R}^3 \to \mathbb{R}^3$ definit per $R_u(p_1, p_2, p_3) = \Psi_u(p_1i+p_2j+p_3k)$\\
+	Les dues proposicions anteriors impliquen el següent:
+	\begin{itemize}
+		\item $R_u$ és lineal $\forall p,q \in \mathbb{R}^3,\;\forall\lambda\in\mathbb{R}$
+		\item $R_u$ és invertible
+		\item De fet, $R_u$ serà una rotació.
+	\end{itemize}
+	\begin{teorema}
+		$u, v \in \mathbb{U}$, aleshores
+		\begin{enumerate}
+			\item $R_u \in SO(3)$ (és a dir, $R_u$ és una rotació)
+			\item $R_u \circ R_v = R_{uv}$ i $R_u^{-1} = R_{\overline{u}}$
+			\item $R_u = R_v \iff u = \pm v$
+		\end{enumerate}
+	\end{teorema}
+	\begin{demostracio}
+		\begin{enumerate}
+			\item Observem que $\Psi_u(i^2) = \Psi_u(i)^2 \iff -1 = \Psi_u(i)^2$ i de la mateixa manera $\Psi_u(j)^2=\Psi_u(k)^2 = -1$.
+			Després $\Psi_u(ij)=\Psi_u(k)=\Psi_u(-ji) \iff \Psi_u(i)\Psi_u(j) = \Psi_u(k) = -\Psi_u(j)\Psi_u(i)$ i de la mateixa manera obtenim
+			\begin{displaymath}
+				\begin{cases}
+					\Psi_u(j)\Psi_u(k) = \Psi_u(i) = -\Psi_u(k)\Psi_u(j)\\
+					\Psi_u(k)\Psi_u(i) = \Psi_u(j) = -\Psi_u(i)\Psi_u(k)
+				\end{cases}
+			\end{displaymath}
+			I doncs deduim que $\left(\Psi_u(i), \Psi_u(j), \Psi_u(k)\right)$ és un BON $\oplus$ de $\mathbb{R}^3 \Rightarrow (R_u(1,0,0), R_u(0,1,0), R_u(0,0,1))$ és un BON $\oplus \Rightarrow mat_{(e_1, e_2, e_3)}(R_u) \in SO(3)$.
+		\end{enumerate}
+		2 i 3 es dedueixen de la proposició anterior.
+	\end{demostracio}
+	\begin{notacio}
+		Des d'ara no distingirem entre $R_u$ i $\Psi_u$.
+	\end{notacio}
+	\begin{obs}
+		En particular, obtenim un morfisme de grups:
+		\begin{displaymath}
+			\begin{aligned}[t]
+				R: (\mathbb{U}, \times) &\to (SO(3), \times)\\
+				u &\mapsto R_u (= \Psi_u \text{ via la identificació} \mathbb{R}^3 \simeq \mathbb{H}^{pur})
+			\end{aligned}
+		\end{displaymath}
+		Amb $R_u(Q) = R_u(q) = uq\overline{u}$\\
+		tal que $R_{uv} = R_u \circ R_v$ i $R_u = R_v \iff u = \pm v$.\\
+		Aixi podem identificar $SO(3) \simeq \mathbb{U}\bigslant\{\pm Id\} \simeq \mathbb{S}^3\bigslant\{\pm 1\}$.
+	\end{obs}
+	Ara veiem que $R$ és exhaustiva i permet descriure qualsevol rotació.
+	\begin{teorema}
+		Sigui $Q = (q_1, q_2, q_3) \in \mathbb{R}^3$ amb $\left\lVert Q \right\rVert = 1$, $\theta \in \mathbb{R}$.\\
+		Definim $u(Q, \theta) = \cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}}Q$. Aleshores $u(Q, \theta) \in \mathbb{U}$ i $R_{u(Q, \theta)}$ és la rotació a $\mathbb{R}^3$ d'un eix $Q$ i un angle $\theta$. En particular, l'aplicació $R$ és exhaustiva.
+	\end{teorema}
+	\begin{demostracio}
+		\begin{displaymath}
+			\begin{aligned}[t]
+				N(u(Q, \theta)) &= u(Q, \theta) \overline{u(Q, \theta)}\\
+								&= \cos^2{\frac{\theta}{2}} - \sin^2{\frac{\theta}{2}} Q^2\\
+								&= \cos^2{\frac{\theta}{2}} + \sin^2{\frac{\theta}{2}}\\
+								&= 1
+			\end{aligned}
+		\end{displaymath}
+		Primer, comprovem que $q = Q \in \mathbb{H}^{pur}$ és l'eix de la rotació $R_{u(Q, \theta)}$:\\
+		\begin{displaymath}
+			\begin{aligned}[t]
+				R_{u(Q, \theta)}(q) &= (\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}}Q)Q(\cos{\frac{\theta}{2}} - \sin{\frac{\theta}{2}}Q)\\
+									&= \underbrace{(\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}}Q)(\cos{\frac{\theta}{2}} - \sin{\frac{\theta}{2}}Q)}_{ = u(Q, \theta)\overline{u(Q, \theta)}}
+									&= Q \iff R_{u(Q, \theta)}(Q) = Q
+			\end{aligned}
+		\end{displaymath}
+		Ara comprovem que l'angle de la rotació $R_{u(Q,\theta)}$ és $\theta$:\\
+		Per això triem $P_1, P_2 \in \mathbb{R}^3 \rightsquigarrow p_1, p_2 \in \mathbb{H}^{pur}$ tals que $(P_1, P_2, Q)$ sigui BON $\oplus$.\\
+		Com $P_1, P_2, Q$ és BON $\oplus$ calculem
+		\begin{displaymath}
+			\begin{aligned}[t]
+				R_{u(Q, \theta)}(P_1)
+									&= (\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}}Q)P_1(\cos{\frac{\theta}{2}} - \sin{\frac{\theta}{2}}Q)\\
+									&= (\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}}Q)(\cos{\frac{\theta}{2}}P_1 - \sin{\frac{\theta}{2}}\underbrace{P_1Q}_{=-QP_1})\\
+									&= (\cos{\frac{\theta}{2}} + \sin{\frac{\theta}{2}}Q)(\cos{\frac{\theta}{2}}P_1 + \sin{\frac{\theta}{2}}Q)P_1\\
+									&= (\cos^2{\frac{\theta}{2}} + \sin{\frac{\theta}{2}}\cos{\frac{\theta}{2}}Q + \sin{\frac{\theta}{2}}\cos{\frac{\theta}{2}}Q + \sin^2{\frac{\theta}{2}}Q)P_1\\
+									&= (\cos^2{\frac{\theta}{2}} - \sin^2{\frac{\theta}{2}})P_1 + 2\sin{\frac{\theta}{2}}\cos{\frac{\theta}{2}}\underbrace{QP_1}_{=P_2}\\
+									&= \cos{\theta}P_1 + \sin{\theta}P_2
+			\end{aligned}
+		\end{displaymath}
+		Per tant, deduim que l'angle de $R_{u(Q, \theta)}$ és $\theta$.
+	\end{demostracio}
+	\begin{obs}
+		Podem comprovar que $R_{u(Q, \theta)(P_2) = -\sin{\theta}}P_1 + \cos{\theta}P_2$.
+		Deduïm que
+		\begin{displaymath}
+			Mat_(Q, P_1, P_2)(R_{u(Q, \theta)}) = \begin{pmatrix}
+				1 & 0 & 0\\
+				0 & \cos{\theta} & -\sin{\theta}\\
+				0 &\sin{\theta} & \cos{\theta}\\
+			\end{pmatrix}
+		\end{displaymath}
+	\end{obs}
+	\subsection{Interpolació de rotacions}
+	Pregunta: Si tenim dos punts de vista sobre una situació: aquí tenim dos matrius $A_0$ i $A_1 \in SO(3)$. Com podem pasar d'un punt de vista (camera 0) a l'altre punt de vista (camera 1)?\\
+	De forma equivalent, busquem una familia de matrius
+	\begin{displaymath}
+		\{A_t\}_{t\in[0,1]} tq \begin{cases}
+			A_0 = \overline{A_0}\\
+			A_1 = \overline{A_1}\\
+			(t \mapsto A_t \text{ es contiuna})
+		\end{cases}
+		\text{ i } A_t \in SO(3) \forall t \in [0,1]
+	\end{displaymath}
+	Trobar la familia $\{A_t\}_{t\in[0,1]}$ se'n diu fer la interpolació entre $\overline{A_0}$ i $\overline{A_1}$.\\
+	Sabem inicialment que aquesta interpolació sempre existeix, i a més no és única.\\
+	Aquest problema es díficil, com busquem els $9$ coeficients de $A_t$ que han de satisfer les equacions següents:
+	\begin{displaymath}
+		\begin{cases}
+			A_t^tA_t = I &\text{(6 quadratiques per simetria)}\\
+			\det{A_t} = 1 &\text{(1 cúbica)}
+		\end{cases}
+	\end{displaymath}
+	Pero ho podem fer "fàcilment" fent servir els quaterinons.\\
+	Com ho fem?\\
+	Primer representem $\overline{A_0}$ i $\overline{A_1} \in SO(3)$ amb quaternions unitaris:
+	\begin{displaymath}
+		\exists u, v \in \mathbb{U} tq \overline{A_0} = R_u \text{ i } \overline{A_1} = R_v
+	\end{displaymath}
+	Sigui $w \in Vect(u, v) \cap \mathbb{U}$ tal que
+	\begin{displaymath}
+		\begin{cases}
+			\left\langle u, w \right\rangle = 0\\
+			\left\langle v, w \right\rangle = 0
+		\end{cases}
+	\end{displaymath}
+	$\exists \theta \in [0, \pi)$ tq $v = \cos{\theta}u + \sin{\theta}w$\\
+	Aleshores obtenim que
+	\begin{displaymath}
+		\begin{aligned}[t]
+			&q := v\overline{u} = (\cos{\theta} + \sin{\theta}w)\overline{u} \in \mathbb{U}\\
+			\iff & q = \cos{\theta} + \sin{\theta}w\overline{u}\\
+			\iff & w = \frac{v - \cos{\theta}u}{\sin{\theta}}
+		\end{aligned}
+	\end{displaymath}
+	Finalment, posem $\forall t \in [0,1],\;U_t := \cos{t\theta}u + \sin{t\theta}w \in \mathbb{U}$ i com $u_0 = u$ i $u_1 = v$, deduïm que $A_t := R_{U_t} (\forall t \in [0,1])$ ens defineix una interpolació entre $\overline{A_0}$ i $\overline{A_1}$.\\
+	Com trobar $w$ i $\theta$ en la pràctica?\\
+	Busquem $\theta \in [0, \pi)$ i $q \in \mathbb{U}$ tq $vu^{-1} = \cos{\theta} + \sin{\theta}q$.\\
+	Aleshores tenim el $\theta$ buscat i obtenim
+	\begin{displaymath}
+		w = qu\;(= \frac{v - \cos{\theta}u}{\sin{\theta}})
+	\end{displaymath}
+	Ara expliquem que son els angles d'Euler.\\
+	\begin{teorema}
+		Posem $\forall \alpha, \beta, \gamma \in \mathbb{R}$,
+		\begin{displaymath}
+			\begin{cases}
+				R_{i}(\alpha) :=\begin{pmatrix}
+					1 & 0 & 0\\
+					0 & \cos{\alpha} & -\sin{\alpha}\\
+					0 & \sin{\alpha} & \cos{\alpha}
+				\end{pmatrix}\\
+				R_{j}(\beta) :=\begin{pmatrix}
+					\cos{\beta} & 0 & \sin{\beta}\\
+					0 & 1 & 0\\
+					-\sin{\beta} & 0 & \cos{\beta}
+				\end{pmatrix}\\
+				R_{k}(\gamma) :=\begin{pmatrix}
+					\cos{\gamma} & -\sin{\gamma} & 0\\
+					\sin{\gamma} & \cos{\gamma} & 0\\
+					0 & 0 & 1
+				\end{pmatrix}
+			\end{cases}
+		\end{displaymath}
+		Aquestes matrius generen totes les rotacions a l'espai:
+		\begin{displaymath}
+			\forall A \in SO(3),\; \exists \alpha, \beta, \gamma \in \mathbb{R}\text{ anomenats angles d'Euler, tal que }A = R_{i}(\alpha)R_{j}(\beta)R_{k}(\gamma)
+		\end{displaymath}
+
+	\end{teorema}
 \end{document}

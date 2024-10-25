@@ -208,4 +208,49 @@ Anem a veure com solucionar la homogènia
 \begin{proposicio}
 	Siguin $y_1(x)$ i $y_2(x)$ dues solucions de \eqref{eq:edolin2nhomo}, aleshores $y(x) = Ay_1(x) + By_2(x)$ també és solució \eqref{eq:edolin2n} per constants $A$ i $B$ qualssevol.
 \end{proposicio}
+\begin{teorema}
+	Donat el problema de valor inicial
+	\begin{displaymath}
+		\begin{aligned}[t]
+			y'' + a(x)y' + b(x)y = f(x)\\
+			y(x_0) = y_0\\
+			y'(x_0) = y_0'
+		\end{aligned}
+	\end{displaymath}
+	Si les funcions $a, b, f$ són contínues en un interval $I$ que conté $x_0$, aleshores el problema té una única solució en $I$.
+\end{teorema}
+\begin{definicio}
+	Si $y_1(x)$ i $y_2(x)$ són solucions de l'equació lineal homogènia de segon ordre \eqref{eq:edolin2nhomo} el determinant $W(y_1,y_2)(x) := \det\begin{psmallmatrix}y_1(x) & y_2(x)\\y_1'(x) & y_2'(x)\end{psmallmatrix}$ s'anomena Wronskià de $y_1$ i $y_2$.
+\end{definicio}
+\begin{teorema}
+	Si $y_1$ i $y_2$ són dues solucions de l'equació lineal homogènia de segon ordre \eqref{eq:edolin2nhomo} i $W(y_1,y_2)(x_0) \neq 0$ per algun $x_0$ aleshores
+	\begin{displaymath}
+		y(x) = Ay_1(x) + By_2(x)
+	\end{displaymath}
+	és la solució general de l'equació.
+\end{teorema}
+\begin{teorema}[de Abel]
+	Si $y_1$ i $y_2$ són dues solucions de l'equació lineal homogènia de segon ordre \eqref{eq:edolin2nhomo} aleshores el Wronskià $W(y_1,y_2)(x)$ és una funció exponencial i $\forall x$ serà sempre $0$ o no ho serà.
+\end{teorema}
+\subsubsection{Equacions lineals de segon ordre amb coeficients constants}
+\begin{equation}
+	y'' + by' + cy = 0
+	\label{eq:edolin2homoconst}
+\end{equation}
+Tindrem un polinomi característic de l'equació homogènia \eqref{eq:edolin2homoconst} de la forma $P(\lambda) = \lambda^2 + b\lambda + c = 0$. Llavors tenim tres casos:
+\begin{enumerate}
+	\item Si $b^2 - 4c > 0$ llavors les arrels són reals i diferents $\lambda_1$ i $\lambda_2$ i la solució general serà
+		\begin{displaymath}
+			y(x) = Ae^{\lambda_1x} + Be^{\lambda_2x}
+		\end{displaymath}
+	\item Si $b^2 - 4c = 0$ llavors les arrels són reals i iguals $\lambda_1 = \lambda_2 = \lambda$ i la solució general serà
+		\begin{displaymath}
+			y(x) = Ae^{\lambda x} + Bxe^{\lambda x}
+		\end{displaymath}
+	\item Si $b^2 - 4c < 0$ llavors les arrels són complexes $\lambda_1 = \alpha + i\beta$ i $\lambda_2 = \alpha - i\beta$ i la solució general serà
+		\begin{displaymath}
+			y(x) = e^{\alpha x}(A\cos(\beta x) + B\sin(\beta x))
+		\end{displaymath}
+\end{enumerate}
+
 \end{document}
