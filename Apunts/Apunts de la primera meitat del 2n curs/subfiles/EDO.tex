@@ -253,4 +253,18 @@ Tindrem un polinomi característic de l'equació homogènia \eqref{eq:edolin2hom
 		\end{displaymath}
 \end{enumerate}
 
+També podem fer servir el metode de variació de parametres per trobar la solució general de l'equació no homogènia \eqref{eq:edolin2n}.\\
+	Sigui $\{y_1(x), y_2(x)\}$ un conjunt fonamental de solucions de l'equació homogènia \eqref{eq:edolin2nhomo} $y_h(x) = C_1 y_1(x) + C_2 y_2(x)$. Buscarem $y_p(x)$ de la forma $y_p(x) = C_1(x)y_1(x) + C_2(x)y_2(x)$. $y_p'(x) = C_1'(x)y_1(x) + C_2'(x)y_2(x) + C_1(x)y_1'(x) + C_2(x)y_2'(x)$. Imposem $C_1'(x)y_1(x) + C_2'(x)y_2(x) = 0$. Aleshores $y_p''(x) = C_1'(x)y_1'(x) + C_2'(x)y_2'(x) + C_1(x)y_1''(x) + C_2(x)y_2''(x)$. Substituïm a l'equació no homogènia \eqref{eq:edolin2n} i trobem $C_1'(x)y_1'(x) + C_2'(x)y_2'(x) = q(x)$. Resolem aquest sistema d'equacions per trobar $C_1(x)$ i $C_2(x)$.
+	\begin{displaymath}
+		\begin{cases}
+			C_1'(x)y_1(x) + C_2'(x)y_2(x) = 0\\
+			C_1'(x)y_1'(x) + C_2'(x)y_2'(x) = q(x)
+		\end{cases}
+	\end{displaymath}
+
+\subsubsection{Aplicacions}
+Sistemes mecànics: tenim un sistema massa-molla. La massa es de $m$ kg i la molla fa $l$ cm de llargada i $s$ de llargada quan es posa la massa. Aplicant la segona llei de Newton tenim $\sum F = mx''$. Tenim la força de la gravetat $F_1 = mg$ i la força de la molla per la llei de Hooke $F_2 = -k(x+s) = -kx-mg$. En equilibri tenim $F_1 + F_2 = 0 \Rightarrow mg - k(x+s) = 0$. Aleshores tenim l'equació diferencial $mx'' = ks$.\\
+També podem tindre la força d'amortiment o fricció, que es presuposa que no hi ha si no es diu el contrari, $F_3 = -bx'$. I tambè podem tindre forces externes $F_4 = f(t)$. Aleshores tenim l'equació diferencial $F_1 + F_2 + F_3 + F_4 = 0 \Rightarrow mx'' = -bx' - kx + f(t)$.\\
+Si $b = 0$ es diu no amortit. Si $f(t) = 0$ es diu lliure. Si ambdos són $0$ es diu oscilador harmònic simple.\\
+El polinomic característic de l'equació diferencial serà $P(\lambda) = m\lambda^2 + k = 0$. Llavors, $x(t) = C_1\sin(\sqrt{\frac{k}{m}}t) + C_2\cos(\sqrt{\frac{k}{m}}t) = A\sin(\sqrt{\frac{k}{m}}t + \phi)$.\\
 \end{document}

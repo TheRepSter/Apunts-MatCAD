@@ -1020,12 +1020,12 @@
 	Pregunta: Si tenim dos punts de vista sobre una situació: aquí tenim dos matrius $A_0$ i $A_1 \in SO(3)$. Com podem pasar d'un punt de vista (camera 0) a l'altre punt de vista (camera 1)?\\
 	De forma equivalent, busquem una familia de matrius
 	\begin{displaymath}
-		\{A_t\}_{t\in[0,1]} tq \begin{cases}
+		\{A_t\}_{t\in[0,1]}\;tq\;\begin{cases}
 			A_0 = \overline{A_0}\\
 			A_1 = \overline{A_1}\\
 			(t \mapsto A_t \text{ es contiuna})
 		\end{cases}
-		\text{ i } A_t \in SO(3) \forall t \in [0,1]
+		\text{ i } A_t \in SO(3)\;\forall t \in [0,1]
 	\end{displaymath}
 	Trobar la familia $\{A_t\}_{t\in[0,1]}$ se'n diu fer la interpolació entre $\overline{A_0}$ i $\overline{A_1}$.\\
 	Sabem inicialment que aquesta interpolació sempre existeix, i a més no és única.\\
@@ -1040,7 +1040,7 @@
 	Com ho fem?\\
 	Primer representem $\overline{A_0}$ i $\overline{A_1} \in SO(3)$ amb quaternions unitaris:
 	\begin{displaymath}
-		\exists u, v \in \mathbb{U} tq \overline{A_0} = R_u \text{ i } \overline{A_1} = R_v
+		\exists u, v \in \mathbb{U}\;tq\;\overline{A_0} = R_u \text{ i } \overline{A_1} = R_v
 	\end{displaymath}
 	Sigui $w \in Vect(u, v) \cap \mathbb{U}$ tal que
 	\begin{displaymath}
@@ -1087,10 +1087,9 @@
 				\end{pmatrix}
 			\end{cases}
 		\end{displaymath}
-		Aquestes matrius generen totes les rotacions a l'espai:
-		\begin{displaymath}
-			\forall A \in SO(3),\; \exists \alpha, \beta, \gamma \in \mathbb{R}\text{ anomenats angles d'Euler, tal que }A = R_{i}(\alpha)R_{j}(\beta)R_{k}(\gamma)
-		\end{displaymath}
-
+		Aquestes matrius generen totes les rotacions a l'espai:\\
+		$\forall A \in SO(3),\; \exists \alpha, \beta, \gamma \in \mathbb{R}$
+		anomenats angles d'Euler, tal que\\
+		$A = R_{i}(\alpha)R_{j}(\beta)R_{k}(\gamma)$
 	\end{teorema}
 \end{document}

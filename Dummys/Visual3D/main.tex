@@ -1017,4 +1017,80 @@
 			\end{pmatrix}
 		\end{displaymath}
 	\end{obs}
+	\section{Interpolació de rotacions}
+	Pregunta: Si tenim dos punts de vista sobre una situació: aquí tenim dos matrius $A_0$ i $A_1 \in SO(3)$. Com podem pasar d'un punt de vista (camera 0) a l'altre punt de vista (camera 1)?\\
+	De forma equivalent, busquem una familia de matrius
+	\begin{displaymath}
+		\{A_t\}_{t\in[0,1]}\;tq\;\begin{cases}
+			A_0 = \overline{A_0}\\
+			A_1 = \overline{A_1}\\
+			(t \mapsto A_t \text{ es contiuna})
+		\end{cases}
+		\text{ i } A_t \in SO(3)\;\forall t \in [0,1]
+	\end{displaymath}
+	Trobar la familia $\{A_t\}_{t\in[0,1]}$ se'n diu fer la interpolació entre $\overline{A_0}$ i $\overline{A_1}$.\\
+	Sabem inicialment que aquesta interpolació sempre existeix, i a més no és única.\\
+	Aquest problema es díficil, com busquem els $9$ coeficients de $A_t$ que han de satisfer les equacions següents:
+	\begin{displaymath}
+		\begin{cases}
+			A_t^tA_t = I &\text{(6 quadratiques per simetria)}\\
+			\det{A_t} = 1 &\text{(1 cúbica)}
+		\end{cases}
+	\end{displaymath}
+	Pero ho podem fer "fàcilment" fent servir els quaterinons.\\
+	Com ho fem?\\
+	Primer representem $\overline{A_0}$ i $\overline{A_1} \in SO(3)$ amb quaternions unitaris:
+	\begin{displaymath}
+		\exists u, v \in \mathbb{U}\;tq\;\overline{A_0} = R_u \text{ i } \overline{A_1} = R_v
+	\end{displaymath}
+	Sigui $w \in Vect(u, v) \cap \mathbb{U}$ tal que
+	\begin{displaymath}
+		\begin{cases}
+			\left\langle u, w \right\rangle = 0\\
+			\left\langle v, w \right\rangle = 0
+		\end{cases}
+	\end{displaymath}
+	$\exists \theta \in [0, \pi)$ tq $v = \cos{\theta}u + \sin{\theta}w$\\
+	Aleshores obtenim que
+	\begin{displaymath}
+		\begin{aligned}[t]
+			&q := v\overline{u} = (\cos{\theta} + \sin{\theta}w)\overline{u} \in \mathbb{U}\\
+			\iff & q = \cos{\theta} + \sin{\theta}w\overline{u}\\
+			\iff & w = \frac{v - \cos{\theta}u}{\sin{\theta}}
+		\end{aligned}
+	\end{displaymath}
+	Finalment, posem $\forall t \in [0,1],\;U_t := \cos{t\theta}u + \sin{t\theta}w \in \mathbb{U}$ i com $u_0 = u$ i $u_1 = v$, deduïm que $A_t := R_{U_t} (\forall t \in [0,1])$ ens defineix una interpolació entre $\overline{A_0}$ i $\overline{A_1}$.\\
+	Com trobar $w$ i $\theta$ en la pràctica?\\
+	Busquem $\theta \in [0, \pi)$ i $q \in \mathbb{U}$ tq $vu^{-1} = \cos{\theta} + \sin{\theta}q$.\\
+	Aleshores tenim el $\theta$ buscat i obtenim
+	\begin{displaymath}
+		w = qu\;(= \frac{v - \cos{\theta}u}{\sin{\theta}})
+	\end{displaymath}
+	Ara expliquem que son els angles d'Euler.\\
+	\begin{teorema}
+		Posem $\forall \alpha, \beta, \gamma \in \mathbb{R}$,
+		\begin{displaymath}
+			\begin{cases}
+				R_{i}(\alpha) :=\begin{pmatrix}
+					1 & 0 & 0\\
+					0 & \cos{\alpha} & -\sin{\alpha}\\
+					0 & \sin{\alpha} & \cos{\alpha}
+				\end{pmatrix}\\
+				R_{j}(\beta) :=\begin{pmatrix}
+					\cos{\beta} & 0 & \sin{\beta}\\
+					0 & 1 & 0\\
+					-\sin{\beta} & 0 & \cos{\beta}
+				\end{pmatrix}\\
+				R_{k}(\gamma) :=\begin{pmatrix}
+					\cos{\gamma} & -\sin{\gamma} & 0\\
+					\sin{\gamma} & \cos{\gamma} & 0\\
+					0 & 0 & 1
+				\end{pmatrix}
+			\end{cases}
+		\end{displaymath}
+		Aquestes matrius generen totes les rotacions a l'espai:\\
+		$\forall A \in SO(3),\; \exists \alpha, \beta, \gamma \in \mathbb{R}$
+		anomenats angles d'Euler, tal que\\
+		$A = R_{i}(\alpha)R_{j}(\beta)R_{k}(\gamma)$
+	\end{teorema}
 \end{document}
