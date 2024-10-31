@@ -266,5 +266,35 @@ També podem fer servir el metode de variació de parametres per trobar la soluc
 Sistemes mecànics: tenim un sistema massa-molla. La massa es de $m$ kg i la molla fa $l$ cm de llargada i $s$ de llargada quan es posa la massa. Aplicant la segona llei de Newton tenim $\sum F = mx''$. Tenim la força de la gravetat $F_1 = mg$ i la força de la molla per la llei de Hooke $F_2 = -k(x+s) = -kx-mg$. En equilibri tenim $F_1 + F_2 = 0 \Rightarrow mg - k(x+s) = 0$. Aleshores tenim l'equació diferencial $mx'' = ks$.\\
 També podem tindre la força d'amortiment o fricció, que es presuposa que no hi ha si no es diu el contrari, $F_3 = -bx'$. I tambè podem tindre forces externes $F_4 = f(t)$. Aleshores tenim l'equació diferencial $F_1 + F_2 + F_3 + F_4 = 0 \Rightarrow mx'' = -bx' - kx + f(t)$.\\
 Si $b = 0$ es diu no amortit. Si $f(t) = 0$ es diu lliure. Si ambdos són $0$ es diu oscilador harmònic simple.\\
-El polinomic característic de l'equació diferencial serà $P(\lambda) = m\lambda^2 + k = 0$. Llavors, $x(t) = C_1\sin(\sqrt{\frac{k}{m}}t) + C_2\cos(\sqrt{\frac{k}{m}}t) = A\sin(\sqrt{\frac{k}{m}}t + \phi)$.\\
+El polinomic característic de l'equació diferencial serà $P(\lambda) = m\lambda^2 + k = 0$. Llavors, $x(t) = C_1\sin(\sqrt{\frac{k}{m}}t) + C_2\cos(\sqrt{\frac{k}{m}}t) = A\sin(\sqrt{\frac{k}{m}}t + \phi)$, amb $\phi = \frac{c_1}{c_2},\;A=\sqrt{c_1^2+c_2^2}$.\\
+
+Cas amortit i lliure $b>0,\;k>0,\;m>0$. El polinomic característic serà $P(\lambda) = m\lambda^2 + b\lambda + k = 0$. Llavors tenim tres casos:
+\begin{itemize}
+	\item $b^2 - 4mk > 0$ llavors les arrels són reals i diferents $\lambda_1$ i $\lambda_2$ i la solució general serà
+		\begin{displaymath}
+			x(t) = C_1e^{\lambda_1t} + C_2e^{\lambda_2t}
+		\end{displaymath}
+		Notem que $\lim\limits_{t\to+\infty} x(t) = 0$. Hi ha un maxim (o minim) a $t = \frac{1}{\lambda_2-\lambda_1}\ln{\left(\frac{-C_1\lambda_1}{C_2\lambda_2}\right)}$. Es diu que aquest moviment és sobreamortit.
+	\item $b^2 - 4mk = 0$ llavors les arrels són reals i iguals $\lambda_1 = \lambda_2 = \lambda$ i la solució general serà
+		\begin{displaymath}
+			x(t) = e^{\lambda t}(C_1 + C_2t)
+		\end{displaymath}
+		Notem que $\lim\limits_{t\to+\infty} x(t) = 0$. Hi ha un maxim (o minim) a $t = -\frac{c_1}{c_2} + \frac{2m}{b}$. Es diu que aquest moviment és críticament amortit.
+	\item $b^2 - 4mk < 0$ llavors les arrels són complexes $\lambda_1 = -\frac{b}{2m} + i\sqrt{\frac{4mk-b^2}{2m}} = \alpha + i\beta$ i $\lambda_2 = \alpha - i\beta$ i la solució general serà
+		\begin{displaymath}
+			x(t) = e^{\alpha t}(C_1\cos(\beta t) + C_2\sin(\beta t)) = Ae^{\alpha t}\sin(\beta t + \phi)\; A = \sqrt{c_1^2+c_2^2}\; \tan{\phi} = \frac{c_1}{c_2}
+		\end{displaymath}
+		Notem que $\lim\limits_{t\to+\infty} x(t) = 0$. Aquesta sí que oscila, llavors te molts punts critics. Es diu que aquest moviment és subamortit.
+\end{itemize}
+
+Cas amortit i forçat $b>0,\;k>0,\;m>0,\;f(t)\neq 0$. L'equació diferencial serà $mx'' + bx' + kx = f(t)$. La solució general serà $x(t) = x_h(t) + x_p(t)$, on $x_h(t)$ és la solució general de l'homogènia i $x_p(t)$ és una solució particular de l'equació diferencial.\\
+Notem que ja hem estudiat la homogenia anteriorment, ja que en el cas lliure es homogenia. $x_h(t)$ s'anomena terme transitori i $x_p(t)$ terme estacionari. Això ja que $\lim\limits_{t \to +\infty} x(t) = \lim\limits_{t\to+\infty} x_p(t)$, es dir, al limit el $x_h$ no importa.\\
+
+Cas no amortit i forçat ressonància $b=0,\;k>0,\;m>0,\;f(t) = F_0\sin{\omega_0t}$. L'equació diferencial serà $mx'' + kx = F_0\sin{\omega_0t}$. La solució general serà $x(t) = x_h(t) + x_p(t)$. $x_h(t) =  C_1\sin(\sqrt{\frac{k}{m}}t) + C_2\cos(\sqrt{\frac{k}{m}}t)$. Busquem $x_p(t)$. Anotem $\omega = \sqrt{\frac{k}{m}}$
+	\begin{itemize}
+		\item $\omega \neq \omega_0$ busquem
+		$x_p(t)=A\sin{\left(\omega_0 t\right)} + B\cos{\left(\omega_0 t\right)}$, substituim $x_p(t) = \frac{F_0\sin{\omega_0 t}}{\omega^2-\omega_0^2} \Rightarrow x(t) = C_1\sin{\left(\sqrt{\frac{k}{m}}t\right)} + C_2\cos{\left(\sqrt{\frac{k}{m}}t\right)} + \frac{F_0\sin{\omega_0 t}}{\omega^2-\omega_0^2}$.
+		\item $\omega = \omega_0$ busquem
+		$x_p(t)=t(A\sin{\omega t} + B\cos{\omega t}) = - \frac{F_0}{2\omega}t\cos{\omega t} \Rightarrow x(t) = C_1\sin{\left(\sqrt{\frac{k}{m}}t\right)} + C_2\cos{\left(\sqrt{\frac{k}{m}}t\right)} - \frac{F_0}{2\omega}t\cos{\omega t}$.
+	\end{itemize}
 \end{document}
