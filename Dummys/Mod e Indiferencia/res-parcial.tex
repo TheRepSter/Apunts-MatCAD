@@ -273,5 +273,33 @@ Propietats:
 	\item La funció de densitat es\\ $f_F(x) = \frac{\Gamma(\frac{n+m}{2})}{\Gamma(\frac{n}{2})\Gamma(\frac{m}{2})}(\frac{n}{m})^{n/2}x^{n/2-1}\left(1+\frac{n}{m}x\right)^{-(n+m)/2}$ quan $x\geq 0$
 	\item $P(F_{n,m}\leq x) = P(F_{m,n}\leq \frac{1}{x}$, aixó serveix per exemple quan $P(F \leq x) = 0.05 \Rightarrow P(F \geq x) = 0.95 =  P(F \leq \frac{1}{x})$
 \end{itemize}
+\subsubsection{Esperances i variàncies}
+\begin{tabular}{|c|c|c|}
+	\hline
+	& Esperança & Variància\\
+	\hline
+	$X \sim B(p)$ & $p$ & $p(1-p)$\\
+	\hline
+	$X \sim Bin(n,p)$ & $np$ & $np(1-p)$\\
+	\hline
+	$X \sim Geo(p)$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$\\
+	\hline
+	$X \sim BinNeg(r,p)$ & $\frac{r}{p}$ & $\frac{r(1-p)}{p^2}$\\
+	\hline
+	$X \sim HipGeo(N,K,n)$ & $n\frac{K}{N}$ & $n\frac{K}{N}\frac{N-K}{N}\frac{N-n}{N-1}$\\
+	\hline
+	$X \sim Poiss(\lambda)$ & $\lambda$ & $\lambda$\\
+	\hline
+	$X \sim U(a,b)$ & $\frac{a+b}{2}$ & $\frac{(b-a)^2}{12}$\\
+	\hline
+	$X \sim Exp(\lambda)$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$\\
+	\hline
+	$X \sim Weibull(\nu, \lambda)$ & $\lambda\Gamma(1+\frac{1}{\nu})$ & $\lambda^2(\Gamma(1+\frac{2}{\nu}) - \Gamma^2(1+\frac{1}{\nu}))$\\
+	\hline
+	$X \sim Gamma(r, \lambda)$ & $\frac{r}{\lambda}$ & $\frac{r}{\lambda^2}$\\
+	\hline
+	$X \sim Erlang(r, \lambda)$ & $\frac{r}{\lambda}$ & $\frac{r}{\lambda^2}$\\
+	\hline
+\end{tabular}
 \end{multicols}
 \end{document}
