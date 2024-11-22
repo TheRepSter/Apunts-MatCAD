@@ -1092,4 +1092,239 @@
 		anomenats angles d'Euler, tal que\\
 		$A = R_{i}(\alpha)R_{j}(\beta)R_{k}(\gamma)$
 	\end{teorema}
+	\subsection{?}
+	Mucho texto no estaba luego rellenar\\
+	Aquesta relació modelitza un ull (o càmera) centrat en l'origen i mirant cap als z positius.\\
+	\begin{obs}
+		\begin{displaymath}
+			\pi_0\begin{pmatrix}X\\Y\\Z\\T\end{pmatrix} = \begin{pmatrix}X\\Y\\Z\end{pmatrix}
+		\end{displaymath}
+		Per això diem que $\pi_0: \mathbb{R}^4 \to \mathbb{R}^3$ se'n diu la projecció estandard.
+	\end{obs}
+	En general no és el cas i ara suposem que la càmera està centrada en un punt $C \in \mathbb{R}^3$ mirant cap alguna direcció qualsevol:
+	$P = (X,Y,Z)_{\mathcal{R}_0} = (X_C,Y_C,Z_C)_{\mathcal{R}_C}$
+
+	Sabem que les coordenades $(x,y)$ de la projecció de $P$ sobre el pla focal de la camara esta donat com
+	\begin{displaymath}
+		Z_C = \begin{pmatrix}X\\Y\\1\end{pmatrix} = K_f\pi_0\begin{pmatrix}X_C\\Y_C\\Z_C\\1\end{pmatrix}
+	\end{displaymath}
+	Passem de $(\mathcal{R}_0)$ a $(\mathcal{R}_C)$ per un moviment rígid (de càmera) $\Rightarrow \exists M \in SO(3)$ i $P_0 \in \mathbb{R}^3$ tal que
+	\begin{displaymath}
+		\begin{pmatrix}X_C\\Y_C\\Z_C\end{pmatrix} = M\begin{pmatrix}X\\Y\\Z\end{pmatrix} + P_0
+	\end{displaymath}
+	Si posem $X_C = Y_C = Z_C = 0$, obtenim $-MC = P_0$. Doncs trobem que $\begin{psmallmatrix} X_C\\Y_C\\Z_C\end{psmallmatrix} = M\begin{psmallmatrix}X\\Y\\Z\end{psmallmatrix} - MC$\\
+	Deduïm que $Z_C \begin{psmallmatrix}X\\Y\\1\end{psmallmatrix} = K_f \pi_0 \begin{psmallmatrix} X_C\\Y_C\\Z_C\\1\end{psmallmatrix} \iff Z_C \begin{psmallmatrix}X\\Y\\1\end{psmallmatrix} = K_f \pi_0 R_{M,C}\begin{psmallmatrix}X\\Y\\Z\\1\end{psmallmatrix}$\\
+	\begin{definicio}
+		\begin{displaymath}
+			\begin{pmatrix}
+				X_C\\Y_C\\Z_C\\1
+			\end{pmatrix}
+			=
+			\underbrace{\left(\begin{array}{c|c}
+				M &-MC\\
+				\hline
+				0 & 1
+		\end{array}\right)}_{:=R_{M,C}}
+			\begin{pmatrix}
+				X\\Y\\Z\\1
+			\end{pmatrix}
+		\end{displaymath}
+	\end{definicio}
+	En general, no coneixem $Z_C$ (la profunidtat del punt observat respecte a l'eix de la càmera) i per tant posarem $Z_C = \lambda > 0$.
+	\begin{definicio}
+		Una càmera ideal (o ull ideal) de pàrametres $(f, M, C)$ on $f>0,\;M \in SO(3)$ i $C \in \mathbb{R}^3$ és una projecció.
+		\begin{displaymath}
+			\pi: \mathbb{R}^3 \to \mathbb{R}^2\\
+			tq (x,y) = \pi_{f,M,C}(X,Y,Z) \iff \exists > 0\;tq\;\lambda \begin{psmallmatrix}X\\Y\\1\end{psmallmatrix} = K_f\pi_0 R_{M,C}\begin{psmallmatrix}X\\Y\\Z\\1\end{psmallmatrix}
+		\end{displaymath}
+	\end{definicio}
+	\begin{obs}
+		Si $f = 1$, diem que la càmera està normalitzada.
+	\end{obs}
+	\begin{displaymath}
+		\begin{pmatrix}X_C\\Y_C\\Z_C\end{pmatrix} = M\begin{pmatrix}X\\Y\\Z\end{pmatrix} + C \iff \begin{pmatrix}X_C\\Y_C\\Z_C\\1\end{pmatrix}
+	\end{displaymath}
+	\subsubsection{Relació epipolar i la matriu essencial}
+	Considerem dues càmeres ideals normalitzades $\mathcal{C}_1 = (f_1=1, M_1, C_1)$ i $\mathcal{C}_2 = (f_2=1, M_2, C_2)$. Fent un possible canvi de referència, podem suposar que
+	\begin{displaymath}
+		\begin{cases}
+			M_1 = I_3\\
+			C_1 = 0_{\mathbb{R}^3} = \left(0,0,0\right)
+		\end{cases}
+	\end{displaymath}
+	o de forma equivalent que la càmera $\mathcal{C}_1$ està centrada en l'origen a $\mathbb{R}^3$ i el seu eix amb l'eix $0Z$.\\
+
+	Triem un punt $P \in \mathbb{R}^3$ tal que $P$ sigui davant de les dues cameres, es a dir
+	\begin{displaymath}
+		P \in \left\{(x,y,z)_{\mathcal{C}_1} : z > 1 \right\}\cap\left\{(x_2,y_2,z_2)_{\mathcal{C}_2} : z_2 > 1 \right\}
+	\end{displaymath}
+	i volem entendre la relació anomenada epipolar que existeix entre les dues coordenades homogènies $\begin{psmallmatrix}x_1\\y_1\\1\end{psmallmatrix}$ i $\begin{psmallmatrix}x_2\\y_2\\1\end{psmallmatrix}$ de les imatges corresponents al punt $P$ per la càmera $\mathcal{C}_1$ i la càmera $\mathcal{C}_2$ respectivament.\\
+	El punt $P$ es pot descriure fent servir les seves coordenades respecte a $\mathcal{C}_1$ : $P = (x_1, y_1, z_1)_{\mathcal{C}_1} = (X,Y,Z)$ i respecte a $\mathcal{C}_2$ : $P = (x_2, y_2, z_2)_{\mathcal{C}_2}$\\
+	Recordem que aleshores existeix la relació següent
+	\begin{displaymath}
+		\begin{pmatrix}
+			X_2\\Y_2\\Z_2
+		\end{pmatrix} =
+		M_2 \begin{pmatrix}
+			X\\Y\\Z
+			\end{pmatrix}
+		- M_2C_2
+	\end{displaymath}
+	com la posiciò de $\mathcal{C}_2$ respecte a $\mathcal{C}_1$ diferent d'un moviment rìgid. De manera equivalent podem escriure
+	\begin{displaymath}
+	\begin{pmatrix}
+		X\\Y\\Z
+	\end{pmatrix} =
+	\;^tM_2 \begin{pmatrix}
+		X_2\\Y_2\\Z_2
+		\end{pmatrix}
+	+ C_2
+	\end{displaymath}
+	Per simplificar les notacions, posem que $R = M_2 \in SO(3)$ i $T = -M_2C_2 \subset \mathbb{R}^3$
+	i direm que les dues càmeres tenen la posició relativa $(R,T)$ on $R$ és la rotació relativa i $T$ la poscició relativa.
+	Per tant tenim la relaciò
+	\begin{displaymath}
+		\begin{pmatrix}
+			X_2\\Y_2\\Z_2
+		\end{pmatrix} =
+		R \begin{pmatrix}
+			X\\Y\\Z
+			\end{pmatrix}
+		+ T
+	\end{displaymath}
+	$\iff Z_2\begin{psmallmatrix}X_2/Z_2\\Y_2/Z_2\\1\end{psmallmatrix} = ZR\begin{psmallmatrix}X/Z\\Y/Z\\1\end{psmallmatrix} + T$\\
+	$\iff z_2\begin{psmallmatrix}x_2/z_2\\y_2/z_2\\1\end{psmallmatrix} = ZR\begin{psmallmatrix}x_1\\y_1\\1\end{psmallmatrix} + T$\\
+	\begin{definicio}
+		Donat $T \in \mathbb{R}^3$ definim
+		\begin{displaymath}
+			\hat{T} := \begin{pmatrix}
+				0 & -T_3 & T_2\\
+				T_3 & 0 & -T_1\\
+				-T_2 & T_1 & 0
+				\end{pmatrix}
+		\end{displaymath}
+	\end{definicio}
+	Aleshores
+	\begin{proposicio}
+		\begin{enumerate}
+			\item $ª;^t\hat{T} = - \hat{T}$
+			\item $\forall Q \in \mathbb{R}^3$, $\hat{T}Q = T \wedge Q$
+		\end{enumerate}
+	\end{proposicio}
+	\begin{demostracio}
+		\begin{enumerate}
+			\item evident.
+			\item Si $Q = (Q_1, Q_2, Q_3)$, aleshores que $\hat{T}Q = \begin{psmallmatrix}0 & -T_3 & T_2\\
+			T_3 & 0 & -T_1\\
+			-T_2 & T_1 & 0\end{psmallmatrix}\begin{psmallmatrix}Q_1\\Q_2\\Q_3\end{psmallmatrix} = \begin{psmallmatrix}-T_3Q_2 + T_2Q_3\\T_3Q_1 - T_1Q_3\\-T_2Q_1 + T_1Q_2\end{psmallmatrix} = T \wedge Q$
+		\end{enumerate}
+	\end{demostracio}
+	Multipliquem la relació anterior per $\hat{T}$ i obtenim
+	\begin{displaymath}
+		\hat{T}Z_2 \begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}
+		=
+		\hat{T}ZR \begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix}
+		+ \underbrace{\hat{T} T}_{= 0}
+	\end{displaymath}
+	i com $\hat{T}$ és lineal
+	\begin{displaymath}
+		Z_2\hat{T}\begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}
+		=
+		Z\hat{T}R\begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix}
+	\end{displaymath}
+	Si fem el producte escalar de la equació anterior amb el vector $\begin{psmallmatrix}x_2\\y_2\\1\end{psmallmatrix}$ obtenim
+	\begin{displaymath}
+		\left\langle Z_2\hat{T}\begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}, \begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix}
+		\right\rangle
+		=
+		\left\langle Z\hat{T}R\begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix}, \begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}
+		\right\rangle = Z_2\left\langle T\wedge\begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}, \begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}\right\rangle = 0
+	\end{displaymath}
+	\begin{displaymath}
+		\iff 0 = Z\left\langle \hat{T}\begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix},
+		\begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}
+		\right\rangle\\
+		\iff 0 = \left\langle \hat{T}\begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix},
+		\begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}
+		\right\rangle
+		\iff 0 = \begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}^t \hat{T}\begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix}
+	\end{displaymath}
+	\begin{definicio}
+		Donades dues clameres en posició relativa $(R, T) \in SO(3)\times\mathbb{R}^3$ definim la matriu essencial com $E = \hat{T}R$ (matriu $3\times3$ amb coeficients reals)
+	\end{definicio}
+	Resumint, hem obtingut el resultat següent
+	\begin{teorema}[Relació epipolar]
+		Considerem dues càmeres $\mathcal{C}_1$ i $\mathcal{C}_2$ de posiciò relativa $(R,T)$ on $R \in SO(3)$ i $T \in \mathbb{R}^3$\\
+		Considerem $P \in \mathbb{R}^3$ que sigui devant de les dues cameres.\\
+		$\begin{cases}I_1(P) = \begin{psmallmatrix}x_1\\y_1\\1\end{psmallmatrix}\\I_2(P) = \begin{psmallmatrix}x_2\\y_2\\1\end{psmallmatrix}\end{cases}$ són les coordenades de $P$ en les imatges de les càmeres $\mathcal{C}_1$ i $\mathcal{C}_2$ respectivament.\\
+		Aleshores $I_2(P)^tEI_1(P) = 0$ es la relació epipolar, on $E = \hat{T}R$.
+	\end{teorema}
+	\begin{definicio}
+		Definim els objectes geometrics epipolars següents:
+		\begin{itemize}
+			\item El \underline{pla epipolar} associat a un punt $P$ és el pla afí determinat pels $3$ punts $C_1, C_2$ i $P$. Suposarem sempre que aquestos punts no estaran alineats.
+			\item L'\underline{epipol} $e_1$ és la projecció del punt $\mathcal{C}_2$ sobre el pla imatge de $\mathcal{C}_1$ (respectivament amb $e_2$). Suposarem sempre que ($\mathcal{C}_1, \mathcal{C}_2$) intersecta els plans imatges de les càmeres en un únic punt.
+			\item La \underline{linea epipolar} $l_1$ associada a un punt $P$ serà l'intersecció entre el pla imatge de $\mathcal{C}_1$ i el pla epipolar.
+		\end{itemize}
+	\end{definicio}
+	\begin{obs}
+		\begin{itemize}
+			\item El pla epipolar $\pi_p$ associat a $P$ és $\pi_p = (C_1, C_2, P)$
+			\item Obtenim els epipols fent interseccions $e_1 = \left\{(C_1, C_2) \cap \left\{Z_1 = 1\right\}\right\}$ i $e_1 = \left\{(C_1, C_2) \cap \left\{Z_2 = 1\right\}\right\}$
+			\item Obtenim les línies epipolars amb $l_1(P) = \pi_p \cap \left\{Z_1 = 1\right\}$ i $l_2(P) = \pi_p \cap \left\{Z_2 = 1\right\}$
+		\end{itemize}
+	\end{obs}
+	\begin{proposicio}
+		Donat un matriu essencial $E = \hat{T}R$ (de forma equivalent, donades dues càmeres en posició relativa $(R,T)$), aleshores $\forall P$ davant de les dues càmeres
+		\begin{displaymath}
+			l_1(P) = \left\{\left\langle\cdot\;, E^tI_2(P)\right\rangle = 0\right\}\;
+			l_2(P) = \left\{\left\langle\cdot\;, E^tI_1(P)\right\rangle = 0\right\}
+		\end{displaymath}
+	\end{proposicio}
+	\begin{demostracio}
+		$I_2(P) = I_2(P')\;\forall P' \in (C_2, P)$, llavors
+		\begin{displaymath}
+			\begin{aligned}[t]
+				l_1(P) &= \left\{I_1(P') : P' \in (C_2, P)\right\}\\
+			 	       &= \left\{I_1(P') : I_2(P) = I_2(P')\right\}\\
+			 	       &= \left\{I_1(P') : I_2(P)^tEI_1(P)=0\right\}\\
+			 	       &= \left\{I_1(P') : I_1(P)^tE^tI_2(P)=0\right\}\\
+			 	       &= \left\{I_1(P') : \left\langle I_1(P),E^tI_2(P)\right\rangle=0\right\}\\
+			 	       &= \left\{I_1(P') : \left\langle\cdot\;,E^tI_2(P)\right\rangle=0\right\}
+			\end{aligned}
+		\end{displaymath}
+		De la mateixa manera amb $l_2(P)$.
+	\end{demostracio}
 \end{document}

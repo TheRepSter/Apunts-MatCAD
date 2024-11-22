@@ -297,4 +297,88 @@ Cas no amortit i forçat ressonància $b=0,\;k>0,\;m>0,\;f(t) = F_0\sin{\omega_0
 		\item $\omega = \omega_0$ busquem
 		$x_p(t)=t(A\sin{\omega t} + B\cos{\omega t}) = - \frac{F_0}{2\omega}t\cos{\omega t} \Rightarrow x(t) = C_1\sin{\left(\sqrt{\frac{k}{m}}t\right)} + C_2\cos{\left(\sqrt{\frac{k}{m}}t\right)} - \frac{F_0}{2\omega}t\cos{\omega t}$.
 	\end{itemize}
+\subsection{Sistemes d'equacions diferencials lineals}
+\begin{displaymath}
+	\begin{cases}
+       \frac{dx_1}{dt} = a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n + f_1(t)\\
+       \frac{dx_2}{dt} = a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n + f_2(t)\\
+       \vdots\\
+       \frac{dx_n}{dt} = a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nn}x_n + f_n(t)
+    \end{cases}
+\end{displaymath}
+Simplificant-ho en forma matricial tenim
+\begin{displaymath}
+	X' = AX + F
+\end{displaymath}
+i ho anomenem sistema homogeni si $F = 0$.
+\begin{teorema}
+Si els elements de les matrius $A(t)$ i $F(t)$ són funcions contínues a un interval que conté $t_0$, aleshores existeix una única solució al problema de valor inicial $X(t_0) = X_0$.
+\end{teorema}
+\begin{proposicio}[Principi de superposició]
+	Siguin $X_1, \dots, X_n$ un conjnunt de vectors solució del sistema homogeni $X' = AX$. Aleshores la combinació lineal $c_1X_1 + \cdots + c_nX_n$ també és solució del sistema homogeni.
+\end{proposicio}
+\begin{definicio}
+Sigui $X_1, \dots, X_n$ un conjunt de solucions del sistema homogeni $X' = AX$ en un cert interval $I$, es diu que el conjunt es linealment independents si les úniques constants $C_1, \dots, C_n$ tals que
+\begin{displaymath}
+	C_1X_1(t) + \cdots + C_nX_n(t) = 0
+\end{displaymath}
+per a tot $t \in I$ són $C_1 = \cdots = C_n = 0$.
+\end{definicio}
+\begin{definicio}
+Un conjunt linealment independent de solucions del sistema homogeni $X' = AX$ es diu que es un sistema fonamental de solucions.
+\end{definicio}
+\begin{proposicio}
+Donat un número real $t_0 \in I$ i un vector $X_0$ i $n$ solucions linealments independents $X_1, \dots, X_n$ del sistema homogeni $X' = AX$, aleshores existeixen $n$ únics números $C_{10}, C_{20}, \dots, C_{n0}$ tals que la solució
+\begin{displaymath}
+    C_{10}X_1(t) + C_{20}X_2(t) + \cdots + C_{n0}X_n(t)
+\end{displaymath}
+satisfà la igualtat $X(t_0) = X_0$.
+\end{proposicio}
+\begin{definicio}
+Sigui $X_1 = \begin{psmallmatrix}X_11\\X_21\\\vdots\\X_n1\end{psmallmatrix}, X_2 = \begin{psmallmatrix}X_12\\X_22\\\vdots\\X_n2\end{psmallmatrix}, \dots, X_n = \begin{psmallmatrix}X_1n\\X_2n\\\vdots\\X_nn\end{psmallmatrix}$ un conjunt de solucions del sistema homogeni a un interval $I$. S'anomena wronksià de les solucions $X_1, \dots, X_n$ al determinant
+\begin{displaymath}
+ W(X_1, \dots, X_n) = \begin{vmatrix}
+ X_11 & X_12 & \cdots & X_1n\\
+ X_21 & X_22 & \cdots & X_2n\\
+ \vdots & \vdots & \ddots & \vdots\\
+ X_n1 & X_n2 & \cdots & X_nn
+ \end{vmatrix}
+\end{displaymath}
+\end{definicio}
+\begin{proposicio}
+Un conjunt $X_1, \dots, X_n$ de solucions del sistema homogeni a un interval $I$ és linealment independent si i només si el wronksià d'aquestes solucions es diferent de 0 en tot punt de l'interval.
+\end{proposicio}
+\subsubsection{Sistemes d'equacions diferencials lineals amb coeficients constants}
+Cas més senzill $\rightarrow 2\times2$
+\begin{displaymath}
+	\begin{pmatrix}x'\\y'\end{pmatrix} = \begin{pmatrix}a & b\\c & d\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}
+\end{displaymath}
+Si tenim una base de vectoris propis de $A$, $\left\{\vec{u_1}, \vec{u_2}\right\}$ amb valors propis $\lambda_1$ i $\lambda_2$, aleshores la solució general del sistema serà
+\begin{displaymath}
+	C_1e^{\lambda_1t}\vec{u_1} + C_2e^{\lambda_2t}\vec{u_2}
+\end{displaymath}
+Ara, imaginem que tenim un valor propi repetit tal que només té un vector propi associat. En aquest cas tindrem
+$(A-I\lambda)\vec{v} = \vec{u}$ on $\vec{v}$ és un vector propi generalitzat i $\vec{u}$ és un vector propi associat. Aleshores $e^{\lambda t}(\vec{v}+\vec{u}t)$.\\
+I ara imaginem que tenim un valor propi complex. En aquest cas tindrem necesariametn tambè el seu conjugat. Tindrem $\vec{w} = \vec{u} + i\vec{v}$ i $\vec{\overline{v}} = \vec{u} - i\vec{v}$
+Tenim dos solucions $e^{\alpha t}(\cos{\beta t} \vec{u} - \sin{\beta t}\vec{v}) + ie^{\alpha t}(\sin{\beta t}\vec{u} + \cos{\beta t}\vec{v})$
+i $e^{\alpha t}(\cos{\beta t} \vec{u} - \sin{\beta t}\vec{v}) - ie^{\alpha t}(\sin{\beta t}\vec{u} + \cos{\beta t}\vec{v})$ on $\lambda = \alpha + i\beta$\\
+Llavors la solució serà $C_11/2(z_1 + z_2) + C_21/{2i}(z_1-z_2)$ on $z_1$ i $z_2$ són les dues solucions complexes.
+\subsubsection{Retrats de fase}
+Considerem un sistema autònom
+\begin{displaymath}
+	\begin{cases}
+		x' = f(x, y)\\
+		y' = g(x, y)
+	\end{cases}
+\end{displaymath}
+PVI
+\begin{displaymath}
+	\begin{cases}
+		Z' = F(t, z)\\
+		Z(t_0)' = Z_0
+	\end{cases}
+\end{displaymath}
+$F_i$ i $\frac{\partial F_i}{\partial Z_i}$ son continues a un obert $U \Rightarrow \exists!$ solució del PVI.\\
+Una soluciò del sistema és un parell de funcions $(x(t),y(t))$ variant $t$ son corbes en el pla $(x,y)$. Aquestes corbes s'anomenen òrbites o trajectòries del sistema.\\
+
 \end{document}
