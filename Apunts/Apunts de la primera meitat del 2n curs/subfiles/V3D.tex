@@ -1093,6 +1093,7 @@
 		$A = R_{i}(\alpha)R_{j}(\beta)R_{k}(\gamma)$
 	\end{teorema}
 	\subsection{?}
+	\subsubsection{??}
 	Mucho texto no estaba luego rellenar\\
 	Aquesta relació modelitza un ull (o càmera) centrat en l'origen i mirant cap als z positius.\\
 	\begin{obs}
@@ -1327,4 +1328,105 @@
 		\end{displaymath}
 		De la mateixa manera amb $l_2(P)$.
 	\end{demostracio}
+	\subsubsection{Reconstrucció 3D}
+	Imaginem que disposem de dues fotografies del mateix objecte fet amb la mateixa càmera desde dos punts de vista $\neq$.\\
+	Aqui suposem la (o les) càmara ideal i normalitzada. Primer determinem sobre les 2 imatges una serie de punts corresponents dels quals determinem les coordenades:
+	siguin $P_1, \dots, P_n$ una sèrie de $n > 1$ punts de l'objecte amb coordenades a $\mathbb{R}^3$ on cada punt $P_i = \left(x^i, y^i, z^i\right)$ per $i = 1, \dots, n$.\\
+	tals que coneixerem les seves coordenades homogènies respecte la càmera 1 i 2:
+	\begin{displaymath}
+		I_1(P_i) = \begin{psmallmatrix}x_1^i\\y_1^i\\1\end{psmallmatrix}\quad I_2(P_i) = \begin{psmallmatrix}x_2^i\\y_2^i\\1\end{psmallmatrix} \quad \forall i = 1, \dots, n
+	\end{displaymath}
+	La pregunta ès la següent: Podem determinar les coordenades $(x^i, y^i, z^i) \forall i = 1, \dots, n$ si coneixem les coordenades (homògenies) $(x_1^i, y_1^i)$ i $(x_2^i, y_2^i)$ $\forall i = 1, \dots, n$?
+	\begin{enumerate}
+		\item El primer pas és determinar la matriu essencial $E$ que compleix el següent sistema:
+		\begin{displaymath}
+			\forall i = 1, \dots, n\quad I_2(P_i)^tEI_1(P_i) = 0
+		\end{displaymath}
+		\begin{displaymath}
+			\Leftrightarrow \forall i = 1, \dots, n\quad (x_2^i, y_2^i, 1)E\begin{psmallmatrix}x_1^i\\y_1^i\\1\end{psmallmatrix} = 0
+		\end{displaymath}
+		No oblidem que $E = \hat{T}R \in Mat_{3\times3}(\mathbb{R})$\\
+		Si denotem $E = (e_{ij})_{1 \leq i, j \leq 3}$ els coeficients buscats, tenim un sistema lineal de $n$ equacions amb $3$ incognites:
+		\begin{displaymath}
+			\forall i = 1, \dots, n\quad (x_1^i, y_1^i, 1)\begin{pmatrix}e_{11}&e_{12}&e_{13}\\e_{21}&e_{22}&e_{23}\\e_{31}&e_{32}&e_{33}\end{pmatrix}\begin{pmatrix}x_2^i\\y_2^i\\1\end{pmatrix} = 0
+		\end{displaymath}
+		\begin{displaymath}
+			\Leftrightarrow \forall i = 1, \dots, n\quad (x_2^i e_{11}+y_2^ie_{21}+e_{31}, x_2^i e_{12}+y_2^ie_{22}+e_{32}, x_2^i e_{13}+y_2^ie_{23}+e_{33})\begin{pmatrix}x_1^i\\y_1^i\\1\end{pmatrix} = 0
+		\end{displaymath}
+		\begin{displaymath}
+			\Leftrightarrow \forall i = 1, \dots, n\quad x_1^ix_2^ie_11+x_1^iy_2^ie_{21}+x_1^ie_{31}+y_1^ix_2^ie_{12}+y_1^iy_2^ie_{22}+y_1^ie_{32}+x_2^ie_{13}+y_2^ie_{23}+e_{33} = 0
+		\end{displaymath}
+		\begin{displaymath}
+				\L\Leftrightarrow \forall i = 1, \dots, n\quad \underbrace{\begin{pmatrix}
+							x_1^i x_2^i & x_1^i y_2^i & x_1^i & y_1^i x_2^i & y_1^i y_2^i & y_1^i & x_2^i & y_2^i & 1
+			\end{pmatrix}}_{=: a_i \in \mathbb{R}^9}
+			\underbrace{\begin{pmatrix}
+							e_{11}\\
+							e_{21}\\
+							e_{31}\\
+							e_{12}\\
+							e_{22}\\
+							e_{32}\\
+							e_{13}\\
+							e_{23}\\
+							e_{33}
+			\end{pmatrix}}_{=: E^s \in \mathbb{R}^9} = 0
+		\end{displaymath}
+		\begin{displaymath}
+			\forall i = 1, \dots, n\quad a_iE^s = 0
+		\end{displaymath}
+		Si finalment, posem
+		\begin{displaymath}
+			A := \begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix} \in Mat_{n\times9}(\mathbb{R})
+		\end{displaymath}
+		Obtenim l'equació seguent $AE^s = 0$.\\
+		Veiem que $E^s \in Ker(A)$ i nomes podrem determinar $E^s$ (i $E$) llevat de multiple per un escalar:
+		Si $E^s$ es solució ($\Leftrightarrow AE^s = 0$) aleshores $\forall \lambda \in \mathbb{R}$, $\lambda E^s$ és soluciò també. No sabrem (de moment!) quina $\lambda$ és la matriu essencial.\\
+		Veiem també que l'aplicació lineal $L_A: \begin{aligned}[t]\mathbb{R}^9 &\to \mathbb{R}^n\\X &\mapsto AX\end{aligned}$ té nucli de dimensió $1 \iff$ (teorema del rang)
+	 	\begin{displaymath}
+				9 = \underbrace{\dim(Im(L_A))}_{= rang(A)} + \dim(Ker(L_A)) \iff rang(A) = 8
+		\end{displaymath}
+		Per tant, des d'ara suposarem que hem triat $n = 8$ punts tal que la matriu $A$ associada compleixi $rang(A) = 8$.
+		(Al nivell pràctic, si triem $8$ punts a l'atzar això sempre es complirà i es pot justificar al nivell teoric).
+		Aleshores podem determinar $E^s$ (i $E$) llevat de multiple per un escalar. Per triar el multiple, suposem que $||T|| = 1$, es a dir, suposem que la distancia entre les dues posicions de la càmera està normalitzada igual a $1$ (metre).
+		\begin{obs}
+			El fet de no saber la solució llevat de multiple és perfectament normal. (pel terorema de Tales, si $d$ es distancia entre les cameres i $h$ l'altura de l'objecte, si canviem la distancia per $\lambda d$ i l'altura per $\lambda h$, la imatge no canvia).
+		\end{obs}
+		En canvi, si coneixem una de les distàncies entre dos dels 8 punts $P_1,\dots, P_8$, podem determinar aquest $\lambda$ i llavors determinar $E$ sense suposar $||T|| = 1$.
+		\begin{proposicio}
+			Sigui $E = \hat{T}R$ una matriu essencial. ($T \subset \mathbb{R}^3,\;R\in SO(3)$), aleshores
+			\begin{enumerate}
+				\item Ker($E^t$) $=$ Vect($T$)
+				\item Tr($EE^t$)$= 2 ||T||^2$
+			\end{enumerate}
+		\end{proposicio}
+		\begin{demostracio}
+			\begin{enumerate}
+				\item $X \in \text{Ker}(E^t) \Leftrightarrow E^tX = 0 \Leftrightarrow (\hat{T}R)^tX = 0 \Leftrightarrow \hat{T}X = 0 \iff T\wedge X = 0 \Leftrightarrow X \in \text{Vect}(T)$
+				\item $\text{Tr}(EE^t) = -\text{Tr}(\hat{T}RR^t\hat{T}) =  -\text{Tr}(\hat{T}^2)$
+				i deduim el resultat com $\hat{T}^2 = \begin{psmallmatrix} -T_3^2-T_2^2 & T_1T_2 & T_1T_3\\T_1T_2 & -T_3^2-T_1^2 & T_2T_3\\T_1T_3 & T_2T_3 & -T_2^2-T_1^2\end{psmallmatrix}$ i la traça només agafa la diagonal.
+			\end{enumerate}
+		\end{demostracio}
+		Aleshores, com hem suposat que $n = 8$, rang($A$) $= 8$ i $||T|| = 1$ podem determinar $E$ llevat de múltiple per un escalar, pero amb tr$(EE^t) = 2$ podem determinar $E$ llevat d'un signe $\pm$. Triem un dels dos signes.
+		\begin{obs}
+			Si $E$ descriu la rotació entre les dues càmeres: $X^tEY = 0$ aleshores la matriu $-E$ també: $X^t(-E)Y = 0$.
+		\end{obs}
+		\item En el segon pas, determinem la posició relativa $(R, T)$ entre les dues cameres. Acabem de determinar $E$ i per tant podem triar $T \in \text{Ker}(E^t)$ de norma $1$ que està determinat llevat d'un signe, triem un dels signes.
+		\begin{obs}
+			Si canviem un signe per l'altre això equival a invertir les posicions de $\mathcal{C}_1$ i de $\mathcal{C}_2$.
+		\end{obs}
+		\begin{proposicio}
+			Si $E$ és matriu essencial i $T \in \text{Ker}(E^t)$ aleshores $\exists!R\in SO(3)$ tal que $E = \hat{T}R$.
+		\end{proposicio}
+		\begin{demostracio}
+			Si $R, R' \in SO(3)$ tal que $E = \hat{T}R = \hat{T}R'$, aleshores $R'R^t\hat{T}^t = \hat{T}^t$ això implica que $R'R^t_{|\text{Im}(\hat{T})} = {I_3}_{|\text{Im}(\hat{T})}$ pero $\dim(\text{Im}(\hat{T})) = 2$ i $R'R^t \in SO(3)$. Llavors tenim que $R'R^t = I_3$ i per tant $R = R'$.
+		\end{demostracio}
+		Per tant dins del nostre algoritme un cop determinat $E$ i $T$ la matriu $R$ està unicament determinada. Com el determinem? Així:
+		\begin{proposicio}
+			Sigui $U \in \mathbb{R}^3$ tal que $||U|| = 1$ i $\left\langle U, T \right\rangle = 0$ i posem $V = U \wedge T$. Aleshores
+			\begin{displaymath}
+				R = \begin{pmatrix}V&-U&-T\end{pmatrix}\begin{pmatrix}E^tU&E^tV&E^tU\wedge E^tV\end{pmatrix}
+			\end{displaymath}
+		\end{proposicio}
+	\end{enumerate}
 \end{document}

@@ -380,5 +380,65 @@ PVI
 \end{displaymath}
 $F_i$ i $\frac{\partial F_i}{\partial Z_i}$ son continues a un obert $U \Rightarrow \exists!$ solució del PVI.\\
 Una soluciò del sistema és un parell de funcions $(x(t),y(t))$ variant $t$ son corbes en el pla $(x,y)$. Aquestes corbes s'anomenen òrbites o trajectòries del sistema.\\
+Definim $y(t) = Y(x(t))$, llavors $y'(t)=Y'(x(t))x'(t) \Rightarrow Y(x(t)) = \frac{y'(t)}{x'(t)} = \frac{g(x,y)}{f(x,y)}$
+Cada trajectoria representa infinites solucions del sistema: si $(x(t), y(t))$ és una solució $\Rightarrow \forall c \in \mathbb{R}$, $(x(t+c), y(t+c))$ també ho és.\\
+Dues trajectories no tenen punt en comú. Les trajectories tancades corresponen a orbites periòdiques $(x(t), y(t))$és una solcuió del sistema que a $t_0$ i a $t_0 + T$ pren el mateix valor.\\
+Retrat de fase: conjunt de totes les órbites.\\
+Les corbes del pla definides per $f(x,y) = 0$ i $g(x,y) = 0$ s'anomenen isoclines.\\
+Els equilibris son punts $(x^*, y^*)$ tal que $f(x^*, y^*) = g(x^*, y^*) = 0$.\\
+\subsubsection{Retrats de fase dels sistemes canonics}
+\begin{displaymath}
+	\begin{pmatrix}
+		x'\\y'
+	\end{pmatrix}
+	=
+	A \begin{pmatrix}
+		x\\y
+	\end{pmatrix}
+	\; \left\{x(t), y(t), t \in I\right\}
+\end{displaymath}
+Sabem que sempre podrem fer $A = PJP^{-1}$ on $J$ es la matriu de Jordan.
+Suposem que $\det{A} \neq 0 \Rightarrow (0,0)$ és l'únic equilibri
+\begin{enumerate}
+	\item Si $J$ és diagonal amb VAPs repetits pero VEPs diferents $\Rightarrow y(x) = C|x|^\frac{\lambda_2}{\lambda_1}$. Llavors tindrem els seguents casos:
+	\begin{enumerate}
+		\item $0 < \lambda_1 < \lambda_2$ horitzontal i $0 < \lambda_2 < \lambda_1$ vertical. Ambdos tenen repulsió a $(0,0)$.
+		\item $\lambda_1 < \lambda_2 < 0$ vertical i $\lambda_2 < \lambda_1 < 1$ horitzontal. Ambdos tenen atracció a $(0,0)$.
+		\item $\lambda_1 < 0 < \lambda_2$ vertical i $\lambda_2 < 1 < \lambda_1$ horitzontal. Punt de sella a $(0,0)$.
+	\end{enumerate}
+	\item Si $J$ és diagonal amb VAP repetits $\Rightarrow y(x) = C|x|$. Llavors tindrem els seguents casos:
+	\begin{enumerate}
+		\item $\lambda > 0$ Node degenerat repulsiu.
+		\item $\lambda < 0$ Node degenerat atractor.
+	\end{enumerate}
+	\item Si $J$ és de Jordan i VEPs repetits $\Rightarrow y(x) = \left(C_1 + \frac{C_2}{\lambda} \ln\left(\frac{x}{C_2}\right)\frac{x}{C_2}\right)$ i tenim:
+	\begin{enumerate}
+		\item $\lambda > 0 \Rightarrow (0,0)$ serà un node impropi repulsor.
+		\item $\lambda < 0 \Rightarrow (0,0)$ serà un node impropi atractor.
+	\end{enumerate}
+	\item Si $J$ és de Jordan amb VAPs complexos, es millor fer canvi a coordenades polars. Llavors tindrem: $r' = \alpha r\;\theta' = \beta$ o $r(t) = C_1e^{\alpha t}\;\theta(t) = \beta t + C_2$
+	\begin{enumerate}
+		\item Si $\alpha = 0$ tindrem una òrbita circular amb $(0,0)$ sent centre.
+		\item Si $\alpha > 0$ el radi creix exponencialment. $(0,0)$ serà un focus repulsor.
+		\item Si $\alpha < 0$ el radi decreix exponencialment. $(0,0)$ serà un focus atractor.
+	\end{enumerate}
+\end{enumerate}
+Quan no son canònics la matriu $P$ envia rectes a rectes, i cercles centrats al origen a elipses centrats a l'origen.
+\subsection{Sistemes d'equacions no lineals}
+\begin{displaymath}
+	\begin{cases}
+		x' = f(x, y)\\
+		g' = g(x, y)
+	\end{cases}\; f, g \in C^2 \leftarrow \text{Sistema no lineal autonom}
+\end{displaymath}
+$z = (x,y)$ i els equilibris $(x^*, y^*)$ tal que $f(x^*, y^*) = g(x^*, y^*) = 0$.\\
+Es diu que un punt d'equilibri $z^*$ del sistema no lineal és estable si $\forall \varepsilon > 0,\;\exists \delta > 0$ tal que si $\forall z_0 \|z_0 - z^*\| < \delta \Rightarrow \|z(t, z_0) - z^*\| < \varepsilon\;\forall t > 0$.\\
+Es diu que un punt d'equilibri $z^*$ del sistema no lineal és asimptòticament estable si és estable i $\lim_{t \to \infty} \|z(t, z_0)-z^*\| = 0$\\
+Es diu que un punt d'equilibri $z^*$ del sistema no lineal és inestable si no és estable.\\
+Un conjunt invariant $D \subset \mathbb{R}^2$ és un conjunt tal que si $z_i \in D \Rightarrow z(t, z_i) \in D\;\forall t \in \mathbb{R}$.\\
+$D$ és només positivament (o negativament) invariant si $z_i \in D \Rightarrow z(t, z_i) \in D\;\forall t > 0$ (o $t < 0$).\\
+\begin{definicio}
+	Donat un sistema no lineal autònom, es diu que la funciò $H(x,y)$ és una integral primera de el sistema no lineal autonom si compleix que $H(x(t), y(t))=C$ (es constant sobre les trajectories del sistema).
+\end{definicio}
 
 \end{document}
