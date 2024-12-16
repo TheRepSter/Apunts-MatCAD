@@ -1092,18 +1092,98 @@
 		anomenats angles d'Euler, tal que\\
 		$A = R_{i}(\alpha)R_{j}(\beta)R_{k}(\gamma)$
 	\end{teorema}
-	\subsection{?}
-	\subsubsection{??}
-	Mucho texto no estaba luego rellenar\\
-	Aquesta relació modelitza un ull (o càmera) centrat en l'origen i mirant cap als z positius.\\
+	\subsection{Geometria epipolar}
+	\subsubsection{Formació de l'imatge i ull ideal}
+	Per això modelitzem l'ull (o una càmera) de la manera seguent:
+	El pla infinit $\left\{z = -f\right\}$ on $f$ és un número anomenat distància focal.\\
+	Llavors tenim $\overline{P} = \left(x,y,-f\right)$ i $P = \left(X, Y, Z\right)$ on $P$ envia un raig de llum que arribarà a $\overline{P}$.\\
+	Suposem que el forat en l'origen és un punt: els raig de llum només poden passar de $\{z > 0\}$ a $\{z < 0\}$ per l'origen.\\
+	Ara determinem les coordenades $x$ i $y$ del punt projectat $\overline{P}$ en termes de les coordenades $X, Y, Z$ del punt $P \in \{z > 0\}$.\\
+	La condició geométrica és que els punts $P, O$ i $\overline{P}$ siguin alineats. De forma equivalent,
+	\begin{displaymath}
+		\begin{aligned}[t]
+			\exists \lambda \in \mathbb{R} : \qquad&\qquad \overrightarrow{O\overline{P}} = \lambda \overrightarrow{OP}\\
+			&\iff \overline{P}-0 = \lambda(P - 0)\\
+			&\iff (x, y, -f) = \lambda(X, Y, Z)\\
+			&\iff \begin{cases}
+				x = \lambda X\\
+				y = \lambda Y\\
+				-f = \lambda Z
+			\end{cases}
+		\end{aligned}
+	\end{displaymath}
+	i per tant trobem que $\lambda = -\frac{f}{Z}$ i $x = -\frac{f}{Z}X$ i $y = -\frac{f}{Z}Y$.\\
+	Al final hem obtingut l'aplicació
+	\begin{displaymath}
+		\begin{aligned}[t]
+			\pi_f: \{z>0\} &\to \mathbb{R}^2\\
+			(X, Y, Z) &\mapsto \left(-\frac{f}{Z}X, -\frac{f}{Z}Y\right)
+		\end{aligned}
+	\end{displaymath}
 	\begin{obs}
-		\begin{displaymath}
-			\pi_0\begin{pmatrix}X\\Y\\Z\\T\end{pmatrix} = \begin{pmatrix}X\\Y\\Z\end{pmatrix}
-		\end{displaymath}
-		Per això diem que $\pi_0: \mathbb{R}^4 \to \mathbb{R}^3$ se'n diu la projecció estandard.
+		El signe $-$ dins de les formules de les coordenades de $\overline{P}$ reflecten el fet que l'imatge sobre el pla de projecció $\{z = -f\}$ està inversada.
+		Com el cervell corregeix aquesta inversió, podem oblidarnos del signe negatiu.
 	\end{obs}
-	En general no és el cas i ara suposem que la càmera està centrada en un punt $C \in \mathbb{R}^3$ mirant cap alguna direcció qualsevol:
-	$P = (X,Y,Z)_{\mathcal{R}_0} = (X_C,Y_C,Z_C)_{\mathcal{R}_C}$
+	Llavors l'aplicació es simplifica a
+	\begin{displaymath}
+		\begin{aligned}[t]
+			\pi_f: \{z>0\} &\to \mathbb{R}^2\\
+			(X, Y, Z) &\mapsto \left(\frac{f}{Z}X, \frac{f}{Z}Y\right)
+		\end{aligned}
+	\end{displaymath}
+	Veiem que podem expressar la relació
+	\begin{displaymath}
+		\begin{aligned}[t]
+			(x,y) &= \pi_f(X,Y,Z)\\
+			\iff \begin{pmatrix}
+				x\\y\\1
+				\end{pmatrix} &= \begin{pmatrix}
+				\frac{f}{Z}X\\\frac{f}{Z}Y\\1
+				\end{pmatrix}\\
+			\iff Z \begin{pmatrix}
+				x\\y\\1
+				\end{pmatrix} &= \begin{pmatrix}
+				fX\\fY\\Z
+				\end{pmatrix}
+				= \begin{pmatrix}
+				f & 0 & 0 & 0\\
+				0 & f & 0 & 0\\
+				0 & 0 & 1 & 0
+				\end{pmatrix}
+				\begin{pmatrix}
+				X\\Y\\Z\\1
+				\end{pmatrix}\\
+			\iff Z \underbrace{\begin{pmatrix}
+				x\\y\\1
+				\end{pmatrix}}_{\substack{\text{coord.}\\ \text{homog.}}} &= \underbrace{\begin{pmatrix}
+				f & 0 & 0\\
+				0 & f & 0\\
+				0 & 0 & 1\\
+				\end{pmatrix}}_{:= K_f}
+				\underbrace{\begin{pmatrix}
+				1 & 0 & 0 & 0\\
+				0 & 1 & 0 & 0\\
+				0 & 0 & 1 & 0
+				\end{pmatrix}}_{:= \pi_0}
+				\underbrace{\begin{pmatrix}
+				X\\Y\\Z\\1
+				\end{pmatrix}}_{\substack{\text{coord.}\\ \text{homog.}}}
+		\end{aligned}
+	\end{displaymath}
+	$K_f$ és diu la matriu de calibració de la càmera i $\pi_0$ és la matriu de projecció estandard.\\
+	Per tant,
+	\begin{displaymath}
+		\begin{pmatrix}
+			x\\y
+		\end{pmatrix} = \pi\begin{pmatrix}
+			X\\Y\\Z
+		\end{pmatrix} \iff Z\begin{pmatrix}
+			x\\y\\1
+		\end{pmatrix} = K_f\pi_0\begin{pmatrix}
+			X\\Y\\Z\\1
+		\end{pmatrix}
+	\end{displaymath}
+	En general, la càmara no esta centrada en l'origen i el seu eix no coincideix amb l'eix $(OZ)$.\\
 
 	Sabem que les coordenades $(x,y)$ de la projecció de $P$ sobre el pla focal de la camara esta donat com
 	\begin{displaymath}
@@ -1208,7 +1288,7 @@
 	Aleshores
 	\begin{proposicio}
 		\begin{enumerate}
-			\item $ª;^t\hat{T} = - \hat{T}$
+			\item $\;^t\hat{T} = - \hat{T}$
 			\item $\forall Q \in \mathbb{R}^3$, $\hat{T}Q = T \wedge Q$
 		\end{enumerate}
 	\end{proposicio}
@@ -1425,8 +1505,38 @@
 		\begin{proposicio}
 			Sigui $U \in \mathbb{R}^3$ tal que $||U|| = 1$ i $\left\langle U, T \right\rangle = 0$ i posem $V = U \wedge T$. Aleshores
 			\begin{displaymath}
-				R = \begin{pmatrix}V&-U&-T\end{pmatrix}\begin{pmatrix}E^tU&E^tV&E^tU\wedge E^tV\end{pmatrix}
+				R = \begin{pmatrix}V&-U&-T\end{pmatrix}\begin{pmatrix}E^tU&E^tV&E^tU\wedge E^tV\end{pmatrix}^t
 			\end{displaymath}
 		\end{proposicio}
+		\begin{demostracio}
+			Hem obtingut:
+			\begin{displaymath}
+				\begin{aligned}[t]
+					S \begin{pmatrix} U & V & -T \end{pmatrix} = \begin{pmatrix} E^tU & E^tV & E^tU \wedge E^tV \end{pmatrix}\\
+					\iff R^tMB = \begin{pmatrix} E^tU & E^tV & E^tU \wedge E^tV \end{pmatrix}\\
+				\end{aligned}
+			\end{displaymath}
+			i com $MB = \begin{psmallmatrix}MU & MV & M(-T)\end{psmallmatrix} = \begin{psmallmatrix}V & -U & -T\end{psmallmatrix} \iff R^t\begin{psmallmatrix}V & -U & -T\end{psmallmatrix} = \begin{psmallmatrix}E^tU & E^tV & E^tU \wedge E^tV\end{psmallmatrix} \iff \begin{psmallmatrix}V & -U & -T\end{psmallmatrix}R = \begin{psmallmatrix}E^tU & E^tV & E^tU \wedge E^tV\end{psmallmatrix}^t$
+			Si posem $A := \begin{psmallmatrix}V & -U & -T\end{psmallmatrix}$ com $(U, T, V)$ és BON $\oplus$ veiem que $A$ és BON $\oplus$ i doncs $A \in SO(3) \Rightarrow A^{-1} = A^t$\\
+			Al final tenim $A^{-1}R = \begin{psmallmatrix}E^tU & E^tV & E^tU \wedge E^tV\end{psmallmatrix}^t \Rightarrow R = A\begin{psmallmatrix}E^tU & E^tV & E^tU \wedge E^tV\end{psmallmatrix}^t$
+		\end{demostracio}
+		PARENTESI: Si tenim $(U, V, W)$ BON $\oplus$ a $\mathbb{R}^3$, i $A = \begin{psmallmatrix}U & V & W\end{psmallmatrix} \in SO(3)$. Per què?\\
+		$A^tA = \begin{psmallmatrix}U^t \\ V^t \\ W^t\end{psmallmatrix}\begin{psmallmatrix}U&V&W\end{psmallmatrix} = \begin{psmallmatrix}U^tU & U^tV & U^tW\\V^tU & V^tV & V^tW\\W^tU & W^tV & W^tW\end{psmallmatrix} = \begin{psmallmatrix} \left\langle U, U\right\rangle & \left\langle U, V\right\rangle & \left\langle U, W\right\rangle\\\left\langle V, U\right\rangle & \left\langle V, V\right\rangle & \left\langle V, W\right\rangle\\\left\langle W, U\right\rangle & \left\langle W, V\right\rangle & \left\langle W, W\right\rangle\end{psmallmatrix} = I_3$\\
+		\item L'ultim pas consisteix en determinar les coordenades a $\mathbb{R}^3$ d'un punt $P$ (qualsevol) donat les seves imatges.\\
+		Tenim un punt $P = (X, Y, Z) \in \mathbb{R}^3$ tal que $I_1(P) = \begin{psmallmatrix}x_1\\y_1\\1\end{psmallmatrix}$ i $I_2(P) = \begin{psmallmatrix}x_2\\y_2\\1\end{psmallmatrix}$
+		Aleshores $\exists \lambda_1, \lambda_2 > 0$ tal que
+		\begin{displaymath}
+			\lambda_i \begin{pmatrix}x_i\\y_i\\1\end{pmatrix} = K_{f_i} \pi_0 R_{M_i, C_i} \begin{pmatrix}X\\Y\\Z\\1\end{pmatrix} \quad \text{per } i = 1, 2
+		\end{displaymath}
+		Donat que $f_1 = f_2 = 1$ i $M_1 = I_3$ i $C_1 = 0$ tenim
+		\begin{displaymath}
+			\lambda_1 \begin{pmatrix}x_1\\y_1\\1\end{pmatrix} = \pi_0 \begin{pmatrix}X\\Y\\Z\\1\end{pmatrix} = \begin{pmatrix}X\\Y\\Z\end{pmatrix} \iff \lambda_1 \begin{pmatrix}x_1\\y_1\\1\end{pmatrix} = \begin{pmatrix}X\\Y\\Z\end{pmatrix}
+		\end{displaymath}
+		D'altra banda, $R_{M_2, C_2}$ té la posició relativa entre les dues càmeres, per tant
+		\begin{displaymath}
+			\lambda_2 \begin{pmatrix}x_2\\y_2\\1\end{pmatrix} = \pi_0 R_{M_2, C_2} \begin{pmatrix}X\\Y\\Z\\1\end{pmatrix} \iff \lambda_2 \begin{pmatrix}x_2\\y_2\\1\end{pmatrix} = \pi_0 \begin{pmatrix}R\begin{psmallmatrix}X\\Y\\Z\end{psmallmatrix} + T\\1\end{pmatrix} = R\begin{pmatrix}X\\Y\\Z\end{pmatrix} + T
+		\end{displaymath}
+		Llavors tindrem $\lambda_2 \begin{pmatrix}x_i \\ y_i \\ 1\end{pmatrix} = \lambda_1 R \begin{pmatrix}x_i\\y_i\\1\end{pmatrix} + T$. Un cop $\lambda_i$ determinat, obtenim les coordenades del punt $P$ a $\mathbb{R}^3$.\\
+		Aquest algorisme s'anomena l'Algorisme dels 8 punts de reconstrucció 3D.
 	\end{enumerate}
 \end{document}

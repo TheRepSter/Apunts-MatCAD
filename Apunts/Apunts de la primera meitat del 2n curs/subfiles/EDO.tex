@@ -440,5 +440,59 @@ $D$ és només positivament (o negativament) invariant si $z_i \in D \Rightarrow
 \begin{definicio}
 	Donat un sistema no lineal autònom, es diu que la funciò $H(x,y)$ és una integral primera de el sistema no lineal autonom si compleix que $H(x(t), y(t))=C$ (es constant sobre les trajectories del sistema).
 \end{definicio}
-
+Tenim dos casos:
+\begin{itemize}
+\item Integrables
+\item No (necessàriament) integrables
+\end{itemize}
+Definim $z = (x,y)$ i $h(z) = (f(x,y), g(x,y))$ i llavors tindrem $z' = h(z)$. Suposem que tenim un equilibri a $z_0$ tal que $h(z_0) = 0$. Considerem que $z(t) = z_0 + \omega(t)$ i substituïm a la equació:\\
+Llavors tindrem $z'(t) = \omega'(t) = h(z) = h(z_0 + \omega(t)) = h(z_0) + Dh(z_0)\omega(t) H(z_0, \omega(t))$ on $Dh = \begin{psmallmatrix}f_x & f_y\\g_x&g_y\end{psmallmatrix}$.\\
+Llavors $\omega'(t) \approx Dh(z_0)\omega(t)$ pero nosaltres li pondrem una igualtat (doing maths as real physicists) això es una aproximació que podrem fer segons els seguents teoremes:
+\begin{teorema}[Principi de la linearització]
+$\;$
+\begin{enumerate}
+\item Suposem que TOTS els valors propis de $Dh(z_0)$ tenen part real negativa. Llavors $z_0$ és un equilibri asimptòticament estable.
+\item Suposem que te algun valor propi amb part real positiva aleshores $z_0$ és inestable.
+\end{enumerate}
+\end{teorema}
+\begin{definicio}
+Es diu un punt critic hiperbólic si tots els valors propis  de la matriu jacobianaen aquest equilibiri tenen part real diferent de zero.
+\end{definicio}
+\begin{teorema}[De Hartman-Grobman]
+Suposem que $z_0$ és un punt crític hiperbólic. Llavors el retrat de fase del sistema $z' = h(z(t))$ en un entorn de $z_0$ és topològicament equivalent al retrat de fase de el sistema $y'(t) = Dh(z_0)y(t)$ en un entorn de l'origen.
+\end{teorema}
+\subsubsection{Funcions de Lyapunov}
+\begin{definicio}
+Sigui $z_0$ un equilibri d'un sistema no lineal autònom. Considerem un entorn $D$ de $z_0$. Sigui $V: D \to \mathbb{R}$ una funció diferenciable tal que la derivada de $V$ al llarg de la trajectoria del sistema és $V'(z)=V_x(x(t), y(t))x'(t) + V_y(x(t), y(t))y'(t)$\\
+Es diu que $V$ és una funcició de Lyapunov si:
+\begin{enumerate}
+	\item $V(z_0) = 0$ i $V(z) > 0$ $\forall z \in D \setminus \{z_0\}$
+	\item $\frac{d}{dt} V(z) \leq 0\; \forall z \in D$
+\end{enumerate}
+Es diu que és estricte si a més es compleix que $V'(z)<0\;\forall z \in D \setminus \{z_0\}$
+\end{definicio}
+\begin{teorema}
+Sigui $z_0$ un equilibri del sistema no lineal autònom. Si existeix una funció de Lyapunov $V$ en un entorn de $z_0$ llavors $z_0$ és estable. Si a més $V$ és estricta llavors $z_0$ és asimptòticament estable.
+\end{teorema}
+\subsubsection{Retrats de fase al pla}
+\begin{displaymath}
+	\begin{cases}
+		x' = f(x, y)\\
+		y' = g(x, y)
+	\end{cases}
+\end{displaymath}
+\begin{definicio}
+	Isoclines de l'eix horizontal: $g(x, y) = 0$\\
+	Isoclines de l'eix vertical: $f(x, y) = 0$
+\end{definicio}
+Les interseccions d'aquestes isoclines ens donen els punts crítics.\\
+\begin{definicio}
+	Un cícle límit és una òrbita periòdica aïllada.
+\end{definicio}
+\begin{definicio}
+	Un poligon d'orbites és un conjunt de trajectories que conecten equilibris.
+\end{definicio}
+\begin{teorema}[de Bendinson-Poincarè]
+	Una trajectoria acotada d'un sistema autònom de dues EDOs tendeix a un equilibri, a una òrbita periòdica o a un poligon d'orbites.
+\end{teorema}
 \end{document}
