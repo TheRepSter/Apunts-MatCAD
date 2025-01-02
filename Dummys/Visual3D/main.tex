@@ -1,7 +1,6 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{utils}
 \usetikzlibrary{patterns}
-
 \begin{document}
 	\section{Rotacions}
 	\subsection{L'espai euclidià estàndard 3-dimensional}
@@ -1093,4 +1092,451 @@
 		anomenats angles d'Euler, tal que\\
 		$A = R_{i}(\alpha)R_{j}(\beta)R_{k}(\gamma)$
 	\end{teorema}
+	\section{Geometria epipolar}
+	\subsection{Formació de la imatge i ull ideal}
+	Per això modelitzem l'ull (o una càmera) de la manera següent:
+	El pla infinit $\left\{z = -f\right\}$ on $f$ és un número anomenat distància focal.\\
+	Llavors tenim $\overline{P} = \left(x,y,-f\right)$ i $P = \left(X, Y, Z\right)$ on $P$ envia un raig de llum que arribarà a $\overline{P}$.\\
+	Suposem que el forat en l'origen és un punt: els raigs de llum només poden passar de $\{z > 0\}$ a $\{z < 0\}$ per l'origen.\\
+	Ara determinem les coordenades $x$ i $y$ del punt projectat $\overline{P}$ en termes de les coordenades $X, Y, Z$ del punt $P \in \{z > 0\}$.\\
+	La condició geomètrica és que els punts $P, O$ i $\overline{P}$ siguin alineats. De forma equivalent,
+	\begin{displaymath}
+		\begin{aligned}[t]
+			\exists \lambda \in \mathbb{R} : \qquad&\qquad \overrightarrow{O\overline{P}} = \lambda \overrightarrow{OP}\\
+			&\iff \overline{P}-0 = \lambda(P - 0)\\
+			&\iff (x, y, -f) = \lambda(X, Y, Z)\\
+			&\iff \begin{cases}
+				x = \lambda X\\
+				y = \lambda Y\\
+				-f = \lambda Z
+			\end{cases}
+		\end{aligned}
+	\end{displaymath}
+	i, per tant, trobem que $\lambda = -\frac{f}{Z}$ i $x = -\frac{f}{Z}X$ i $y = -\frac{f}{Z}Y$.\\
+	Al final hem obtingut l'aplicació
+	\begin{displaymath}
+		\begin{aligned}[t]
+			\pi_f: \{z>0\} &\to \mathbb{R}^2\\
+			(X, Y, Z) &\mapsto \left(-\frac{f}{Z}X, -\frac{f}{Z}Y\right)
+		\end{aligned}
+	\end{displaymath}
+	\begin{obs}
+		El signe $-$ dins de les fórmules de les coordenades de $\overline{P}$ reflecteixen el fet que la imatge sobre el pla de projecció $\{z = -f\}$ està invertida.
+		Com el cervell corregeix aquesta inversió, podem oblidar-nos del signe negatiu.
+	\end{obs}
+	Llavors l'aplicació se simplifica a
+	\begin{displaymath}
+		\begin{aligned}[t]
+			\pi_f: \{z>0\} &\to \mathbb{R}^2\\
+			(X, Y, Z) &\mapsto \left(\frac{f}{Z}X, \frac{f}{Z}Y\right)
+		\end{aligned}
+	\end{displaymath}
+	Veiem que podem expressar la relació
+	\begin{displaymath}
+		\begin{aligned}[t]
+			(x,y) &= \pi_f(X,Y,Z)\\
+			\iff \begin{pmatrix}
+				x\\y\\1
+				\end{pmatrix} &= \begin{pmatrix}
+				\frac{f}{Z}X\\\frac{f}{Z}Y\\1
+				\end{pmatrix}\\
+			\iff Z \begin{pmatrix}
+				x\\y\\1
+				\end{pmatrix} &= \begin{pmatrix}
+				fX\\fY\\Z
+				\end{pmatrix}
+				= \begin{pmatrix}
+				f & 0 & 0 & 0\\
+				0 & f & 0 & 0\\
+				0 & 0 & 1 & 0
+				\end{pmatrix}
+				\begin{pmatrix}
+				X\\Y\\Z\\1
+				\end{pmatrix}\\
+			\iff Z \underbrace{\begin{pmatrix}
+				x\\y\\1
+				\end{pmatrix}}_{\substack{\text{coord.}\\ \text{homog.}}} &= \underbrace{\begin{pmatrix}
+				f & 0 & 0\\
+				0 & f & 0\\
+				0 & 0 & 1\\
+				\end{pmatrix}}_{:= K_f}
+				\underbrace{\begin{pmatrix}
+				1 & 0 & 0 & 0\\
+				0 & 1 & 0 & 0\\
+				0 & 0 & 1 & 0
+				\end{pmatrix}}_{:= \pi_0}
+				\underbrace{\begin{pmatrix}
+				X\\Y\\Z\\1
+				\end{pmatrix}}_{\substack{\text{coord.}\\ \text{homog.}}}
+		\end{aligned}
+	\end{displaymath}
+	$K_f$ es diu la matriu de calibració de la càmera i $\pi_0$ és la matriu de projecció estàndard.\\
+	Per tant,
+	\begin{displaymath}
+		\begin{pmatrix}
+			x\\y
+		\end{pmatrix} = \pi\begin{pmatrix}
+			X\\Y\\Z
+		\end{pmatrix} \iff Z\begin{pmatrix}
+			x\\y\\1
+		\end{pmatrix} = K_f\pi_0\begin{pmatrix}
+			X\\Y\\Z\\1
+		\end{pmatrix}
+	\end{displaymath}
+	En general, la càmera no està centrada en l'origen i el seu eix no coincideix amb l'eix $(OZ)$.\\
+
+	Sabem que les coordenades $(x,y)$ de la projecció de $P$ sobre el pla focal de la càmera està donat com
+	\begin{displaymath}
+		Z_C = \begin{pmatrix}X\\Y\\1\end{pmatrix} = K_f\pi_0\begin{pmatrix}X_C\\Y_C\\Z_C\\1\end{pmatrix}
+	\end{displaymath}
+	Passem de $(\mathcal{R}_0)$ a $(\mathcal{R}_C)$ per un moviment rígid (de càmera) $\Rightarrow \exists M \in SO(3)$ i $P_0 \in \mathbb{R}^3$ tal que
+	\begin{displaymath}
+		\begin{pmatrix}X_C\\Y_C\\Z_C\end{pmatrix} = M\begin{pmatrix}X\\Y\\Z\end{pmatrix} + P_0
+	\end{displaymath}
+	Si posem $X_C = Y_C = Z_C = 0$, obtenim $-MC = P_0$. Doncs trobem que $\begin{psmallmatrix} X_C\\Y_C\\Z_C\end{psmallmatrix} = M\begin{psmallmatrix}X\\Y\\Z\end{psmallmatrix} - MC$\\
+	Deduïm que $Z_C \begin{psmallmatrix}X\\Y\\1\end{psmallmatrix} = K_f \pi_0 \begin{psmallmatrix} X_C\\Y_C\\Z_C\\1\end{psmallmatrix} \iff Z_C \begin{psmallmatrix}X\\Y\\1\end{psmallmatrix} = K_f \pi_0 R_{M,C}\begin{psmallmatrix}X\\Y\\Z\\1\end{psmallmatrix}$\\
+	\begin{definicio}
+		\begin{displaymath}
+			\begin{pmatrix}
+				X_C\\Y_C\\Z_C\\1
+			\end{pmatrix}
+			=
+			\underbrace{\left(\begin{array}{c|c}
+				M &-MC\\
+				\hline
+				0 & 1
+		\end{array}\right)}_{:=R_{M,C}}
+			\begin{pmatrix}
+				X\\Y\\Z\\1
+			\end{pmatrix}
+		\end{displaymath}
+	\end{definicio}
+	En general, no coneixem $Z_C$ (la profunditat del punt observat respecte a l'eix de la càmera) i, per tant, posarem $Z_C = \lambda > 0$.
+	\begin{definicio}
+		Una càmera ideal (o ull ideal) de paràmetres $(f, M, C)$ on $f>0,\;M \in SO(3)$ i $C \in \mathbb{R}^3$ és una projecció.
+		\begin{displaymath}
+			\pi: \mathbb{R}^3 \to \mathbb{R}^2\\
+			tq (x,y) = \pi_{f,M,C}(X,Y,Z) \iff \exists > 0\;tq\;\lambda \begin{psmallmatrix}X\\Y\\1\end{psmallmatrix} = K_f\pi_0 R_{M,C}\begin{psmallmatrix}X\\Y\\Z\\1\end{psmallmatrix}
+		\end{displaymath}
+	\end{definicio}
+	\begin{obs}
+		Si $f = 1$, diem que la càmera està normalitzada.
+	\end{obs}
+	\begin{displaymath}
+		\begin{pmatrix}X_C\\Y_C\\Z_C\end{pmatrix} = M\begin{pmatrix}X\\Y\\Z\end{pmatrix} + C \iff \begin{pmatrix}X_C\\Y_C\\Z_C\\1\end{pmatrix}
+	\end{displaymath}
+	\subsection{Relació epipolar i la matriu essencial}
+	Considerem dues càmeres ideals normalitzades $\mathcal{C}_1 = (f_1=1, M_1, C_1)$ i $\mathcal{C}_2 = (f_2=1, M_2, C_2)$. Fent un possible canvi de referència, podem suposar que
+	\begin{displaymath}
+		\begin{cases}
+			M_1 = I_3\\
+			C_1 = 0_{\mathbb{R}^3} = \left(0,0,0\right)
+		\end{cases}
+	\end{displaymath}
+	o de forma equivalent que la càmera $\mathcal{C}_1$ està centrada en l'origen a $\mathbb{R}^3$ i el seu eix amb l'eix $0Z$.\\
+
+	Triem un punt $P \in \mathbb{R}^3$ tal que $P$ sigui davant de les dues càmeres, és a dir
+	\begin{displaymath}
+		P \in \left\{(x,y,z)_{\mathcal{C}_1} : z > 1 \right\}\cap\left\{(x_2,y_2,z_2)_{\mathcal{C}_2} : z_2 > 1 \right\}
+	\end{displaymath}
+	i volem entendre la relació anomenada epipolar que existeix entre les dues coordenades homogènies $\begin{psmallmatrix}x_1\\y_1\\1\end{psmallmatrix}$ i $\begin{psmallmatrix}x_2\\y_2\\1\end{psmallmatrix}$ de les imatges corresponents al punt $P$ per la càmera $\mathcal{C}_1$ i la càmera $\mathcal{C}_2$ respectivament.\\
+	El punt $P$ es pot descriure fent servir les seves coordenades respecte a $\mathcal{C}_1$ : $P = (x_1, y_1, z_1)_{\mathcal{C}_1} = (X,Y,Z)$ i respecte a $\mathcal{C}_2$ : $P = (x_2, y_2, z_2)_{\mathcal{C}_2}$\\
+	Recordem que aleshores existeix la relació següent
+	\begin{displaymath}
+		\begin{pmatrix}
+			X_2\\Y_2\\Z_2
+		\end{pmatrix} =
+		M_2 \begin{pmatrix}
+			X\\Y\\Z
+			\end{pmatrix}
+		- M_2C_2
+	\end{displaymath}
+	com la posició de $\mathcal{C}_2$ respecte a $\mathcal{C}_1$ diferent d'un moviment rígid. De manera equivalent podem escriure
+	\begin{displaymath}
+	\begin{pmatrix}
+		X\\Y\\Z
+	\end{pmatrix} =
+	\;^tM_2 \begin{pmatrix}
+		X_2\\Y_2\\Z_2
+		\end{pmatrix}
+	+ C_2
+	\end{displaymath}
+	Per simplificar les notacions, posem que $R = M_2 \in SO(3)$ i $T = -M_2C_2 \subset \mathbb{R}^3$
+	i direm que les dues càmeres tenen la posició relativa $(R,T)$ on $R$ és la rotació relativa i $T$ la posició relativa.
+	Per tant, tenim la relació
+	\begin{displaymath}
+		\begin{pmatrix}
+			X_2\\Y_2\\Z_2
+		\end{pmatrix} =
+		R \begin{pmatrix}
+			X\\Y\\Z
+			\end{pmatrix}
+		+ T
+	\end{displaymath}
+	$\iff Z_2\begin{psmallmatrix}X_2/Z_2\\Y_2/Z_2\\1\end{psmallmatrix} = ZR\begin{psmallmatrix}X/Z\\Y/Z\\1\end{psmallmatrix} + T$\\
+	$\iff z_2\begin{psmallmatrix}x_2/z_2\\y_2/z_2\\1\end{psmallmatrix} = ZR\begin{psmallmatrix}x_1\\y_1\\1\end{psmallmatrix} + T$\\
+	\begin{definicio}
+		Donat $T \in \mathbb{R}^3$ definim
+		\begin{displaymath}
+			\hat{T} := \begin{pmatrix}
+				0 & -T_3 & T_2\\
+				T_3 & 0 & -T_1\\
+				-T_2 & T_1 & 0
+				\end{pmatrix}
+		\end{displaymath}
+	\end{definicio}
+	Aleshores
+	\begin{proposicio}
+		\begin{enumerate}
+			\item $\;^t\hat{T} = - \hat{T}$
+			\item $\forall Q \in \mathbb{R}^3$, $\hat{T}Q = T \wedge Q$
+		\end{enumerate}
+	\end{proposicio}
+	\begin{demostracio}
+		\begin{enumerate}
+			\item evident.
+			\item Si $Q = (Q_1, Q_2, Q_3)$, aleshores que $\hat{T}Q = \begin{psmallmatrix}0 & -T_3 & T_2\\
+			T_3 & 0 & -T_1\\
+			-T_2 & T_1 & 0\end{psmallmatrix}\begin{psmallmatrix}Q_1\\Q_2\\Q_3\end{psmallmatrix} = \begin{psmallmatrix}-T_3Q_2 + T_2Q_3\\T_3Q_1 - T_1Q_3\\-T_2Q_1 + T_1Q_2\end{psmallmatrix} = T \wedge Q$
+		\end{enumerate}
+	\end{demostracio}
+	Multipliquem la relació anterior per $\hat{T}$ i obtenim
+	\begin{displaymath}
+		\hat{T}Z_2 \begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}
+		=
+		\hat{T}ZR \begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix}
+		+ \underbrace{\hat{T} T}_{= 0}
+	\end{displaymath}
+	i com $\hat{T}$ és lineal
+	\begin{displaymath}
+		Z_2\hat{T}\begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}
+		=
+		Z\hat{T}R\begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix}
+	\end{displaymath}
+	Si fem el producte escalar de l'equació anterior amb el vector $\begin{psmallmatrix}x_2\\y_2\\1\end{psmallmatrix}$ obtenim
+	\begin{displaymath}
+		\left\langle Z_2\hat{T}\begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}, \begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix}
+		\right\rangle
+		=
+		\left\langle Z\hat{T}R\begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix}, \begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}
+		\right\rangle = Z_2\left\langle T\wedge\begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}, \begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}\right\rangle = 0
+	\end{displaymath}
+	\begin{displaymath}
+		\iff 0 = Z\left\langle \hat{T}\begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix},
+		\begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}
+		\right\rangle\\
+		\iff 0 = \left\langle \hat{T}\begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix},
+		\begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}
+		\right\rangle
+		\iff 0 = \begin{pmatrix}
+			x_2\\y_2\\1
+		\end{pmatrix}^t \hat{T}\begin{pmatrix}
+			x_1\\y_1\\1
+		\end{pmatrix}
+	\end{displaymath}
+	\begin{definicio}
+		Donades dues clameres en posició relativa $(R, T) \in SO(3)\times\mathbb{R}^3$ definim la matriu essencial com $E = \hat{T}R$ (matriu $3\times3$ amb coeficients reals)
+	\end{definicio}
+	Resumint, hem obtingut el resultat següent
+	\begin{teorema}[Relació epipolar]
+		Considerem dues càmeres $\mathcal{C}_1$ i $\mathcal{C}_2$ de posició relativa $(R,T)$ on $R \in SO(3)$ i $T \in \mathbb{R}^3$\\
+		Considerem $P \in \mathbb{R}^3$ que sigui davant de les dues càmeres.\\
+		$\begin{cases}I_1(P) = \begin{psmallmatrix}x_1\\y_1\\1\end{psmallmatrix}\\I_2(P) = \begin{psmallmatrix}x_2\\y_2\\1\end{psmallmatrix}\end{cases}$ són les coordenades de $P$ en les imatges de les càmeres $\mathcal{C}_1$ i $\mathcal{C}_2$ respectivament.\\
+		Aleshores $I_2(P)^tEI_1(P) = 0$ es la relació epipolar, on $E = \hat{T}R$.
+	\end{teorema}
+	\begin{definicio}
+		Definim els objectes geomètrics epipolars següents:
+		\begin{itemize}
+			\item El \underline{pla epipolar} associat a un punt $P$ és el pla afí determinat pels $3$ punts $C_1, C_2$ i $P$. Suposarem sempre que aquests punts no estaran alineats.
+			\item L'\underline{epipol} $e_1$ és la projecció del punt $\mathcal{C}_2$ sobre el pla imatge de $\mathcal{C}_1$ (respectivament amb $e_2$). Suposarem sempre que ($\mathcal{C}_1, \mathcal{C}_2$) interseca els plans imatges de les càmeres en un únic punt.
+			\item La \underline{línia epipolar} $l_1$ associada a un punt $P$ serà la intersecció entre el pla imatge de $\mathcal{C}_1$ i el pla epipolar.
+		\end{itemize}
+	\end{definicio}
+	\begin{obs}
+		\begin{itemize}
+			\item El pla epipolar $\pi_p$ associat a $P$ és $\pi_p = (C_1, C_2, P)$
+			\item Obtenim els epipols fent interseccions $e_1 = \left\{(C_1, C_2) \cap \left\{Z_1 = 1\right\}\right\}$ i $e_1 = \left\{(C_1, C_2) \cap \left\{Z_2 = 1\right\}\right\}$
+			\item Obtenim les línies epipolars amb $l_1(P) = \pi_p \cap \left\{Z_1 = 1\right\}$ i $l_2(P) = \pi_p \cap \left\{Z_2 = 1\right\}$
+		\end{itemize}
+	\end{obs}
+	\begin{proposicio}
+		Donat una matriu essencial $E = \hat{T}R$ (de forma equivalent, donades dues càmeres en posició relativa $(R,T)$), aleshores $\forall P$ davant de les dues càmeres
+		\begin{displaymath}
+			l_1(P) = \left\{\left\langle\cdot\;, E^tI_2(P)\right\rangle = 0\right\}\;
+			l_2(P) = \left\{\left\langle\cdot\;, E^tI_1(P)\right\rangle = 0\right\}
+		\end{displaymath}
+	\end{proposicio}
+	\begin{demostracio}
+		$I_2(P) = I_2(P')\;\forall P' \in (C_2, P)$, llavors
+		\begin{displaymath}
+			\begin{aligned}[t]
+				l_1(P) &= \left\{I_1(P') : P' \in (C_2, P)\right\}\\
+			 	       &= \left\{I_1(P') : I_2(P) = I_2(P')\right\}\\
+			 	       &= \left\{I_1(P') : I_2(P)^tEI_1(P)=0\right\}\\
+			 	       &= \left\{I_1(P') : I_1(P)^tE^tI_2(P)=0\right\}\\
+			 	       &= \left\{I_1(P') : \left\langle I_1(P),E^tI_2(P)\right\rangle=0\right\}\\
+			 	       &= \left\{I_1(P') : \left\langle\cdot\;,E^tI_2(P)\right\rangle=0\right\}
+			\end{aligned}
+		\end{displaymath}
+		De la mateixa manera amb $l_2(P)$.
+	\end{demostracio}
+	\subsection{Reconstrucció 3D}
+	Imaginem que disposem de dues fotografies del mateix objecte fet amb la mateixa càmera des de dos punts de vista $\neq$.\\
+	Aquí suposem la (o les) càmera ideal i normalitzada. Primer determinem sobre les 2 imatges una serie de punts corresponents dels quals determinem les coordenades:
+	siguin $P_1, \dots, P_n$ una sèrie de $n > 1$ punts de l'objecte amb coordenades a $\mathbb{R}^3$ on cada punt $P_i = \left(x^i, y^i, z^i\right)$ per $i = 1, \dots, n$.\\
+	Tals que coneixerem les seves coordenades homogènies respecte de la càmera 1 i 2:
+	\begin{displaymath}
+		I_1(P_i) = \begin{psmallmatrix}x_1^i\\y_1^i\\1\end{psmallmatrix}\quad I_2(P_i) = \begin{psmallmatrix}x_2^i\\y_2^i\\1\end{psmallmatrix} \quad \forall i = 1, \dots, n
+	\end{displaymath}
+	La pregunta és la següent: Podem determinar les coordenades $(x^i, y^i, z^i) \forall i = 1, \dots, n$ si coneixem les coordenades (homogènies) $(x_1^i, y_1^i)$ i $(x_2^i, y_2^i)$ $\forall i = 1, \dots, n$?
+	\begin{enumerate}
+		\item El primer pas és determinar la matriu essencial $E$ que compleix el següent sistema:
+		\begin{displaymath}
+			\forall i = 1, \dots, n\quad I_2(P_i)^tEI_1(P_i) = 0
+		\end{displaymath}
+		\begin{displaymath}
+			\Leftrightarrow \forall i = 1, \dots, n\quad (x_2^i, y_2^i, 1)E\begin{psmallmatrix}x_1^i\\y_1^i\\1\end{psmallmatrix} = 0
+		\end{displaymath}
+		No oblidem que $E = \hat{T}R \in Mat_{3\times3}(\mathbb{R})$\\
+		Si denotem $E = (e_{ij})_{1 \leq i, j \leq 3}$ els coeficients buscats, tenim un sistema lineal de $n$ equacions amb $3$ incògnites:
+		\begin{displaymath}
+			\forall i = 1, \dots, n\quad (x_1^i, y_1^i, 1)\begin{pmatrix}e_{11}&e_{12}&e_{13}\\e_{21}&e_{22}&e_{23}\\e_{31}&e_{32}&e_{33}\end{pmatrix}\begin{pmatrix}x_2^i\\y_2^i\\1\end{pmatrix} = 0
+		\end{displaymath}
+		\begin{displaymath}
+			\Leftrightarrow \forall i = 1, \dots, n\quad (x_2^i e_{11}+y_2^ie_{21}+e_{31}, x_2^i e_{12}+y_2^ie_{22}+e_{32}, x_2^i e_{13}+y_2^ie_{23}+e_{33})\begin{pmatrix}x_1^i\\y_1^i\\1\end{pmatrix} = 0
+		\end{displaymath}
+		\begin{displaymath}
+			\Leftrightarrow \forall i = 1, \dots, n\quad x_1^ix_2^ie_11+x_1^iy_2^ie_{21}+x_1^ie_{31}+y_1^ix_2^ie_{12}+y_1^iy_2^ie_{22}+y_1^ie_{32}+x_2^ie_{13}+y_2^ie_{23}+e_{33} = 0
+		\end{displaymath}
+		\begin{displaymath}
+				\L\Leftrightarrow \forall i = 1, \dots, n\quad \underbrace{\begin{pmatrix}
+							x_1^i x_2^i & x_1^i y_2^i & x_1^i & y_1^i x_2^i & y_1^i y_2^i & y_1^i & x_2^i & y_2^i & 1
+			\end{pmatrix}}_{=: a_i \in \mathbb{R}^9}
+			\underbrace{\begin{pmatrix}
+							e_{11}\\
+							e_{21}\\
+							e_{31}\\
+							e_{12}\\
+							e_{22}\\
+							e_{32}\\
+							e_{13}\\
+							e_{23}\\
+							e_{33}
+			\end{pmatrix}}_{=: E^s \in \mathbb{R}^9} = 0
+		\end{displaymath}
+		\begin{displaymath}
+			\forall i = 1, \dots, n\quad a_iE^s = 0
+		\end{displaymath}
+		Si finalment, posem
+		\begin{displaymath}
+			A := \begin{pmatrix}a_1\\ \vdots\\ a_n\end{pmatrix} \in Mat_{n\times9}(\mathbb{R})
+		\end{displaymath}
+		Obtenim l'equació següent $AE^s = 0$.\\
+		Veiem que $E^s \in Ker(A)$ i només podrem determinar $E^s$ (i $E$) llevat de múltiple per un escalar:
+		Si $E^s$ és solució ($\Leftrightarrow AE^s = 0$) aleshores $\forall \lambda \in \mathbb{R}$, $\lambda E^s$ és solució també. No sabrem (de moment!) quina $\lambda$ és la matriu essencial.\\
+		Veiem també que l'aplicació lineal $L_A: \begin{aligned}[t]\mathbb{R}^9 &\to \mathbb{R}^n\\X &\mapsto AX\end{aligned}$ té nucli de dimensió $1 \iff$ (teorema del rang)
+	 	\begin{displaymath}
+				9 = \underbrace{\dim(Im(L_A))}_{= rang(A)} + \dim(Ker(L_A)) \iff rang(A) = 8
+		\end{displaymath}
+		Per tant, des d'ara suposarem que hem triat $n = 8$ punts tal que la matriu $A$ associada compleixi $rang(A) = 8$.
+		(Al nivell pràctic, si triem $8$ punts a l'atzar això sempre es complirà i es pot justificar al nivell teòric).
+		Aleshores podem determinar $E^s$ (i $E$) llevat de múltiple per un escalar. Per triar el múltiple, suposem que $||T|| = 1$, es a dir, suposem que la distància entre les dues posicions de la càmera està normalitzada igual a $1$ (metre).
+		\begin{obs}
+			El fet de no saber la solució llevat de múltiple és perfectament normal. (pel teorema de Tales, si $d$ es distancia entre les càmeres i $h$ l'altura de l'objecte, si canviem la distància per $\lambda d$ i l'altura per $\lambda h$, la imatge no canvia).
+		\end{obs}
+		En canvi, si coneixem una de les distàncies entre dos dels 8 punts $P_1,\dots, P_8$, podem determinar aquest $\lambda$ i llavors determinar $E$ sense suposar $||T|| = 1$.
+		\begin{proposicio}
+			Sigui $E = \hat{T}R$ una matriu essencial. ($T \subset \mathbb{R}^3,\;R\in SO(3)$), aleshores
+			\begin{enumerate}
+				\item Ker($E^t$) $=$ Vect($T$)
+				\item Tr($EE^t$)$= 2 ||T||^2$
+			\end{enumerate}
+		\end{proposicio}
+		\begin{demostracio}
+			\begin{enumerate}
+				\item $X \in \text{Ker}(E^t) \Leftrightarrow E^tX = 0 \Leftrightarrow (\hat{T}R)^tX = 0 \Leftrightarrow \hat{T}X = 0 \iff T\wedge X = 0 \Leftrightarrow X \in \text{Vect}(T)$
+				\item $\text{Tr}(EE^t) = -\text{Tr}(\hat{T}RR^t\hat{T}) =  -\text{Tr}(\hat{T}^2)$
+				i deduïm el resultat com $\hat{T}^2 = \begin{psmallmatrix} -T_3^2-T_2^2 & T_1T_2 & T_1T_3\\T_1T_2 & -T_3^2-T_1^2 & T_2T_3\\T_1T_3 & T_2T_3 & -T_2^2-T_1^2\end{psmallmatrix}$ i la traça només agafa la diagonal.
+			\end{enumerate}
+		\end{demostracio}
+		Aleshores, com hem suposat que $n = 8$, rang($A$) $= 8$ i $||T|| = 1$ podem determinar $E$ llevat de múltiple per un escalar, però amb tr$(EE^t) = 2$ podem determinar $E$ llevat d'un signe $\pm$. Triem un dels dos signes.
+		\begin{obs}
+			Si $E$ descriu la rotació entre les dues càmeres: $X^tEY = 0$ aleshores la matriu $-E$ també: $X^t(-E)Y = 0$.
+		\end{obs}
+		\item En el segon pas, determinem la posició relativa $(R, T)$ entre les dues cameres. Acabem de determinar $E$ i per tant podem triar $T \in \text{Ker}(E^t)$ de norma $1$ que està determinat llevat d'un signe, triem un dels signes.
+		\begin{obs}
+			Si canviem un signe per l'altre això equival a invertir les posicions de $\mathcal{C}_1$ i de $\mathcal{C}_2$.
+		\end{obs}
+		\begin{proposicio}
+			Si $E$ és matriu essencial i $T \in \text{Ker}(E^t)$ aleshores $\exists!R\in SO(3)$ tal que $E = \hat{T}R$.
+		\end{proposicio}
+		\begin{demostracio}
+			Si $R, R' \in SO(3)$ tal que $E = \hat{T}R = \hat{T}R'$, aleshores $R'R^t\hat{T}^t = \hat{T}^t$ això implica que $R'R^t_{|\text{Im}(\hat{T})} = {I_3}_{|\text{Im}(\hat{T})}$ però $\dim(\text{Im}(\hat{T})) = 2$ i $R'R^t \in SO(3)$. Llavors tenim que $R'R^t = I_3$ i, per tant, $R = R'$.
+		\end{demostracio}
+		Per tant, dins del nostre algoritme un cop determinat $E$ i $T$ la matriu $R$ està únicament determinada. Com el determinem? Així:
+		\begin{proposicio}
+			Sigui $U \in \mathbb{R}^3$ tal que $||U|| = 1$ i $\left\langle U, T \right\rangle = 0$ i posem $V = U \wedge T$. Aleshores
+			\begin{displaymath}
+				R = \begin{pmatrix}V&-U&-T\end{pmatrix}\begin{pmatrix}E^tU&E^tV&E^tU\wedge E^tV\end{pmatrix}^t
+			\end{displaymath}
+		\end{proposicio}
+		\begin{demostracio}
+			Hem obtingut:
+			\begin{displaymath}
+				\begin{aligned}[t]
+					S \begin{pmatrix} U & V & -T \end{pmatrix} = \begin{pmatrix} E^tU & E^tV & E^tU \wedge E^tV \end{pmatrix}\\
+					\iff R^tMB = \begin{pmatrix} E^tU & E^tV & E^tU \wedge E^tV \end{pmatrix}\\
+				\end{aligned}
+			\end{displaymath}
+			i com $MB = \begin{psmallmatrix}MU & MV & M(-T)\end{psmallmatrix} = \begin{psmallmatrix}V & -U & -T\end{psmallmatrix} \iff R^t\begin{psmallmatrix}V & -U & -T\end{psmallmatrix} = \begin{psmallmatrix}E^tU & E^tV & E^tU \wedge E^tV\end{psmallmatrix} \iff \begin{psmallmatrix}V & -U & -T\end{psmallmatrix}R = \begin{psmallmatrix}E^tU & E^tV & E^tU \wedge E^tV\end{psmallmatrix}^t$
+			Si posem $A := \begin{psmallmatrix}V & -U & -T\end{psmallmatrix}$ com $(U, T, V)$ és BON $\oplus$ veiem que $A$ és BON $\oplus$ i doncs $A \in SO(3) \Rightarrow A^{-1} = A^t$\\
+			Al final tenim $A^{-1}R = \begin{psmallmatrix}E^tU & E^tV & E^tU \wedge E^tV\end{psmallmatrix}^t \Rightarrow R = A\begin{psmallmatrix}E^tU & E^tV & E^tU \wedge E^tV\end{psmallmatrix}^t$
+		\end{demostracio}
+		PARÈNTESI: Si tenim $(U, V, W)$ BON $\oplus$ a $\mathbb{R}^3$, i $A = \begin{psmallmatrix}U & V & W\end{psmallmatrix} \in SO(3)$. Per què?\\
+		$A^tA = \begin{psmallmatrix}U^t \\ V^t \\ W^t\end{psmallmatrix}\begin{psmallmatrix}U&V&W\end{psmallmatrix} = \begin{psmallmatrix}U^tU & U^tV & U^tW\\V^tU & V^tV & V^tW\\W^tU & W^tV & W^tW\end{psmallmatrix} = \begin{psmallmatrix} \left\langle U, U\right\rangle & \left\langle U, V\right\rangle & \left\langle U, W\right\rangle\\\left\langle V, U\right\rangle & \left\langle V, V\right\rangle & \left\langle V, W\right\rangle\\\left\langle W, U\right\rangle & \left\langle W, V\right\rangle & \left\langle W, W\right\rangle\end{psmallmatrix} = I_3$\\
+		\item L'últim pas consisteix en determinar les coordenades a $\mathbb{R}^3$ d'un punt $P$ (qualsevol) donant les seves imatges.\\
+		Tenim un punt $P = (X, Y, Z) \in \mathbb{R}^3$ tal que $I_1(P) = \begin{psmallmatrix}x_1\\y_1\\1\end{psmallmatrix}$ i $I_2(P) = \begin{psmallmatrix}x_2\\y_2\\1\end{psmallmatrix}$
+		Aleshores $\exists \lambda_1, \lambda_2 > 0$ tal que
+		\begin{displaymath}
+			\lambda_i \begin{pmatrix}x_i\\y_i\\1\end{pmatrix} = K_{f_i} \pi_0 R_{M_i, C_i} \begin{pmatrix}X\\Y\\Z\\1\end{pmatrix} \quad \text{per } i = 1, 2
+		\end{displaymath}
+		Donat que $f_1 = f_2 = 1$ i $M_1 = I_3$ i $C_1 = 0$ tenim
+		\begin{displaymath}
+			\lambda_1 \begin{pmatrix}x_1\\y_1\\1\end{pmatrix} = \pi_0 \begin{pmatrix}X\\Y\\Z\\1\end{pmatrix} = \begin{pmatrix}X\\Y\\Z\end{pmatrix} \iff \lambda_1 \begin{pmatrix}x_1\\y_1\\1\end{pmatrix} = \begin{pmatrix}X\\Y\\Z\end{pmatrix}
+		\end{displaymath}
+		D'altra banda, $R_{M_2, C_2}$ té la posició relativa entre les dues càmeres, per tant
+		\begin{displaymath}
+			\lambda_2 \begin{pmatrix}x_2\\y_2\\1\end{pmatrix} = \pi_0 R_{M_2, C_2} \begin{pmatrix}X\\Y\\Z\\1\end{pmatrix} \iff \lambda_2 \begin{pmatrix}x_2\\y_2\\1\end{pmatrix} = \pi_0 \begin{pmatrix}R\begin{psmallmatrix}X\\Y\\Z\end{psmallmatrix} + T\\1\end{pmatrix} = R\begin{pmatrix}X\\Y\\Z\end{pmatrix} + T
+		\end{displaymath}
+		Llavors tindrem $\lambda_2 \begin{pmatrix}x_i \\ y_i \\ 1\end{pmatrix} = \lambda_1 R \begin{pmatrix}x_i\\y_i\\1\end{pmatrix} + T$. Un cop $\lambda_i$ determinat, obtenim les coordenades del punt $P$ a $\mathbb{R}^3$.\\
+		Aquest algorisme s'anomena l'Algorisme dels 8 punts de reconstrucció 3D.
+	\end{enumerate}
 \end{document}

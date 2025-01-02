@@ -6,6 +6,7 @@
 \usepackage{amsthm}
 \usepackage[catalan]{babel}
 \usepackage{geometry}
+\usepackage{multirow}
 \usepackage{multicol}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -273,33 +274,310 @@ Propietats:
 	\item La funció de densitat es\\ $f_F(x) = \frac{\Gamma(\frac{n+m}{2})}{\Gamma(\frac{n}{2})\Gamma(\frac{m}{2})}(\frac{n}{m})^{n/2}x^{n/2-1}\left(1+\frac{n}{m}x\right)^{-(n+m)/2}$ quan $x\geq 0$
 	\item $P(F_{n,m}\leq x) = P(F_{m,n}\leq \frac{1}{x}$, aixó serveix per exemple quan $P(F \leq x) = 0.05 \Rightarrow P(F \geq x) = 0.95 =  P(F \leq \frac{1}{x})$
 \end{itemize}
-\subsubsection{Esperances i variàncies}
-\begin{tabular}{|c|c|c|}
+\subsubsection{Recordatori de probabilitat}
+\begin{tabular}{|c|c|c|c|}
 	\hline
-	& Esperança & Variància\\
+	Distribució & Esperança & Variància & Funció de probabilitat\\
 	\hline
-	$X \sim B(p)$ & $p$ & $p(1-p)$\\
+	$X \sim Bin(n,p)$ & $np$ & $np(1-p)$ & $\left(\substack{n\\k}\right)p^k(1-p)^{n-k}$\\
 	\hline
-	$X \sim Bin(n,p)$ & $np$ & $np(1-p)$\\
+	$X \sim Geo(p)$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$ & $p(1-p)^{k-1}$\\
 	\hline
-	$X \sim Geo(p)$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$\\
+	$X \sim BinNeg(r,p)$ & $\frac{r}{p}$ & $\frac{r(1-p)}{p^2}$ & $\left(\substack{k-1\\r-1}\right)p^r(1-p)^{k-r}$\\
 	\hline
-	$X \sim BinNeg(r,p)$ & $\frac{r}{p}$ & $\frac{r(1-p)}{p^2}$\\
+	$X \sim HGeo(N,K,n)$ & $n\frac{K}{N}$ & $n\frac{K}{N}\frac{N-K}{N}\frac{N-n}{N-1}$ & $\frac{\left(\substack{K\\k}\right)\left(\substack{N-K\\n-k}\right)}{\left(\substack{N\\n}\right)}$\\
 	\hline
-	$X \sim HipGeo(N,K,n)$ & $n\frac{K}{N}$ & $n\frac{K}{N}\frac{N-K}{N}\frac{N-n}{N-1}$\\
+	$X \sim Poiss(\lambda)$ & $\lambda$ & $\lambda$ & $e^{-\lambda}\frac{\lambda^k}{k!}$\\
 	\hline
-	$X \sim Poiss(\lambda)$ & $\lambda$ & $\lambda$\\
+	$X \sim U(a,b)$ & $\frac{a+b}{2}$ & $\frac{(b-a)^2}{12}$ & $\frac{1}{b-a}$\\
 	\hline
-	$X \sim U(a,b)$ & $\frac{a+b}{2}$ & $\frac{(b-a)^2}{12}$\\
+	$X \sim Exp(\lambda)$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ & $\lambda e^{-\lambda x}$\\
 	\hline
-	$X \sim Exp(\lambda)$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$\\
+	$X \sim Gamma(r, \lambda)$ & $\frac{r}{\lambda}$ & $\frac{r}{\lambda^2}$ & $\frac{\lambda^r}{\Gamma(r)}x^{r-1}e^{-\lambda x}$\\
 	\hline
-	$X \sim Weibull(\nu, \lambda)$ & $\lambda\Gamma(1+\frac{1}{\nu})$ & $\lambda^2(\Gamma(1+\frac{2}{\nu}) - \Gamma^2(1+\frac{1}{\nu}))$\\
-	\hline
-	$X \sim Gamma(r, \lambda)$ & $\frac{r}{\lambda}$ & $\frac{r}{\lambda^2}$\\
-	\hline
-	$X \sim Erlang(r, \lambda)$ & $\frac{r}{\lambda}$ & $\frac{r}{\lambda^2}$\\
+	$X \sim Erlang(r, \lambda)$ & $\frac{r}{\lambda}$ & $\frac{r}{\lambda^2}$ & $\frac{\lambda^r}{(r-1)!}x^{r-1}e^{-\lambda x}$\\
 	\hline
 \end{tabular}
+\newpage
+\section{Tests d'hipòtesis}
+\subsection{Introducció}
+Un test d'hipòtesis consisteix en el plantejament de dues hipòtesis estadístiques contradictòries i una regla de decisió permet quedar-nos amb la més plausible.
+\begin{itemize}
+	\item Hipòtesi nul·la ($H_0$): és la hipòtesi afavorida i no serà rebutjada llevat que hi hagui una evidència forta.
+	\item Hipòtesi alternativa ($H_1$): L'altre.
+\end{itemize}
+\subsubsection{Tipus d'errors}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \multicolumn{2}{|c|}{}&\multicolumn{2}{|c|}{}\\\multicolumn{2}{|c|}{} & \multicolumn{2}{|c|}{\textbf{Hipòtesi amb la qual ens ''quedem"}}\\\multicolumn{2}{|c|}{}&\multicolumn{2}{|c|}{} \\ \cline{3-4}
+        \multicolumn{2}{|c|}{} & & \\\multicolumn{2}{|c|}{} & $H_0$ & $H_1$\\\multicolumn{2}{|c|}{} & & \\
+        \hline
+        & & &\\& $H_0$ & \textcolor{blue}{No error} & \textcolor{red}{Error de tipus I}\\\multirow{2}*{Hipòtesi certa}& & & \\ \cline{2-4}
+        & & &\\& $H_1$ & \textcolor{red}{Error de tipus II} & \textcolor{blue}{No error}\\& & &\\ \hline
+    \end{tabular}
+\end{table}
+Fixarem $\alpha \in (0,1)$ petita, anomenada nivell de significació i construïm tal que $P(\text{Error de tipus I}) \leq \alpha$ (si pot ser $= \alpha$).\\
+Quan la probabilitat de l'error de tipus I puja, la probabilitat de l'error de tipus II baixa. Idem al revés.\\
+Si la regla de decisió ens porta a quedar-nos amb $H_1$ ho farem amb convenciment. Si ens porta a quedar-nos amb $H_0$ ho farem sense convenciment.\\
+Això genera dos subconjunts, la regió d'acceptació i la regió de rebuig o crítica. Si està en RA ens quedem amb $H_0$ i si està en $RR$ rebutgem $H_0$.\\
+$p$-valor és el màxim valor de nivell de significació pel qual \textcolor{red}{NO} es rebutja $H_0$.\\
+\subsubsection{Nivell de confiança del test}
+El nivell de confiança del test és $1-\alpha$ i és la probabilitat de no cometre l'error de tipus I.\\
+La funció de potència del test permet tractar simultàniament les probabilitats de l'error de tipus I i II. Es la probabilitat de rebutjar $H_0$ quan el valor del paràmetre és $\theta$.\\
+\begin{displaymath}
+	\pi(\theta) = P(\text{Rebutjar } H_0 | \theta) = \begin{cases} \alpha(\theta) & \text{si } \theta \text{ verifica } H_0\\ 1-\beta(\theta) & \text{si } \theta \text{ verifica } H_1
+	\end{cases}
+\end{displaymath}
+\subsection{Per una població}
+Remarquem que tenim:
+\begin{itemize}
+	\item Unilateral dret (RS) $\begin{cases} H_0: \theta = \theta_0\\ H_1: \theta > \theta_0\end{cases}$
+	\item Unilateral esquerre (LS) $\begin{cases} H_0: \theta = \theta_0\\ H_1: \theta < \theta_0\end{cases}$
+	\item Bilateral (TS) $\begin{cases} H_0: \theta = \theta_0\\ H_1: \theta \neq \theta_0\end{cases}$
+\end{itemize}
+\subsubsection{Mitjana normal, desviació coneguda}
+Llavors l'estadístic de contrast és $Z = \frac{\overline{X} - \mu_0}{\sigma/\sqrt{n}} \sim N(0,1)$\\
+I tenim les següents regions crítiques:
+\begin{itemize}
+	\item RS: $RR = \{z > z_{1-\alpha}\}$
+	\item LS: $RR = \{z < -z_{1-\alpha}\}$
+	\item TS: $RR = \{|z| > z_{1-\alpha/2}\}$
+\end{itemize}
+La mida de la mostra per obtenir una probabilitat d'error de tipus II en els one-sided donada per a un valor concret $\mu = \mu_1$ en la hipòtesi alternativa és:
+\begin{displaymath}
+	n = \left\lceil\left(\frac{(z_{1-\alpha} + z_{1-\beta})\sigma}{\mu_1 - \mu_0}\right)^2\right\rceil
+\end{displaymath}
+en la bilateral:
+\begin{displaymath}
+	n = \left\lceil\left(\frac{(z_{1-\alpha/2} + z_{1-\beta})\sigma}{\mu_1 - \mu_0}\right)^2\right\rceil
+\end{displaymath}
+\subsubsection{Mitjana normal, desviació desconeguda}
+L'estadístic de contrast és $T = \frac{\overline{X} - \mu_0}{S/\sqrt{n}} \sim t_{n-1}$\\
+I tenim les següents regions crítiques:
+\begin{itemize}
+	\item RS: $RR = \{t > t_{n-1,1-\alpha}\}$
+	\item LS: $RR = \{t < -t_{n-1,1-\alpha}\}$
+	\item TS: $RR = \{|t| > t_{n-1,1-\alpha/2}\}$
+\end{itemize}
+\subsubsection{Variància normal amb mitjana desconeguda}
+L'estadístic de contrast és $\Psi = \frac{(n-1)S^2}{\sigma_0^2} \sim \chi^2_{n-1}$\\
+I tenim les següents regions crítiques:
+\begin{itemize}
+	\item RS: $RR = \{\psi > \chi^2_{n-1,1-\alpha}\}$
+	\item LS: $RR = \{\psi < \chi^2_{n-1,\alpha}\}$
+	\item TS: $RR = \{\psi < \chi^2_{n-1,\alpha/2} \text{ o } \psi > \chi^2_{n-1,1-\alpha/2}\}$
+\end{itemize}
+\subsubsection{Variància normal amb mitjana coneguda}
+L'estadístic de contrast és $\Psi = \frac{n\tilde{S}^2}{\sigma_0^2} \sim \chi^2_n$\\
+I tenim les següents regions crítiques:
+\begin{itemize}
+	\item RS: $RR = \{\psi > \chi^2_{n,1-\alpha}\}$
+	\item LS: $RR = \{\psi < \chi^2_{n,\alpha}\}$
+	\item TS: $RR = \{\psi < \chi^2_{n,\alpha/2} \text{ o } \psi > \chi^2_{n,1-\alpha/2}\}$
+\end{itemize}
+\subsubsection{Tests asimptòtics per mitjana i proporció, mostres grans}
+Per a la mitjana d'una variable amb mostra gran:\\
+L'estadístic de contrast és $Z = \frac{\overline{X} - \mu_0}{\sigma/\sqrt{n}} \approx N(0,1)$\\
+I tenim les següents regions crítiques:
+\begin{itemize}
+	\item RS: $RR = \{z > z_{1-\alpha}\}$
+	\item LS: $RR = \{z < -z_{1-\alpha}\}$
+	\item TS: $RR = \{|z| > z_{1-\alpha/2}\}$
+\end{itemize}
+Per la proporció $p$ d'una $X \sim B(p)$ amb mostra gran:\\
+L'estadístic de contrast és $Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} \approx N(0,1)$\\
+I tenim les següents regions crítiques:
+\begin{itemize}
+	\item RS: $RR = \{z > z_{1-\alpha}\}$
+	\item LS: $RR = \{z < -z_{1-\alpha}\}$
+	\item TS: $RR = \{|z| > z_{1-\alpha/2}\}$
+\end{itemize}
+\subsubsection{Normalitat de les dades}
+Podem fer un test de normalitat de les dades per descartar el cas de mostres clarament no provinents d'una normal.\\
+El test de Shapiro-Wilk és el més recomanable, es fa només a $R$ i té les següents hipòtesis:
+\begin{displaymath}
+	\begin{cases}
+		H_0: \text{Les dades provenen d'una distribució normal}\\
+		H_1: \text{Les dades NO provenen d'una distribució normal}
+	\end{cases}
+\end{displaymath}
+En $R$ es fa així: \texttt{shapiro.test(dades)}. Això ens dona el p-valor.
+\subsubsection{Tests no parametrics per la mediana per mostres petites}
+Test dels rangs amb signes de Wilcoxon:\\
+\begin{displaymath}
+	\begin{cases}
+		H_0: \text{La mediana de la mostra és igual a un valor } \mu_0\\
+		H_1: \text{La mediana de la mostra és } \begin{cases}\text{diferent}\\\text{més gran}\\\text{més petita}\end{cases} \text{a un valor}
+	\end{cases}
+\end{displaymath}
+En $R$ és fa así: \\\texttt{wilcox.test(dades, mu = $\mu_0$, alternative = ''two.sided"/''greater"/''less")}.\\Això ens dona el p-valor.
+\subsection{Per dues poblacions: mostres independents}
+\subsubsection{Comparació de variàncies normals}
+Les hipòtesis són les típiques, $H_0: \mu^2_1 = \mu^2_2$\\
+Llavors tindrem $\frac{S_1^2}{S_2^2} \sim F_{n_1-1,n_2-1}$\\
+I tenim les següents regions crítiques:
+\begin{itemize}
+	\item RS: $RR = \{f > F_{n_1-1,n_2-1,1-\alpha}\}$
+	\item LS: $RR = \{f < F_{n_1-1,n_2-1,\alpha}\}$
+	\item TS: $RR = \{f < F_{n_1-1,n_2-1,\alpha/2} \text{ o } f > F_{n_1-1,n_2-1,1-\alpha/2}\}$
+\end{itemize}
+\subsubsection{Comparació de mitjanes normals}
+Llavors tindrem:
+\begin{itemize}
+	\item Variàncies conegudes: $Z = \frac{\overline{X}_1 - \overline{X}_2}{\sqrt{\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}}} \sim N(0,1)$ amb les següents regions crítiques:
+	\begin{itemize}
+		\item RS: $RR = \{z > z_{1-\alpha}\}$
+		\item LS: $RR = \{z < -z_{1-\alpha}\}$
+		\item TS: $RR = \{|z| > z_{1-\alpha/2}\}$
+	\end{itemize}
+	\item Variàncies desconegudes, considerades iguals: $T = \frac{\overline{X}_1 - \overline{X}_2}{S\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \sim t_{n_1+n_2-2}$ amb les següents regions crítiques:
+	\begin{itemize}
+		\item RS: $RR = \{t > t_{n_1+n_2-2,1-\alpha}\}$
+		\item LS: $RR = \{t < -t_{n_1+n_2-2,1-\alpha}\}$
+		\item TS: $RR = \{|t| > t_{n_1+n_2-2,1-\alpha/2}\}$
+	\end{itemize}
+	\item Variàncies desconegudes, considerades diferents: $T = \frac{\overline{X}_1 - \overline{X}_2}{\sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}}} \approx t_\nu$ on $\nu$ es calcula com abans, $\nu = \left\lceil\frac{\left(\frac{S^2_1}{n_1}+\frac{S_2^2}{n_2}\right)^2}{\frac{\left(\frac{S^2_1}{n_1}\right)^2}{n_1-1}+\frac{\left(\frac{S^2_2}{n_2}\right)^2}{n_2-1}}\right\rceil$ %me voy a suicidar, otra vez
+	. Amb les següents regions crítiques:
+	\begin{itemize}
+		\item RS: $RR = \{t > t_{\nu,1-\alpha}\}$
+		\item LS: $RR = \{t < -t_{\nu,1-\alpha}\}$
+		\item TS: $RR = \{|t| > t_{\nu,1-\alpha/2}\}$
+	\end{itemize}
+\end{itemize}
+\subsubsection{Tests asimptòtics: per a mitjanes i les proporcions, mostres grans}
+Per a la mitjana de dues poblacions amb mostres grans:
+Estadístic de contrast: $Z = \frac{\overline{X}_1 - \overline{X}_2}{\sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}}} \approx N(0,1)$ si $n_1, n_2 \geq 30$\\
+I tenim les següents regions crítiques:
+\begin{itemize}
+	\item RS: $RR = \{z > z_{1-\alpha}\}$
+	\item LS: $RR = \{z < -z_{1-\alpha}\}$
+	\item TS: $RR = \{|z| > z_{1-\alpha/2}\}$
+\end{itemize}
+Si coneixem $\sigma_1^2$ i $\sigma_2^2$ les substituïm per $S_1^2$ i $S_2^2$ respectivament.\\
+En cas de $X^{(1)} \sim B(p_1)$ i $X^{(2)} \sim B(p_2)$ llavors tenim:
+$\hat{p} = \frac{n_1\hat{p_1}+n_2\hat{p_2}}{n_1+n_2}$. Llavors l'estadistic de contrast es $Z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})(1/n_1 + 1/n_2)}} \approx N(0,1)$ si $n_1\hat{\hat{p}}_1(1-\hat{\hat{p}}_1) \geq 18$ i $n_2\hat{\hat{p}}_2(1-\hat{\hat{p}}_2) \geq 18$.\\
+I tenim les regions crítiques de la normal.
+\subsection{Per dues poblacions: mostres aparellades}
+Siguin $X_1^{(1)},\dots,X_n^{(1)}$, $X_1^{(2)},\dots,X_n^{(2)}$ dues mostres aparellades NORMALS. Tindrem $D_1 = X_1^{(1)} - X_1^{(2)},\dots,D_n = X_n^{(1)} - X_n^{(2)}$\\
+Test d'hipòtesis $\mu_1 = \mu_2$, és a dir, $\mu_d = 0$.\\
+L'estadístic de contrast és $T = \frac{\overline{d}}{S_d/\sqrt{n}} \sim t_{n-1}$\\
+Les regions crítiques són:
+\begin{itemize}
+	\item RS: $RR = \{t > t_{n-1,1-\alpha}\}$
+	\item LS: $RR = \{t < -t_{n-1,1-\alpha}\}$
+	\item TS: $RR = \{|t| > t_{n-1,1-\alpha/2}\}$
+\end{itemize}
+NOTA: Si les dades no són normals però la mostra és gran podem fer servir aquest test amb l'estadistic de contrast seguent
+\begin{displaymath}
+	T = \frac{\overline{d}}{S_d/\sqrt{n}} \approx N(0,1)
+\end{displaymath}
+\subsection{Tests de la khi quadrat}
+\subsubsection{De bondat d'ajustament}
+Suposem que la v.a. $X$ pot prendre $k$ valors ($x_1, \dots, x_k$)amb probabilitats $p_1,\dots,p_k$.\\
+Si tenim una mostra de mida $n$, fem la següent hipòtesi nul·la:
+\begin{displaymath}
+	H_0: \begin{cases} p_1 = p_1^0 \text{ (important, és notació, no és elevat a $0$)}\\ \vdots\\ p_k = p_k^0\end{cases}
+\end{displaymath}
+i d'hipòtesi alternativa:
+\begin{displaymath}
+	H_1: p_i \neq p_i^ 0 \text{ per algun } i = 1,\dots,k
+\end{displaymath}
+Llavors l'estadístic de contrast és:
+\begin{displaymath}
+	\chi^2 = \sum_{i=1}^k \frac{(n_i - np_i^0)^2}{np_i^0} \approx \chi^2_{k-1}
+\end{displaymath}
+això ens deixa amb la següent regió crítica:
+$RR = \{\chi^2 > \chi^2_{k-1,1-\alpha}\}$\\
+En $R$ es fa així: \texttt{chisq.test(dades, p = c($p_1^0,\dots,p_k^0$))}. Això ens dona el p-valor (no surt als apunts).
+Es pot fer si $n$ és gran, això si es compleix una de les condicions següents:
+\begin{itemize}
+	\item $k \geq 5$ i $np_i^0 \geq 5 \;\forall i \in \{1,\dots,k\}$.
+	\item $k < 5$ i $np_i^0 > 5 \;\forall i \in \{1,\dots,k\}$
+\end{itemize}
+Nota: Si no es compleixen aquestes condicions, es pot fer el test ajuntant categories fins que es compleixin.
+\subsubsection{D'independència (||*||)}
+Suposem que tenim dues variables aleatòries $X$ i $Y$ amb $r$ i $c$ valors respectivament.\\
+Denotem que $p_{i\bullet} = P(X = x_i)$ i $p_{\bullet j} = P(Y = y_j)$.\\
+Fem les següents hipòtesis:
+\begin{displaymath}
+	\begin{cases}
+		H_0: \text{Les variables són independents} \Leftrightarrow p_{ij} = p_{i\bullet}p_{\bullet j}\;\forall i, j\\
+		H_1: \text{Les variables no són independents}
+	\end{cases}
+\end{displaymath}
+Fem una taula de contingència amb les dades:\\
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|c c c c|c}
+		$X\textbackslash Y$ & $y_1$ & $y_2$ & $\cdots$ & $y_c$ & Totals\\
+		\hline
+		$x_1$ & $n_{11}$ & $n_{21}$ & $\cdots$ & $n_{1c}$ & $n_{1\bullet}$\\
+		$x_2$ & $n_{12}$ & $n_{22}$ & $\cdots$ & $n_{2c}$ & $n_{2\bullet}$\\
+		\vdots & \vdots & \vdots & $\ddots$ & \vdots & \vdots\\
+		$x_r$ & $n_{r1}$ & $n_{r2}$ & $\cdots$ & $n_{rc}$ & $n_{r\bullet}$\\
+		\hline
+		Totals & $n_{\bullet 1}$ & $n_{\bullet 2}$ & $\cdots$ & $n_{\bullet c}$ & $n$
+	\end{tabular}
+\end{table}
+Llavors l'estadístic de contrast és:
+\begin{displaymath}
+	\chi^2 = \sum_{i=1}^r\sum_{j=1}^c \frac{(n_{ij} - \frac{n_{i\bullet}n_{\bullet j}}{n})^2}{\frac{n_{i\bullet}n_{\bullet j}}{n}} \approx \chi^2_{(r-1)(c-1)}
+\end{displaymath}
+Rebuitgem $H_0$ si $\chi^2 > \chi^2_{(r-1)(c-1),1-\alpha}$\\
+En $R$ es fa a ma. Que no! Es fa així: \texttt{chisq.test(taula)}. Això ens dona el p-valor (no surt als apunts).\\
+CAS 2x2!!! Si tenim una taula de contingència $2\times 2$ podem fer servir La correcció de Yates, llavors serà\\
+\begin{displaymath}
+	\tilde{\chi}^2 = \frac{n\left(|n_{11}n_{22} - n_{12}n_{21}| - \frac{n}{2}\right)^2}{n_{1\bullet}n_{2\bullet}n_{\bullet1}n_{\bullet2}} \approx \tilde{\chi}^2_{1}
+\end{displaymath}
+\section{Regressió lineal}
+Això ja ho hauries de saber... però bé, aquí ho tens.
+\subsection{Regressió lineal simple}
+Es fa mitjançant el mètode dels mínims quadrats (Gràcies, Francesc Bars).\\
+Es farà tal que $y = b_0 + b_1x$, llavors $b_1 = \frac{(\sum\limits_{i=1}^nx_iy_i) - n\overline{x}\overline{y}}{(\sum\limits_{i=1}^nx_i^2) - n\overline{x}^2}$ i $b_0 = \overline{y} - b_1\overline{x}$.\\
+Nota: $b_{0,x} \neq b_{0,y},\;b_{1,x} \neq b_{1,y}$
+\subsection{Coeficient de correlació}
+\begin{displaymath}
+r = \frac{\sum\limits_{i=1}^nx_iy_i}{\sqrt{(\sum\limits_{i=1}^nx_i^2 - n\overline{x}^2)(\sum\limits_{i=1}^ny_i^2 - n\overline{y}^2)}}
+\end{displaymath}
+$r$ és un valor entre $-1$ i $1$. Si es negatiu significa que la recta de regressió es descendent. Quan $|r|$ és més prop a $1$ més lineal és la relació.
+Si fem servir $R = r^2$ obtenim el coeficient de determinació, que ens diu la variabilitat total de les dades. Com més proper a $1$ millor és l'aproximació.
+\subsection{Les prediccions}
+\begin{displaymath}
+	\hat{y}|_{x_0} = b_0 + b_1x_0
+\end{displaymath}
+això es pot fer mentre $x_0$ estigui dins del rang de les dades i $r^2$ sigui proxim a $1$.
+NOTA: Si volem predir el corresponent $\hat{x}$ no es pot fer aïllant.\\
+\subsection{Interferència sobre els coeficients de la recta de regressió}
+(vale si has mirat això no em queixo)\\
+$Y_i \sim N(\beta_0+\beta_1x_i, \sigma^2)\; i = 1, \dots, n$\\
+Si suposem que $Y_i$ son independents entre sí, tenim:
+\begin{displaymath}
+    Y_i = \beta_0 + \beta_1x_i + \varepsilon_i \; i=1,\dots,n
+\end{displaymath}
+Definim els residus com $e_i = y_i - \hat{y}|_{x_i}$
+Llavors tenim $\hat{\hat{\sigma}}^2 = \frac{\sum\limits_{i=1}^{n}e_i^2}{n-2}$
+Tindrem un estimador tal que $\frac{\hat{\sigma}^2}{\sigma^2}(n-2) \sim \chi^2_{n-2}$\\
+Llavors per $\beta_0$ tenim el següent estadístic de contrast: $T = \frac{b_0 - \beta_0^0}{\hat{\hat{\sigma}}\sqrt{\frac{\sum\limits_{i=1}^nx_i^2}{n(\sum\limits_{i=1}^nx_i^2) - n^2\overline{x}^2}}} \sim t_{n-2}$\\
+I les regions crítiques són:
+\begin{itemize}
+	\item RS: $RR = \{t > t_{n-2,1-\alpha}\}$
+	\item LS: $RR = \{t < -t_{n-2,1-\alpha}\}$
+	\item TS: $RR = \{|t| > t_{n-2,1-\alpha/2}\}$
+\end{itemize}
+Per $\beta_1$ tenim el següent estadístic de contrast: $T = \frac{b_1 - \beta_1^0}{\hat{\hat{\sigma}}\sqrt{\frac{1}{(\sum\limits_{i=1}^nx_i^2) - n\overline{x}^2}}} \sim t_{n-2}$\\
+I les regions crítiques són:
+\begin{itemize}
+	\item RS: $RR = \{t > t_{n-2,1-\alpha}\}$
+	\item LS: $RR = \{t < -t_{n-2,1-\alpha}\}$
+	\item TS: $RR = \{|t| > t_{n-2,1-\alpha/2}\}$
+\end{itemize}
+\subsection{Amb R}
+Si \texttt{x = c(loquesea)} i \texttt{y = c(loquesea)} llavors \texttt{dades = data.frame(algo=x, otro=y)}:\\
+Fer una grafica: \texttt{ggplot(dades, aes(x=Algo, y=otro)) + geom\_point()}\\
+Fer una regressió: \texttt{reg = lm(otro $\sim$ algo, data = dades)}\\
+Veure els coeficients: \texttt{summary(reg)}\\
+Predicció: \texttt{noves\_dades = data.frame(algo = c(1.5)} llavors \texttt{predict(reg,noves\_dades)}\\
 \end{multicols}
 \end{document}
