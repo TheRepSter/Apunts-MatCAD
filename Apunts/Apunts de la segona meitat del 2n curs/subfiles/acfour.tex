@@ -1,0 +1,109 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+
+\begin{document}
+
+\subsection{El cos dels nombres complexos}
+\begin{displaymath}
+\begin{cases}
+x^2 + 1 &= 0\\
+x^2 &= -1 \Rightarrow \text{definim } i \text{ tal que }i^2 = -1
+\end{cases}
+\end{displaymath}
+\begin{definicio}
+    $a, b \in \mathbb{R}$ definim $a + bi \in \mathbb{C},\;(a,b) \in \mathbb{R}^2$\\
+    $Re(a+bi) = a$, $Im(a+bi) = b$ (part real i part imaginària)
+\end{definicio}
+Llavors tindrem operacions tal que $z_1 = a_1 + b_1i$, $z_2 = a_2 + b_2i$:
+\begin{itemize}
+	\item Suma: $z_1 + z_2 = (a_1 + a_2) + (b_1 + b_2)i$
+	\item Producte: $z_1 \cdot z_2  = z_2 \cdot z_1 = (a_1a_2 - b_1b_2) + (a_1b_2 + a_2b_1)i$
+\end{itemize}
+\begin{obs}
+	\begin{itemize}
+		\item $i \cdot i = -1$
+		\item $b_1 = b_2 = 0 \Rightarrow z_1\cdot z_2 = a_1 \cdot a_2$
+	\end{itemize}
+\end{obs}
+Estem estenent la suma i el producte de nombres reals, $\forall x \in \mathbb{R}$ l'identifiquem amb $x + 0i$.\\
+Identifiquem llavors $\mathbb{C} \sim \mathbb{R}^2$.\\
+També tindrem les operacions "especials":
+\begin{itemize}
+	\item Mòdul: $|z| = \sqrt{a^2 + b^2}$
+	\item Conjugat: $\overline{z} = a - bi$
+\end{itemize}
+\begin{obs}
+	\begin{itemize}
+		\item $z = \overline{z} \iff b = 0 \iff z \in \mathbb{R}$
+		\item $|Re(z)| \leq |z|$, $|Im(z)| \leq |z|$
+		\item $\overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}$, $\overline{z_1 \cdot z_2} = \overline{z_1} \cdot \overline{z_2}$
+		\item $z \cdot \overline{z} = |z|^2$
+	\end{itemize}
+\end{obs}
+$(\mathbb{C}, +, \cdot)$ és un cos, és dir:
+\begin{itemize}
+	\item +, commutativa, associativa, neutre 0, oposat $-z$
+	\item $\cdot$, commutativa, associativa, neutre 1, $\exists$ oposat $z \frac{\overline{z}}{|z|} = 1\;\forall z \neq 0$
+\end{itemize}
+
+\subsubsection{Espai vectorial}
+El mateix que càlcul en diverses variables de primer.\\
+\subsubsection{L'Exponencial Complexa}
+\begin{displaymath}
+\begin{cases}
+	cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \ldots = \sum_{n\geq 0} \frac{(ix)^{2n}}{(2n)!}\\
+	sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \ldots = \sum_{n\geq 0} \frac{(ix)^{2n+1}}{(2n+1)!}\\
+	e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \ldots = \sum_{n\geq 0} \frac{x^n}{n!}
+\end{cases}
+\end{displaymath}
+Llavors, veiem que $e^{ix} = cos(x) + isin(x)$
+\begin{proposicio}
+$e^z = e^{\overline{z}}$
+\end{proposicio}
+\begin{proposicio}
+	$z, w \in \mathbb{C} \Rightarrow e^{z+w} = e^ze^w$\\
+	$n \in \mathbb{Z} \Rightarrow e^{nz} = e^{z^n}$\\
+	$n \in \mathbb{N} \Rightarrow e^{-z} = \frac{1}{e^z}$
+\end{proposicio}
+\subsubsection{Representació polar}
+\begin{definicio}
+	Donat $z \in \mathbb{C}\setminus\{0\}\;\exists! r,\;\theta \in (-\pi, \pi]: re^{i\theta} = z$
+\end{definicio}
+$r$ serà el mòdul i $\theta$ és l'argument principal.
+
+\begin{proposicio}
+Siguin $z_1, z_2 \in \mathbb{C}$
+\begin{displaymath}
+	e^{z_1} = e^{z_2} \iff z_1 - z_2 \in 2\pi\i \mathbb{Z} \Rightarrow e^z \text{ és "$2\pi i$-periòdic"}
+\end{displaymath}
+\end{proposicio}
+\begin{definicio}
+	$z = |z|e^{i\text{Arg } z} = |z|e^{i\text{Arg }z + 2\pi ki} = |z|e^{i(\text{Arg }z + 2\pi k)}$\\
+	arg $z = \text{Arg }z + 2\pi k$. Són tots els angles que compleixen la definició d'argument.
+\end{definicio}
+\subsubsection{Arrels n-èsimes}
+$Z^n = a$
+Llavors tindrem $\theta = \frac{t}{n} + \frac{2\pi k}{n}$ i llavors $Z = \sqrt[n]{|A|}e^{i\left(\theta\right)}$
+
+\subsection{Funcions de variable complexa}
+Sigui $\Omega \in \mathbb{C}$ un obert. Una funció de v. complexa és una aplicació $f: \Omega \to \mathbb{C}$.\\
+Les parts reals i imaginària se solen denominar $u = \text{Re }f$ i $v = \text{Im }f \Rightarrow f = u + iv$.\\
+\begin{definicio}
+	Les denominacions son les habituals.
+\end{definicio}
+\begin{definicio}
+	Diem que el límit de $f$ en $z_0$ és $L$ si $\forall \varepsilon > 0\;\exists \delta > 0$ tal que si $0 < |z - z_0| < \delta \Rightarrow |f(z) - L| < \varepsilon$
+\end{definicio}
+\begin{definicio}
+	$f$ és contínua en $z_0$ si $L = f(z_0)$
+\end{definicio}
+\begin{proposicio}
+	$f$ és continua $\iff$ $u$ i $v$ són continues
+\end{proposicio}
+Com merda es representa? Idees:
+\begin{itemize}
+	\item Imatge de conjunts espacials, és a dir, $f(\{x = c\})$, $f(\{y = c\})$.
+	\item 3D de $u$ i $v$, o $|f|$ i Arg $f$.
+	\item Gràfica de colors i línies singulars
+\end{itemize}
+\end{document}

@@ -1,0 +1,22 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+
+\begin{document}
+
+\subsection{Integració numèrica: Fórmules d'integració interpoladores}
+$J(f) = \int_a^b f(x) dx$ on $[a, b]$ i $f$ es continua a aquell interval.\\
+$J_m(f) = \sum\limits_{k = 0}^m W_k f(x_k)$ on $x_0, x_1, \dots, x_n \in [a, b]$ són els nodes i $W_0, W_1, \dots, W_n$ són els pesos.\\
+\begin{definicio}
+Una fórmula d'integració interpoladora de $n+1$ punts és aquella per la qual a l'aproximació és exacte per tots els polinomis de grau menors a $m$. Per trobar els pesos n'hi ha prou amb considerar el polinomi interpolador de la funció $f$ que passa pels punts $x_0, x_1, \dots, x_n$.\\
+\end{definicio}
+$J_m(f) = \sum\limits_{k = 0}^m f(x_k) \int_a^b l_k(x) dx$ on $l_k(x) = \prod\limits_{\substack{j = 0\\j\neq k}}^{m} \frac{x-x_j}{x_k-x_j}$\\
+L'error de l'aproximació de la integral és $J(f) - J_m(f) = \int_a^b f(x) - P_m(f)(x) dx = \int_a^b \frac{f^{(n+1)}(\xi(x))}{(n+1)!} (x-x_0) \cdot \ldots \cdot (x-x_m)dx$
+\begin{obs}
+Els pesos de les fórmules interpoladores es poden trobar utilitzant el mètode dels coeficients indeterminats
+\begin{itemize}
+\item Imposem que la fórmula sigui exacte per a tots els polinomis de grau més petit que $m$.
+\item Això resulta en $m+1$ equacions per les incògnites $W_0, W_1, \dots, W_m$. Solucionant el sistema s'obtenen els pesos.
+\end{itemize}
+\end{obs}
+
+\end{document}

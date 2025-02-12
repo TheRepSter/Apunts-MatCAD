@@ -1,0 +1,61 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+
+\begin{document}
+\subsection{Programació no lineal}
+\subsubsection{Teoria d'extrems en R elevat a n}
+\chapter{El problema general d'optimització en R elevat a n}
+\begin{displaymath}
+\min_{x \in S} f(x)
+\end{displaymath}
+$S \subset \mathbb{R}^n$, $f$ a valors en $\mathbb{R}$.
+\begin{definicio}
+	$x^* \in S$ és un mínim global (o absolut) de $f$ en $S$ si $\forall x \in S,\;f(x)\geq f(x^*)$
+\end{definicio}
+
+\begin{definicio}
+	$x^* \in S$ és un mínim local de $f$ en $S$ si $\exists \varepsilon > 0$ tal que $\forall x \in S \cap B(x^*, \varepsilon),\;f(x) \geq f(x^*)$
+\end{definicio}
+
+\begin{obs}
+\begin{displaymath}
+\max f = -\min(-f)
+\end{displaymath}
+\end{obs}
+\begin{teorema}
+	Sí $f$ es continua i $S$ es compacte a $\mathbb{R}^n$ llavors $\exists$ mínim global de $f$ en $S$
+\end{teorema}
+
+\begin{definicio}
+\begin{itemize}
+\item $S$ és el conjunt factible
+\item $x \in S$ són els punts factibles
+\item $x \not\in S$ són els punts no factibles
+\end{itemize}
+\end{definicio}
+\begin{notacio}
+Vector gradient en $x \in \mathbb{R}^n$ és $\nabla f(x) = \left(\frac{\partial f}{\partial x_1}(x), \dots, \frac{\partial f}{\partial x_n}(x)\right)$\\
+Derivada direccional és $\nabla f(x) \cdot d = \lim\limits_{h\to0}\frac{f(x+hd)-f(x)}{h}$\\
+Matriu hessiana en $x \in \mathbb{R}^n$ és $\nabla^2 f(x) = \begin{pmatrix}\frac{\partial^2 f}{\partial^2 x_1}(x) & \dots & \frac{\partial^2 f}{\partial x_1 \partial x_n}(x)\\\vdots & \ddots & \vdots\\ \frac{\partial^2 f}{\partial x_n \partial x_1}(x) & \dots & \frac{\partial^2 f}{\partial^2 x_n}(x)\end{pmatrix}$
+\end{notacio}
+\begin{teorema}[Condicions necessaries de mínim local]
+$x^*$ és el mínim local de $f$ en $S$, aleshores $\forall d$ factible en $x^*$
+\begin{itemize}
+\item $\nabla f(x^*) \cdot d \geq 0$
+\item Si $\nabla f(x^*) \cdot d = 0 \Rightarrow d^t\cdot\nabla^2f(x^*)\cdot d \geq 0$
+\end{itemize}
+\end{teorema}
+Si $x^*$ és interior de $S$,
+\begin{itemize}
+\item $\nabla f(x^*) = 0$
+\item $\nabla^2 f(x^*)$ és semidefinida positiva
+\end{itemize}
+\begin{definicio}
+Quan $d^tMd \geq 0\;\forall d \in \mathbb{R}^n\setminus\{0\}$ diem que $M$ és semidefinida positiva.
+\end{definicio}
+\begin{obs}
+Taylor (les sèries, no la cantant) en una dimensió: $f(x + h) = \sum\limits_{n\geq 0} f^{(n)}(x)\frac{h^n}{n!}$.\\
+En $R^n$ serà $f(x+hd) = \sum\limits_{n\geq 0} {(hd)^n}^t\nabla^{(n)}f(x)\frac{(hd)^n}{n!}$
+\end{obs}
+
+\end{document}
