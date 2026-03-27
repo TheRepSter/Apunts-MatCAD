@@ -3,7 +3,7 @@
 
 \begin{document}
 \subsection{Programació no lineal}
-\subsubsection{Teoria d'extrems en R elevat a n}
+\chapter{Teoria d'extrems en R elevat a n}
 \chapter{El problema general d'optimització en R elevat a n}
 \begin{displaymath}
 \min_{x \in S} f(x)
@@ -55,7 +55,65 @@ Quan $d^tMd \geq 0\;\forall d \in \mathbb{R}^n\setminus\{0\}$ diem que $M$ és s
 \end{definicio}
 \begin{obs}
 Taylor (les sèries, no la cantant) en una dimensió: $f(x + h) = \sum\limits_{n\geq 0} f^{(n)}(x)\frac{h^n}{n!}$.\\
-En $R^n$ serà $f(x+hd) = \sum\limits_{n\geq 0} {(hd)^n}^t\nabla^{(n)}f(x)\frac{(hd)^n}{n!}$
+En $\mathbb{R}^n$ serà $f(x+hd) = \sum\limits_{n\geq 0} {(hd)^n}^t\nabla^{(n)}f(x)\frac{(hd)^n}{n!}$
 \end{obs}
+
+\begin{teorema}[Condicions suficients de mínim local]
+	Si $x^* \in S$, i
+	\begin{itemize}
+		\item $\nabla f(x^*) = 0$
+		\item $\nabla^2 f(x^*)$ és definida positiva
+	\end{itemize}
+\end{teorema}
+
+\chapter{Convexitat}
+\begin{definicio}
+	Un conjunt $S$ és convex si $\forall x_1, x_2 \in S,\;\forall \lambda \in (0, 1),\;\lambda x_1 + (1-\lambda)x_2 \in S$
+\end{definicio}
+\begin{definicio}
+	Sigui $S$ convex, $f: S \to \mathbb{R}$ és convex si $\forall x_1, x_2 \in S,\;\forall\lambda\in(0,1),\;f(\lambda x_1+(1-\lambda)x_2) \leq \lambda f(x_1)+(1-\lambda)f(x_2)$
+\end{definicio}
+\begin{proposicio}
+$f$ és convexa en $S \iff f(x) \geq f(x_0)\nabla f(x)(x-x_0)\forall x_0,x \in S$
+\end{proposicio}
+\begin{proposicio}
+$f$ és convexa en $S \iff \forall x \in S,\;\forall d$ factible en $x,\;d^t\nabla^2 f(x)d \geq 0$
+\end{proposicio}
+\begin{teorema}[Local-global per a funcions convexes]
+$S\subset \mathbb{R}^n$ convex i $f : S \to \mathbb{R}$ convexa. Si $x^*$ és mínim local de $f$ en $S$, llavors és mínim global.
+\end{teorema}
+\begin{teorema}[Les condicions necessaires són suficients]
+Si $x^*$ compleix les condicions necessàries, aleshores $x^*$ és mínim local (i global) de $f$ en $S$.
+\end{teorema}
+\chapter{Restriccions funcionals}
+$S = $ punts que compleixen un sistema d'equacions (o inequacions) de $m$ igualtats (o desigualtats).
+\begin{notacio}
+	Quan $f$ i totes aquestes funcions $h$ i $g$ són afins, diem que $\min\limits_{x \in S} f(x)$ és un problema de programació lineal. Si no, tenim un problema de programació no lineal.\\
+	La funció $f$ s'anomena funció objectiu i les igualtats i desigualtats són les restriccions del problema.
+\end{notacio}
+\begin{definicio}
+	Donat $x^*$ factible, una restricció $g \leq 0$ és activa en $x^*$ si $g(x^*) = 0$. És inactiva si $g(x) < 0$
+\end{definicio}
+\begin{definicio}
+Un vector $v$ és tangent a $S \subset \mathbb{R}^n$ en un punt $x^* \in S$ si $\exists \left\{x_k\right\} \subset S$ tal que $\lim\limits_{k\to\infty}x_k = x^*$, i una successió $\{t_k\}_k\subset\mathbb{R}^+$ decreixent cap a $0$ tals que
+\begin{displaymath}
+\lim\limits_{k\to x_0}\frac{x_k-x^*}{t_k} = v
+\end{displaymath}
+\end{definicio}
+\subsubsection{Algoritmes d'optimització en R}
+\chapter{Mètode de Newton}
+
+Tenim $f: \mathbb{R} \to \mathbb{R}$ i un punt inicial $x_1 \in \mathbb{R}$. Com a funció aproximadora agafem $P(x) = f(x_1) + f'(x_1)(x-x_1)+\frac{1}{2}f''(x_1)(x-x_1)^2$\\
+Fem la derivada i igualem a $0$, llavors tenim $x_2 = \frac{f'(x_1)}{f''(x_1)}$. Si això ho fem succeir, si té un límit a un punt $x_k$, aquest és un extrem local.
+
+\begin{proposicio}
+	Suposem que tenim $f$ 3 vegades derivable i $x^*$ tal que $f'(x^*) = 0$ i que $f''(x^*) \neq 0$, aleshores $\exists \delta > 0:\;|x_1-x^*|<\delta$, la successió $\left\{x_k = x_{k-1} - \frac{f'(x_k)}{f''(x_k)}\right\}$
+\end{proposicio}
+
+\chapter{Ordres de convergència}
+
+\begin{displaymath}
+|x_k|
+\end{displaymath}
 
 \end{document}

@@ -1,0 +1,218 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+
+\begin{document}
+\subsection{Intro + anàlisi dimensional}
+\begin{definicio}
+    Un \underline{model} es una representació simplificada d'alguna cosa amb la intenció de entendre qualsevol d'aquest fenomen.
+\end{definicio}
+\begin{tabular}{c|c}
+    \textbf{EL MON REAL} & \textbf{EL MON CONCEPTUAL}\\
+    fenòmens $\xrightarrow{\text{mesures}}$& observacions\\
+     & $|$\\
+     & v\\
+     & Modelització (anàlisi), aixo fa una predicció,\\
+     & que porta al contrast i després a amb la validació 
+\end{tabular}
+\begin{itemize}
+    \item Models que descriuen els resultats
+    \item Models que expliquen perquè de resultats son així
+    \item Models que predicten futurs resultats
+\end{itemize}
+\subsubsection{Principis de modelització matemàtica}
+\begin{enumerate}
+    \item Objectiu/sistema: \begin{itemize}
+        \item Identificar propòsit del model.
+        \item Que volem trobar? Llista les dades que busques.
+    \end{itemize}
+    \item Model, variables, paràmetres: \begin{itemize}
+        \item Que coneixem? Identificar les dades disponibles.
+        \item Assumir? Identificar les circumstàncies que apliquen.
+        \item Com ens apropem al model? Identificar les lleis físiques, quimiques, bio...
+    \end{itemize}
+    \item Prediccions: \begin{itemize}
+        \item Predir?
+        \item Validar? Són consistents de resultats? Si sí, acceptades, si no, millorem identificant les hipotesis/paràmetres que poden canviar.
+    \end{itemize}
+    \item Prediccions acceptades: You are happy.
+\end{enumerate}
+\subsubsection{Anàlisi dimensional}
+Tenim $x_1, x_2, \dots, x_n$ variables independents, tenim $y$ variable dependent que volem "coneixer". Modelar $\rightarrow y = f(x_1, x_2, \dots, x_n)$. \underbar{Idea}: De quantitats físiques tenen una dimensió i les lleis físiques no varien per canvis de sístemo d'unitats.\\
+\underline{Idea}: El nombre d'experiments necesaris no depén del nom de variables sino del nombre d'arguments de $\tilde{f}$. $y = f(x_1, x_2, \dots, x_n) \rightarrow y = \tilde{f}(\mu_1, \mu_2, \dots, \mu_k)$ amb $k << n$ i $\mu_i = g_i(x_1,\dots,x_n)$ relacions dimensionals.
+\subsubsection{Dimensions con productes}
+Una llei fisica es correcta si com a minim és coherent amb les unitats. Per exemple $F = ma$ es coherent ja que $F$ té unitats de massa per acceleració, $m$ té unitats de massa i $a$ té unitats de acceleració. En canvi, $F = mv + v^2$ erronea independentment de les unitats, no es coherent en temes de dimensió.\\
+Imaginem que tenim les seguents dimensions fonamentals: $M$, $L$, $T$ sent respectivament massa, longitud i temps. Aixo yodma el sistema MLT.\\
+Sigui $\alpha$ una quantitat fisica denoto per $[\alpha]$ la seva dimensió. Llavors $[v] = LT^{-1}$, $[a] = LT^{-2}$, $[F] = MLT^{-2}$.\\
+\begin{definicio}
+    Definim el producte com qualsevol convinació $M^aL^bT^c$ on $a, b, c \in \mathbb{R}$.
+\end{definicio}
+Les equacions que només contenen sumes de productes de la mateixa dimensió són dimensionalment compatibles i aixó fa que tingui sentit.
+A més volem que les equacions siguin independents de les unitats de mesura. Aixó es diu que es dimensionalment homogènia.
+\underline{Idea}: Buscar els diferents productes adimensionals del teu problema.
+En general tindrem que l'espai de solucions sera $k = n - m$ on $n$ es el nombre de variables i $m$ es el nombre de dimensions fonamentals.
+\begin{teorema}[de Buckingham]
+    Una equació es dimensionalment homogènia si i només si s'escriu com $f(\Pi_1, \Pi_2, \dots, \Pi_k) = 0$ on $\Pi_i$ amb $i = 1, 2, \dots, k$ forma un conjunt complet de productes adimensionals i $f$ es una funció arbitraria de $k$ components.
+\end{teorema}
+En general, si tenim $k$ productes adimensionals, la idea per escollir bé les $\Pi_s$ per que només sigui amb una.
+\subsection{Sistemes dinàmics discrets de dimensió 1}
+\begin{exemple}$\hbox{}$\\
+    \begin{itemize}
+        \item Progressió geomètrica: $X_0 \in \mathbb{R}\setminus{0}, r \in \mathbb{R}\setminus{0}$ Llavors tenim la successió $\{X_0r^0, X_0r^1, X_0r^2, \dots, X_0r^n, \dots\}$\\
+        Puc donar una expressió tancada de $X_n$, ja que $X_n = X_0r^n$ (té una expressió explicita basada en valors inicials, paramètres i temps). Aquest es lineal d'ordre 1.
+        \item Successió de Fibonnaci. Aquest es lineal d'ordre 2.
+        \item $X_{n+1} = cos(X_n)$. El limit de la $n$ serà $0.739085133215160641655312087\\6738734040134117589007574649656806357732846548835475945993761\\06931766531849801246\dots$ (era imperiosament necessari tants dígits). Aquest es no lineal d'ordre 1.
+    \end{itemize}
+    L'ordre es el nombre de retardes que tenim.
+\end{exemple}
+\subsubsection{L'equació lineal de primer ordre}
+Valor a estudiar: $X_{n+1} = \alpha X_n + \beta$ amb $\alpha, \beta \in \mathbb{C}$.\\
+\begin{itemize}
+    \item Si $\beta \neq 0$ eq. completa
+    \item Si $\beta = 0$ eq. homogenia
+\end{itemize}
+Aquestes equacions engloben les dues progressions classiques:
+\begin{itemize}
+    \item Progressió geomètrica: $\beta = 0 \Rightarrow X_{n+1} = \alpha X_n$
+    \item Progressió aritmètica: $\alpha = 1 \Rightarrow X_{n+1} = X_n + \beta$
+\end{itemize}
+Cas general ($\alpha \neq 0$ i $\beta \neq 0$): 
+\begin{obs}
+    Sempre existeix una única solució constant ($X^* = \frac{\beta}{1-\alpha}$)
+\end{obs}
+\begin{obs}
+    Podem definir $X_n = Z_n + X^*$
+\end{obs}
+Llavors, la successió $\{X_n\}_{n>0}$ és solució de la equació completa.
+La solució serà llavors la homogenia de la equació completa més la solució particular de la equació completa, es a dir:
+\begin{displaymath}
+    X_n = \mathcal{K}\alpha^n + X^*
+\end{displaymath}
+On $\mathcal{K}$ es una constant arbitraria.
+\subsubsection{L'equació lineal de ordre superior}
+Anem a estudiar aquestes equacions:
+\begin{displaymath}
+    x_{n+k} + a_{k-1}x_{n+k-1} + \cdots + a_1x_{n+1} + a_0x_n = 0 \\
+\end{displaymath}
+Per $k \geq 1$ es l'ordre de l'equació. Els coeficients $a_i$ son fixos ($\mathbb{R}$ o $\mathbb{C}$).
+Podem suposar que $a_0 \neq 0$ per que si no podem baixar l'ordre de l'equació.\\
+Treballarem amb l'espai vectorial de les successions infinites (cap endavant) que denoten per $S$.
+\begin{definicio}
+    Definim la suma de dues successions $X = \{x_1, x_2, x_3, \dots\}$ i $Y = \{y_1, y_2, y_3, \dots\}$ com la successió $Z = \{Z_n\}_{n>0}$ on $Z_n = X_n + Y_n$.
+\end{definicio}
+\begin{definicio}
+    Definim el producte per escalar d'una successió $X = \{x_1, x_2, x_3, \dots\}$ per un escalar $\lambda \in \mathbb{K}$ com la successió $Y = \{y_n\}_{n>0}$ on $y_n = \lambda x_n$.
+\end{definicio}
+\begin{obs}
+    Els vectors canonics son $X_1 = (0, 1, 0, \dots)$, $X_2 = (0, 0, 1, \dots)$, $X_n  = (0, 0, 0, \dots, 1, 0, \dots)$, a la posició $n\dots$.
+    Com son infinits, no es compleix que si son linealment independents llavors formen una base.
+\end{obs}
+Per resoldre l'equació necesitem definir una aplicació lineal $L: S \rightarrow S$ tal que $L(X) = X^*$ on $x^*_n = x_{n+k} + a_{k-1}x_{n+k-1} + \cdots + a_1x_{n+1} + a_0x_n$. Amb aquesta definició, clarament, observem que ser solució de l'equació és equivalent a ser nucli de $L$.\\
+Denotem per $\Sigma$ el conjunt de solucions de l'equació, es dir $\Sigma = Ker(L)$. Per la teoria d'algebra, el nucli d'una aplicació lineal, i per tant $\Sigma$, es un subespai vectorial. Llavors el subespai vectorial $\Sigma$ té dimensió finita, i a més aquesta dimensió de $\Sigma$ es $k$.\\
+\underbar{Com trobem la solució?} Amb arrels del polinomi característic. El polinomi característic es $P(x) = x^k + a_{k-1}x^{k-1} + \cdots + a_1x + a_0$. Llavors tindrem $\pi_{\lambda_1}, \pi_{\lambda_2}, \dots, \pi_{\lambda_k}$ base (sempre que tinguém $k$ arrels diferents, ja que si $\lambda_i = \lambda_j$ amb $i \neq j$ llavors $\pi_{\lambda_i}$ i $\pi_{\lambda_j}$ son linealment dependents) de $\Sigma$ on $\pi_{\lambda_i}$ es el vector propi associat a $\lambda_i$, definit com $\left(1, \lambda_i, \lambda_i^2, \dots\right)$. Llavors la solució general es $X = c_1\pi_{\lambda_1} + c_2\pi_{\lambda_2} + \cdots + c_k\pi_{\lambda_k}$ on $c_i$ son constants arbitraries, ja que son base.\\
+En cas de que $\lambda_i \in \mathbb{C}$ pero el modelatge era real, agafarem la part real i la part imaginaria de les potencies i formem les dues successions, la part imaginaria i la part real seran les solucions, sent base real.\\
+En cas de que tinguem arrels multiples tindrem un polinomi de grau de la multiplicitat, es a dir, si el polinomi característic té $\lambda$ repetit $2$ cops, tindrem $x_n = (c_1 + c_2n)\lambda^n$.\\
+\begin{proposicio}
+    Sigui $\lambda_n \in \mathbb{C} \setminus \{0\}$ una arrel de $p(\lambda)$ amb multiplicitat $m \geq 2$, llavors $\{q_m(n)\lambda^n\}_{n\geq 0}$ es solució de l'equació per qualsevol polinomi $q_m(n)$ de grau màxim $m-1$.
+\end{proposicio}
+\begin{teorema}
+    Considerem l'equació $x_{n+k} + a_{k-1}x_{n+k-1} + \cdots + a_1x_{n+1} + a_0x_n = 0$ amb complexos $a_0, a_1, \dots, a_{k-1}$ i suposem que $p(\lambda)$ factoritza a com $\prod_{k=1}^\sigma (\lambda - \lambda_k)^{m_k}$. Llavors les solucions de l'equació son de la forma $X_n = \sum_{k=1}^\sigma f_k(n)\lambda_k^n$ on $f_k(n)$ son polinomis de grau màxim $m_k-1$.
+\end{teorema}
+\begin{corolari}
+    Sigui $\lambda_1, \lambda_2, \dots, \lambda_\sigma$ les arrels del polinomi caracterisitc $p(\lambda)$, son equivalents:
+    \begin{itemize}
+        \item Totes les solucions de l'equació converteixen a $0$.
+        \item $\max_{k = 1, 2, \dots, \sigma}\left|\lambda_k\right| < 1$
+    \end{itemize}
+\end{corolari}
+\subsubsection{Monotonia / Oscil·lació}
+Siguin $\lambda_1, \lambda_2$ arrels de polinomi caracteristic de l'equació $x_{n+2} + a_1x_{n+1} + a_0x_n = 0$ amb $a_1, a_0 \in \mathbb{R}$. Llavors com les solecuions a la llarga?\\
+\begin{itemize}
+    \item Si $\lambda_1, \lambda_2 \in \mathbb{R}$ amb $\lambda_1 > |\lambda_2|$ gairabé totes (excepte a solucions constants) totes les solucions son monòtones a partir d'un $n$.
+    \item Si $\lambda_1, \lambda_2 \in \mathbb{R}$ amb $\lambda_1 < -|\lambda_2|$ gairabé totes (excepte a solucions constants) totes les solucions son oscil·lants a partir d'un $n$.
+    \item Si $\lambda_1, \lambda_2 \in \mathbb{C}\setminus\mathbb{R}$ amb $\lambda_1 = \overline{\lambda_2}$ comportament oscil·lant complet.
+\end{itemize}
+\subsubsection{Equacions no lineals, camí cap al caos}
+Ara estudiarem, en els casos possibles, com és comporten dinamicament les solucions d'equacions de la forma $x_{n+1} = f(x_n)$ amb $f$ funció no lineal.\\
+En general, $x_n = f^n(x_0)$ amb $f^n$ la composició de $f$ $n$ cops.\\
+\begin{definicio}
+    Es diu que $X = X^*$ és un punt fix de $X_{n+1} = f(X_n)$ si $f(X^*) = X^*$.
+\end{definicio}
+Una manera pràctica de trobar els punts fixos és resoldre l'equació $f(x) = x$.
+\begin{definicio}
+    Donat un punt $x_n$, la semiorbita positiva de $x_0$ per $x_{n+1} = f(x_n)$ es $O(x_0) = \{x_0, f(x_0), f^2(x_0), \dots, f^n(x_0)\}$.
+\end{definicio}
+\begin{notacio}
+    Es farà servir "orbita" per referir-se a la semiorbita positiva.
+\end{notacio}
+\begin{definicio}
+    Sigui $x^*$ un punt fix d'un sistema dinamic es diu que és estable si $\forall U \subset \mathbb{R}$ interval obert de $x^*$ existeix $V \subset U$ interval obert de $x^*$ tal que $\forall x \in V$ aleshores $O(x) \subset U$.
+\end{definicio}
+\begin{definicio}
+    Sigui $x^*$ punt fix. Diem que $x^*$ és inestable si no és estable. És a dir, existeix $U \subset \mathbb{R}$ interval obert de $x^*$ tal que $\forall V \subset U$ interval obert de $x^*$ tal que $\exists x \in V$ tal que $O(x) \not\subset U$.
+\end{definicio}
+\begin{definicio}
+    Diem que $a \in \mathbb{R}$ és un punt periodic de periode $n$ sí $f^n(a) = a$ i $f^i(a) \neq a$ per $i = 1, 2, \dots, n-1$.
+\end{definicio}
+\begin{definicio}
+    Diem que $a \in \mathbb{R}$ és un punt preperiòdic d'una altra de periode $n$ si $\exists m > 0$ tal que $f^{m+n}(a) = f^m(a)$ i $f^{m+i}(a) \neq f^{m}$ per $i = 1, 2, \dots, m-1$.
+\end{definicio}
+Llavors, si tenim un punt periòdic de periode $n$, llavors es punt fix de $g(x) = f^{n}(x)$. Les nocions d'estabilitat es poden definir per òrbites periòdiques fent servir que són punts fixos de $g$.
+\begin{teorema}
+    Sigui $f: \mathbb{R} \rightarrow \mathbb{R}$ una funció $C^1$ 
+    \begin{itemize}
+        \item Si $x^*$ és un punt fix de $x_{n+1} = f(x_n)$ amb $f$ tal que $\|f'(x^*)\| < 1$ aleshores es un punt fix estable.
+        \item Si $a$ és un punt periodic de periode $n$ amb $f$ tal que $\|f^{n'}(a)\| < 1$ aleshores es un punt periòdic estable.
+    \end{itemize}
+\end{teorema}
+\begin{teorema}
+    Sigui $f$ de classe $C^1$ i sigui $a$ punt periodic de periode $n$, suposem $|f{n}'(a)| > 1$ aleshores $a$ és repulsor.
+\end{teorema}
+Aixo diu que existeix un interval $I$ al voltant de $a$ tal que $\forall x \in I\setminus\{a\}$ aleshores $\exists k = k(x)$ tal que $f^{n+k} \not\in I$
+\subsubsection{Atractors estranys a exponent de Lyapunov.}
+\begin{definicio}
+    Un conjunt $C$ és un atractor de $x_{n+1} = f(x_n)$ si:
+    \begin{itemize}
+        \item $C$ és acotat.
+        \item $C$ és invariant, es a dir, $\forall x \in C$ aleshores $f(x) \in C$.
+        \item $C$ és estable, es a dir, $\forall U \subset \mathbb{R}$ conjunt obert de $C$, $\exists V \subset U$ que conté $C$ tal que $\forall x \in V$ aleshores $O(x) \subset U$.
+        \item $\exists U \subset \mathbb{R}$ conjunt obert de $C$ tal que $\forall x \in U$, $\lim_{n\to\infty} d(f^n(x), C) = 0$, on $d(x, C) = \min\{|x-\tilde{x}|: \tilde{x} \in C\}$.
+        \item Si $C' \subset C$ i $\forall x \in C'$ aleshores $f(x) \in C'$, llavors $C'$ no és estable.
+    \end{itemize}
+\end{definicio}
+\begin{definicio}
+    Una conca d'atracció de $C$ és l'uniò de tots el oberts que satisfan la propietat 4 anterior.
+\end{definicio}
+\begin{definicio}
+    Sigui $f: \mathbb{R} \rightarrow \mathbb{R}$ una funció $C^1$. Donat un punt és defineix el multiplicador de Lyapunov de la semiòrbita de $x$, com:
+    \begin{displaymath}
+        \Lambda(x) = \lim_{n\to\infty} {|(f^n)'(x)|}^\frac{1}{n}
+    \end{displaymath}
+\end{definicio}
+El multiplicador de Lyapunov dona informació de com és comporta la distancia entre $f^n(x)$ i $f^n(\tilde{x})$ per $x \approx \tilde{x}$, ja que $|f^n(x) - f^n(\tilde{x})| \approx \Lambda(x)^n |x - \tilde{x}|$.
+\begin{definicio}
+    L'exponent de Lyapunov, serà $\lambda(x) = \ln \Lambda(x)$.
+\end{definicio}
+Per calcular-ho, serà tal que aixi:
+\begin{displaymath}
+    |(f^n)'(x)| = |f'(x_{n-1})f'(x_{n-2}) \cdots f'(x_0)|
+\end{displaymath}
+Com $\lambda(x) = \ln \Lambda(x)$, llavors:
+\begin{displaymath}
+    \lambda(x) = \lim_{n\to\infty} \frac{1}{n} \ln |g'(x_j)| = g(x)
+\end{displaymath}
+\begin{corolari}
+    Sigui $g$ contínua i $x_n \rightarrow x$ per $n \to \infty$ llavors $\lim_{n\to\infty} \frac{1}{n} \sum_{i=0}^{n-1} g(x_i) = g(x)$.
+\end{corolari}
+\begin{proposicio}
+    Sigui $f \in C^1$ i suponem que l'òrbita positiva de $x$ tendeix a un punt fix atractor amb $f'(x^*) < 1$. Aleshores $\lambda(x) < 0$.
+\end{proposicio}
+\begin{preposicio}
+    Sigui $f \in C^1$, $O_+(x)$ tendeix a una òrbita $p$-periòdica atractora $(O(\overline{x}))$. Aleshores $\lambda(x) = \frac{1}{p} \ln |f'(x_j)| < 0$.
+\end{preposicio}
+\begin{corolari}
+    Si l'orbita és acotada i $\lambda(x) > 0$ aleshores $x$ "convergeix" a un atractor que no és un punt fix ni orbita periòdica (estrany).
+\end{corolari}
+\subsection{Sistemes dinàmics discrets de dimensió més alta}
+\subsection{Sistemes dinàmics continus}
+\subsection{Simular reaccions}
+\end{document}

@@ -1,0 +1,46 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{deuresutils}
+
+\title{Cosararar}
+\asignatura{Mètodes Numèrics i Probabilistics}
+\author{Eduardo Pérez Motato}
+\niu{NIU: 1709992}
+\date{28/03/2025}
+
+\begin{document}
+    \makeheader
+
+    \begin{exercici}
+    	Considereu el mètode d'integració numèrica donat per la formula
+        \begin{displaymath}
+        	I(f) = \int_{-1}^{1} f(x) \, dx \approx S(f) = \alpha f(-1) + \beta f(1) + \gamma f'(-1) + \delta f'(1)
+        \end{displaymath}
+        \begin{enumerate}
+        	\item Determinar els pesos de $\alpha, \beta, \gamma, \delta$ de l'aproximació $S(f)$ de manera que sigui exacta per a polinomis de grau el més gran possible. Quin és el grau màxim?
+         	\item Comproveu per $f(x) = \frac{1}{3+x}$ i comproveu amb el valor exacte.
+        \end{enumerate}
+    \end{exercici}
+    \begin{solucio}
+    	Per a determinar els pesos $\alpha, \beta, \gamma, \delta$ de l'aproximació $S(f)$, fem servir $f(x)$ que sigui igual a $1, x, x^2, x^3$.
+     	Llavors tenim el següent sistema:
+      	\begin{displaymath}
+	      	\begin{cases}
+	       	    \alpha + \beta + \gamma + \delta = 2 \\
+				-\alpha + \beta - \gamma + \delta = 0 \\
+				\alpha + \beta - \gamma - \delta = \frac{2}{3} \\
+				-\alpha + \beta + \gamma - \delta = 0
+	       	\end{cases}
+	  	\end{displaymath}
+        Resolent aquest sistema obtenim $\alpha = \beta = 1$ i $\gamma = -\delta = \frac{1}{3}$.
+		Per això com a mínim serà exacte per a polinomis de grau 3. Comprovem per $f(x) = x^4$ si es compleix:
+		\begin{displaymath}
+			\int_{-1}^{1} x^4 \, dx \neq \alpha+\beta-4\gamma+4\gamma = 2
+		\end{displaymath}
+		Com no es compleix, és exacte com a màxim per cúbic.\\
+		Per comprovar amb $f(x) = \frac{1}{3+x}$, tenim:
+		\begin{displaymath}
+			\int_{-1}^{1} \frac{1}{3+x} \, dx = \ln(2) = S\left(\frac{1}{3+x}\right) = \frac{1}{3} - \frac{1}{3} + \frac{1}{6} - \frac{1}{6} = 0
+		\end{displaymath}
+		Per tant, no es compleix.
+    \end{solucio}
+\end{document}

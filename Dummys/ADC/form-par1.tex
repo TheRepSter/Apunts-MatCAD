@@ -1,0 +1,77 @@
+\documentclass[a4paper]{sciposter}
+\usepackage{lipsum}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[catalan]{babel}
+\usepackage{geometry}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usepackage{gensymb}
+\usepackage[utf8]{inputenc}
+\usepackage{empheq}
+\usepackage{letltxmacro}
+
+\graphicspath{{images/}}
+
+\newtheorem{teorema}{Teorema}
+
+\makeatletter
+\def\timeframe#1{\def\@timeframe{#1}}
+\def\period#1{\def\@period{#1}}
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{
+\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}
+{\box0\lower0.4pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2} }
+\makeatother
+
+\geometry{
+ landscape,
+ a1paper,
+ left=5mm,
+ right=50mm,
+ top=5mm,
+ bottom=50mm,
+}
+\newcommand*\widefbox[1]{\fbox{\hspace{2em}#1\hspace{2em}}}
+
+\newlength\dlf  % Define a new measure, dlf
+\newcommand\alignedbox[2]{
+% Argument #1 = before & if there were no box (lhs)
+% Argument #2 = after & if there were no box (rhs)
+&  % Alignment sign of the line
+{
+\settowidth\dlf{$\displaystyle #1$}
+    % The width of \dlf is the width of the lhs, with a displaystyle font
+\addtolength\dlf{\fboxsep+\fboxrule}
+    % Add to it the distance to the box, and the width of the line of the box
+\hspace{-\dlf}
+    % Move everything dlf units to the left, so that & #1 #2 is aligned under #1 & #2
+\boxed{#1 #2}
+    % Put a box around lhs and rhs
+}
+}
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\LARGE\bfseries\centering}{}{1em}{\color{blue}}
+\titleformat{\subsection}[block]{\Large\bfseries\centering}{}{1em}{\color{blue}}
+\titleformat{\subsubsection}[block]{\large\bfseries\centering}{}{1em}{\color{blue}}
+
+\usepackage{graphicx,url}
+
+\begin{document}
+\fontfamily{phv}\selectfont
+
+\begin{multicols}{3}
+\section{Introducció}
+Hola amigos de youtube
+\end{multicols}
+\end{document}
